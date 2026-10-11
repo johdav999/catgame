@@ -1,0 +1,43 @@
+{
+  "runtime_base_sha256": "83192482aae477fdaebf848436b63abd024ffca1110e4bfca02d3a6b99cbcdc2",
+  "candidate_sha256": "2d49d7914fb89dcb63307bfe8b867a99e85b9f35b23c4dc48b5d2d5783be8883",
+  "preserved": [
+    {
+      "clip": "approach_bowl",
+      "unchanged_non_facial_channels": 81
+    },
+    {
+      "clip": "attentive_request",
+      "unchanged_non_facial_channels": 81
+    },
+    {
+      "clip": "curled_rest",
+      "unchanged_non_facial_channels": 81
+    },
+    {
+      "clip": "drink",
+      "unchanged_non_facial_channels": 81
+    },
+    {
+      "clip": "garden_walk",
+      "unchanged_non_facial_channels": 81
+    },
+    {
+      "clip": "happy_pounce",
+      "unchanged_non_facial_channels": 81
+    },
+    {
+      "clip": "relaxed_idle",
+      "unchanged_non_facial_channels": 81
+    },
+    {
+      "clip": "return_idle",
+      "unchanged_non_facial_channels": 81
+    },
+    {
+      "clip": "settle_cushion",
+      "unchanged_non_facial_channels": 81
+    }
+  ],
+  "output_sha256": "f715997ab8f37e10aa09994085aad1099c2f34a2171c48219d836ed357f6c828"
+}

@@ -1,0 +1,1002 @@
+{
+  "schema": 1,
+  "id": "garden/kit@1",
+  "revision": 1,
+  "units": "metres",
+  "axes": "Y up, +Z forward; Blender Z-up -Y forward",
+  "source": "garden-kit.blend",
+  "assets": [
+    {
+      "id": "garden/paving@1",
+      "file": "paving.glb",
+      "sha256": "f0a33cd405684b066c45df9411f1ef3d5dea5132064e14aa1988d00db9811c6d",
+      "bytes": 475600,
+      "triangles": 752,
+      "bounds": {
+        "min": [
+          -0.49449998140335083,
+          -0.11999999731779099,
+          -0.49449998140335083
+        ],
+        "max": [
+          0.49449998140335083,
+          0.0,
+          0.49449998140335083
+        ]
+      },
+      "footprint": [
+        1,
+        1
+      ],
+      "pivot": "floor/contact centre",
+      "anchors": {},
+      "materials": [
+        "stone"
+      ]
+    },
+    {
+      "id": "garden/edge@1",
+      "file": "edge.glb",
+      "sha256": "04abd587dddbc466b88e9440d9d042e1590dfc7ff4342170bfb1515852b820b8",
+      "bytes": 436492,
+      "triangles": 188,
+      "bounds": {
+        "min": [
+          -0.5,
+          -0.06000000238418579,
+          -0.10999999940395355
+        ],
+        "max": [
+          0.5,
+          0.14000000059604645,
+          0.10999999940395355
+        ]
+      },
+      "footprint": [
+        1,
+        0.22
+      ],
+      "pivot": "floor/contact centre",
+      "anchors": {},
+      "materials": [
+        "stone"
+      ]
+    },
+    {
+      "id": "garden/fence@1",
+      "file": "fence.glb",
+      "sha256": "98189c5f206c52e5897c5b8bd569c8774baed7e237bbfa5789f5933058e10361",
+      "bytes": 452960,
+      "triangles": 2068,
+      "bounds": {
+        "min": [
+          -0.5174999833106995,
+          0.0,
+          -0.057500001043081284
+        ],
+        "max": [
+          0.5174999833106995,
+          0.6000000238418579,
+          0.054999999701976776
+        ]
+      },
+      "footprint": [
+        1,
+        0.14
+      ],
+      "pivot": "floor/contact centre",
+      "anchors": {},
+      "materials": [
+        "wood"
+      ]
+    },
+    {
+      "id": "garden/planting@1",
+      "file": "planting.glb",
+      "sha256": "2e94a9dda8c541a918efae1bae842faf282280f25e001153e071948826f7e19b",
+      "bytes": 170824,
+      "triangles": 4716,
+      "bounds": {
+        "min": [
+          -0.2991305887699127,
+          -0.005100465379655361,
+          -0.17901264131069183
+        ],
+        "max": [
+          0.38297897577285767,
+          0.36675623059272766,
+          0.3016604483127594
+        ]
+      },
+      "footprint": [
+        0.72,
+        0.65
+      ],
+      "pivot": "floor/contact centre",
+      "anchors": {},
+      "materials": [
+        "cream",
+        "honey",
+        "moss",
+        "sage"
+      ]
+    },
+    {
+      "id": "garden/bench@1",
+      "file": "bench.glb",
+      "sha256": "357355c58a75f59117d6a5ae2e50071f7b7ab4b18372f6b1465af006bbedd57b",
+      "bytes": 494680,
+      "triangles": 2632,
+      "bounds": {
+        "min": [
+          -0.6349999904632568,
+          0.0,
+          -0.3100000023841858
+        ],
+        "max": [
+          0.6349999904632568,
+          0.8550000190734863,
+          0.3100000023841858
+        ]
+      },
+      "footprint": [
+        1.4,
+        0.66
+      ],
+      "pivot": "floor/contact centre",
+      "anchors": {
+        "perch": [
+          0,
+          0.49,
+          0
+        ]
+      },
+      "materials": [
+        "teal",
+        "wood"
+      ]
+    },
+    {
+      "id": "garden/pot_round@1",
+      "file": "pot_round.glb",
+      "sha256": "0d705f287233bd541af7abd818d9390d644ae7ec668afb3df2f49a3739f9cb10",
+      "bytes": 557224,
+      "triangles": 5740,
+      "bounds": {
+        "min": [
+          -0.2991305887699127,
+          0.0,
+          -0.28999999165534973
+        ],
+        "max": [
+          0.38297897577285767,
+          0.7367562055587769,
+          0.3016604483127594
+        ]
+      },
+      "footprint": [
+        0.65,
+        0.65
+      ],
+      "pivot": "floor/contact centre",
+      "anchors": {
+        "floor": [
+          0,
+          0,
+          0
+        ],
+        "slide_axis": [
+          1,
+          0,
+          0
+        ]
+      },
+      "materials": [
+        "cream",
+        "honey",
+        "moss",
+        "sage",
+        "soil",
+        "terracotta"
+      ]
+    },
+    {
+      "id": "garden/pot_fluted@1",
+      "file": "pot_fluted.glb",
+      "sha256": "cf5e4642f8609be660973cb28f462703d244866cb08b905325e4931282fbb755",
+      "bytes": 558864,
+      "triangles": 5740,
+      "bounds": {
+        "min": [
+          -0.2991305887699127,
+          0.0,
+          -0.2963799834251404
+        ],
+        "max": [
+          0.38297897577285767,
+          0.7367562055587769,
+          0.3016604483127594
+        ]
+      },
+      "footprint": [
+        0.65,
+        0.65
+      ],
+      "pivot": "floor/contact centre",
+      "anchors": {
+        "floor": [
+          0,
+          0,
+          0
+        ],
+        "slide_axis": [
+          1,
+          0,
+          0
+        ]
+      },
+      "materials": [
+        "cream",
+        "honey",
+        "moss",
+        "sage",
+        "soil",
+        "terracotta"
+      ]
+    },
+    {
+      "id": "garden/channel_straight@1",
+      "file": "channel_straight.glb",
+      "sha256": "7d4e8ac7611a2badc2d43ce3d2dd678a5f58e42fc703252642cacb6e6c312356",
+      "bytes": 323492,
+      "triangles": 572,
+      "bounds": {
+        "min": [
+          -0.5,
+          0.0,
+          -0.1899999976158142
+        ],
+        "max": [
+          0.5,
+          0.19784942269325256,
+          0.1899999976158142
+        ]
+      },
+      "footprint": [
+        1,
+        1
+      ],
+      "pivot": "floor/contact centre",
+      "anchors": {
+        "port_a": [
+          -0.5,
+          0.06,
+          0
+        ],
+        "port_b": [
+          0.5,
+          0.06,
+          0
+        ],
+        "clear_width": 0.26,
+        "ball_radius": 0.105
+      },
+      "materials": [
+        "wood"
+      ]
+    },
+    {
+      "id": "garden/channel_curve@1",
+      "file": "channel_curve.glb",
+      "sha256": "2154ad2e42516f5a8ad7f79cf52daed1af0bc99c3c9263fa80ead272af544a20",
+      "bytes": 397040,
+      "triangles": 2780,
+      "bounds": {
+        "min": [
+          -0.5,
+          0.0,
+          -0.5
+        ],
+        "max": [
+          0.18973824381828308,
+          0.19784796237945557,
+          0.18973824381828308
+        ]
+      },
+      "footprint": [
+        1,
+        1
+      ],
+      "pivot": "floor/contact centre",
+      "anchors": {
+        "port_a": [
+          -0.5,
+          0.06,
+          0
+        ],
+        "port_b": [
+          0,
+          0.06,
+          -0.5
+        ],
+        "clear_width": 0.26,
+        "ball_radius": 0.105
+      },
+      "materials": [
+        "wood"
+      ]
+    },
+    {
+      "id": "garden/ball@1",
+      "file": "ball.glb",
+      "sha256": "7c142305b952aaaf5da3a4315707c1576bb46c687a702c2ddffb6680232ba1dc",
+      "bytes": 29280,
+      "triangles": 960,
+      "bounds": {
+        "min": [
+          -0.10499989986419678,
+          0.0,
+          -0.10499999672174454
+        ],
+        "max": [
+          0.10499996691942215,
+          0.20999999344348907,
+          0.10499992966651917
+        ]
+      },
+      "footprint": [
+        0.21,
+        0.21
+      ],
+      "pivot": "floor/contact centre",
+      "anchors": {
+        "centre": [
+          0,
+          0.105,
+          0
+        ]
+      },
+      "materials": [
+        "coral",
+        "cream"
+      ]
+    },
+    {
+      "id": "garden/mouse@1",
+      "file": "mouse.glb",
+      "sha256": "a4e9eb739d92a4811c5f500a3668240cd5d6dadd4252d772bb8a3ab99388c1eb",
+      "bytes": 514076,
+      "triangles": 1836,
+      "bounds": {
+        "min": [
+          -0.11499999463558197,
+          0.0,
+          -0.22848528623580933
+        ],
+        "max": [
+          0.11500000208616257,
+          0.17499999701976776,
+          0.18000000715255737
+        ]
+      },
+      "footprint": [
+        0.25,
+        0.39
+      ],
+      "pivot": "floor/contact centre",
+      "anchors": {},
+      "materials": [
+        "cloth",
+        "coral",
+        "ink"
+      ]
+    },
+    {
+      "id": "garden/fish@1",
+      "file": "fish.glb",
+      "sha256": "afff84568f647bea9420084a579e268033c47147d7822df7f329725b0eba1a10",
+      "bytes": 40932,
+      "triangles": 984,
+      "bounds": {
+        "min": [
+          -0.2099999338388443,
+          0.0,
+          -0.11420807987451553
+        ],
+        "max": [
+          0.2076757252216339,
+          0.11385515332221985,
+          0.11420807987451553
+        ]
+      },
+      "footprint": [
+        0.46,
+        0.27
+      ],
+      "pivot": "floor/contact centre",
+      "anchors": {},
+      "materials": [
+        "cream",
+        "ink",
+        "sky",
+        "teal"
+      ]
+    },
+    {
+      "id": "garden/basket@1",
+      "file": "basket.glb",
+      "sha256": "d9236b137c203b3997a3fc6c8c4233263404c561e43f70ff36a62deaa501e659",
+      "bytes": 1077756,
+      "triangles": 4408,
+      "bounds": {
+        "min": [
+          -0.8600000143051147,
+          0.0,
+          -0.35500001907348633
+        ],
+        "max": [
+          0.8600000143051147,
+          0.24199999868869781,
+          0.35500001907348633
+        ]
+      },
+      "footprint": [
+        1.78,
+        0.74
+      ],
+      "pivot": "floor/contact centre",
+      "anchors": {
+        "ball_socket": [
+          -0.53,
+          0.059,
+          0
+        ],
+        "mouse_socket": [
+          0,
+          0.059,
+          0
+        ],
+        "fish_socket": [
+          0.52,
+          0.059,
+          0
+        ]
+      },
+      "materials": [
+        "cloth",
+        "teal",
+        "wicker"
+      ]
+    },
+    {
+      "id": "garden/blocking_cushion@1",
+      "file": "blocking_cushion.glb",
+      "sha256": "d37fc0ce7ba0b8030ea2cd48026a284143cfc48c8c31374bfc7bb11df2805a37",
+      "bytes": 556820,
+      "triangles": 3620,
+      "bounds": {
+        "min": [
+          -0.36900001764297485,
+          0.0,
+          -0.2540000081062317
+        ],
+        "max": [
+          0.3689998686313629,
+          0.23399999737739563,
+          0.2540000081062317
+        ]
+      },
+      "footprint": [
+        0.76,
+        0.53
+      ],
+      "pivot": "floor/contact centre",
+      "anchors": {},
+      "materials": [
+        "cloth",
+        "coral"
+      ]
+    },
+    {
+      "id": "garden/cushion@1",
+      "file": "cushion.glb",
+      "sha256": "b15aaaae1620729b20c1864a22481fcd12b9b949075ca0b28bc6f377d802bbd8",
+      "bytes": 561912,
+      "triangles": 3948,
+      "bounds": {
+        "min": [
+          -0.45899999141693115,
+          0.0,
+          -0.5789999961853027
+        ],
+        "max": [
+          0.4589999318122864,
+          0.1799997091293335,
+          0.5789999961853027
+        ]
+      },
+      "footprint": [
+        0.94,
+        1.18
+      ],
+      "pivot": "floor/contact centre",
+      "anchors": {
+        "rest_root": [
+          0,
+          0.16,
+          0
+        ],
+        "approach": [
+          0,
+          0,
+          1.1
+        ]
+      },
+      "materials": [
+        "cream",
+        "sage_cloth",
+        "teal"
+      ]
+    },
+    {
+      "id": "garden/switch_base@1",
+      "file": "switch_base.glb",
+      "sha256": "47edc9a261e9cf3900545e30801aa3ffc4c8df09fe012aaec9f1f76e9ef72563",
+      "bytes": 319948,
+      "triangles": 188,
+      "bounds": {
+        "min": [
+          -0.23999999463558197,
+          0.0,
+          -0.23999999463558197
+        ],
+        "max": [
+          0.23999999463558197,
+          0.07000000029802322,
+          0.23999999463558197
+        ]
+      },
+      "footprint": [
+        0.5,
+        0.5
+      ],
+      "pivot": "floor/contact centre",
+      "anchors": {
+        "plate_unpressed": [
+          0,
+          0.09,
+          0
+        ],
+        "plate_pressed": [
+          0,
+          0.055,
+          0
+        ],
+        "ball_root_pressed": [
+          0,
+          0.115,
+          0
+        ]
+      },
+      "materials": [
+        "wood"
+      ]
+    },
+    {
+      "id": "garden/switch_plate@1",
+      "file": "switch_plate.glb",
+      "sha256": "c5680eb87ad2e70257bdb27e77e1daa7e2273ca9d01a18ecee03faf9b694135c",
+      "bytes": 22856,
+      "triangles": 380,
+      "bounds": {
+        "min": [
+          -0.19499999284744263,
+          0.0,
+          -0.19499999284744263
+        ],
+        "max": [
+          0.19499999284744263,
+          0.06499999761581421,
+          0.19499999284744263
+        ]
+      },
+      "footprint": [
+        0.4,
+        0.4
+      ],
+      "pivot": "floor/contact centre",
+      "anchors": {
+        "ball_root": [
+          0,
+          0.05,
+          0
+        ]
+      },
+      "materials": [
+        "cream",
+        "teal"
+      ]
+    },
+    {
+      "id": "garden/gate_frame@1",
+      "file": "gate_frame.glb",
+      "sha256": "71e2c95d36a2cc1255223f3620ce8275c09f36b2c6a5f969d18f5a307c9522d0",
+      "bytes": 348492,
+      "triangles": 824,
+      "bounds": {
+        "min": [
+          -0.6949999928474426,
+          0.0,
+          -0.0949999988079071
+        ],
+        "max": [
+          0.6949999928474426,
+          1.1299999952316284,
+          0.0949999988079071
+        ]
+      },
+      "footprint": [
+        1.38,
+        0.24
+      ],
+      "pivot": "floor/contact centre",
+      "anchors": {
+        "hinge": [
+          -0.54,
+          0.08,
+          0
+        ],
+        "passage_width": 1.1,
+        "open_angle_degrees": 100
+      },
+      "materials": [
+        "teal",
+        "wood"
+      ]
+    },
+    {
+      "id": "garden/gate_leaf@1",
+      "file": "gate_leaf.glb",
+      "sha256": "3ed4d80c4fffcaf827ba6ced8a46bae4c9542b17bc71812672a7223b97730b07",
+      "bytes": 451908,
+      "triangles": 2068,
+      "bounds": {
+        "min": [
+          -0.0299999937415123,
+          0.009999990463256836,
+          -0.10499999672174454
+        ],
+        "max": [
+          1.059999942779541,
+          0.8899999856948853,
+          0.07249999791383743
+        ]
+      },
+      "footprint": [
+        1.06,
+        0.18
+      ],
+      "pivot": "hinge",
+      "anchors": {
+        "hinge": [
+          0,
+          0,
+          0
+        ]
+      },
+      "materials": [
+        "ink",
+        "teal",
+        "wood"
+      ]
+    },
+    {
+      "id": "garden/bowl@1",
+      "file": "bowl.glb",
+      "sha256": "7918c8bc5ff1a1ce3e13c2600421645eabd4dd9314c1edf537ed6c2f1e650f87",
+      "bytes": 41504,
+      "triangles": 1152,
+      "bounds": {
+        "min": [
+          -0.2709999978542328,
+          0.0,
+          -0.2709999978542328
+        ],
+        "max": [
+          0.2709999978542328,
+          0.1850000023841858,
+          0.2709999978542328
+        ]
+      },
+      "footprint": [
+        0.55,
+        0.55
+      ],
+      "pivot": "floor/contact centre",
+      "anchors": {
+        "water": [
+          0,
+          0.125,
+          0
+        ],
+        "drink_root": [
+          0,
+          0,
+          -0.64
+        ],
+        "approach": [
+          0,
+          0,
+          -1.3
+        ]
+      },
+      "materials": [
+        "cream",
+        "sky"
+      ]
+    },
+    {
+      "id": "garden/bowl_water@1",
+      "file": "bowl_water.glb",
+      "sha256": "61c47e25c4e1e3f4adc136e3123b8b97f45d57ad64a7f9e503bc78292875abeb",
+      "bytes": 4880,
+      "triangles": 96,
+      "bounds": {
+        "min": [
+          -0.2199999988079071,
+          0.0,
+          -0.2199999988079071
+        ],
+        "max": [
+          0.2199999988079071,
+          0.0,
+          0.2199999988079071
+        ]
+      },
+      "footprint": [
+        0.44,
+        0.44
+      ],
+      "pivot": "floor/contact centre",
+      "anchors": {},
+      "materials": [
+        "water"
+      ]
+    }
+  ],
+  "materials": [
+    "stone",
+    "terracotta",
+    "wood",
+    "cloth",
+    "wicker",
+    "sage_cloth"
+  ],
+  "assemblies": {
+    "gate": [
+      {
+        "asset": "gate_frame",
+        "position": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "asset": "gate_leaf",
+        "position": [
+          -0.54,
+          0.08,
+          0
+        ],
+        "rotation_y_degrees": 0
+      }
+    ],
+    "switch": [
+      {
+        "asset": "switch_base",
+        "position": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "asset": "switch_plate",
+        "position": [
+          0,
+          0.09,
+          0
+        ]
+      }
+    ],
+    "bowl": [
+      {
+        "asset": "bowl",
+        "position": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "asset": "bowl_water",
+        "position": [
+          0,
+          0.125,
+          0
+        ]
+      }
+    ]
+  },
+  "review_instances": [
+    {
+      "asset": "paving",
+      "position": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "asset": "edge",
+      "position": [
+        0,
+        0,
+        -2
+      ]
+    },
+    {
+      "asset": "fence",
+      "position": [
+        -2,
+        0,
+        -2
+      ]
+    },
+    {
+      "asset": "planting",
+      "position": [
+        -2.4,
+        0,
+        -1.2
+      ]
+    },
+    {
+      "asset": "bench",
+      "position": [
+        0,
+        0,
+        -2
+      ]
+    },
+    {
+      "asset": "pot_round",
+      "position": [
+        -2,
+        0,
+        0
+      ]
+    },
+    {
+      "asset": "pot_fluted",
+      "position": [
+        -2,
+        0,
+        1
+      ]
+    },
+    {
+      "asset": "channel_straight",
+      "position": [
+        -0.5,
+        0,
+        0
+      ]
+    },
+    {
+      "asset": "channel_curve",
+      "position": [
+        0.5,
+        0,
+        0
+      ]
+    },
+    {
+      "asset": "ball",
+      "position": [
+        -0.72,
+        0.06,
+        0
+      ]
+    },
+    {
+      "asset": "basket",
+      "position": [
+        0,
+        0,
+        1.3
+      ]
+    },
+    {
+      "asset": "mouse",
+      "position": [
+        -0.1,
+        0.0,
+        2
+      ]
+    },
+    {
+      "asset": "fish",
+      "position": [
+        0.6,
+        0,
+        2
+      ]
+    },
+    {
+      "asset": "blocking_cushion",
+      "position": [
+        -1.5,
+        0,
+        2
+      ]
+    },
+    {
+      "asset": "cushion",
+      "position": [
+        1.7,
+        0,
+        1.2
+      ]
+    },
+    {
+      "asset": "switch_base",
+      "position": [
+        1.6,
+        0,
+        -0.2
+      ]
+    },
+    {
+      "asset": "switch_plate",
+      "position": [
+        1.6,
+        0.09,
+        -0.2
+      ]
+    },
+    {
+      "asset": "gate_frame",
+      "position": [
+        1.6,
+        0,
+        -1.6
+      ]
+    },
+    {
+      "asset": "gate_leaf",
+      "position": [
+        1.06,
+        0.08,
+        -1.6
+      ]
+    },
+    {
+      "asset": "bowl",
+      "position": [
+        2.45,
+        0,
+        0.25
+      ]
+    },
+    {
+      "asset": "bowl_water",
+      "position": [
+        2.45,
+        0.125,
+        0.25
+      ]
+    }
+  ]
+}

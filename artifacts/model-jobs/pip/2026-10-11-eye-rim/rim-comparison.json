@@ -1,0 +1,20 @@
+[
+  {
+    "view": 0,
+    "previous_dark_pixels": 1034,
+    "current_dark_pixels": 35,
+    "reduction": 0.9661508704061895
+  },
+  {
+    "view": 1,
+    "previous_dark_pixels": 954,
+    "current_dark_pixels": 14,
+    "reduction": 0.9853249475890985
+  },
+  {
+    "view": 2,
+    "previous_dark_pixels": 982,
+    "current_dark_pixels": 8,
+    "reduction": 0.9918533604887984
+  }
+]

@@ -1,0 +1,16 @@
+add_library(paws_garden src/garden_kit.cpp)
+target_include_directories(paws_garden PUBLIC src)
+target_link_libraries(paws_garden PUBLIC paws_pip WebEngine::Core)
+if(EMSCRIPTEN)
+  add_executable(garden_preview src/garden_preview_main.cpp)
+  target_link_libraries(garden_preview PRIVATE paws_garden WebEngine::Browser engine_assets_browser)
+  target_link_options(garden_preview PRIVATE -sALLOW_MEMORY_GROWTH=1 -sSTACK_SIZE=1048576
+    -sENVIRONMENT=web -sEXIT_RUNTIME=0 -sFILESYSTEM=0
+    "-sEXPORTED_FUNCTIONS=['_main','_malloc','_free']")
+  set_target_properties(garden_preview PROPERTIES SUFFIX ".js" RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/site")
+  add_dependencies(paws_site garden_preview)
+elseif(BUILD_TESTING)
+  add_executable(paws_garden_tests tests/garden_kit_tests.cpp)
+  target_link_libraries(paws_garden_tests PRIVATE paws_garden)
+  add_test(NAME paws_garden_kit COMMAND paws_garden_tests "${PROJECT_SOURCE_DIR}/assets/runtime/models")
+endif()

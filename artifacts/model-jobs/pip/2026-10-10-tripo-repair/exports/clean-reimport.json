@@ -1,0 +1,106 @@
+{
+  "packed_master_images": [
+    {
+      "name": "Pip closed-eyelid colour",
+      "packed": true,
+      "size": [
+        64,
+        64
+      ]
+    },
+    {
+      "name": "pip-basecolor-1024",
+      "packed": true,
+      "size": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "name": "pip-metallic-1024",
+      "packed": true,
+      "size": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "name": "pip-normal-1024",
+      "packed": true,
+      "size": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "name": "pip-roughness-1024",
+      "packed": true,
+      "size": [
+        1024,
+        1024
+      ]
+    }
+  ],
+  "glb": {
+    "triangles": 17854,
+    "vertices": 10373,
+    "bones": 29,
+    "materials": 2,
+    "actions": [
+      "approach_bowl_PipRig",
+      "attentive_request_PipRig",
+      "curled_rest_PipRig",
+      "drink_PipRig",
+      "garden_walk_PipRig",
+      "happy_pounce_PipRig",
+      "relaxed_idle_PipRig",
+      "return_idle_PipRig",
+      "settle_cushion_PipRig"
+    ],
+    "unweighted": 0,
+    "max_influences": 4,
+    "bounds": [
+      [
+        -0.19980588555335999,
+        -0.6355335712432861,
+        -6.69129036623417e-08
+      ],
+      [
+        0.19980588555335999,
+        0.6182976365089417,
+        1.0530091524124146
+      ]
+    ]
+  },
+  "fbx": {
+    "triangles": 17854,
+    "vertices": 8933,
+    "bones": 29,
+    "materials": 2,
+    "actions": [
+      "PipRig|approach_bowl|PipRig|approach_bowl",
+      "PipRig|attentive_request|PipRig|attentive_request",
+      "PipRig|curled_rest|PipRig|curled_rest",
+      "PipRig|drink|PipRig|drink",
+      "PipRig|garden_walk|PipRig|garden_walk",
+      "PipRig|happy_pounce|PipRig|happy_pounce",
+      "PipRig|relaxed_idle|PipRig|relaxed_idle",
+      "PipRig|return_idle|PipRig|return_idle",
+      "PipRig|settle_cushion|PipRig|settle_cushion"
+    ],
+    "unweighted": 0,
+    "max_influences": 4,
+    "bounds": [
+      [
+        -0.19980588555335999,
+        -0.6355334520339966,
+        6.043802613930893e-08
+      ],
+      [
+        0.19980588555335999,
+        0.618297815322876,
+        1.0530089139938354
+      ]
+    ]
+  }
+}

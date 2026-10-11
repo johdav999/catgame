@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Garden kit · Paws workshop</title><link rel="icon" href="favicon.svg"><link rel="stylesheet" href="pip-preview.css">
+<script src="garden-preview.js" defer></script><script src="garden_preview.js" defer></script></head>
+<body><header><a href="./">Paws</a><span>Garden workshop · Phase 4</span></header><main>
+<div class="intro"><div><h1>A little garden</h1><p>Models and assembly checks with Pip at their shared metre scale.</p></div></div>
+<canvas id="viewport" tabindex="0" aria-label="Garden model preview. Drag or use arrow keys to orbit, plus and minus to zoom."></canvas>
+<p id="status" role="status" aria-live="polite">Preparing the garden…</p><button id="retry" hidden>Retry loading garden</button>
+<fieldset id="actions" disabled><legend>Inspect assemblies</legend><div id="clips">
+<button data-pose="0">Kit overview</button><button data-pose="1">Press switch / open gate</button><button data-pose="2">Fit toys in basket</button><button data-pose="3">Pip at bowl</button>
+</div><div class="options"><button data-view="0">Whole kit</button><button data-view="1">Channels</button><button data-view="2">Basket</button><button data-view="3">Gate and switch</button><button data-view="4">Furnishings</button></div></fieldset>
+<div class="options"><label><input type="checkbox" id="shadows" checked>Desktop shadows</label><button id="reset">Reset view</button></div>
+<p class="note">Development model inspection. Poses change immediately for reduced motion. Quest rules, garden progression and purchases are implemented in later phases.</p>
+</main></body></html>

@@ -1,0 +1,53 @@
+[
+  {
+    "id": "Fraunces-Semibold",
+    "file": "Fraunces-Semibold.ttf",
+    "source": "https://raw.githubusercontent.com/google/fonts/bd8f81ddb5c74d5c8897b36ad88b440266245103/ofl/fraunces/Fraunces%5BSOFT%2CWONK%2Copsz%2Cwght%5D.ttf",
+    "source_sha256": "177ff6c0f14e5550a3c624247cd1189611d4eb65d000b14944c63d967958abbb",
+    "axes": {
+      "opsz": 24,
+      "wght": 600,
+      "SOFT": 0.0,
+      "WONK": 1.0
+    },
+    "sha256": "9b340368f85739fdbe160ab1d4f4a824f7786b7044070514ecb1671d4328b3db",
+    "bytes": 72976,
+    "license": "fraunces-OFL.txt",
+    "modification": "Static instance using fontTools 4.60.1; no subsetting",
+    "date": "2026-10-10"
+  },
+  {
+    "id": "NunitoSans-Regular",
+    "file": "NunitoSans-Regular.ttf",
+    "source": "https://raw.githubusercontent.com/google/fonts/bd8f81ddb5c74d5c8897b36ad88b440266245103/ofl/nunitosans/NunitoSans%5BYTLC%2Copsz%2Cwdth%2Cwght%5D.ttf",
+    "source_sha256": "f934d7142fb4784bf828da485b7dcbd90c0c80d514e9d49a5da0ed3a1ae2491d",
+    "axes": {
+      "wght": 400,
+      "wdth": 100.0,
+      "opsz": 12,
+      "YTLC": 500.0
+    },
+    "sha256": "a0dd7a78a7956a2607955f1cc96e241eec9131ff1f6db9b12169beed332e3fe2",
+    "bytes": 113504,
+    "license": "nunitosans-OFL.txt",
+    "modification": "Static instance using fontTools 4.60.1; no subsetting",
+    "date": "2026-10-10"
+  },
+  {
+    "id": "NunitoSans-Semibold",
+    "file": "NunitoSans-Semibold.ttf",
+    "source": "https://raw.githubusercontent.com/google/fonts/bd8f81ddb5c74d5c8897b36ad88b440266245103/ofl/nunitosans/NunitoSans%5BYTLC%2Copsz%2Cwdth%2Cwght%5D.ttf",
+    "source_sha256": "f934d7142fb4784bf828da485b7dcbd90c0c80d514e9d49a5da0ed3a1ae2491d",
+    "axes": {
+      "wght": 600,
+      "wdth": 100.0,
+      "opsz": 12,
+      "YTLC": 500.0
+    },
+    "sha256": "136c75f0844a31f0dc3f81e9ec0c3070b40df23697d120d89d517c7e3f665849",
+    "bytes": 113596,
+    "license": "nunitosans-OFL.txt",
+    "modification": "Static instance using fontTools 4.60.1; no subsetting",
+    "date": "2026-10-10"
+  }
+]

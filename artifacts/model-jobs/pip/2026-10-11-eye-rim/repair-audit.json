@@ -1,0 +1,12 @@
+[
+  {
+    "eye": "blink.L",
+    "boundary_vertices": 59,
+    "max_influences": 3
+  },
+  {
+    "eye": "blink.R",
+    "boundary_vertices": 57,
+    "max_influences": 3
+  }
+]

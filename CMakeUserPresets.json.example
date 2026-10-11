@@ -1,0 +1,13 @@
+{
+  "version": 3,
+  "configurePresets": [
+    {
+      "name": "native-local-engine",
+      "inherits": "native",
+      "binaryDir": "${sourceDir}/build/native-local-engine",
+      "cacheVariables": { "WEBENGINE_SOURCE_DIR": "C:/Users/Johan/source/repos/WebEngine" }
+    }
+  ],
+  "buildPresets": [{ "name": "native-local-engine", "configurePreset": "native-local-engine" }],
+  "testPresets": [{ "name": "native-local-engine", "configurePreset": "native-local-engine", "output": { "outputOnFailure": true } }]
+}

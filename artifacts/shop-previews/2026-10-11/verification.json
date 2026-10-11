@@ -1,0 +1,28 @@
+{
+  "cushion": {
+    "meshes": 1,
+    "packed_images": [
+      "neutral-normal",
+      "sage_cloth-basecolor",
+      "sage_cloth-roughness"
+    ],
+    "png_size": [
+      512,
+      512
+    ],
+    "channels": 4
+  },
+  "bowl": {
+    "meshes": 2,
+    "packed_images": [
+      "neutral-normal",
+      "sage_cloth-basecolor",
+      "sage_cloth-roughness"
+    ],
+    "png_size": [
+      512,
+      512
+    ],
+    "channels": 4
+  }
+}

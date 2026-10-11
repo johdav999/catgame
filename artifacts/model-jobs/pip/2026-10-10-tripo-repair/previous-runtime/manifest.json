@@ -1,0 +1,171 @@
+{
+  "schema": "paws-authored-asset/1",
+  "asset_id": "cats/pip@1",
+  "revision": "pip-r9",
+  "engine_pin": "3fe7d1dc1dc610c703944803cbb717cd65024ec9",
+  "runtime_url": "assets/models/pip/pip.glb",
+  "units": "metres",
+  "runtime_axes": {
+    "up": "+Y",
+    "forward": "+Z"
+  },
+  "root_policy": "in-place root; authored pelvis contact correction; caller owns world movement",
+  "rig": {
+    "id": "paws-cat-rig-v1",
+    "deform_bones": 29,
+    "engine_joints_including_wrappers": 31,
+    "max_influences": 4,
+    "sample_rate": 30,
+    "rest_pose": "standing quadruped, upright hook tail",
+    "morphs": false
+  },
+  "anchors": [
+    {
+      "name": "root_contact",
+      "space": "mesh bind, runtime axes",
+      "position": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "muzzle",
+      "space": "mesh bind, runtime axes",
+      "position": [
+        0,
+        0.643,
+        0.647
+      ],
+      "bone": "head",
+      "usage": "transform bind point through head skin matrix; fit final bowl lip in phase 7"
+    },
+    {
+      "name": "front_paw.L",
+      "space": "mesh bind, runtime axes",
+      "position": [
+        -0.137,
+        0.055,
+        0.31
+      ]
+    },
+    {
+      "name": "front_paw.R",
+      "space": "mesh bind, runtime axes",
+      "position": [
+        0.137,
+        0.055,
+        0.31
+      ]
+    }
+  ],
+  "material": {
+    "count": 1,
+    "opaque": true,
+    "albedo": "1024x1024 unique UV atlas, sRGB",
+    "source": "built-in OpenAI ImageGen colour variation + authored object-space tabby/cream masks",
+    "roughness": 0.86,
+    "metallic": 0,
+    "normal": "+Y neutral tangent normal; geometric coat masses provide relief",
+    "normal_source": "independently authored",
+    "roughness_source": "independently authored, not inferred from colour"
+  },
+  "portraits": {
+    "dialogue": "assets/models/pip/portrait-dialogue.png",
+    "shop": "assets/models/pip/portrait-shop.png",
+    "ending": "assets/models/pip/portrait-ending.png",
+    "source": "same packed final model; portrait-only lowered tail for head framing"
+  },
+  "limits": [
+    "Final garden/cushion/bowl composition is phase 5/7 work",
+    "Physical mobile not tested",
+    "Browser PBR lighting is flatter than Cycles review lighting",
+    "Chirrup audio is phase 9 work"
+  ],
+  "clips": [
+    {
+      "name": "relaxed_idle",
+      "seconds": 4,
+      "loop": true
+    },
+    {
+      "name": "attentive_request",
+      "seconds": 2.4,
+      "loop": false
+    },
+    {
+      "name": "happy_pounce",
+      "seconds": 1.2,
+      "loop": false
+    },
+    {
+      "name": "garden_walk",
+      "seconds": 1.2,
+      "loop": true
+    },
+    {
+      "name": "settle_cushion",
+      "seconds": 2.4,
+      "loop": false
+    },
+    {
+      "name": "curled_rest",
+      "seconds": 4,
+      "loop": true
+    },
+    {
+      "name": "approach_bowl",
+      "seconds": 1.8,
+      "loop": false
+    },
+    {
+      "name": "drink",
+      "seconds": 2,
+      "loop": true
+    },
+    {
+      "name": "return_idle",
+      "seconds": 1.8,
+      "loop": false
+    }
+  ],
+  "files": [
+    {
+      "path": "NOTICE.md",
+      "bytes": 566,
+      "sha256": "c0a0bf4bbb91ce8b3b59a341188ee548af5d7260f2c77d7abfcc2c6a6334b567"
+    },
+    {
+      "path": "pip.glb",
+      "bytes": 2097156,
+      "sha256": "55d0767f59a7464f6e4bebddc53cee02900691ddaf17f3b4a56d9802fd76e544"
+    },
+    {
+      "path": "portrait-dialogue.png",
+      "bytes": 282377,
+      "sha256": "5c921f680bffef1ce66dde41c42e62a322f0757672642bd7e7087545eee42c5f",
+      "dimensions": [
+        512,
+        512
+      ]
+    },
+    {
+      "path": "portrait-ending.png",
+      "bytes": 210075,
+      "sha256": "ff5d1b9ecd8c4ae0040fbc7687c170314c29509d50daccfa3893de1466118692",
+      "dimensions": [
+        512,
+        512
+      ]
+    },
+    {
+      "path": "portrait-shop.png",
+      "bytes": 279247,
+      "sha256": "1ed896cd4e22e24a947ed6365b00527fecc5aaed140c891999497e68e819be67",
+      "dimensions": [
+        512,
+        512
+      ]
+    }
+  ]
+}

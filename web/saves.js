@@ -1,0 +1,133 @@
+/* Paws save scheduling, session ownership and file UI. EngineStorage owns bytes
+   and transactions; Afternoon validates every candidate and owns publication. */
+(() => {
+  'use strict';
+  const limit=16*1024*1024, session=crypto.randomUUID();
+  let storage, namespace='paws-afternoon', mode=0, notice='', original=null;
+  let initialized=false, initializing, loaded=false, loadGeneration=0, fileGeneration=0;
+  let pending=null, timer=null, writes=Promise.resolve(), historyIndex=0;
+  const metrics={requested:0,committed:0,failed:0};
+  const encoder=new TextEncoder();
+  function withBytes(bytes,callback) {
+    const p=Module._malloc(bytes.length+1);if(!p)throw Error('Allocation failed');
+    try {Module.HEAPU8.set(bytes,p);Module.HEAPU8[p+bytes.length]=0;return callback(p,bytes.length);}
+    finally {Module._free(p);}
+  }
+  const withText=(text,callback)=>withBytes(encoder.encode(text),callback);
+  const valid=bytes=>withBytes(bytes,(p,n)=>Module._paws_validate_save(p,n));
+  const tell=text=>withText(text,p=>Module._paws_notice(p));
+  function publishMode() {
+    withText(session,s=>withText(notice,n=>Module._paws_storage_mode(mode,s,n,original?1:0)));
+  }
+  function backend() {return storage||(storage=new EngineStorage.IndexedDBStorage({namespace,maxBytes:limit}));}
+  function isolate(reason) {
+    namespace='paws-isolated-'+session;storage=undefined;mode=0;
+    notice=reason+' This is an independent save. Export it before leaving; the usual garden stays unchanged.';
+  }
+  async function initialize() {
+    if(initialized)return;
+    if(initializing)return initializing;
+    initializing=(async()=>{
+      if(navigator.locks?.request) {
+        await new Promise(resolve=>{
+          navigator.locks.request('paws-afternoon-writer',{mode:'exclusive',ifAvailable:true},lock=>{
+            if(!lock){mode=1;notice='Another tab is keeping the usual save. This tab is temporary; export to keep its progress.';resolve();return;}
+            resolve();
+            // Hold through hidden/background/BFCache. The browser releases on termination.
+            return new Promise(()=>{});
+          }).catch(()=>{isolate('Browser locking is unavailable.');resolve();});
+        });
+      } else isolate('Browser locking is unavailable.');
+      initialized=true;publishMode();
+    })();
+    return initializing;
+  }
+  window.pawsLoadSave=async()=>{
+    if(loaded)return;
+    await initialize();const generation=++loadGeneration;
+    window.pawsStorageReady=false;
+    try {
+      const candidates=[];let damaged=false;
+      // Fixed bounded slots: never scan attacker-controlled/unbounded key sets.
+      for(const key of ['current',...Array.from({length:5},(_,i)=>'history-'+i)]) {
+        let bytes;
+        try {bytes=await backend().get(key);}catch(error){if(error.code!=='corrupt')throw error;damaged=true;continue;}
+        if(generation!==loadGeneration)return;
+        if(!bytes)continue;
+        const revision=valid(bytes);
+        if(revision<0){damaged=true;if(!original||key==='current')original=bytes;continue;}
+        candidates.push({bytes,revision,key});
+      }
+      candidates.sort((a,b)=>b.revision-a.revision);
+      const best=candidates[0];
+      if(damaged) {
+        if(mode!==1)isolate(best?'An earlier valid afternoon was recovered. The damaged or newer-format data is preserved.':'The saved data could not be read and has been preserved.');
+        else notice+=' Some saved data could not be read and has been preserved.';
+      }
+      if(best)historyIndex=(best.revision+1)%5;
+      publishMode();
+      const ok=best?withBytes(best.bytes,(p,n)=>Module._paws_restore(p,n,1)):Module._paws_restore(0,0,0);
+      loaded=window.pawsStorageReady=!!ok;
+      if(best&&damaged)tell('Recovered a complete earlier afternoon. Export a copy from Save and recovery.');
+    } catch {
+      if(generation!==loadGeneration)return;
+      mode=2;notice='Storage is unavailable. Play temporarily and export a file to keep your afternoon.';publishMode();
+      loaded=window.pawsStorageReady=!!Module._paws_restore(0,0,0);
+    }
+  };
+  function flush() {
+    clearTimeout(timer);timer=null;
+    if(!pending)return writes;
+    const snapshot=pending;pending=null;
+    const destination=backend();const slot='history-'+(historyIndex++%5);
+    writes=writes.then(async()=>{
+      try {
+        // A full history record commits before replacing current. Failed writes
+        // retain earlier complete records; no wallet/ledger fields are split.
+        await destination.put(slot,snapshot.bytes);
+        await destination.put('current',snapshot.bytes);
+        ++metrics.committed;Module._paws_saved(snapshot.sequence,1);
+      } catch {++metrics.failed;Module._paws_saved(snapshot.sequence,0);}
+    });
+    return writes;
+  }
+  window.pawsStoreSave=(text,sequence,immediate=true,revision=0)=>{
+    ++loadGeneration;++metrics.requested;
+    if(mode!==0)return;
+    pending={bytes:encoder.encode(text),sequence,revision};
+    if(immediate)flush();
+    else {clearTimeout(timer);timer=setTimeout(flush,500);}
+  };
+  window.pawsFlushSave=flush;
+  window.pawsRetrySave=async()=>{
+    if(!loaded){await window.pawsLoadSave();return;}
+    if(mode===1){tell('The other tab owns the usual save. Export this temporary afternoon to keep it.');return;}
+    if(mode===2){isolate('Storage is being retried in an independent save.');publishMode();}
+    Module._paws_retry_save();
+  };
+  function download(bytes,name) {
+    const url=URL.createObjectURL(new Blob([bytes],{type:'application/octet-stream'}));
+    const link=document.createElement('a');link.href=url;link.download=name;link.click();
+    setTimeout(()=>URL.revokeObjectURL(url),30000);
+  }
+  window.pawsDownloadSave=text=>download(encoder.encode(text),'paws-afternoon.save');
+  window.pawsExportOriginal=()=>{if(original)download(original,'paws-original.save');};
+  window.pawsChooseImport=(attempt,revision)=>{
+    const generation=++fileGeneration;
+    const input=document.createElement('input');input.type='file';input.accept='.save,.txt,application/octet-stream';
+    input.setAttribute('aria-label','Choose a Paws saved afternoon');input.hidden=true;document.body.append(input);
+    input.addEventListener('cancel',()=>input.remove(),{once:true});
+    input.addEventListener('change',async()=>{
+      const file=input.files?.[0];input.remove();if(!file)return;
+      try {
+        if(file.size>limit)throw Error('size');
+        const bytes=new Uint8Array(await file.arrayBuffer());
+        if(generation!==fileGeneration)return;
+        const ok=withBytes(bytes,(p,n)=>Module._paws_stage_import(p,n,attempt,revision));
+        if(!ok)tell('That file could not be imported. Your current afternoon is unchanged.');
+      } catch {tell('That file could not be read or is too large. Your current afternoon is unchanged.');}
+    },{once:true});
+    input.click();
+  };
+  window.pawsSaveDiagnostics=()=>({mode,namespace,session,notice,pending:!!pending,...metrics});
+})();

@@ -1,0 +1,246 @@
+{
+  "schema": "paws-authored-asset/1",
+  "asset_id": "cats/pip@1",
+  "revision": "pip-fitted-blink-r15",
+  "created": "2026-10-10",
+  "engine_pin": "3fe7d1dc1dc610c703944803cbb717cd65024ec9",
+  "runtime_url": "assets/models/pip/pip.glb",
+  "units": "metres",
+  "source_axes": {
+    "up": "+Z",
+    "forward": "-Y"
+  },
+  "runtime_axes": {
+    "up": "+Y",
+    "forward": "+Z"
+  },
+  "pivot": "ground-centred canonical root below torso",
+  "root_policy": "in-place root; movement remains application-owned",
+  "rig_identity": "Paws cat rig v1: all 29 original names, hierarchy and bind transforms unchanged; two optional lower-eyelid controls",
+  "bones": [
+    "root",
+    "pelvis",
+    "spine",
+    "chest",
+    "neck",
+    "head",
+    "ear.L",
+    "blink.L",
+    "ear.R",
+    "blink.R",
+    "blink.lower.L",
+    "blink.lower.R",
+    "front_upper.L",
+    "front_lower.L",
+    "front_paw.L",
+    "front_upper.R",
+    "front_lower.R",
+    "front_paw.R",
+    "hind_upper.L",
+    "hind_lower.L",
+    "hind_paw.L",
+    "hind_upper.R",
+    "hind_lower.R",
+    "hind_paw.R",
+    "tail.00",
+    "tail.01",
+    "tail.02",
+    "tail.03",
+    "tail.04",
+    "tail.05",
+    "tail.06"
+  ],
+  "clips": [
+    "relaxed_idle",
+    "attentive_request",
+    "happy_pounce",
+    "garden_walk",
+    "settle_cushion",
+    "curled_rest",
+    "approach_bowl",
+    "drink",
+    "return_idle"
+  ],
+  "triangles": 20762,
+  "source_vertices": 10499,
+  "engine_vertices": 12240,
+  "materials": 2,
+  "max_influences": 4,
+  "unweighted_vertices": 0,
+  "source_fbx": {
+    "path": "assets/Pip/pip.fbx",
+    "sha256": "60d739a7f5eddff7a40d561d434425d541384d0feb152a819b5ac7b3985c4617"
+  },
+  "source_transform": "rotate +72 Z; scale X .92, Y/Z 1.25; recenter X and ground Z",
+  "textures": [
+    {
+      "name": "pip-basecolor-1024",
+      "size": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "name": "pip-metallic-1024",
+      "size": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "name": "pip-normal-1024",
+      "size": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "name": "pip-roughness-1024",
+      "size": [
+        1024,
+        1024
+      ]
+    }
+  ],
+  "texture_decoded_budget_estimate": {
+    "glb_bytes": 12582912,
+    "fbx_bytes_including_generated_mr": 20971520,
+    "default_fbx_limit_bytes": 134217728,
+    "excludes_mips_and_gpu_copies": true
+  },
+  "rest_bounds_runtime": {
+    "minimum": [
+      -0.199805886,
+      0,
+      -0.618297637
+    ],
+    "maximum": [
+      0.199805886,
+      1.05300915,
+      0.635533571
+    ]
+  },
+  "source_master": "artifacts/model-jobs/pip/2026-10-11-blink-production/pip-blink.blend",
+  "validation": {
+    "job": "artifacts/model-jobs/pip/2026-10-11-blink-production",
+    "native_glb": "validation-native.txt",
+    "native_fbx": "validation-fbx.txt",
+    "rig_glb": "rig-glb.txt",
+    "rig_fbx": "rig-fbx.txt",
+    "clean_reimport": "clean-reimport.json",
+    "closure": "r15-export-visibility.json",
+    "closure_positions": 41,
+    "closure_eye_view_combinations": 6,
+    "exposed_eye_faces_at_closed": 0,
+    "browser": "browser/review.json",
+    "browser_video": "browser/blink-three-views-4x-slow.webm",
+    "physical_mobile": "not tested",
+    "browser_smoke": "browser-smoke/pip-smoke.json",
+    "live_site": "live-site.json",
+    "browser_video_metadata": "browser/video.json"
+  },
+  "files": [
+    {
+      "path": "artifacts/model-jobs/pip/2026-10-11-blink-production/pip-blink.blend",
+      "bytes": 20666800,
+      "sha256": "23e1e243233863675c7e7190fcc3a9eb3e073abdab5053768760e91b936aad3e"
+    },
+    {
+      "path": "assets/Pip/pip-repaired.fbx",
+      "bytes": 5941884,
+      "sha256": "76eef35fb189c5bf7c705db2a0b0d766b23229d6a8e3621a24456efdbad0c5db"
+    },
+    {
+      "path": "assets/runtime/models/pip/pip.glb",
+      "bytes": 4281960,
+      "sha256": "2d49c4386ef6d209be3a02b31081d12051427672f5a785836e30c238f7517541"
+    },
+    {
+      "path": "assets/runtime/models/pip/portrait-dialogue.png",
+      "bytes": 294984,
+      "sha256": "e066258958f850ac108240719d396d883e038e5a34463740451b0352523f94ca"
+    },
+    {
+      "path": "assets/runtime/models/pip/portrait-ending.png",
+      "bytes": 201130,
+      "sha256": "69b94773492714eb1ae9f3ced59fddfa19fab888b74bfba45c0b8fcee334d2f1"
+    },
+    {
+      "path": "assets/runtime/models/pip/portrait-shop.png",
+      "bytes": 296797,
+      "sha256": "b2456227546e437e8a053e971fa19d53b9e13d616a24dcd65f9a4c5e65cb3758"
+    }
+  ],
+  "animation_revisions": {
+    "garden_walk": {
+      "revision": "reference-walk-r1",
+      "source_master": "artifacts/model-jobs/pip/2026-10-11-reference-walk/pip-walk-r1.blend",
+      "job": "artifacts/model-jobs/pip/2026-10-11-reference-walk",
+      "duration_seconds": 1.2,
+      "stride_metres": 0.36,
+      "speed_metres_per_second": 0.3,
+      "provenance": "artifacts/model-jobs/pip/2026-10-11-reference-walk/PROVENANCE.md"
+    },
+    "settle_cushion": {
+      "revision": "connected-settle-r9",
+      "source_master": "artifacts/model-jobs/pip/2026-10-11-settle-fix/pip-settle.blend",
+      "job": "artifacts/model-jobs/pip/2026-10-11-settle-fix",
+      "pose": "supported low rest; relaxed forelegs and tail alongside haunch; not a tight sleeping curl",
+      "preserves": "canonical bind, mesh, materials, current blink channels and every other action",
+      "validation": "tests/pip_settle_tests.cpp"
+    },
+    "curled_rest": {
+      "revision": "connected-settle-r9",
+      "source_master": "artifacts/model-jobs/pip/2026-10-11-settle-fix/pip-settle.blend",
+      "job": "artifacts/model-jobs/pip/2026-10-11-settle-fix",
+      "pose": "supported low rest; relaxed forelegs and tail alongside haunch; not a tight sleeping curl",
+      "preserves": "canonical bind, mesh, materials, current blink channels and every other action",
+      "validation": "tests/pip_settle_tests.cpp"
+    }
+  },
+  "facial_revision": {
+    "revision": "fitted-native-skin-r15",
+    "job": "artifacts/model-jobs/pip/2026-10-11-blink-production",
+    "upstream_master": "artifacts/model-jobs/pip/2026-10-11-blink-production/native-source.blend",
+    "upstream_master_sha256": "a38675107be2dea3dd80f6f2ef777eeb29a43d6e032fd6fef3742fa3d4f2c236",
+    "upper_controls": [
+      "blink.L",
+      "blink.R"
+    ],
+    "lower_controls": [
+      "blink.lower.L",
+      "blink.lower.R"
+    ],
+    "parent": "head",
+    "deformation": "smoothed fitted skin boundaries; geodesic weight falloff into brow and cheek; shared closure surface; connected overlapping lid margin; stationary eye islands; unit scales",
+    "preserved_non_facial_channels": 729,
+    "preservation_max_component_error": 0,
+    "idle_blink_seconds": {
+      "start": 2.4,
+      "close": 0.1,
+      "hold": 0.06666666666666667,
+      "open": 0.2
+    }
+  },
+  "previous_facial_revision": {
+    "revision": "native-skin-eyelids-r24",
+    "job": "artifacts/model-jobs/pip/2026-10-11-eyelids",
+    "upper_controls": [
+      "blink.L",
+      "blink.R"
+    ],
+    "lower_controls": [
+      "blink.lower.L",
+      "blink.lower.R"
+    ],
+    "parent": "head",
+    "deformation": "translation, unit scale, original coat UVs and stationary eye islands",
+    "idle_blink_seconds": {
+      "start": 2.4,
+      "close": 0.1,
+      "hold": 0.06666666666666667,
+      "open": 0.2
+    },
+    "preserved_non_facial_channels": 729
+  }
+}

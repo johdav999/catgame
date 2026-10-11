@@ -1,0 +1,56 @@
+{
+  "triangles": 14660,
+  "vertices": 10458,
+  "materials": 1,
+  "bones": 29,
+  "actions": [
+    "approach_bowl_PipRig",
+    "attentive_request_PipRig",
+    "curled_rest_PipRig",
+    "drink_PipRig",
+    "garden_walk_PipRig",
+    "happy_pounce_PipRig",
+    "relaxed_idle_PipRig",
+    "return_idle_PipRig",
+    "settle_cushion_PipRig"
+  ],
+  "bounds_blender": [
+    [
+      -0.24474944174289703,
+      -0.6630045771598816,
+      0.003599386429414153
+    ],
+    [
+      0.24505309760570526,
+      0.560776948928833,
+      1.0870294570922852
+    ]
+  ],
+  "packed_master_images": [
+    {
+      "name": "Pip coat albedo",
+      "packed": true,
+      "size": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "name": "pip-normal",
+      "packed": true,
+      "size": [
+        32,
+        32
+      ]
+    },
+    {
+      "name": "pip-roughness",
+      "packed": true,
+      "size": [
+        32,
+        32
+      ]
+    }
+  ],
+  "max_influences": 4
+}

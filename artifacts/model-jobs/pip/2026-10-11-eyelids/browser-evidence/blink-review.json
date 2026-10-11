@@ -1,0 +1,50 @@
+{
+  "samples": [
+    {
+      "label": "open",
+      "time": 0.14929999999981375
+    },
+    {
+      "label": "half",
+      "time": 2.4690999999996275
+    },
+    {
+      "label": "closed",
+      "time": 2.5490999999996276
+    },
+    {
+      "label": "reopening",
+      "time": 2.689299999999814
+    },
+    {
+      "label": "open-again",
+      "time": 2.869299999999814
+    }
+  ],
+  "errors": [],
+  "renderer": {
+    "state": "ready",
+    "generation": 1,
+    "recoveryAttempts": 0,
+    "maxTextureDimension2D": 8192,
+    "maxTextureArrayLayers": 256,
+    "maxBufferSize": 268435456,
+    "timestampQuery": true,
+    "compressionBC": true,
+    "compressionETC2": false,
+    "compressionASTC": false,
+    "compressedTextureCount": 0,
+    "width": 1058,
+    "height": 558,
+    "resolutionScale": 1,
+    "maxPixelRatio": 2,
+    "maxDimension": 4096,
+    "maxPixels": 16777216,
+    "shadowResolution": 1024,
+    "shadowFilterTaps": 9,
+    "maxShadowMaps": 4,
+    "lod": true,
+    "shadowLod": true,
+    "compressedTextures": true
+  }
+}

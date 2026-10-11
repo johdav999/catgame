@@ -1,0 +1,370 @@
+{
+  "url": "http://127.0.0.1:8080/pip-preview.html",
+  "checks": [
+    "All nine actions select through visible controls; reduced-motion time remains fixed",
+    "Walk changes rendered pixels; host suspension boundary freezes animation",
+    "Close and ordinary puzzle distance under desktop and shadow-free lighting; portrait and short landscape layout",
+    "Rapid action changes retain final selection; no browser console errors",
+    "Fresh HTTP 503 is visible; Retry loads the actual GLB successfully"
+  ],
+  "errors": [],
+  "requests": [
+    {
+      "url": "http://127.0.0.1:8080/assets/models/pip/portrait-ending.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8080/assets/models/pip/portrait-shop.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8080/assets/models/pip/portrait-dialogue.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8080/assets/models/pip/pip.glb",
+      "status": 200
+    }
+  ],
+  "browser": "154.0.8037.99",
+  "walkChangedPixels": 51398,
+  "skinnedPerformance": {
+    "schemaVersion": 1,
+    "epoch": 0,
+    "windowCapacity": 120,
+    "windowSamples": 120,
+    "totalFrames": 297,
+    "totalUploadBytes": 18754428,
+    "totalUploadCalls": 238,
+    "totalResourceMs": 109.6,
+    "lastResourceMs": 109.6,
+    "totalFrameStorageGrowths": 24,
+    "totalObjectBufferGrowths": 1,
+    "totalObjectUploadBytes": 672,
+    "timings": {
+      "intervalMs": {
+        "mean": 20.000833,
+        "p95": 20.2,
+        "max": 20.4
+      },
+      "updateMs": {
+        "mean": 0.078333,
+        "p95": 0.2,
+        "max": 0.3
+      },
+      "collectMs": {
+        "mean": 0.319167,
+        "p95": 0.6,
+        "max": 0.8
+      },
+      "prepareMs": {
+        "mean": 0.049167,
+        "p95": 0.1,
+        "max": 0.2
+      },
+      "encodeMs": {
+        "mean": 0.103333,
+        "p95": 0.2,
+        "max": 0.5
+      },
+      "submitMs": {
+        "mean": 0.043333,
+        "p95": 0.1,
+        "max": 0.1
+      },
+      "cpuMs": {
+        "mean": 0.686667,
+        "p95": 1.2,
+        "max": 1.7
+      },
+      "resourceMs": {
+        "mean": 0,
+        "p95": 0,
+        "max": 0
+      }
+    },
+    "current": {
+      "meshes": 2,
+      "lights": 1,
+      "passes": 4,
+      "drawCalls": 6,
+      "triangles": 41548,
+      "uploadCalls": 1,
+      "uploadBytes": 4224,
+      "newMeshes": 0,
+      "newTextures": 0,
+      "cachedMeshes": 2,
+      "cachedTextures": 9,
+      "cpuAssetBytes": 14015280,
+      "gpuMeshBytes": 1104996,
+      "gpuTextureBytes": 16878584,
+      "gpuBufferBytes": 14976,
+      "gpuDepthBytes": 19138672,
+      "frameStorageBytes": 2880,
+      "frameStorageGrowths": 0,
+      "objectBufferGrowths": 0,
+      "changedObjects": 0,
+      "objectUploadCalls": 0,
+      "objectUploadBytes": 0,
+      "frameUploadCalls": 0,
+      "frameUploadBytes": 0,
+      "localTransformBuilds": 0,
+      "worldTransformBuilds": 0,
+      "normalTransformBuilds": 0,
+      "submittedInstances": 3,
+      "instancedDrawCalls": 0,
+      "maxInstancesPerDraw": 1,
+      "skinnedInstances": 2,
+      "cachedSkeletons": 1,
+      "gpuSkinBytes": 4224,
+      "boneUploadCalls": 1,
+      "boneUploadBytes": 4224,
+      "visibleMeshes": 2,
+      "culledMeshes": 0,
+      "particles": 0,
+      "particleDrawCalls": 0,
+      "transparentMeshDraws": 0,
+      "particleUploadCalls": 0,
+      "particleUploadBytes": 0,
+      "particleBufferGrowths": 0,
+      "guiDrawCalls": 0,
+      "guiTriangles": 0,
+      "guiUploadCalls": 0,
+      "guiUploadBytes": 0,
+      "guiTextureBytes": 0,
+      "guiBufferBytes": 0,
+      "cachedMaterials": 3,
+      "cachedMaterialPipelines": 2,
+      "materialUploadCalls": 0,
+      "materialUploadBytes": 0,
+      "shadowPasses": 1,
+      "shadowDrawCalls": 3,
+      "shadowInstances": 3,
+      "shadowTriangles": 20774,
+      "cameraLodParts": 0,
+      "shadowLodParts": 0,
+      "shadowCulledParts": 0,
+      "shadowMapResolution": 1024,
+      "shadowFilterTaps": 9,
+      "width": 1058,
+      "height": 558,
+      "gpuPayloadBytes": 37137228
+    },
+    "gpu": {
+      "state": "enabled",
+      "windowSamples": 55,
+      "totalSamples": 55,
+      "ageMs": 92.5,
+      "totalMs": {
+        "mean": 2.652421,
+        "p95": 2.94912,
+        "max": 9.437184
+      },
+      "shadowMs": {
+        "mean": 0.132264,
+        "p95": 0.196608,
+        "max": 0.196608
+      },
+      "layersMs": [
+        {
+          "mean": 0,
+          "p95": 0,
+          "max": 0
+        },
+        {
+          "mean": 2.520157,
+          "p95": 2.752512,
+          "max": 9.306112
+        },
+        {
+          "mean": 0,
+          "p95": 0,
+          "max": 0
+        }
+      ]
+    },
+    "build": "Release"
+  },
+  "performance": {
+    "schemaVersion": 1,
+    "epoch": 0,
+    "windowCapacity": 120,
+    "windowSamples": 120,
+    "totalFrames": 557,
+    "totalUploadBytes": 19735244,
+    "totalUploadCalls": 481,
+    "totalResourceMs": 109.9,
+    "lastResourceMs": 0.3,
+    "totalFrameStorageGrowths": 29,
+    "totalObjectBufferGrowths": 1,
+    "totalObjectUploadBytes": 832,
+    "timings": {
+      "intervalMs": {
+        "mean": 20.000833,
+        "p95": 20.2,
+        "max": 20.3
+      },
+      "updateMs": {
+        "mean": 0.056667,
+        "p95": 0.1,
+        "max": 0.5
+      },
+      "collectMs": {
+        "mean": 0.183333,
+        "p95": 0.4,
+        "max": 0.7
+      },
+      "prepareMs": {
+        "mean": 0.043333,
+        "p95": 0.1,
+        "max": 0.5
+      },
+      "encodeMs": {
+        "mean": 0.070833,
+        "p95": 0.2,
+        "max": 0.2
+      },
+      "submitMs": {
+        "mean": 0.030833,
+        "p95": 0.1,
+        "max": 0.1
+      },
+      "cpuMs": {
+        "mean": 0.443333,
+        "p95": 0.8,
+        "max": 1
+      },
+      "resourceMs": {
+        "mean": 0.0025,
+        "p95": 0,
+        "max": 0.3
+      }
+    },
+    "current": {
+      "meshes": 2,
+      "lights": 1,
+      "passes": 4,
+      "drawCalls": 6,
+      "triangles": 41548,
+      "uploadCalls": 0,
+      "uploadBytes": 0,
+      "newMeshes": 0,
+      "newTextures": 0,
+      "cachedMeshes": 3,
+      "cachedTextures": 10,
+      "cpuAssetBytes": 14019592,
+      "gpuMeshBytes": 1105200,
+      "gpuTextureBytes": 16884044,
+      "gpuBufferBytes": 14976,
+      "gpuDepthBytes": 19138672,
+      "frameStorageBytes": 3804,
+      "frameStorageGrowths": 0,
+      "objectBufferGrowths": 0,
+      "changedObjects": 0,
+      "objectUploadCalls": 0,
+      "objectUploadBytes": 0,
+      "frameUploadCalls": 0,
+      "frameUploadBytes": 0,
+      "localTransformBuilds": 0,
+      "worldTransformBuilds": 0,
+      "normalTransformBuilds": 0,
+      "submittedInstances": 3,
+      "instancedDrawCalls": 0,
+      "maxInstancesPerDraw": 1,
+      "skinnedInstances": 2,
+      "cachedSkeletons": 1,
+      "gpuSkinBytes": 4224,
+      "boneUploadCalls": 0,
+      "boneUploadBytes": 0,
+      "visibleMeshes": 2,
+      "culledMeshes": 0,
+      "particles": 0,
+      "particleDrawCalls": 0,
+      "transparentMeshDraws": 0,
+      "particleUploadCalls": 0,
+      "particleUploadBytes": 0,
+      "particleBufferGrowths": 0,
+      "guiDrawCalls": 0,
+      "guiTriangles": 0,
+      "guiUploadCalls": 0,
+      "guiUploadBytes": 0,
+      "guiTextureBytes": 0,
+      "guiBufferBytes": 0,
+      "cachedMaterials": 3,
+      "cachedMaterialPipelines": 3,
+      "materialUploadCalls": 0,
+      "materialUploadBytes": 0,
+      "shadowPasses": 1,
+      "shadowDrawCalls": 3,
+      "shadowInstances": 3,
+      "shadowTriangles": 20774,
+      "cameraLodParts": 0,
+      "shadowLodParts": 0,
+      "shadowCulledParts": 0,
+      "shadowMapResolution": 1024,
+      "shadowFilterTaps": 9,
+      "width": 1058,
+      "height": 558,
+      "gpuPayloadBytes": 37142892
+    },
+    "gpu": {
+      "state": "enabled",
+      "windowSamples": 103,
+      "totalSamples": 103,
+      "ageMs": 76.3,
+      "totalMs": {
+        "mean": 2.69652,
+        "p95": 2.94912,
+        "max": 9.437184
+      },
+      "shadowMs": {
+        "mean": 0.137435,
+        "p95": 0.196608,
+        "max": 0.196608
+      },
+      "layersMs": [
+        {
+          "mean": 0,
+          "p95": 0,
+          "max": 0
+        },
+        {
+          "mean": 2.559085,
+          "p95": 2.752512,
+          "max": 9.306112
+        },
+        {
+          "mean": 0,
+          "p95": 0,
+          "max": 0
+        }
+      ]
+    },
+    "build": "Release"
+  },
+  "renderer": {
+    "state": "ready",
+    "generation": 1,
+    "recoveryAttempts": 0,
+    "maxTextureDimension2D": 8192,
+    "maxTextureArrayLayers": 256,
+    "maxBufferSize": 268435456,
+    "timestampQuery": true,
+    "compressionBC": true,
+    "compressionETC2": false,
+    "compressionASTC": false,
+    "compressedTextureCount": 0,
+    "width": 1058,
+    "height": 558,
+    "resolutionScale": 1,
+    "maxPixelRatio": 2,
+    "maxDimension": 4096,
+    "maxPixels": 16777216,
+    "shadowResolution": 1024,
+    "shadowFilterTaps": 9,
+    "maxShadowMaps": 4,
+    "lod": true,
+    "shadowLod": true,
+    "compressedTextures": true
+  }
+}

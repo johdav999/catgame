@@ -1,0 +1,1724 @@
+[
+  {
+    "amount": 0.0,
+    "eye": 0,
+    "angle": -0.75,
+    "visible_eye_faces": 490,
+    "faces": []
+  },
+  {
+    "amount": 0.0,
+    "eye": 0,
+    "angle": 0,
+    "visible_eye_faces": 516,
+    "faces": []
+  },
+  {
+    "amount": 0.0,
+    "eye": 0,
+    "angle": 0.75,
+    "visible_eye_faces": 479,
+    "faces": []
+  },
+  {
+    "amount": 0.0,
+    "eye": 1,
+    "angle": -0.75,
+    "visible_eye_faces": 430,
+    "faces": []
+  },
+  {
+    "amount": 0.0,
+    "eye": 1,
+    "angle": 0,
+    "visible_eye_faces": 555,
+    "faces": []
+  },
+  {
+    "amount": 0.0,
+    "eye": 1,
+    "angle": 0.75,
+    "visible_eye_faces": 517,
+    "faces": []
+  },
+  {
+    "amount": 0.025,
+    "eye": 0,
+    "angle": -0.75,
+    "visible_eye_faces": 477,
+    "faces": []
+  },
+  {
+    "amount": 0.025,
+    "eye": 0,
+    "angle": 0,
+    "visible_eye_faces": 507,
+    "faces": []
+  },
+  {
+    "amount": 0.025,
+    "eye": 0,
+    "angle": 0.75,
+    "visible_eye_faces": 462,
+    "faces": []
+  },
+  {
+    "amount": 0.025,
+    "eye": 1,
+    "angle": -0.75,
+    "visible_eye_faces": 419,
+    "faces": []
+  },
+  {
+    "amount": 0.025,
+    "eye": 1,
+    "angle": 0,
+    "visible_eye_faces": 547,
+    "faces": []
+  },
+  {
+    "amount": 0.025,
+    "eye": 1,
+    "angle": 0.75,
+    "visible_eye_faces": 501,
+    "faces": []
+  },
+  {
+    "amount": 0.05,
+    "eye": 0,
+    "angle": -0.75,
+    "visible_eye_faces": 464,
+    "faces": []
+  },
+  {
+    "amount": 0.05,
+    "eye": 0,
+    "angle": 0,
+    "visible_eye_faces": 498,
+    "faces": []
+  },
+  {
+    "amount": 0.05,
+    "eye": 0,
+    "angle": 0.75,
+    "visible_eye_faces": 446,
+    "faces": []
+  },
+  {
+    "amount": 0.05,
+    "eye": 1,
+    "angle": -0.75,
+    "visible_eye_faces": 406,
+    "faces": []
+  },
+  {
+    "amount": 0.05,
+    "eye": 1,
+    "angle": 0,
+    "visible_eye_faces": 543,
+    "faces": []
+  },
+  {
+    "amount": 0.05,
+    "eye": 1,
+    "angle": 0.75,
+    "visible_eye_faces": 482,
+    "faces": []
+  },
+  {
+    "amount": 0.075,
+    "eye": 0,
+    "angle": -0.75,
+    "visible_eye_faces": 451,
+    "faces": []
+  },
+  {
+    "amount": 0.075,
+    "eye": 0,
+    "angle": 0,
+    "visible_eye_faces": 489,
+    "faces": []
+  },
+  {
+    "amount": 0.075,
+    "eye": 0,
+    "angle": 0.75,
+    "visible_eye_faces": 416,
+    "faces": []
+  },
+  {
+    "amount": 0.075,
+    "eye": 1,
+    "angle": -0.75,
+    "visible_eye_faces": 395,
+    "faces": []
+  },
+  {
+    "amount": 0.075,
+    "eye": 1,
+    "angle": 0,
+    "visible_eye_faces": 533,
+    "faces": []
+  },
+  {
+    "amount": 0.075,
+    "eye": 1,
+    "angle": 0.75,
+    "visible_eye_faces": 467,
+    "faces": []
+  },
+  {
+    "amount": 0.1,
+    "eye": 0,
+    "angle": -0.75,
+    "visible_eye_faces": 437,
+    "faces": []
+  },
+  {
+    "amount": 0.1,
+    "eye": 0,
+    "angle": 0,
+    "visible_eye_faces": 477,
+    "faces": []
+  },
+  {
+    "amount": 0.1,
+    "eye": 0,
+    "angle": 0.75,
+    "visible_eye_faces": 381,
+    "faces": []
+  },
+  {
+    "amount": 0.1,
+    "eye": 1,
+    "angle": -0.75,
+    "visible_eye_faces": 381,
+    "faces": []
+  },
+  {
+    "amount": 0.1,
+    "eye": 1,
+    "angle": 0,
+    "visible_eye_faces": 517,
+    "faces": []
+  },
+  {
+    "amount": 0.1,
+    "eye": 1,
+    "angle": 0.75,
+    "visible_eye_faces": 448,
+    "faces": []
+  },
+  {
+    "amount": 0.125,
+    "eye": 0,
+    "angle": -0.75,
+    "visible_eye_faces": 414,
+    "faces": []
+  },
+  {
+    "amount": 0.125,
+    "eye": 0,
+    "angle": 0,
+    "visible_eye_faces": 458,
+    "faces": []
+  },
+  {
+    "amount": 0.125,
+    "eye": 0,
+    "angle": 0.75,
+    "visible_eye_faces": 342,
+    "faces": []
+  },
+  {
+    "amount": 0.125,
+    "eye": 1,
+    "angle": -0.75,
+    "visible_eye_faces": 367,
+    "faces": []
+  },
+  {
+    "amount": 0.125,
+    "eye": 1,
+    "angle": 0,
+    "visible_eye_faces": 486,
+    "faces": []
+  },
+  {
+    "amount": 0.125,
+    "eye": 1,
+    "angle": 0.75,
+    "visible_eye_faces": 427,
+    "faces": []
+  },
+  {
+    "amount": 0.15,
+    "eye": 0,
+    "angle": -0.75,
+    "visible_eye_faces": 407,
+    "faces": []
+  },
+  {
+    "amount": 0.15,
+    "eye": 0,
+    "angle": 0,
+    "visible_eye_faces": 445,
+    "faces": []
+  },
+  {
+    "amount": 0.15,
+    "eye": 0,
+    "angle": 0.75,
+    "visible_eye_faces": 302,
+    "faces": []
+  },
+  {
+    "amount": 0.15,
+    "eye": 1,
+    "angle": -0.75,
+    "visible_eye_faces": 340,
+    "faces": []
+  },
+  {
+    "amount": 0.15,
+    "eye": 1,
+    "angle": 0,
+    "visible_eye_faces": 459,
+    "faces": []
+  },
+  {
+    "amount": 0.15,
+    "eye": 1,
+    "angle": 0.75,
+    "visible_eye_faces": 412,
+    "faces": []
+  },
+  {
+    "amount": 0.175,
+    "eye": 0,
+    "angle": -0.75,
+    "visible_eye_faces": 392,
+    "faces": []
+  },
+  {
+    "amount": 0.175,
+    "eye": 0,
+    "angle": 0,
+    "visible_eye_faces": 423,
+    "faces": []
+  },
+  {
+    "amount": 0.175,
+    "eye": 0,
+    "angle": 0.75,
+    "visible_eye_faces": 280,
+    "faces": []
+  },
+  {
+    "amount": 0.175,
+    "eye": 1,
+    "angle": -0.75,
+    "visible_eye_faces": 306,
+    "faces": []
+  },
+  {
+    "amount": 0.175,
+    "eye": 1,
+    "angle": 0,
+    "visible_eye_faces": 424,
+    "faces": []
+  },
+  {
+    "amount": 0.175,
+    "eye": 1,
+    "angle": 0.75,
+    "visible_eye_faces": 400,
+    "faces": []
+  },
+  {
+    "amount": 0.2,
+    "eye": 0,
+    "angle": -0.75,
+    "visible_eye_faces": 379,
+    "faces": []
+  },
+  {
+    "amount": 0.2,
+    "eye": 0,
+    "angle": 0,
+    "visible_eye_faces": 398,
+    "faces": []
+  },
+  {
+    "amount": 0.2,
+    "eye": 0,
+    "angle": 0.75,
+    "visible_eye_faces": 264,
+    "faces": []
+  },
+  {
+    "amount": 0.2,
+    "eye": 1,
+    "angle": -0.75,
+    "visible_eye_faces": 267,
+    "faces": []
+  },
+  {
+    "amount": 0.2,
+    "eye": 1,
+    "angle": 0,
+    "visible_eye_faces": 396,
+    "faces": []
+  },
+  {
+    "amount": 0.2,
+    "eye": 1,
+    "angle": 0.75,
+    "visible_eye_faces": 381,
+    "faces": []
+  },
+  {
+    "amount": 0.225,
+    "eye": 0,
+    "angle": -0.75,
+    "visible_eye_faces": 364,
+    "faces": []
+  },
+  {
+    "amount": 0.225,
+    "eye": 0,
+    "angle": 0,
+    "visible_eye_faces": 375,
+    "faces": []
+  },
+  {
+    "amount": 0.225,
+    "eye": 0,
+    "angle": 0.75,
+    "visible_eye_faces": 250,
+    "faces": []
+  },
+  {
+    "amount": 0.225,
+    "eye": 1,
+    "angle": -0.75,
+    "visible_eye_faces": 241,
+    "faces": []
+  },
+  {
+    "amount": 0.225,
+    "eye": 1,
+    "angle": 0,
+    "visible_eye_faces": 362,
+    "faces": []
+  },
+  {
+    "amount": 0.225,
+    "eye": 1,
+    "angle": 0.75,
+    "visible_eye_faces": 369,
+    "faces": []
+  },
+  {
+    "amount": 0.25,
+    "eye": 0,
+    "angle": -0.75,
+    "visible_eye_faces": 347,
+    "faces": []
+  },
+  {
+    "amount": 0.25,
+    "eye": 0,
+    "angle": 0,
+    "visible_eye_faces": 352,
+    "faces": []
+  },
+  {
+    "amount": 0.25,
+    "eye": 0,
+    "angle": 0.75,
+    "visible_eye_faces": 233,
+    "faces": []
+  },
+  {
+    "amount": 0.25,
+    "eye": 1,
+    "angle": -0.75,
+    "visible_eye_faces": 216,
+    "faces": []
+  },
+  {
+    "amount": 0.25,
+    "eye": 1,
+    "angle": 0,
+    "visible_eye_faces": 326,
+    "faces": []
+  },
+  {
+    "amount": 0.25,
+    "eye": 1,
+    "angle": 0.75,
+    "visible_eye_faces": 348,
+    "faces": []
+  },
+  {
+    "amount": 0.275,
+    "eye": 0,
+    "angle": -0.75,
+    "visible_eye_faces": 337,
+    "faces": []
+  },
+  {
+    "amount": 0.275,
+    "eye": 0,
+    "angle": 0,
+    "visible_eye_faces": 329,
+    "faces": []
+  },
+  {
+    "amount": 0.275,
+    "eye": 0,
+    "angle": 0.75,
+    "visible_eye_faces": 220,
+    "faces": []
+  },
+  {
+    "amount": 0.275,
+    "eye": 1,
+    "angle": -0.75,
+    "visible_eye_faces": 201,
+    "faces": []
+  },
+  {
+    "amount": 0.275,
+    "eye": 1,
+    "angle": 0,
+    "visible_eye_faces": 299,
+    "faces": []
+  },
+  {
+    "amount": 0.275,
+    "eye": 1,
+    "angle": 0.75,
+    "visible_eye_faces": 330,
+    "faces": []
+  },
+  {
+    "amount": 0.3,
+    "eye": 0,
+    "angle": -0.75,
+    "visible_eye_faces": 324,
+    "faces": []
+  },
+  {
+    "amount": 0.3,
+    "eye": 0,
+    "angle": 0,
+    "visible_eye_faces": 314,
+    "faces": []
+  },
+  {
+    "amount": 0.3,
+    "eye": 0,
+    "angle": 0.75,
+    "visible_eye_faces": 209,
+    "faces": []
+  },
+  {
+    "amount": 0.3,
+    "eye": 1,
+    "angle": -0.75,
+    "visible_eye_faces": 185,
+    "faces": []
+  },
+  {
+    "amount": 0.3,
+    "eye": 1,
+    "angle": 0,
+    "visible_eye_faces": 276,
+    "faces": []
+  },
+  {
+    "amount": 0.3,
+    "eye": 1,
+    "angle": 0.75,
+    "visible_eye_faces": 313,
+    "faces": []
+  },
+  {
+    "amount": 0.325,
+    "eye": 0,
+    "angle": -0.75,
+    "visible_eye_faces": 306,
+    "faces": []
+  },
+  {
+    "amount": 0.325,
+    "eye": 0,
+    "angle": 0,
+    "visible_eye_faces": 298,
+    "faces": []
+  },
+  {
+    "amount": 0.325,
+    "eye": 0,
+    "angle": 0.75,
+    "visible_eye_faces": 198,
+    "faces": []
+  },
+  {
+    "amount": 0.325,
+    "eye": 1,
+    "angle": -0.75,
+    "visible_eye_faces": 175,
+    "faces": []
+  },
+  {
+    "amount": 0.325,
+    "eye": 1,
+    "angle": 0,
+    "visible_eye_faces": 262,
+    "faces": []
+  },
+  {
+    "amount": 0.325,
+    "eye": 1,
+    "angle": 0.75,
+    "visible_eye_faces": 297,
+    "faces": []
+  },
+  {
+    "amount": 0.35,
+    "eye": 0,
+    "angle": -0.75,
+    "visible_eye_faces": 291,
+    "faces": []
+  },
+  {
+    "amount": 0.35,
+    "eye": 0,
+    "angle": 0,
+    "visible_eye_faces": 281,
+    "faces": []
+  },
+  {
+    "amount": 0.35,
+    "eye": 0,
+    "angle": 0.75,
+    "visible_eye_faces": 187,
+    "faces": []
+  },
+  {
+    "amount": 0.35,
+    "eye": 1,
+    "angle": -0.75,
+    "visible_eye_faces": 166,
+    "faces": []
+  },
+  {
+    "amount": 0.35,
+    "eye": 1,
+    "angle": 0,
+    "visible_eye_faces": 251,
+    "faces": []
+  },
+  {
+    "amount": 0.35,
+    "eye": 1,
+    "angle": 0.75,
+    "visible_eye_faces": 281,
+    "faces": []
+  },
+  {
+    "amount": 0.375,
+    "eye": 0,
+    "angle": -0.75,
+    "visible_eye_faces": 280,
+    "faces": []
+  },
+  {
+    "amount": 0.375,
+    "eye": 0,
+    "angle": 0,
+    "visible_eye_faces": 267,
+    "faces": []
+  },
+  {
+    "amount": 0.375,
+    "eye": 0,
+    "angle": 0.75,
+    "visible_eye_faces": 177,
+    "faces": []
+  },
+  {
+    "amount": 0.375,
+    "eye": 1,
+    "angle": -0.75,
+    "visible_eye_faces": 155,
+    "faces": []
+  },
+  {
+    "amount": 0.375,
+    "eye": 1,
+    "angle": 0,
+    "visible_eye_faces": 233,
+    "faces": []
+  },
+  {
+    "amount": 0.375,
+    "eye": 1,
+    "angle": 0.75,
+    "visible_eye_faces": 270,
+    "faces": []
+  },
+  {
+    "amount": 0.4,
+    "eye": 0,
+    "angle": -0.75,
+    "visible_eye_faces": 265,
+    "faces": []
+  },
+  {
+    "amount": 0.4,
+    "eye": 0,
+    "angle": 0,
+    "visible_eye_faces": 252,
+    "faces": []
+  },
+  {
+    "amount": 0.4,
+    "eye": 0,
+    "angle": 0.75,
+    "visible_eye_faces": 167,
+    "faces": []
+  },
+  {
+    "amount": 0.4,
+    "eye": 1,
+    "angle": -0.75,
+    "visible_eye_faces": 143,
+    "faces": []
+  },
+  {
+    "amount": 0.4,
+    "eye": 1,
+    "angle": 0,
+    "visible_eye_faces": 216,
+    "faces": []
+  },
+  {
+    "amount": 0.4,
+    "eye": 1,
+    "angle": 0.75,
+    "visible_eye_faces": 251,
+    "faces": []
+  },
+  {
+    "amount": 0.425,
+    "eye": 0,
+    "angle": -0.75,
+    "visible_eye_faces": 248,
+    "faces": []
+  },
+  {
+    "amount": 0.425,
+    "eye": 0,
+    "angle": 0,
+    "visible_eye_faces": 233,
+    "faces": []
+  },
+  {
+    "amount": 0.425,
+    "eye": 0,
+    "angle": 0.75,
+    "visible_eye_faces": 158,
+    "faces": []
+  },
+  {
+    "amount": 0.425,
+    "eye": 1,
+    "angle": -0.75,
+    "visible_eye_faces": 137,
+    "faces": []
+  },
+  {
+    "amount": 0.425,
+    "eye": 1,
+    "angle": 0,
+    "visible_eye_faces": 207,
+    "faces": []
+  },
+  {
+    "amount": 0.425,
+    "eye": 1,
+    "angle": 0.75,
+    "visible_eye_faces": 244,
+    "faces": []
+  },
+  {
+    "amount": 0.45,
+    "eye": 0,
+    "angle": -0.75,
+    "visible_eye_faces": 237,
+    "faces": []
+  },
+  {
+    "amount": 0.45,
+    "eye": 0,
+    "angle": 0,
+    "visible_eye_faces": 222,
+    "faces": []
+  },
+  {
+    "amount": 0.45,
+    "eye": 0,
+    "angle": 0.75,
+    "visible_eye_faces": 151,
+    "faces": []
+  },
+  {
+    "amount": 0.45,
+    "eye": 1,
+    "angle": -0.75,
+    "visible_eye_faces": 130,
+    "faces": []
+  },
+  {
+    "amount": 0.45,
+    "eye": 1,
+    "angle": 0,
+    "visible_eye_faces": 196,
+    "faces": []
+  },
+  {
+    "amount": 0.45,
+    "eye": 1,
+    "angle": 0.75,
+    "visible_eye_faces": 228,
+    "faces": []
+  },
+  {
+    "amount": 0.475,
+    "eye": 0,
+    "angle": -0.75,
+    "visible_eye_faces": 225,
+    "faces": []
+  },
+  {
+    "amount": 0.475,
+    "eye": 0,
+    "angle": 0,
+    "visible_eye_faces": 210,
+    "faces": []
+  },
+  {
+    "amount": 0.475,
+    "eye": 0,
+    "angle": 0.75,
+    "visible_eye_faces": 144,
+    "faces": []
+  },
+  {
+    "amount": 0.475,
+    "eye": 1,
+    "angle": -0.75,
+    "visible_eye_faces": 124,
+    "faces": []
+  },
+  {
+    "amount": 0.475,
+    "eye": 1,
+    "angle": 0,
+    "visible_eye_faces": 182,
+    "faces": []
+  },
+  {
+    "amount": 0.475,
+    "eye": 1,
+    "angle": 0.75,
+    "visible_eye_faces": 219,
+    "faces": []
+  },
+  {
+    "amount": 0.5,
+    "eye": 0,
+    "angle": -0.75,
+    "visible_eye_faces": 216,
+    "faces": []
+  },
+  {
+    "amount": 0.5,
+    "eye": 0,
+    "angle": 0,
+    "visible_eye_faces": 197,
+    "faces": []
+  },
+  {
+    "amount": 0.5,
+    "eye": 0,
+    "angle": 0.75,
+    "visible_eye_faces": 132,
+    "faces": []
+  },
+  {
+    "amount": 0.5,
+    "eye": 1,
+    "angle": -0.75,
+    "visible_eye_faces": 116,
+    "faces": []
+  },
+  {
+    "amount": 0.5,
+    "eye": 1,
+    "angle": 0,
+    "visible_eye_faces": 173,
+    "faces": []
+  },
+  {
+    "amount": 0.5,
+    "eye": 1,
+    "angle": 0.75,
+    "visible_eye_faces": 206,
+    "faces": []
+  },
+  {
+    "amount": 0.525,
+    "eye": 0,
+    "angle": -0.75,
+    "visible_eye_faces": 205,
+    "faces": []
+  },
+  {
+    "amount": 0.525,
+    "eye": 0,
+    "angle": 0,
+    "visible_eye_faces": 183,
+    "faces": []
+  },
+  {
+    "amount": 0.525,
+    "eye": 0,
+    "angle": 0.75,
+    "visible_eye_faces": 119,
+    "faces": []
+  },
+  {
+    "amount": 0.525,
+    "eye": 1,
+    "angle": -0.75,
+    "visible_eye_faces": 112,
+    "faces": []
+  },
+  {
+    "amount": 0.525,
+    "eye": 1,
+    "angle": 0,
+    "visible_eye_faces": 166,
+    "faces": []
+  },
+  {
+    "amount": 0.525,
+    "eye": 1,
+    "angle": 0.75,
+    "visible_eye_faces": 192,
+    "faces": []
+  },
+  {
+    "amount": 0.55,
+    "eye": 0,
+    "angle": -0.75,
+    "visible_eye_faces": 189,
+    "faces": []
+  },
+  {
+    "amount": 0.55,
+    "eye": 0,
+    "angle": 0,
+    "visible_eye_faces": 173,
+    "faces": []
+  },
+  {
+    "amount": 0.55,
+    "eye": 0,
+    "angle": 0.75,
+    "visible_eye_faces": 110,
+    "faces": []
+  },
+  {
+    "amount": 0.55,
+    "eye": 1,
+    "angle": -0.75,
+    "visible_eye_faces": 103,
+    "faces": []
+  },
+  {
+    "amount": 0.55,
+    "eye": 1,
+    "angle": 0,
+    "visible_eye_faces": 155,
+    "faces": []
+  },
+  {
+    "amount": 0.55,
+    "eye": 1,
+    "angle": 0.75,
+    "visible_eye_faces": 184,
+    "faces": []
+  },
+  {
+    "amount": 0.575,
+    "eye": 0,
+    "angle": -0.75,
+    "visible_eye_faces": 174,
+    "faces": []
+  },
+  {
+    "amount": 0.575,
+    "eye": 0,
+    "angle": 0,
+    "visible_eye_faces": 162,
+    "faces": []
+  },
+  {
+    "amount": 0.575,
+    "eye": 0,
+    "angle": 0.75,
+    "visible_eye_faces": 108,
+    "faces": []
+  },
+  {
+    "amount": 0.575,
+    "eye": 1,
+    "angle": -0.75,
+    "visible_eye_faces": 95,
+    "faces": []
+  },
+  {
+    "amount": 0.575,
+    "eye": 1,
+    "angle": 0,
+    "visible_eye_faces": 143,
+    "faces": []
+  },
+  {
+    "amount": 0.575,
+    "eye": 1,
+    "angle": 0.75,
+    "visible_eye_faces": 177,
+    "faces": []
+  },
+  {
+    "amount": 0.6,
+    "eye": 0,
+    "angle": -0.75,
+    "visible_eye_faces": 159,
+    "faces": []
+  },
+  {
+    "amount": 0.6,
+    "eye": 0,
+    "angle": 0,
+    "visible_eye_faces": 149,
+    "faces": []
+  },
+  {
+    "amount": 0.6,
+    "eye": 0,
+    "angle": 0.75,
+    "visible_eye_faces": 101,
+    "faces": []
+  },
+  {
+    "amount": 0.6,
+    "eye": 1,
+    "angle": -0.75,
+    "visible_eye_faces": 91,
+    "faces": []
+  },
+  {
+    "amount": 0.6,
+    "eye": 1,
+    "angle": 0,
+    "visible_eye_faces": 134,
+    "faces": []
+  },
+  {
+    "amount": 0.6,
+    "eye": 1,
+    "angle": 0.75,
+    "visible_eye_faces": 162,
+    "faces": []
+  },
+  {
+    "amount": 0.625,
+    "eye": 0,
+    "angle": -0.75,
+    "visible_eye_faces": 154,
+    "faces": []
+  },
+  {
+    "amount": 0.625,
+    "eye": 0,
+    "angle": 0,
+    "visible_eye_faces": 141,
+    "faces": []
+  },
+  {
+    "amount": 0.625,
+    "eye": 0,
+    "angle": 0.75,
+    "visible_eye_faces": 96,
+    "faces": []
+  },
+  {
+    "amount": 0.625,
+    "eye": 1,
+    "angle": -0.75,
+    "visible_eye_faces": 87,
+    "faces": []
+  },
+  {
+    "amount": 0.625,
+    "eye": 1,
+    "angle": 0,
+    "visible_eye_faces": 126,
+    "faces": []
+  },
+  {
+    "amount": 0.625,
+    "eye": 1,
+    "angle": 0.75,
+    "visible_eye_faces": 151,
+    "faces": []
+  },
+  {
+    "amount": 0.65,
+    "eye": 0,
+    "angle": -0.75,
+    "visible_eye_faces": 145,
+    "faces": []
+  },
+  {
+    "amount": 0.65,
+    "eye": 0,
+    "angle": 0,
+    "visible_eye_faces": 132,
+    "faces": []
+  },
+  {
+    "amount": 0.65,
+    "eye": 0,
+    "angle": 0.75,
+    "visible_eye_faces": 86,
+    "faces": []
+  },
+  {
+    "amount": 0.65,
+    "eye": 1,
+    "angle": -0.75,
+    "visible_eye_faces": 81,
+    "faces": []
+  },
+  {
+    "amount": 0.65,
+    "eye": 1,
+    "angle": 0,
+    "visible_eye_faces": 113,
+    "faces": []
+  },
+  {
+    "amount": 0.65,
+    "eye": 1,
+    "angle": 0.75,
+    "visible_eye_faces": 142,
+    "faces": []
+  },
+  {
+    "amount": 0.675,
+    "eye": 0,
+    "angle": -0.75,
+    "visible_eye_faces": 128,
+    "faces": []
+  },
+  {
+    "amount": 0.675,
+    "eye": 0,
+    "angle": 0,
+    "visible_eye_faces": 121,
+    "faces": []
+  },
+  {
+    "amount": 0.675,
+    "eye": 0,
+    "angle": 0.75,
+    "visible_eye_faces": 77,
+    "faces": []
+  },
+  {
+    "amount": 0.675,
+    "eye": 1,
+    "angle": -0.75,
+    "visible_eye_faces": 74,
+    "faces": []
+  },
+  {
+    "amount": 0.675,
+    "eye": 1,
+    "angle": 0,
+    "visible_eye_faces": 108,
+    "faces": []
+  },
+  {
+    "amount": 0.675,
+    "eye": 1,
+    "angle": 0.75,
+    "visible_eye_faces": 130,
+    "faces": []
+  },
+  {
+    "amount": 0.7,
+    "eye": 0,
+    "angle": -0.75,
+    "visible_eye_faces": 117,
+    "faces": []
+  },
+  {
+    "amount": 0.7,
+    "eye": 0,
+    "angle": 0,
+    "visible_eye_faces": 107,
+    "faces": []
+  },
+  {
+    "amount": 0.7,
+    "eye": 0,
+    "angle": 0.75,
+    "visible_eye_faces": 70,
+    "faces": []
+  },
+  {
+    "amount": 0.7,
+    "eye": 1,
+    "angle": -0.75,
+    "visible_eye_faces": 67,
+    "faces": []
+  },
+  {
+    "amount": 0.7,
+    "eye": 1,
+    "angle": 0,
+    "visible_eye_faces": 100,
+    "faces": []
+  },
+  {
+    "amount": 0.7,
+    "eye": 1,
+    "angle": 0.75,
+    "visible_eye_faces": 118,
+    "faces": []
+  },
+  {
+    "amount": 0.725,
+    "eye": 0,
+    "angle": -0.75,
+    "visible_eye_faces": 110,
+    "faces": []
+  },
+  {
+    "amount": 0.725,
+    "eye": 0,
+    "angle": 0,
+    "visible_eye_faces": 96,
+    "faces": []
+  },
+  {
+    "amount": 0.725,
+    "eye": 0,
+    "angle": 0.75,
+    "visible_eye_faces": 65,
+    "faces": []
+  },
+  {
+    "amount": 0.725,
+    "eye": 1,
+    "angle": -0.75,
+    "visible_eye_faces": 60,
+    "faces": []
+  },
+  {
+    "amount": 0.725,
+    "eye": 1,
+    "angle": 0,
+    "visible_eye_faces": 88,
+    "faces": []
+  },
+  {
+    "amount": 0.725,
+    "eye": 1,
+    "angle": 0.75,
+    "visible_eye_faces": 108,
+    "faces": []
+  },
+  {
+    "amount": 0.75,
+    "eye": 0,
+    "angle": -0.75,
+    "visible_eye_faces": 97,
+    "faces": []
+  },
+  {
+    "amount": 0.75,
+    "eye": 0,
+    "angle": 0,
+    "visible_eye_faces": 88,
+    "faces": []
+  },
+  {
+    "amount": 0.75,
+    "eye": 0,
+    "angle": 0.75,
+    "visible_eye_faces": 59,
+    "faces": []
+  },
+  {
+    "amount": 0.75,
+    "eye": 1,
+    "angle": -0.75,
+    "visible_eye_faces": 54,
+    "faces": []
+  },
+  {
+    "amount": 0.75,
+    "eye": 1,
+    "angle": 0,
+    "visible_eye_faces": 77,
+    "faces": []
+  },
+  {
+    "amount": 0.75,
+    "eye": 1,
+    "angle": 0.75,
+    "visible_eye_faces": 93,
+    "faces": []
+  },
+  {
+    "amount": 0.775,
+    "eye": 0,
+    "angle": -0.75,
+    "visible_eye_faces": 86,
+    "faces": []
+  },
+  {
+    "amount": 0.775,
+    "eye": 0,
+    "angle": 0,
+    "visible_eye_faces": 76,
+    "faces": []
+  },
+  {
+    "amount": 0.775,
+    "eye": 0,
+    "angle": 0.75,
+    "visible_eye_faces": 50,
+    "faces": []
+  },
+  {
+    "amount": 0.775,
+    "eye": 1,
+    "angle": -0.75,
+    "visible_eye_faces": 47,
+    "faces": []
+  },
+  {
+    "amount": 0.775,
+    "eye": 1,
+    "angle": 0,
+    "visible_eye_faces": 69,
+    "faces": []
+  },
+  {
+    "amount": 0.775,
+    "eye": 1,
+    "angle": 0.75,
+    "visible_eye_faces": 87,
+    "faces": []
+  },
+  {
+    "amount": 0.8,
+    "eye": 0,
+    "angle": -0.75,
+    "visible_eye_faces": 77,
+    "faces": []
+  },
+  {
+    "amount": 0.8,
+    "eye": 0,
+    "angle": 0,
+    "visible_eye_faces": 66,
+    "faces": []
+  },
+  {
+    "amount": 0.8,
+    "eye": 0,
+    "angle": 0.75,
+    "visible_eye_faces": 44,
+    "faces": []
+  },
+  {
+    "amount": 0.8,
+    "eye": 1,
+    "angle": -0.75,
+    "visible_eye_faces": 44,
+    "faces": []
+  },
+  {
+    "amount": 0.8,
+    "eye": 1,
+    "angle": 0,
+    "visible_eye_faces": 60,
+    "faces": []
+  },
+  {
+    "amount": 0.8,
+    "eye": 1,
+    "angle": 0.75,
+    "visible_eye_faces": 77,
+    "faces": []
+  },
+  {
+    "amount": 0.825,
+    "eye": 0,
+    "angle": -0.75,
+    "visible_eye_faces": 65,
+    "faces": []
+  },
+  {
+    "amount": 0.825,
+    "eye": 0,
+    "angle": 0,
+    "visible_eye_faces": 57,
+    "faces": []
+  },
+  {
+    "amount": 0.825,
+    "eye": 0,
+    "angle": 0.75,
+    "visible_eye_faces": 39,
+    "faces": []
+  },
+  {
+    "amount": 0.825,
+    "eye": 1,
+    "angle": -0.75,
+    "visible_eye_faces": 37,
+    "faces": []
+  },
+  {
+    "amount": 0.825,
+    "eye": 1,
+    "angle": 0,
+    "visible_eye_faces": 52,
+    "faces": []
+  },
+  {
+    "amount": 0.825,
+    "eye": 1,
+    "angle": 0.75,
+    "visible_eye_faces": 61,
+    "faces": []
+  },
+  {
+    "amount": 0.85,
+    "eye": 0,
+    "angle": -0.75,
+    "visible_eye_faces": 56,
+    "faces": []
+  },
+  {
+    "amount": 0.85,
+    "eye": 0,
+    "angle": 0,
+    "visible_eye_faces": 49,
+    "faces": []
+  },
+  {
+    "amount": 0.85,
+    "eye": 0,
+    "angle": 0.75,
+    "visible_eye_faces": 34,
+    "faces": []
+  },
+  {
+    "amount": 0.85,
+    "eye": 1,
+    "angle": -0.75,
+    "visible_eye_faces": 29,
+    "faces": []
+  },
+  {
+    "amount": 0.85,
+    "eye": 1,
+    "angle": 0,
+    "visible_eye_faces": 43,
+    "faces": []
+  },
+  {
+    "amount": 0.85,
+    "eye": 1,
+    "angle": 0.75,
+    "visible_eye_faces": 52,
+    "faces": []
+  },
+  {
+    "amount": 0.875,
+    "eye": 0,
+    "angle": -0.75,
+    "visible_eye_faces": 43,
+    "faces": []
+  },
+  {
+    "amount": 0.875,
+    "eye": 0,
+    "angle": 0,
+    "visible_eye_faces": 36,
+    "faces": []
+  },
+  {
+    "amount": 0.875,
+    "eye": 0,
+    "angle": 0.75,
+    "visible_eye_faces": 25,
+    "faces": []
+  },
+  {
+    "amount": 0.875,
+    "eye": 1,
+    "angle": -0.75,
+    "visible_eye_faces": 28,
+    "faces": []
+  },
+  {
+    "amount": 0.875,
+    "eye": 1,
+    "angle": 0,
+    "visible_eye_faces": 31,
+    "faces": []
+  },
+  {
+    "amount": 0.875,
+    "eye": 1,
+    "angle": 0.75,
+    "visible_eye_faces": 41,
+    "faces": []
+  },
+  {
+    "amount": 0.9,
+    "eye": 0,
+    "angle": -0.75,
+    "visible_eye_faces": 31,
+    "faces": []
+  },
+  {
+    "amount": 0.9,
+    "eye": 0,
+    "angle": 0,
+    "visible_eye_faces": 26,
+    "faces": []
+  },
+  {
+    "amount": 0.9,
+    "eye": 0,
+    "angle": 0.75,
+    "visible_eye_faces": 19,
+    "faces": []
+  },
+  {
+    "amount": 0.9,
+    "eye": 1,
+    "angle": -0.75,
+    "visible_eye_faces": 20,
+    "faces": []
+  },
+  {
+    "amount": 0.9,
+    "eye": 1,
+    "angle": 0,
+    "visible_eye_faces": 25,
+    "faces": []
+  },
+  {
+    "amount": 0.9,
+    "eye": 1,
+    "angle": 0.75,
+    "visible_eye_faces": 29,
+    "faces": []
+  },
+  {
+    "amount": 0.925,
+    "eye": 0,
+    "angle": -0.75,
+    "visible_eye_faces": 22,
+    "faces": []
+  },
+  {
+    "amount": 0.925,
+    "eye": 0,
+    "angle": 0,
+    "visible_eye_faces": 20,
+    "faces": []
+  },
+  {
+    "amount": 0.925,
+    "eye": 0,
+    "angle": 0.75,
+    "visible_eye_faces": 11,
+    "faces": []
+  },
+  {
+    "amount": 0.925,
+    "eye": 1,
+    "angle": -0.75,
+    "visible_eye_faces": 8,
+    "faces": []
+  },
+  {
+    "amount": 0.925,
+    "eye": 1,
+    "angle": 0,
+    "visible_eye_faces": 15,
+    "faces": []
+  },
+  {
+    "amount": 0.925,
+    "eye": 1,
+    "angle": 0.75,
+    "visible_eye_faces": 17,
+    "faces": []
+  },
+  {
+    "amount": 0.95,
+    "eye": 0,
+    "angle": -0.75,
+    "visible_eye_faces": 10,
+    "faces": []
+  },
+  {
+    "amount": 0.95,
+    "eye": 0,
+    "angle": 0,
+    "visible_eye_faces": 12,
+    "faces": []
+  },
+  {
+    "amount": 0.95,
+    "eye": 0,
+    "angle": 0.75,
+    "visible_eye_faces": 4,
+    "faces": []
+  },
+  {
+    "amount": 0.95,
+    "eye": 1,
+    "angle": -0.75,
+    "visible_eye_faces": 6,
+    "faces": []
+  },
+  {
+    "amount": 0.95,
+    "eye": 1,
+    "angle": 0,
+    "visible_eye_faces": 10,
+    "faces": []
+  },
+  {
+    "amount": 0.95,
+    "eye": 1,
+    "angle": 0.75,
+    "visible_eye_faces": 10,
+    "faces": []
+  },
+  {
+    "amount": 0.975,
+    "eye": 0,
+    "angle": -0.75,
+    "visible_eye_faces": 0,
+    "faces": []
+  },
+  {
+    "amount": 0.975,
+    "eye": 0,
+    "angle": 0,
+    "visible_eye_faces": 1,
+    "faces": []
+  },
+  {
+    "amount": 0.975,
+    "eye": 0,
+    "angle": 0.75,
+    "visible_eye_faces": 1,
+    "faces": []
+  },
+  {
+    "amount": 0.975,
+    "eye": 1,
+    "angle": -0.75,
+    "visible_eye_faces": 0,
+    "faces": []
+  },
+  {
+    "amount": 0.975,
+    "eye": 1,
+    "angle": 0,
+    "visible_eye_faces": 1,
+    "faces": []
+  },
+  {
+    "amount": 0.975,
+    "eye": 1,
+    "angle": 0.75,
+    "visible_eye_faces": 1,
+    "faces": []
+  },
+  {
+    "amount": 1.0,
+    "eye": 0,
+    "angle": -0.75,
+    "visible_eye_faces": 0,
+    "faces": []
+  },
+  {
+    "amount": 1.0,
+    "eye": 0,
+    "angle": 0,
+    "visible_eye_faces": 0,
+    "faces": []
+  },
+  {
+    "amount": 1.0,
+    "eye": 0,
+    "angle": 0.75,
+    "visible_eye_faces": 0,
+    "faces": []
+  },
+  {
+    "amount": 1.0,
+    "eye": 1,
+    "angle": -0.75,
+    "visible_eye_faces": 0,
+    "faces": []
+  },
+  {
+    "amount": 1.0,
+    "eye": 1,
+    "angle": 0,
+    "visible_eye_faces": 0,
+    "faces": []
+  },
+  {
+    "amount": 1.0,
+    "eye": 1,
+    "angle": 0.75,
+    "visible_eye_faces": 0,
+    "faces": []
+  }
+]

@@ -1,0 +1,38 @@
+{
+  "master_images": [
+    {
+      "name": "Pip closed-eyelid colour",
+      "packed": true
+    },
+    {
+      "name": "pip-basecolor-1024",
+      "packed": true
+    },
+    {
+      "name": "pip-metallic-1024",
+      "packed": true
+    },
+    {
+      "name": "pip-normal-1024",
+      "packed": true
+    },
+    {
+      "name": "pip-roughness-1024",
+      "packed": true
+    }
+  ],
+  "bones": 29,
+  "triangles": 17854,
+  "materials": 2,
+  "actions": [
+    "approach_bowl_PipRig",
+    "attentive_request_PipRig",
+    "curled_rest_PipRig",
+    "drink_PipRig",
+    "garden_walk_PipRig",
+    "happy_pounce_PipRig",
+    "relaxed_idle_PipRig",
+    "return_idle_PipRig",
+    "settle_cushion_PipRig"
+  ]
+}

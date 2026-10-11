@@ -1,0 +1,12 @@
+// Pixel evidence complements (and does not replace) visual inspection.
+const fs=require('node:fs/promises'),path=require('node:path'),{PNG}=require('pngjs');
+const out=path.resolve(process.env.EVIDENCE_DIR||'build/evidence/phase10-final');
+function luminance(hex){const c=hex.match(/../g).map(v=>parseInt(v,16)/255).map(v=>v<=.04045?v/12.92:((v+.055)/1.055)**2.4);return .2126*c[0]+.7152*c[1]+.0722*c[2];}
+const contrast=(a,b)=>{const x=luminance(a),y=luminance(b);return(Math.max(x,y)+.05)/(Math.min(x,y)+.05);};
+async function palette(file){const img=PNG.sync.read(await fs.readFile(file)),counts={};for(let i=0;i<img.data.length;i+=4){const hex=Buffer.from(img.data.subarray(i,i+3)).toString('hex');counts[hex]=(counts[hex]||0)+1;}return {file,width:img.width,height:img.height,cream:counts.fff8e9||0,ink:counts['253e37']||0,teal:counts['28665d']||0};}
+(async()=>{
+  const screenshots=[];for(const file of ['review/garden-390x844.png','review/Pip-s-missing-ball-844x390.png','journey/390x844-shop-larger.png','journey/blocked-roll.png'])screenshots.push(await palette(path.join(out,file)));
+  const pairs=[{foreground:'253e37',background:'fff8e9',role:'body/status text'},{foreground:'fff8e9',background:'28665d',role:'primary controls'},{foreground:'a94335',background:'fff8e9',role:'error token'}].map(p=>({...p,ratio:contrast(p.foreground,p.background)}));
+  const report={method:'Counts actual unfiltered screenshot pixels for shipped flat GUI tokens; WCAG sRGB luminance. Antialiased edge pixels and disabled text are excluded. Token ratios do not establish every rendered label or screen-reader acceptance.',screenshots,pairs,allNormalTextPairsAbove4_5:pairs.every(p=>p.ratio>=4.5),sourceExportReview:{pip:'Retained eye-rim r21 source-front-000.png and export-front-000.png visually compared; matching muzzle/coat/eye openings. Historical source/export evidence, not a new Blender render.',garden:'Retained garden r7 reimport render compared to fresh package boards: matching channel, shaped socket, gate, cushion and bowl silhouettes; different lighting is explicit.',currentHashes:'Validated in release-manifest.json and portable current-asset tests',unclosed:'Natural sleeping curl and full physical-device deformation review'}};
+  await fs.writeFile(path.join(out,'visual-audit.json'),JSON.stringify(report,null,2));console.log(JSON.stringify(report,null,2));
+})().catch(e=>{console.error(e);process.exitCode=1;});

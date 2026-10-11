@@ -1,0 +1,82 @@
+vertices 11404 triangles 19780 skin 11404 materials 1
+WARNING Missing base-color texture: tripo_convert_e744b545-283d-4cf9-8710-11fa61a5d3d5.fbm/cartoon_orange_cat_3d_model_basecolor.JPEG
+WARNING Missing normal texture: tripo_convert_e744b545-283d-4cf9-8710-11fa61a5d3d5.fbm/cartoon_orange_cat_3d_model_normal.PNG
+WARNING Missing roughness texture: tripo_convert_e744b545-283d-4cf9-8710-11fa61a5d3d5.fbm/cartoon_orange_cat_3d_model_roughness.JPEG
+WARNING Missing metallic texture: tripo_convert_e744b545-283d-4cf9-8710-11fa61a5d3d5.fbm/cartoon_orange_cat_3d_model_metallic.JPEG
+joints 36 bindings 35 clips 0
+bounds -0.489593,-1.22407e-08,-0.276367 to 0.489624,0.842407,0.276367
+identity_only_vertices 0 weight_sum_max_error 1.19209e-07
+binding 0 joint 0 IDENTITY influenced_vertices 0
+binding 1 joint 3 bone_0 influenced_vertices 0
+binding 2 joint 4 bone_1 influenced_vertices 0
+binding 3 joint 5 bone_2 influenced_vertices 0
+binding 4 joint 6 bone_3 influenced_vertices 0
+binding 5 joint 7 bone_4 influenced_vertices 0
+binding 6 joint 8 bone_5 influenced_vertices 0
+binding 7 joint 9 bone_6 influenced_vertices 0
+binding 8 joint 10 bone_7 influenced_vertices 1126
+binding 9 joint 11 bone_8 influenced_vertices 0
+binding 10 joint 12 bone_9 influenced_vertices 0
+binding 11 joint 13 bone_10 influenced_vertices 0
+binding 12 joint 14 bone_11 influenced_vertices 0
+binding 13 joint 15 bone_12 influenced_vertices 1807
+binding 14 joint 16 bone_13 influenced_vertices 0
+binding 15 joint 17 bone_14 influenced_vertices 0
+binding 16 joint 18 bone_15 influenced_vertices 0
+binding 17 joint 19 bone_16 influenced_vertices 0
+binding 18 joint 20 bone_17 influenced_vertices 0
+binding 19 joint 21 bone_18 influenced_vertices 2533
+binding 20 joint 22 bone_19 influenced_vertices 1467
+binding 21 joint 23 bone_20 influenced_vertices 0
+binding 22 joint 24 bone_21 influenced_vertices 0
+binding 23 joint 25 bone_22 influenced_vertices 0
+binding 24 joint 26 bone_23 influenced_vertices 0
+binding 25 joint 27 bone_24 influenced_vertices 0
+binding 26 joint 28 bone_25 influenced_vertices 0
+binding 27 joint 29 bone_26 influenced_vertices 0
+binding 28 joint 30 bone_27 influenced_vertices 0
+binding 29 joint 31 bone_28 influenced_vertices 1299
+binding 30 joint 32 bone_29 influenced_vertices 0
+binding 31 joint 33 bone_30 influenced_vertices 0
+binding 32 joint 34 bone_31 influenced_vertices 0
+binding 33 joint 35 bone_32 influenced_vertices 0
+binding 34 joint 1 tripo_node_e744b545 influenced_vertices 4520
+bind_position_max_error_m 2.06477e-07
+root_translation_test stationary 4520 moved 6884 max_follow_error_m 0.1
+PAWS_CONTRACT FAIL Pip is missing action: relaxed_idle
+joint  parent -1
+joint tripo_node_e744b545 parent 0
+joint Armature parent 0
+joint bone_0 parent 2
+joint bone_1 parent 3
+joint bone_2 parent 4
+joint bone_3 parent 5
+joint bone_4 parent 6
+joint bone_5 parent 7
+joint bone_6 parent 8
+joint bone_7 parent 6
+joint bone_8 parent 10
+joint bone_9 parent 11
+joint bone_10 parent 12
+joint bone_11 parent 13
+joint bone_12 parent 6
+joint bone_13 parent 15
+joint bone_14 parent 16
+joint bone_15 parent 17
+joint bone_16 parent 18
+joint bone_17 parent 5
+joint bone_18 parent 4
+joint bone_19 parent 21
+joint bone_20 parent 3
+joint bone_21 parent 23
+joint bone_22 parent 24
+joint bone_23 parent 25
+joint bone_24 parent 3
+joint bone_25 parent 27
+joint bone_26 parent 28
+joint bone_27 parent 29
+joint bone_28 parent 3
+joint bone_29 parent 31
+joint bone_30 parent 32
+joint bone_31 parent 33
+joint bone_32 parent 34

@@ -1,0 +1,7 @@
+{
+  "schemaVersion": 2,
+  "contentId": "pip-afternoon-quests-v1",
+  "quests": ["missing-ball-v1", "tidy-toys-v1", "stuck-gate-v1"],
+  "assetCatalogues": ["models/pip/manifest.json", "models/garden/asset-manifest.json"],
+  "notice": "Runtime-only content. Model provenance and hashes are in the referenced catalogues; editable masters stay under artifacts/."
+}

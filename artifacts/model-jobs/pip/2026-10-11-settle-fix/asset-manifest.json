@@ -1,0 +1,43 @@
+{
+  "runtime_sha256": "83192482aae477fdaebf848436b63abd024ffca1110e4bfca02d3a6b99cbcdc2",
+  "base_sha256": "ec05b1df52bc916f738fca152eb0a951f41dd0478b8be499bb6d76eb3cbdd85a",
+  "staged_sites": [
+    "build\\web-garden-pinned-release\\site",
+    "build\\web-phase5-pinned-release\\site",
+    "build\\web-phase7-pinned-release\\site",
+    "build\\web-pip-pinned-release\\site",
+    "build\\web-settle-review\\site",
+    "build\\web-walk-pinned-release\\site"
+  ],
+  "triangles": 17854,
+  "deform_bones": 29,
+  "materials": 2,
+  "max_influences": 4,
+  "runtime_bytes": 4405572,
+  "physical_mobile": "not tested",
+  "animation_layer": {
+    "revision": "connected-settle-r9",
+    "source_master": "artifacts/model-jobs/pip/2026-10-11-settle-fix/pip-settle.blend",
+    "job": "artifacts/model-jobs/pip/2026-10-11-settle-fix",
+    "pose": "supported low rest; relaxed forelegs and tail alongside haunch; not a tight sleeping curl",
+    "preserves": "canonical bind, mesh, materials, current blink channels and every other action",
+    "validation": "tests/pip_settle_tests.cpp"
+  },
+  "files": [
+    {
+      "path": "artifacts/model-jobs/pip/2026-10-11-settle-fix/pip-settle.blend",
+      "sha256": "00907501bf87974cc69f9ed66a0dc627c45cb1b91894415019915fbb1e47c405",
+      "bytes": 19307628
+    },
+    {
+      "path": "artifacts/model-jobs/pip/2026-10-11-settle-fix/pip-settle.glb",
+      "sha256": "bce73fa744e10c65c3a6920f9779034d826320b7917c6ca27c43cf03de6b0fb9",
+      "bytes": 4104980
+    },
+    {
+      "path": "assets/runtime/models/pip/pip.glb",
+      "sha256": "83192482aae477fdaebf848436b63abd024ffca1110e4bfca02d3a6b99cbcdc2",
+      "bytes": 4405572
+    }
+  ]
+}

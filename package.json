@@ -1,0 +1,21 @@
+{
+  "name": "paws-browser-checks",
+  "private": true,
+  "description": "Optional browser acceptance tooling; the game itself is C++/Wasm",
+  "scripts": {
+    "test:browser:direct": "node scripts/direct-controls-smoke.cjs",
+    "test:browser": "node scripts/phase6-smoke.cjs",
+    "test:browser:phase1": "node scripts/phase1-browser-smoke.cjs",
+    "test:browser:phase5": "node scripts/phase5-smoke.cjs",
+    "test:browser:phase6": "node scripts/phase6-smoke.cjs",
+    "test:browser:phase7": "node scripts/phase7-smoke.cjs",
+    "test:browser:phase8": "node scripts/phase8-smoke.cjs",
+    "test:browser:phase9": "node scripts/phase9-smoke.cjs",
+    "test:browser:phase10": "node scripts/phase10-smoke.cjs",
+    "package:release": "python scripts/package-release.py"
+  },
+  "devDependencies": {
+    "playwright": "1.62.1",
+    "pngjs": "7.0.0"
+  }
+}

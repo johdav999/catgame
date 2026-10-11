@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Paws · A little garden, a little wonder</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css">
+  <script src="build-info.js" defer></script>
+  <script src="engine-gui.js" defer></script>
+  <script src="engine-storage.js" defer></script>
+  <script src="engine-audio.js" defer></script>
+  <script src="paws-audio.js" defer></script>
+  <script src="host.js" defer></script>
+  <script src="saves.js" defer></script>
+</head><body>
+  <main aria-label="Paws">
+    <canvas id="viewport" tabindex="0" aria-label="Paws garden. Tab through named objects and actions. Escape opens the menu. Drag the background to look around."></canvas>
+    <section id="startup" aria-label="Starting Paws">
+      <h1>Paws</h1><p>A little garden. A little wonder.</p>
+      <p id="status" role="status">Preparing your afternoon…</p>
+      <button id="retry" hidden>Retry</button>
+    </section>
+  </main>
+</body></html>

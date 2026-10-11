@@ -1,0 +1,359 @@
+{
+  "schema": "paws-authored-asset/1",
+  "asset_id": "cats/pip@1",
+  "revision": "pip-r9",
+  "created": "2026-10-10",
+  "engine_pin": "3fe7d1dc1dc610c703944803cbb717cd65024ec9",
+  "runtime_url": "assets/models/pip/pip.glb",
+  "units": "metres",
+  "source_axes": {
+    "up": "+Z",
+    "forward": "-Y"
+  },
+  "runtime_axes": {
+    "up": "+Y",
+    "forward": "+Z"
+  },
+  "pivot": "ground-centred root below torso",
+  "root_policy": "in-place root; authored pelvis contact correction; caller owns world movement",
+  "mesh": {
+    "triangles": 14660,
+    "vertices": 7372,
+    "materials": 1,
+    "bones": [
+      "root",
+      "pelvis",
+      "spine",
+      "chest",
+      "neck",
+      "head",
+      "ear.L",
+      "blink.L",
+      "front_upper.L",
+      "front_lower.L",
+      "front_paw.L",
+      "hind_upper.L",
+      "hind_lower.L",
+      "hind_paw.L",
+      "ear.R",
+      "blink.R",
+      "front_upper.R",
+      "front_lower.R",
+      "front_paw.R",
+      "hind_upper.R",
+      "hind_lower.R",
+      "hind_paw.R",
+      "tail.00",
+      "tail.01",
+      "tail.02",
+      "tail.03",
+      "tail.04",
+      "tail.05",
+      "tail.06"
+    ],
+    "bounds_blender": [
+      [
+        -0.24474944174289703,
+        -0.6630045771598816,
+        0.00359945185482502
+      ],
+      [
+        0.24505309760570526,
+        0.560776948928833,
+        1.0870293378829956
+      ]
+    ],
+    "clips": [
+      {
+        "name": "relaxed_idle",
+        "seconds": 4,
+        "loop": true
+      },
+      {
+        "name": "attentive_request",
+        "seconds": 2.4,
+        "loop": false
+      },
+      {
+        "name": "happy_pounce",
+        "seconds": 1.2,
+        "loop": false
+      },
+      {
+        "name": "garden_walk",
+        "seconds": 1.2,
+        "loop": true
+      },
+      {
+        "name": "settle_cushion",
+        "seconds": 2.4,
+        "loop": false
+      },
+      {
+        "name": "curled_rest",
+        "seconds": 4,
+        "loop": true
+      },
+      {
+        "name": "approach_bowl",
+        "seconds": 1.8,
+        "loop": false
+      },
+      {
+        "name": "drink",
+        "seconds": 2,
+        "loop": true
+      },
+      {
+        "name": "return_idle",
+        "seconds": 1.8,
+        "loop": false
+      }
+    ]
+  },
+  "clean_reimport": {
+    "triangles": 14660,
+    "vertices": 10458,
+    "materials": 1,
+    "bones": 29,
+    "actions": [
+      "approach_bowl_PipRig",
+      "attentive_request_PipRig",
+      "curled_rest_PipRig",
+      "drink_PipRig",
+      "garden_walk_PipRig",
+      "happy_pounce_PipRig",
+      "relaxed_idle_PipRig",
+      "return_idle_PipRig",
+      "settle_cushion_PipRig"
+    ],
+    "bounds_blender": [
+      [
+        -0.24474944174289703,
+        -0.6630045771598816,
+        0.003599386429414153
+      ],
+      [
+        0.24505309760570526,
+        0.560776948928833,
+        1.0870294570922852
+      ]
+    ],
+    "packed_master_images": [
+      {
+        "name": "Pip coat albedo",
+        "packed": true,
+        "size": [
+          1024,
+          1024
+        ]
+      },
+      {
+        "name": "pip-normal",
+        "packed": true,
+        "size": [
+          32,
+          32
+        ]
+      },
+      {
+        "name": "pip-roughness",
+        "packed": true,
+        "size": [
+          32,
+          32
+        ]
+      }
+    ],
+    "max_influences": 4
+  },
+  "rig": {
+    "id": "paws-cat-rig-v1",
+    "deform_bones": 29,
+    "engine_joints_including_wrappers": 31,
+    "max_influences": 4,
+    "sample_rate": 30,
+    "rest_pose": "standing quadruped, upright hook tail",
+    "morphs": false
+  },
+  "anchors": [
+    {
+      "name": "root_contact",
+      "space": "mesh bind, runtime axes",
+      "position": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "muzzle",
+      "space": "mesh bind, runtime axes",
+      "position": [
+        0,
+        0.643,
+        0.647
+      ],
+      "bone": "head",
+      "usage": "transform bind point through head skin matrix; fit final bowl lip in phase 7"
+    },
+    {
+      "name": "front_paw.L",
+      "space": "mesh bind, runtime axes",
+      "position": [
+        -0.137,
+        0.055,
+        0.31
+      ]
+    },
+    {
+      "name": "front_paw.R",
+      "space": "mesh bind, runtime axes",
+      "position": [
+        0.137,
+        0.055,
+        0.31
+      ]
+    }
+  ],
+  "material": {
+    "count": 1,
+    "opaque": true,
+    "albedo": "1024x1024 unique UV atlas, sRGB",
+    "source": "built-in OpenAI ImageGen colour variation + authored object-space tabby/cream masks",
+    "roughness": 0.86,
+    "metallic": 0,
+    "normal": "+Y neutral tangent normal; geometric coat masses provide relief",
+    "normal_source": "independently authored",
+    "roughness_source": "independently authored, not inferred from colour"
+  },
+  "source_master": {
+    "path": "artifacts/model-jobs/pip/2026-10-10/pip-master.blend",
+    "bytes": 21328760,
+    "sha256": "5db02222bbbb166a297ed1dccade2b81fb3dffe3a71850bf21404217da4bc2e1"
+  },
+  "source_files": [
+    {
+      "path": "artifacts/model-jobs/pip/2026-10-10/scripts/build_pip.py",
+      "bytes": 28421,
+      "sha256": "5cda4933a31952c1dc99c0a6d6dcbf23ead5400b2436de815775d9725dfc1436"
+    },
+    {
+      "path": "artifacts/model-jobs/pip/2026-10-10/scripts/package_manifest.py",
+      "bytes": 3935,
+      "sha256": "61befb8e0847a41bd1fdfaa531458e068b216dffea918b088ef7146da0676eb9"
+    },
+    {
+      "path": "artifacts/model-jobs/pip/2026-10-10/scripts/pose_bounds.py",
+      "bytes": 831,
+      "sha256": "e7a107852904a2aa9ccf1dbf1f75b3ec5df017d44e135856d12de050e9e6f694"
+    },
+    {
+      "path": "artifacts/model-jobs/pip/2026-10-10/scripts/render_portraits.py",
+      "bytes": 1585,
+      "sha256": "dabf61bbe3ba470839973e49d497530c5760678b7d17eab85f72a4651d79e262"
+    },
+    {
+      "path": "artifacts/model-jobs/pip/2026-10-10/scripts/verify_export.py",
+      "bytes": 3290,
+      "sha256": "2365dec1d1812041416e766a27d9111724a8e017b9375a85ced6ecf73026ed3a"
+    },
+    {
+      "path": "artifacts/model-jobs/pip/2026-10-10/sources/ginger-color-imagegen.png",
+      "bytes": 2628813,
+      "sha256": "4d7d537e10344413eb68af67cea1169b9428403e51c7b48b65646479bd4eefd8",
+      "dimensions": [
+        1254,
+        1254
+      ]
+    }
+  ],
+  "portable_maps": [
+    {
+      "path": "artifacts/model-jobs/pip/2026-10-10/textures/pip-basecolor.png",
+      "bytes": 547960,
+      "sha256": "635e5c53f690212fee63ed46518d2a2e9d98b2b81445f3f8d3270d0b53ada4c2",
+      "dimensions": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "path": "artifacts/model-jobs/pip/2026-10-10/textures/pip-normal.png",
+      "bytes": 143,
+      "sha256": "5013fb2ad9e04f7b58737db93be1f4e501b424559c36f3b0203b547d464f1bc4",
+      "dimensions": [
+        32,
+        32
+      ]
+    },
+    {
+      "path": "artifacts/model-jobs/pip/2026-10-10/textures/pip-roughness.png",
+      "bytes": 144,
+      "sha256": "ee6e53942c0294eb66bda49a5d1146cedcfbbb6ced56577ff6690c83c1bbd45e",
+      "dimensions": [
+        32,
+        32
+      ]
+    }
+  ],
+  "runtime_files": [
+    {
+      "path": "assets/runtime/models/pip/NOTICE.md",
+      "bytes": 566,
+      "sha256": "c0a0bf4bbb91ce8b3b59a341188ee548af5d7260f2c77d7abfcc2c6a6334b567"
+    },
+    {
+      "path": "assets/runtime/models/pip/pip.glb",
+      "bytes": 2097156,
+      "sha256": "55d0767f59a7464f6e4bebddc53cee02900691ddaf17f3b4a56d9802fd76e544"
+    },
+    {
+      "path": "assets/runtime/models/pip/portrait-dialogue.png",
+      "bytes": 282377,
+      "sha256": "5c921f680bffef1ce66dde41c42e62a322f0757672642bd7e7087545eee42c5f",
+      "dimensions": [
+        512,
+        512
+      ]
+    },
+    {
+      "path": "assets/runtime/models/pip/portrait-ending.png",
+      "bytes": 210075,
+      "sha256": "ff5d1b9ecd8c4ae0040fbc7687c170314c29509d50daccfa3893de1466118692",
+      "dimensions": [
+        512,
+        512
+      ]
+    },
+    {
+      "path": "assets/runtime/models/pip/portrait-shop.png",
+      "bytes": 279247,
+      "sha256": "1ed896cd4e22e24a947ed6365b00527fecc5aaed140c891999497e68e819be67",
+      "dimensions": [
+        512,
+        512
+      ]
+    }
+  ],
+  "portraits": {
+    "dialogue": "assets/models/pip/portrait-dialogue.png",
+    "shop": "assets/models/pip/portrait-shop.png",
+    "ending": "assets/models/pip/portrait-ending.png",
+    "source": "same packed final model; portrait-only lowered tail for head framing"
+  },
+  "validation": {
+    "blender": "3.5.1",
+    "clean_process": true,
+    "portable_tests": "build/native-pip; paws_pip_asset and paws_starter_scene",
+    "browser_report": "build/evidence/pip/pip-smoke.json",
+    "evaluation": "artifacts/model-jobs/pip/2026-10-10/EVALUATION.md"
+  },
+  "limits": [
+    "Final garden/cushion/bowl composition is phase 5/7 work",
+    "Physical mobile not tested",
+    "Browser PBR lighting is flatter than Cycles review lighting",
+    "Chirrup audio is phase 9 work"
+  ],
+  "rights_record": "PROVENANCE.md; original task-authored geometry/actions and built-in ImageGen colour source; no fabricated provider license document"
+}

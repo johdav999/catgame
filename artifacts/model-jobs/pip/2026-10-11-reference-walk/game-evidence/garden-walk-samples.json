@@ -1,0 +1,530 @@
+[
+  {
+    "frame": 0,
+    "wall": 1791705837484,
+    "pip": {
+      "time": 0.11989999999990886,
+      "staticPose": false,
+      "usePhase": 1,
+      "item": "drinking_bowl",
+      "spot": "quiet_corner"
+    }
+  },
+  {
+    "frame": 1,
+    "wall": 1791705837795,
+    "pip": {
+      "time": 0.43989999999990914,
+      "staticPose": false,
+      "usePhase": 1,
+      "item": "drinking_bowl",
+      "spot": "quiet_corner"
+    }
+  },
+  {
+    "frame": 2,
+    "wall": 1791705838093,
+    "pip": {
+      "time": 0.7397999999998106,
+      "staticPose": false,
+      "usePhase": 1,
+      "item": "drinking_bowl",
+      "spot": "quiet_corner"
+    }
+  },
+  {
+    "frame": 3,
+    "wall": 1791705838405,
+    "pip": {
+      "time": 1.059799999999811,
+      "staticPose": false,
+      "usePhase": 1,
+      "item": "drinking_bowl",
+      "spot": "quiet_corner"
+    }
+  },
+  {
+    "frame": 4,
+    "wall": 1791705838703,
+    "pip": {
+      "time": 1.3398999999999077,
+      "staticPose": false,
+      "usePhase": 1,
+      "item": "drinking_bowl",
+      "spot": "quiet_corner"
+    }
+  },
+  {
+    "frame": 5,
+    "wall": 1791705839017,
+    "pip": {
+      "time": 1.6597999999998123,
+      "staticPose": false,
+      "usePhase": 1,
+      "item": "drinking_bowl",
+      "spot": "quiet_corner"
+    }
+  },
+  {
+    "frame": 6,
+    "wall": 1791705839315,
+    "pip": {
+      "time": 1.9597999999998166,
+      "staticPose": false,
+      "usePhase": 1,
+      "item": "drinking_bowl",
+      "spot": "quiet_corner"
+    }
+  },
+  {
+    "frame": 7,
+    "wall": 1791705839613,
+    "pip": {
+      "time": 2.2597999999998137,
+      "staticPose": false,
+      "usePhase": 1,
+      "item": "drinking_bowl",
+      "spot": "quiet_corner"
+    }
+  },
+  {
+    "frame": 8,
+    "wall": 1791705839922,
+    "pip": {
+      "time": 2.5598999999999066,
+      "staticPose": false,
+      "usePhase": 1,
+      "item": "drinking_bowl",
+      "spot": "quiet_corner"
+    }
+  },
+  {
+    "frame": 9,
+    "wall": 1791705840236,
+    "pip": {
+      "time": 2.879799999999811,
+      "staticPose": false,
+      "usePhase": 1,
+      "item": "drinking_bowl",
+      "spot": "quiet_corner"
+    }
+  },
+  {
+    "frame": 10,
+    "wall": 1791705840536,
+    "pip": {
+      "time": 3.1797999999998154,
+      "staticPose": false,
+      "usePhase": 1,
+      "item": "drinking_bowl",
+      "spot": "quiet_corner"
+    }
+  },
+  {
+    "frame": 11,
+    "wall": 1791705840833,
+    "pip": {
+      "time": 3.4797999999998126,
+      "staticPose": false,
+      "usePhase": 1,
+      "item": "drinking_bowl",
+      "spot": "quiet_corner"
+    }
+  },
+  {
+    "frame": 12,
+    "wall": 1791705841129,
+    "pip": {
+      "time": 3.7798999999999054,
+      "staticPose": false,
+      "usePhase": 1,
+      "item": "drinking_bowl",
+      "spot": "quiet_corner"
+    }
+  },
+  {
+    "frame": 13,
+    "wall": 1791705841426,
+    "pip": {
+      "time": 4.079799999999814,
+      "staticPose": false,
+      "usePhase": 1,
+      "item": "drinking_bowl",
+      "spot": "quiet_corner"
+    }
+  },
+  {
+    "frame": 14,
+    "wall": 1791705841736,
+    "pip": {
+      "time": 4.379899999999907,
+      "staticPose": false,
+      "usePhase": 1,
+      "item": "drinking_bowl",
+      "spot": "quiet_corner"
+    }
+  },
+  {
+    "frame": 15,
+    "wall": 1791705842067,
+    "pip": {
+      "time": 4.71989999999991,
+      "staticPose": false,
+      "usePhase": 1,
+      "item": "drinking_bowl",
+      "spot": "quiet_corner"
+    }
+  },
+  {
+    "frame": 16,
+    "wall": 1791705842412,
+    "pip": {
+      "time": 5.0598999999998995,
+      "staticPose": false,
+      "usePhase": 1,
+      "item": "drinking_bowl",
+      "spot": "quiet_corner"
+    }
+  },
+  {
+    "frame": 17,
+    "wall": 1791705842759,
+    "pip": {
+      "time": 5.399899999999903,
+      "staticPose": false,
+      "usePhase": 1,
+      "item": "drinking_bowl",
+      "spot": "quiet_corner"
+    }
+  },
+  {
+    "frame": 18,
+    "wall": 1791705843043,
+    "pip": {
+      "time": 5.679899999999904,
+      "staticPose": false,
+      "usePhase": 1,
+      "item": "drinking_bowl",
+      "spot": "quiet_corner"
+    }
+  },
+  {
+    "frame": 19,
+    "wall": 1791705843390,
+    "pip": {
+      "time": 6.0398999999999035,
+      "staticPose": false,
+      "usePhase": 1,
+      "item": "drinking_bowl",
+      "spot": "quiet_corner"
+    }
+  },
+  {
+    "frame": 20,
+    "wall": 1791705843750,
+    "pip": {
+      "time": 6.400000000000006,
+      "staticPose": false,
+      "usePhase": 1,
+      "item": "drinking_bowl",
+      "spot": "quiet_corner"
+    }
+  },
+  {
+    "frame": 21,
+    "wall": 1791705844093,
+    "pip": {
+      "time": 6.739899999999906,
+      "staticPose": false,
+      "usePhase": 1,
+      "item": "drinking_bowl",
+      "spot": "quiet_corner"
+    }
+  },
+  {
+    "frame": 22,
+    "wall": 1791705844437,
+    "pip": {
+      "time": 0.27989999999989834,
+      "staticPose": false,
+      "usePhase": 2,
+      "item": "drinking_bowl",
+      "spot": "quiet_corner"
+    }
+  },
+  {
+    "frame": 23,
+    "wall": 1791705844796,
+    "pip": {
+      "time": 0.640500000000003,
+      "staticPose": false,
+      "usePhase": 2,
+      "item": "drinking_bowl",
+      "spot": "quiet_corner"
+    }
+  },
+  {
+    "frame": 24,
+    "wall": 1791705845139,
+    "pip": {
+      "time": 0.9798999999999012,
+      "staticPose": false,
+      "usePhase": 2,
+      "item": "drinking_bowl",
+      "spot": "quiet_corner"
+    }
+  },
+  {
+    "frame": 25,
+    "wall": 1791705845469,
+    "pip": {
+      "time": 1.3198999999999046,
+      "staticPose": false,
+      "usePhase": 2,
+      "item": "drinking_bowl",
+      "spot": "quiet_corner"
+    }
+  },
+  {
+    "frame": 26,
+    "wall": 1791705845831,
+    "pip": {
+      "time": 1.679899999999904,
+      "staticPose": false,
+      "usePhase": 2,
+      "item": "drinking_bowl",
+      "spot": "quiet_corner"
+    }
+  },
+  {
+    "frame": 27,
+    "wall": 1791705846173,
+    "pip": {
+      "time": 0.21989999999991028,
+      "staticPose": false,
+      "usePhase": 3,
+      "item": "drinking_bowl",
+      "spot": "quiet_corner"
+    }
+  },
+  {
+    "frame": 28,
+    "wall": 1791705846471,
+    "pip": {
+      "time": 0.5198999999999074,
+      "staticPose": false,
+      "usePhase": 3,
+      "item": "drinking_bowl",
+      "spot": "quiet_corner"
+    }
+  },
+  {
+    "frame": 29,
+    "wall": 1791705846767,
+    "pip": {
+      "time": 0.8198999999999188,
+      "staticPose": false,
+      "usePhase": 3,
+      "item": "drinking_bowl",
+      "spot": "quiet_corner"
+    }
+  },
+  {
+    "frame": 30,
+    "wall": 1791705847067,
+    "pip": {
+      "time": 1.119699999999952,
+      "staticPose": false,
+      "usePhase": 3,
+      "item": "drinking_bowl",
+      "spot": "quiet_corner"
+    }
+  },
+  {
+    "frame": 31,
+    "wall": 1791705847366,
+    "pip": {
+      "time": 1.4197999999998245,
+      "staticPose": false,
+      "usePhase": 3,
+      "item": "drinking_bowl",
+      "spot": "quiet_corner"
+    }
+  },
+  {
+    "frame": 32,
+    "wall": 1791705847648,
+    "pip": {
+      "time": 1.6997999999998257,
+      "staticPose": false,
+      "usePhase": 3,
+      "item": "drinking_bowl",
+      "spot": "quiet_corner"
+    }
+  },
+  {
+    "frame": 33,
+    "wall": 1791705847949,
+    "pip": {
+      "time": 1.9998999999999114,
+      "staticPose": false,
+      "usePhase": 3,
+      "item": "drinking_bowl",
+      "spot": "quiet_corner"
+    }
+  },
+  {
+    "frame": 34,
+    "wall": 1791705848232,
+    "pip": {
+      "time": 2.279799999999824,
+      "staticPose": false,
+      "usePhase": 3,
+      "item": "drinking_bowl",
+      "spot": "quiet_corner"
+    }
+  },
+  {
+    "frame": 35,
+    "wall": 1791705848516,
+    "pip": {
+      "time": 2.5598999999999137,
+      "staticPose": false,
+      "usePhase": 3,
+      "item": "drinking_bowl",
+      "spot": "quiet_corner"
+    }
+  },
+  {
+    "frame": 36,
+    "wall": 1791705848802,
+    "pip": {
+      "time": 2.839799999999812,
+      "staticPose": false,
+      "usePhase": 3,
+      "item": "drinking_bowl",
+      "spot": "quiet_corner"
+    }
+  },
+  {
+    "frame": 37,
+    "wall": 1791705849055,
+    "pip": {
+      "time": 3.099799999999817,
+      "staticPose": false,
+      "usePhase": 3,
+      "item": "drinking_bowl",
+      "spot": "quiet_corner"
+    }
+  },
+  {
+    "frame": 38,
+    "wall": 1791705849316,
+    "pip": {
+      "time": 3.3597999999998223,
+      "staticPose": false,
+      "usePhase": 3,
+      "item": "drinking_bowl",
+      "spot": "quiet_corner"
+    }
+  },
+  {
+    "frame": 39,
+    "wall": 1791705849585,
+    "pip": {
+      "time": 3.639899999999912,
+      "staticPose": false,
+      "usePhase": 3,
+      "item": "drinking_bowl",
+      "spot": "quiet_corner"
+    }
+  },
+  {
+    "frame": 40,
+    "wall": 1791705849863,
+    "pip": {
+      "time": 3.8997999999998143,
+      "staticPose": false,
+      "usePhase": 3,
+      "item": "drinking_bowl",
+      "spot": "quiet_corner"
+    }
+  },
+  {
+    "frame": 41,
+    "wall": 1791705850128,
+    "pip": {
+      "time": 4.179799999999815,
+      "staticPose": false,
+      "usePhase": 3,
+      "item": "drinking_bowl",
+      "spot": "quiet_corner"
+    }
+  },
+  {
+    "frame": 42,
+    "wall": 1791705850408,
+    "pip": {
+      "time": 4.459799999999817,
+      "staticPose": false,
+      "usePhase": 3,
+      "item": "drinking_bowl",
+      "spot": "quiet_corner"
+    }
+  },
+  {
+    "frame": 43,
+    "wall": 1791705850690,
+    "pip": {
+      "time": 4.739799999999818,
+      "staticPose": false,
+      "usePhase": 3,
+      "item": "drinking_bowl",
+      "spot": "quiet_corner"
+    }
+  },
+  {
+    "frame": 44,
+    "wall": 1791705850985,
+    "pip": {
+      "time": 0.020199999999960028,
+      "staticPose": false,
+      "usePhase": 4,
+      "item": "drinking_bowl",
+      "spot": "quiet_corner"
+    }
+  },
+  {
+    "frame": 45,
+    "wall": 1791705851267,
+    "pip": {
+      "time": 0.29999999999999716,
+      "staticPose": false,
+      "usePhase": 4,
+      "item": "drinking_bowl",
+      "spot": "quiet_corner"
+    }
+  },
+  {
+    "frame": 46,
+    "wall": 1791705851545,
+    "pip": {
+      "time": 0.5803000000000509,
+      "staticPose": false,
+      "usePhase": 4,
+      "item": "drinking_bowl",
+      "spot": "quiet_corner"
+    }
+  },
+  {
+    "frame": 47,
+    "wall": 1791705851828,
+    "pip": {
+      "time": 0.8603999999999132,
+      "staticPose": false,
+      "usePhase": 4,
+      "item": "drinking_bowl",
+      "spot": "quiet_corner"
+    }
+  }
+]

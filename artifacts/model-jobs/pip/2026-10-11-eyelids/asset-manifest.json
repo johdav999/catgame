@@ -1,0 +1,215 @@
+{
+  "schema": "paws-authored-asset/1",
+  "asset_id": "cats/pip@1",
+  "revision": "pip-eyelids-r24-with-current-actions",
+  "created": "2026-10-10",
+  "engine_pin": "3fe7d1dc1dc610c703944803cbb717cd65024ec9",
+  "runtime_url": "assets/models/pip/pip.glb",
+  "units": "metres",
+  "source_axes": {
+    "up": "+Z",
+    "forward": "-Y"
+  },
+  "runtime_axes": {
+    "up": "+Y",
+    "forward": "+Z"
+  },
+  "pivot": "ground-centred canonical root below torso",
+  "root_policy": "in-place root; movement remains application-owned",
+  "rig_identity": "Paws cat rig v1: all 29 original names, hierarchy and bind transforms unchanged; two optional lower-eyelid controls",
+  "bones": [
+    "root",
+    "pelvis",
+    "spine",
+    "chest",
+    "neck",
+    "head",
+    "ear.L",
+    "blink.L",
+    "ear.R",
+    "blink.R",
+    "blink.lower.L",
+    "blink.lower.R",
+    "front_upper.L",
+    "front_lower.L",
+    "front_paw.L",
+    "front_upper.R",
+    "front_lower.R",
+    "front_paw.R",
+    "hind_upper.L",
+    "hind_lower.L",
+    "hind_paw.L",
+    "hind_upper.R",
+    "hind_lower.R",
+    "hind_paw.R",
+    "tail.00",
+    "tail.01",
+    "tail.02",
+    "tail.03",
+    "tail.04",
+    "tail.05",
+    "tail.06"
+  ],
+  "clips": [
+    "relaxed_idle",
+    "attentive_request",
+    "happy_pounce",
+    "garden_walk",
+    "settle_cushion",
+    "curled_rest",
+    "approach_bowl",
+    "drink",
+    "return_idle"
+  ],
+  "triangles": 20298,
+  "source_vertices": 10267,
+  "engine_vertices": 11766,
+  "materials": 1,
+  "max_influences": 4,
+  "unweighted_vertices": 0,
+  "source_fbx": {
+    "path": "assets/Pip/pip.fbx",
+    "sha256": "60d739a7f5eddff7a40d561d434425d541384d0feb152a819b5ac7b3985c4617"
+  },
+  "source_transform": "rotate +72 Z; scale X .92, Y/Z 1.25; recenter X and ground Z",
+  "textures": [
+    {
+      "name": "pip-basecolor-1024",
+      "size": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "name": "pip-metallic-1024",
+      "size": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "name": "pip-normal-1024",
+      "size": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "name": "pip-roughness-1024",
+      "size": [
+        1024,
+        1024
+      ]
+    }
+  ],
+  "texture_decoded_budget_estimate": {
+    "glb_bytes": 12582912,
+    "fbx_bytes_including_generated_mr": 20971520,
+    "default_fbx_limit_bytes": 134217728,
+    "excludes_mips_and_gpu_copies": true
+  },
+  "rest_bounds_runtime": {
+    "minimum": [
+      -0.199805886,
+      0,
+      -0.618297637
+    ],
+    "maximum": [
+      0.199805886,
+      1.05300915,
+      0.635533571
+    ]
+  },
+  "source_master": "artifacts/model-jobs/pip/2026-10-11-eyelids/exports/pip-eyelids.blend",
+  "validation": {
+    "job": "artifacts/model-jobs/pip/2026-10-11-eyelids",
+    "native_fbx": "validation-fbx.txt",
+    "native_glb": "validation-glb.txt",
+    "rig_fbx": "rig-fbx.txt",
+    "rig_glb": "rig-glb.txt",
+    "clean_reimport": "exports/clean-reimport.json",
+    "blink_browser": "browser-evidence/blink-review.json",
+    "browser": "browser-evidence/pip-smoke.json",
+    "physical_mobile": "not tested"
+  },
+  "files": [
+    {
+      "path": "artifacts/model-jobs/pip/2026-10-11-eyelids/exports/pip-eyelids.blend",
+      "bytes": 20630260,
+      "sha256": "a38675107be2dea3dd80f6f2ef777eeb29a43d6e032fd6fef3742fa3d4f2c236"
+    },
+    {
+      "path": "assets/Pip/pip-repaired.fbx",
+      "bytes": 5916876,
+      "sha256": "bc94d74d8cae17d0b6dca973617e14d7dff3a4df7bcc109702976f5f3e64da75"
+    },
+    {
+      "path": "assets/runtime/models/pip/pip.glb",
+      "bytes": 5065544,
+      "sha256": "f715997ab8f37e10aa09994085aad1099c2f34a2171c48219d836ed357f6c828"
+    },
+    {
+      "path": "assets/runtime/models/pip/portrait-dialogue.png",
+      "bytes": 286327,
+      "sha256": "1c051cf4a3ab55798b50dad01cafba38e659fb5c7fce913e28b2d9d8c5c095d4"
+    },
+    {
+      "path": "assets/runtime/models/pip/portrait-ending.png",
+      "bytes": 198223,
+      "sha256": "ac2d24affb676ba98d869637ccc2337312fb0eab21c9e00a155d473519450d05"
+    },
+    {
+      "path": "assets/runtime/models/pip/portrait-shop.png",
+      "bytes": 288724,
+      "sha256": "6b16466a82030313ea705fe2cc63d06c0a1872dece60d883609301121718023a"
+    }
+  ],
+  "animation_revisions": {
+    "garden_walk": {
+      "revision": "reference-walk-r1",
+      "source_master": "artifacts/model-jobs/pip/2026-10-11-reference-walk/pip-walk-r1.blend",
+      "job": "artifacts/model-jobs/pip/2026-10-11-reference-walk",
+      "duration_seconds": 1.2,
+      "stride_metres": 0.36,
+      "speed_metres_per_second": 0.3,
+      "provenance": "artifacts/model-jobs/pip/2026-10-11-reference-walk/PROVENANCE.md"
+    },
+    "settle_cushion": {
+      "revision": "connected-settle-r9",
+      "source_master": "artifacts/model-jobs/pip/2026-10-11-settle-fix/pip-settle.blend",
+      "job": "artifacts/model-jobs/pip/2026-10-11-settle-fix",
+      "pose": "supported low rest; relaxed forelegs and tail alongside haunch; not a tight sleeping curl",
+      "preserves": "canonical bind, mesh, materials, current blink channels and every other action",
+      "validation": "tests/pip_settle_tests.cpp"
+    },
+    "curled_rest": {
+      "revision": "connected-settle-r9",
+      "source_master": "artifacts/model-jobs/pip/2026-10-11-settle-fix/pip-settle.blend",
+      "job": "artifacts/model-jobs/pip/2026-10-11-settle-fix",
+      "pose": "supported low rest; relaxed forelegs and tail alongside haunch; not a tight sleeping curl",
+      "preserves": "canonical bind, mesh, materials, current blink channels and every other action",
+      "validation": "tests/pip_settle_tests.cpp"
+    }
+  },
+  "facial_revision": {
+    "revision": "native-skin-eyelids-r24",
+    "job": "artifacts/model-jobs/pip/2026-10-11-eyelids",
+    "upper_controls": [
+      "blink.L",
+      "blink.R"
+    ],
+    "lower_controls": [
+      "blink.lower.L",
+      "blink.lower.R"
+    ],
+    "parent": "head",
+    "deformation": "translation, unit scale, original coat UVs and stationary eye islands",
+    "idle_blink_seconds": {
+      "start": 2.4,
+      "close": 0.1,
+      "hold": 0.06666666666666667,
+      "open": 0.2
+    },
+    "preserved_non_facial_channels": 729
+  }
+}

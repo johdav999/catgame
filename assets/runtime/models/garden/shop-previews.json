@@ -1,0 +1,27 @@
+[
+  {
+    "id": "garden/cushion-preview@1",
+    "source": "assets/runtime/models/garden/cushion.glb",
+    "source_sha256": "aa3d597cabdf17adb69d78b69331da58365cb385f4aac1f3fef894f334a26ef7",
+    "output": "assets/runtime/models/garden/cushion-preview.png",
+    "sha256": "3680383c20476df7fd47912f561bc47b5b0ed4bf737fc6b4855f95c260099708",
+    "method": "Blender 3.5.1 render of unchanged accepted GLB; transparent 512px PNG"
+  },
+  {
+    "id": "garden/bowl-preview@1",
+    "source": "assets/runtime/models/garden/bowl.glb",
+    "source_sha256": "a0b7c1e0fab2e673e5ee9f7cda7cbf6f4d17836fdda750dea639a66b7acc8314",
+    "output": "assets/runtime/models/garden/bowl-preview.png",
+    "sha256": "fb6d17eeb6a6a02bd2576c32db8a22234ba92a254f2e9302bf05c38d8ce9d293",
+    "method": "Blender 3.5.1 render of unchanged accepted GLB; transparent 512px PNG",
+    "water": {
+      "sha256": "d2774458e7a986695dfc42a0a991f8496f1c46a86e1d5da70e081b93df1df637",
+      "source_translation": [
+        0,
+        0,
+        0.383
+      ],
+      "source": "assets/runtime/models/garden/bowl_water.glb"
+    }
+  }
+]

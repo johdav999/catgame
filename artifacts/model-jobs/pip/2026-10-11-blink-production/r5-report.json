@@ -1,0 +1,51 @@
+{
+  "eyes": [
+    {
+      "name": "blink.L",
+      "boundary_vertices": 62,
+      "removed_faces": 478,
+      "rim_vertices": 62
+    },
+    {
+      "name": "blink.R",
+      "boundary_vertices": 52,
+      "removed_faces": 416,
+      "rim_vertices": 52
+    }
+  ],
+  "triangles": 18546,
+  "vertices": 9389,
+  "bones": [
+    "root",
+    "pelvis",
+    "spine",
+    "chest",
+    "neck",
+    "head",
+    "ear.L",
+    "blink.L",
+    "ear.R",
+    "blink.R",
+    "blink.lower.L",
+    "blink.lower.R",
+    "front_upper.L",
+    "front_lower.L",
+    "front_paw.L",
+    "front_upper.R",
+    "front_lower.R",
+    "front_paw.R",
+    "hind_upper.L",
+    "hind_lower.L",
+    "hind_paw.L",
+    "hind_upper.R",
+    "hind_lower.R",
+    "hind_paw.R",
+    "tail.00",
+    "tail.01",
+    "tail.02",
+    "tail.03",
+    "tail.04",
+    "tail.05",
+    "tail.06"
+  ]
+}

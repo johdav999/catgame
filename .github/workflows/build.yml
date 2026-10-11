@@ -1,0 +1,33 @@
+name: Paws builds
+on: [push, pull_request, workflow_dispatch]
+jobs:
+  native:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+      - run: cmake -S . -B build/native -G Ninja -DCMAKE_BUILD_TYPE=Debug -DBUILD_TESTING=ON
+      - run: cmake --build build/native --parallel 2
+      - run: ctest --test-dir build/native --output-on-failure
+  browser:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+      - name: Install pinned Emscripten
+        run: |
+          git clone --depth 1 https://github.com/emscripten-core/emsdk.git .tools/emsdk
+          .tools/emsdk/emsdk install "$(cat .emscripten-version)"
+          .tools/emsdk/emsdk activate "$(cat .emscripten-version)"
+      - name: Build Paws browser site
+        run: |
+          source .tools/emsdk/emsdk_env.sh
+          emcmake cmake -S . -B build/web-pinned-release -G Ninja -DCMAKE_BUILD_TYPE=Release
+          cmake --build build/web-pinned-release --parallel 2
+      - uses: actions/upload-artifact@v4
+        with:
+          name: paws-browser-site
+          path: build/web-pinned-release/site/
+          if-no-files-found: error

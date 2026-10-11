@@ -1,0 +1,14 @@
+{
+  "version": 3,
+  "cmakeMinimumRequired": { "major": 3, "minor": 22, "patch": 0 },
+  "configurePresets": [
+    {
+      "name": "native",
+      "displayName": "Paws portable scene tests",
+      "binaryDir": "${sourceDir}/build/native",
+      "cacheVariables": { "BUILD_TESTING": "ON" }
+    }
+  ],
+  "buildPresets": [{ "name": "native", "configurePreset": "native" }],
+  "testPresets": [{ "name": "native", "configurePreset": "native", "output": { "outputOnFailure": true } }]
+}

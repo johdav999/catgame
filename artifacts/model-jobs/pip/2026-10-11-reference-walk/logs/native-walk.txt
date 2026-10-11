@@ -1,0 +1,5 @@
+Paw 0: stance drift 8.30889e-05 m, floor error 0.000207849 m, lift 0.0647403 m
+Paw 1: stance drift 0.000535309 m, floor error 0.00101167 m, lift 0.0640171 m
+Paw 2: stance drift 0.000172377 m, floor error 0.000163291 m, lift 0.0639911 m
+Paw 3: stance drift 9.42647e-05 m, floor error 0.000231376 m, lift 0.0645409 m
+Exported walk contact, clearance and loop-boundary checks passed

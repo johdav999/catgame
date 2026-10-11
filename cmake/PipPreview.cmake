@@ -1,0 +1,23 @@
+# Isolated phase-3 harness; reusable asset API can also be linked by the game.
+add_library(paws_pip src/pip_asset.cpp)
+target_include_directories(paws_pip PUBLIC src)
+target_link_libraries(paws_pip PUBLIC WebEngine::Core)
+if(EMSCRIPTEN)
+  add_executable(pip_preview src/pip_preview_main.cpp)
+  target_link_libraries(pip_preview PRIVATE paws_pip WebEngine::Browser engine_assets_browser)
+  target_link_options(pip_preview PRIVATE -sALLOW_MEMORY_GROWTH=1 -sSTACK_SIZE=1048576
+    -sENVIRONMENT=web -sEXIT_RUNTIME=0 -sFILESYSTEM=0
+    "-sEXPORTED_FUNCTIONS=['_main','_malloc','_free']")
+  set_target_properties(pip_preview PROPERTIES SUFFIX ".js" RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/site")
+  add_dependencies(paws_site pip_preview)
+elseif(BUILD_TESTING)
+  add_executable(paws_pip_tests tests/pip_asset_tests.cpp)
+  target_link_libraries(paws_pip_tests PRIVATE paws_pip)
+  add_test(NAME paws_pip_asset COMMAND paws_pip_tests "${PROJECT_SOURCE_DIR}/assets/runtime/models/pip/pip.glb")
+  add_executable(paws_pip_walk_tests tests/pip_walk_tests.cpp)
+  add_executable(paws_pip_settle_tests tests/pip_settle_tests.cpp)
+  target_link_libraries(paws_pip_settle_tests PRIVATE paws_pip)
+  add_test(NAME paws_pip_settle COMMAND paws_pip_settle_tests "${PROJECT_SOURCE_DIR}/assets/runtime/models/pip/pip.glb")
+  target_link_libraries(paws_pip_walk_tests PRIVATE paws_pip)
+  add_test(NAME paws_pip_walk COMMAND paws_pip_walk_tests "${PROJECT_SOURCE_DIR}/assets/runtime/models/pip/pip.glb")
+endif()

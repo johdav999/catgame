@@ -1,0 +1,11 @@
+/build/
+/dist/
+/.tools/
+/CMakeUserPresets.json
+/.developer.ps1
+/developer-settings.json
+/.vscode/
+*.user
+*.log
+__pycache__/
+/node_modules/
