@@ -4,9 +4,22 @@
 #include <cmath>
 #include <stdexcept>
 namespace paws {
-std::size_t pipClip(const engine::Mesh& mesh,std::string_view name) {
+namespace { bool forwardIdleCorrection=true; }
+bool isToonCat(const engine::Mesh& mesh) {
+    return mesh.skeleton&&std::any_of(mesh.skeleton->joints.begin(),mesh.skeleton->joints.end(),[](const auto& j){return j.name=="root_bone";});
+}
+engine::Vec3 catMuzzleBind(const engine::Mesh& mesh) {
+    return isToonCat(mesh)?engine::Vec3{0,.741367f,.678765f}:engine::Vec3{0,.56f,.62f};
+}
+void setForwardIdleCorrection(bool enabled) { forwardIdleCorrection=enabled; }
+std::size_t pipClip(const engine::Mesh& mesh,std::string_view name,bool useForwardCorrection) {
     if(!mesh.skeleton) throw std::invalid_argument("Pip has no skeleton");
     const auto& clips=mesh.skeleton->clips;
+    if(useForwardCorrection&&forwardIdleCorrection&&(name=="relaxed_idle"||name=="garden_walk")) {
+        const std::string correctedName=std::string(name)+"_forward";
+        auto corrected=std::find_if(clips.begin(),clips.end(),[&](const auto& clip){return clip.name==correctedName;});
+        if(corrected!=clips.end())return static_cast<std::size_t>(corrected-clips.begin());
+    }
     auto it=std::find_if(clips.begin(),clips.end(),[&](const auto& clip){return clip.name==name;});
     if(it==clips.end()) throw std::invalid_argument("Pip is missing action: "+std::string(name));
     return static_cast<std::size_t>(it-clips.begin());
@@ -19,7 +32,8 @@ void validatePip(const engine::Mesh& mesh) {
         const auto& clip=mesh.skeleton->clips[pipClip(mesh,action.name)];
         if(clip.duration<=0 || clip.frameCount<2) throw std::invalid_argument("Pip has an empty action");
     }
-    for(auto required:{"root","pelvis","spine","head","ear.L","ear.R","tail.00","tail.06","blink.L","blink.R"})
+    const auto requiredBones=isToonCat(mesh)?std::initializer_list<const char*>{"root_bone","Spine_base","spine_05","head","ear_1_L","ear_1_R","tail_01","tail_05","eyelid_L","eyelid_R"}:std::initializer_list<const char*>{"root","pelvis","spine","head","ear.L","ear.R","tail.00","tail.06","blink.L","blink.R"};
+    for(auto required:requiredBones)
         if(std::none_of(mesh.skeleton->joints.begin(),mesh.skeleton->joints.end(),[&](const auto& j){return j.name==required;}))
             throw std::invalid_argument("Pip is missing a canonical bone");
     const auto& b=mesh.localBounds();
@@ -31,6 +45,33 @@ void presentPip(engine::SkeletalMeshComponent& cat,std::size_t action,bool reduc
     const auto& spec=pipActions[action];auto& animation=cat.animation();const auto clip=pipClip(*cat.mesh,spec.name);
     if(reducedMotion) { animation.play(clip,spec.loop);animation.seek(spec.stillSeconds);animation.pause(); }
     else animation.crossFade(clip,.18,spec.loop);
+}
+bool turnCatTowards(engine::Actor& actor,float yaw,double delta) {
+    if(!std::isfinite(delta)||delta<=0||!std::isfinite(yaw))return false;
+    auto* state=actor.getComponent<CatTurn>();if(!state)state=&actor.addComponent<CatTurn>();
+    const float error=std::remainder(yaw-actor.transform.rotation.y,2*engine::pi);
+    const float step=std::clamp(error,-float(delta)*3.f,float(delta)*3.f);
+    actor.transform.rotation.y=std::remainder(actor.transform.rotation.y+step,2*engine::pi);
+    const float target=std::clamp(error/.6f,-1.f,1.f);
+    state->weight+=std::clamp(target-state->weight,-float(delta)*6.f,float(delta)*6.f);
+    return std::abs(error-step)<.001f;
+}
+void sampleCatWalk(engine::Actor& actor,engine::SkeletalMeshComponent& skin,double seconds,bool paused) {
+    auto& player=skin.animation();const auto walk=pipClip(*skin.mesh,"garden_walk");
+    const auto* state=actor.getComponent<CatTurn>();const float weight=state?state->weight:0;
+    // The same clock drives both gaits, including manually sampled quest endings.
+    // Blending never restarts the feet when the direction changes at a corner.
+    const auto& clips=skin.mesh->skeleton->clips;
+    const std::string_view name=weight<0?"turn_left":"turn_right";
+    auto turn=std::find_if(clips.begin(),clips.end(),[&](auto& c){return c.name==name;});
+    if(turn!=clips.end()&&std::abs(weight)>.0001f)player.blend(walk,std::size_t(turn-clips.begin()),std::abs(weight),true);
+    else player.play(walk,true);
+    player.seek(std::fmod(std::max(0.,seconds),clips[walk].duration));
+    if(paused)player.pause();
+}
+bool faceCat(engine::Actor& actor,engine::SkeletalMeshComponent& skin,float yaw,double delta) {
+    const bool arrived=turnCatTowards(actor,yaw,delta);
+    sampleCatWalk(actor,skin,skin.animation().time(),false);return arrived;
 }
 PipPreview makePipPreview(std::shared_ptr<const engine::Mesh> mesh) {
     validatePip(*mesh);

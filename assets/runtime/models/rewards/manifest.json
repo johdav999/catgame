@@ -1,0 +1,129 @@
+{
+  "schemaVersion": 1,
+  "assets": [
+    {
+      "name": "reward_coin",
+      "id": "rewards/coin@1",
+      "url": "assets/models/rewards/reward_coin.glb",
+      "file": "reward_coin.glb",
+      "bytes": 335028,
+      "sha256": "f7db44bc358c8e56a57a43fda806ce1ccdd7481ec9978076b0e5a7ab35e626b3",
+      "triangles": 2400,
+      "sourceTriangles": 47490,
+      "rawDimensions": [
+        0.28726255893707275,
+        0.9780784845352173,
+        0.979765772819519
+      ],
+      "blenderBounds": [
+        [
+          -0.22996430099010468,
+          -0.06757786870002747,
+          -0.23044443130493164
+        ],
+        [
+          0.22998641431331635,
+          0.06747415661811829,
+          0.23062820732593536
+        ]
+      ],
+      "materials": 1,
+      "textures": [
+        {
+          "name": "Color_0b7d482a-62bc-4ac3-86c2-b0d91435377c",
+          "size": [
+            512,
+            512
+          ]
+        },
+        {
+          "name": "NormalGL_0b7d482a-62bc-4ac3-86c2-b0d91435377c",
+          "size": [
+            512,
+            512
+          ]
+        },
+        {
+          "name": "ORM_0b7d482a-62bc-4ac3-86c2-b0d91435377c",
+          "size": [
+            512,
+            512
+          ]
+        }
+      ],
+      "minimum": [
+        -0.22996430099010468,
+        -0.23044443130493164,
+        -0.06747415661811829
+      ],
+      "maximum": [
+        0.22998641431331635,
+        0.23062820732593536,
+        0.06757786870002747
+      ],
+      "rightsRecord": "assets/models/rewards/NOTICE.md"
+    },
+    {
+      "name": "reward_heart",
+      "id": "rewards/heart@1",
+      "url": "assets/models/rewards/reward_heart.glb",
+      "file": "reward_heart.glb",
+      "bytes": 223216,
+      "sha256": "0c1a97df352a6d063f0dfb29e1f6e4d634dc67f3d08abbffbdc59896476710e4",
+      "triangles": 1600,
+      "sourceTriangles": 47348,
+      "rawDimensions": [
+        0.43938013911247253,
+        0.9798390865325928,
+        0.8958168625831604
+      ],
+      "blenderBounds": [
+        [
+          -0.2300127148628235,
+          -0.10304444283246994,
+          -0.21021363139152527
+        ],
+        [
+          0.23017080128192902,
+          0.1032969281077385,
+          0.21013709902763367
+        ]
+      ],
+      "materials": 1,
+      "textures": [
+        {
+          "name": "Color_a590c9b8-fa5b-4eb1-85b2-81e0197d2667",
+          "size": [
+            512,
+            512
+          ]
+        },
+        {
+          "name": "NormalGL_a590c9b8-fa5b-4eb1-85b2-81e0197d2667",
+          "size": [
+            512,
+            512
+          ]
+        },
+        {
+          "name": "ORM_a590c9b8-fa5b-4eb1-85b2-81e0197d2667",
+          "size": [
+            512,
+            512
+          ]
+        }
+      ],
+      "minimum": [
+        -0.2300127148628235,
+        -0.21021363139152527,
+        -0.1032969281077385
+      ],
+      "maximum": [
+        0.23017080128192902,
+        0.21013709902763367,
+        0.10304444283246994
+      ],
+      "rightsRecord": "assets/models/rewards/NOTICE.md"
+    }
+  ]
+}

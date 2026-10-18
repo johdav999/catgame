@@ -1,0 +1,11 @@
+Garden lawn texture v1
+Created: 2026-10-12
+Creator/tool: OpenAI built-in image_gen, text-to-image.
+Source: exec-09c59ff2-35c6-4e35-acef-eff131038119.png
+Inputs: Original text prompt; no third-party source images.
+Rights: AI-generated output for Paws. No third-party asset license asserted.
+Use: Repeating ground base color, roughness 1, two world metres per tile.
+Modifications: None.
+
+Exact generation prompt:
+Use case: photorealistic-natural. Asset type: square seamless tileable game ground base-color texture. Create realistic short dense garden lawn grass viewed exactly straight down, orthographic, covering approximately 2 by 2 meters. Fine overlapping narrow blades, subtle natural sage and moss green variation, occasional subdued straw blades, healthy soft lawn. Restrained contrast and moderate saturation for a cosy miniature garden game with cream cottage and terracotta roof. Uniform diffuse overcast illumination, albedo only, no cast shadows, no directional lighting, no highlights, no ambient vignette or gradients. Seamless matching opposite edges, visually uniform density, no obvious repeating clusters. Grass fills entire square edge to edge. No flowers, clover, shrubs, rocks, paving, objects, border, text or watermark. 1024x1024.

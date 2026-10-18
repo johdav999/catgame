@@ -5,12 +5,13 @@
 #include <map>
 
 namespace paws {
+namespace release1::gui { class Views; }
 enum class UiScreen { Title, Garden, Puzzle, Dialogue, Hints, Pause, Settings, Objects,
-    Restart, Completion, Shop, Details, Placement, Ending, Recovery, Gallery, Loading, LoadFailure, ImportConfirm };
+    Restart, Completion, Shop, Details, Placement, Ending, Recovery, Gallery, Loading, LoadFailure, ImportConfirm, RestartAdventure, Adventures, BeachEnding };
 enum class UiAction { Play, Continue, AcceptQuest, SelectObject, Move, Rotate, Roll,
     PickUp, Place, Undo, Restart, BackToGarden, Buy, CancelPlacement,
     RetrySave, ExportSave, ImportSave, ReplayEnding, ResetView, ZoomIn, ZoomOut, Settings, SelectQuest, ReturnBall, RevealHint, RetryLoad,
-    OpenShop, BeginPlacement, SelectSpot, PlaceFurnishing, UseFurnishing, ConfirmImport, CancelImport, ExportOriginal, EnableSound, ConfirmSound };
+    OpenShop, BeginPlacement, SelectSpot, PlaceFurnishing, UseFurnishing, ConfirmImport, CancelImport, ExportOriginal, EnableSound, ConfirmSound, RestartAdventure };
 struct UiIntent {
     UiAction action;
     std::string target;
@@ -63,6 +64,7 @@ public:
     void show(UiScreen screen);
     void enter(UiScreen screen); // Domain navigation discards obsolete modal return paths.
     void update(float width, float height);
+    void recordFrame(double timestamp, bool rendering);
     bool willRebuild(float width,float height) const { return dirty_||width!=width_||height!=height_; }
     void pointer(engine::Vec2 position, bool down);
     void escape();
@@ -73,6 +75,8 @@ public:
     const UiSettings& settings() const { return settings_; }
     UiScreen screen() const { return screen_; }
 private:
+    friend class release1::gui::Views;
+    std::function<bool()> composition_;
     struct Skin { engine::Button* button; engine::Image* image; engine::Image* text;
         std::string label, icon; bool primary; int state=-1; float width=0, height=52; };
     std::unique_ptr<engine::GuiSystem> gui_;
@@ -89,6 +93,11 @@ private:
     std::vector<std::pair<UiScreen,std::string>> history_;
     engine::Vec2 pointer_{-1,-1};
     std::vector<Skin> skins_;
+    engine::TextLabel* fpsLabel_=nullptr;
+    std::array<engine::Image*,3> loadingDots_{};
+    std::string fpsText_="FPS: --";
+    double fpsStart_=0, fpsPrevious_=0;
+    unsigned fpsFrames_=0;
     std::map<std::string,std::shared_ptr<const engine::Texture>> art_;
     void build();
     void emit(UiAction action, std::string target={});
@@ -97,9 +106,10 @@ private:
     engine::TextLabel& copy(engine::Widget& parent,std::string text,bool error=false);
     void heading(engine::Widget& parent,const std::string& text,bool wordmark=false);
     engine::Button& button(engine::Widget& parent,const std::string& label,
-        std::function<void()> action,bool primary=false,bool enabled=true,std::string icon={});
+        std::function<void()> action,bool primary=false,bool enabled=true,std::string icon={},std::string sound="ui_confirm");
     void previewImage(engine::Widget& parent,std::shared_ptr<const engine::Texture> image,const std::string& name);
     std::shared_ptr<const engine::Texture> textArt(const std::string&,engine::GuiFont&,bool light=false);
+    std::shared_ptr<const engine::Texture> resourceIcon(const std::string&);
     std::shared_ptr<const engine::Texture> tile(int width,int height,int state,bool primary,const std::string& icon={});
     void setFonts();
 };

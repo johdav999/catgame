@@ -1,0 +1,26 @@
+{
+  "output": "artifacts\\model-jobs\\garden-details\\2026-10-12\\moss_flowers\\model.glb",
+  "request": {
+    "model": "v3.1-20260211",
+    "geometry_quality": "detailed",
+    "face_limit": 50000,
+    "texture": true,
+    "pbr": true,
+    "quad": false,
+    "texture_quality": "detailed",
+    "texture_version": "v3.5-20260815",
+    "delight": false,
+    "prompt": "One tiny low garden groundcover clump for the edge of sandstone paving. Rounded moss green leaves and three small white daisies with honey yellow centers, scattered asymmetrically on short stems. Extremely low flat mound, broad grouped leaves, opaque geometry. No pot, no paving, no ground plane. Standalone stylized 3D prop for Paws, a cosy miniature cat garden. Softly sculpted rounded silhouettes, warm cream/sage/muted terracotta palette, matte non-plastic materials, broad restrained detail, neutral diffuse lighting, no cast shadows painted into textures, no background scene, no cats. Match docs/design/paws-style-reference.png art direction."
+  },
+  "submitted_at": "2026-10-12T06:30:15.094358+00:00",
+  "status": "success",
+  "task_id": "65dd1369-8b3e-409f-96cc-bfc266614f90",
+  "checked_at": "2026-10-12T06:35:08.193573+00:00",
+  "provider": "Tripo3D",
+  "api_base": "https://openapi.tripo3d.ai/v3",
+  "sha256": "a6abcb81ca34f59ef700d8c61cb9b4f6d231417bc270636ea0c33139ecece009",
+  "bytes": 7456800,
+  "credits_consumed": 50.0,
+  "completed_at": "2026-10-12T06:34:13.571205Z",
+  "license_status": "Unverified: record account entitlement and applicable rights before release"
+}

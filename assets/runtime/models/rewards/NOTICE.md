@@ -1,0 +1,3 @@
+# Quest reward models
+
+Coin and heart generated with Tripo3D from original OpenAI ImageGen references on 15 October 2026. No third-party reference images were used. Provider originals, reference prompts and SHA-256 records, editable Blender sources, processing script and review images are retained under artifacts/model-jobs/quest-rewards and artifacts/model-input-images/quest-rewards. Runtime variants retain provider base-color and normal maps at 512 pixels; texture-island positions were welded before simplification. Pivots are centered, Y is up, and fronts face +Z. Tripo account entitlement and distribution terms remain unverified; no third-party asset license is invented.

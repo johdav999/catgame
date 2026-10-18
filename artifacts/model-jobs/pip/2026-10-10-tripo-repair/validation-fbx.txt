@@ -1,1 +1,0 @@
-Pip: 17854 triangles, 32 joints, 9 clips; root, loops, skin, static poses and lifecycle passed

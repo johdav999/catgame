@@ -1,0 +1,5 @@
+Generated through the user-configured ElevenLabs API for Paws on 2026-10-11.
+The user authorized generation and local game integration.
+Account plan, distribution entitlement and attribution requirements remain unverified.
+Provider terms: https://elevenlabs.io/terms-of-use
+No third-party recording or universal commercial license is asserted.

@@ -1,5 +1,15 @@
 # Durable afternoon saves and browser lifecycle
 
+Release-one Prompt 9 now writes `PAWS_AFTERNOON 6` through this same coordinator.
+The ten attempts, per-cat friendship, eight purchases/placements and separate
+picnic ending use the validated release-one codec. Supported versions 1–5 retain
+their legacy journals/reward identities and historical MVP ending; migration
+does not grant new rewards or mark the picnic seen. File confirmation constructs
+a valid candidate before publication. Explicit Pause persists through import,
+reload, composed background reasons and renderer recovery. The numbered phase
+details below document the earlier MVP format; current evidence is in
+[the integration handoff](release1/prompt-09-handoff.md).
+
 Prompt 8 extends the existing `Afternoon` codec and WebEngine IndexedDB adapter.
 It adds no second game-state owner and changes no engine sources or dependency pin.
 
@@ -115,3 +125,27 @@ The phase-7 runner rechecks the full fresh earn/buy/place/use/reload journey on 
 new save implementation. Reports record exact Wasm/asset hashes, Chrome version,
 screenshots and errors. See implementation status for the final results.
 Physical Android/iOS, Safari, OS tab eviction and crash durability remain untested.
+# Restart adventure
+
+The game menu offers **New Game** directly below **Restart puzzle**,
+separate from restarting one puzzle or replaying the picnic ending.
+Its confirmation defaults to **Keep playing** and offers **Export save** before
+resetting. Confirmation creates a fresh Chapter 1 garden, clearing all ten quest
+attempts, rewards, friendships, introductions, purchases, placements and finales.
+Sound, display and accessibility preferences are retained. Command identities and
+save revisions advance past the previous adventure, preventing stale commands or
+older autosave history from restoring its progress. The normal save coordinator
+persists the new campaign and reports failures through Save and recovery.
+
+The separately labeled **Replay picnic celebration** replays the recorded ending,
+not the adventure. After the celebration has been seen it is available from a
+puzzle menu as well as the garden: the host prepares a garden candidate and the
+existing finale before publishing either. Coins, rewards and puzzle attempts are
+retained. Before the ending is seen the menu explains the unlock requirement and
+points to **New Game** for a full reset.
+
+`scripts/restart-adventure-smoke.cjs` checks cancellation, reset from a completed
+save, persistence after reload, retained preferences and narrow-screen access in
+an isolated browser profile. Native progression tests also verify cleared
+furnishings, relocked quests and earning the first reward again.
+

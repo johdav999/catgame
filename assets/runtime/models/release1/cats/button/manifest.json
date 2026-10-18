@@ -1,0 +1,318 @@
+{
+  "id": "release1/cats/button@1",
+  "cat": "button",
+  "version": 1,
+  "url": "assets/models/release1/cats/button/button.glb",
+  "sha256": "f60259cba9f775dd30d72d8df5ffcf2ded98c912febe13a81124ecef5bfb753b",
+  "bytes": 5441936,
+  "triangles": 25675,
+  "materials": 1,
+  "embeddedImages": 3,
+  "bones": 31,
+  "bounds": {
+    "min": [
+      -0.19954444468021393,
+      -6.515286798958186e-08,
+      -0.5795652866363525
+    ],
+    "max": [
+      0.1940879225730896,
+      1.0500000715255737,
+      0.5987914800643921
+    ]
+  },
+  "footprint": [
+    0.39363236725330353,
+    1.1783567667007446
+  ],
+  "pivot": "root on support plane; metres, Y up, +Z forward",
+  "portrait": {
+    "path": "assets/runtime/models/release1/cats/button/portrait.png",
+    "bytes": 318525,
+    "sha256": "07daed4882daf76b4ec996fb98f90d11d9826556290899d7f448d35fac55d208"
+  },
+  "master": {
+    "path": "artifacts/model-jobs/release1-cats/button/button-r24.blend",
+    "bytes": 36139760,
+    "sha256": "022b5fda33f640698da1d595668466463cbce6c17ada2792f54a00fe1e711601"
+  },
+  "cleanReimport": {
+    "path": "artifacts/model-jobs/release1-cats/button/button-clean-reimport.blend",
+    "bytes": 34129149,
+    "sha256": "2261b7b5768591405ad66bc1424cf1952bc416f95487d3949d3ad284f27033e0"
+  },
+  "materialMaps": [
+    {
+      "path": "artifacts/model-jobs/release1-cats/button/textures/final/0-normal.png",
+      "bytes": 494539,
+      "sha256": "ea9be1d9670dc03df525a82808abdabefc3ccc97c998ab691d0336707e132a00"
+    },
+    {
+      "path": "artifacts/model-jobs/release1-cats/button/textures/final/1-basecolor.png",
+      "bytes": 1163702,
+      "sha256": "673fe96f99c1807f84c400d1050e9d82a18fef29ef1ae8255442128fb8ee1c70"
+    },
+    {
+      "path": "artifacts/model-jobs/release1-cats/button/textures/final/2-roughness.png",
+      "bytes": 499985,
+      "sha256": "2e8a2e44863a83d20dc9ca7a9d3481b81c29779faac48d99aae1612e3eb291b0"
+    }
+  ],
+  "rightsRecord": "artifacts/model-jobs/release1-cats/PROVENANCE.md",
+  "sourceIdentity": {
+    "sourceFolder": "assets/button",
+    "files": [
+      {
+        "path": "assets/button/button.fbx",
+        "bytes": 579244,
+        "sha256": "66cc77968e56634866afb35a9e85dd9e7d9dbc29eb108fe02ddafe920a3dbbc5"
+      },
+      {
+        "path": "assets/button/tripo_convert_31d5929b-7895-49b3-a8e5-8b67fa01fb83.fbm/cartoon_cat_3d_model_basecolor.JPEG",
+        "bytes": 1961845,
+        "sha256": "4e2b1082ec2161f19b102e07ff0f4620624e9aad8bc584d80bdce4daed7979c8"
+      },
+      {
+        "path": "assets/button/tripo_convert_31d5929b-7895-49b3-a8e5-8b67fa01fb83.fbm/cartoon_cat_3d_model_metallic.JPEG",
+        "bytes": 1278798,
+        "sha256": "0a58af6b20c770d12d63c8a519c825842fefc52b53babe8ba1129d6f7d8ae180"
+      },
+      {
+        "path": "assets/button/tripo_convert_31d5929b-7895-49b3-a8e5-8b67fa01fb83.fbm/cartoon_cat_3d_model_normal.PNG",
+        "bytes": 2548321,
+        "sha256": "7caceb014c36ce68cde72817007f10f029a404f54fdab9016eadfc6d92c92906"
+      },
+      {
+        "path": "assets/button/tripo_convert_31d5929b-7895-49b3-a8e5-8b67fa01fb83.fbm/cartoon_cat_3d_model_rm.JPEG",
+        "bytes": 1115472,
+        "sha256": "eebe11fcd207bdc33171f444ee1ae032b8deb5b740363ffaba005c891a399fa1"
+      },
+      {
+        "path": "assets/button/tripo_convert_31d5929b-7895-49b3-a8e5-8b67fa01fb83.fbm/cartoon_cat_3d_model_roughness.JPEG",
+        "bytes": 1077320,
+        "sha256": "a27d9b36b259bcf61c05e40ce4536fe4f0c6eaa8e60ea9fc214ef7857035da19"
+      }
+    ],
+    "reference": {
+      "path": "artifacts/model-jobs/cat-tripo-inputs/2026-10-11/button.png",
+      "bytes": 1426371,
+      "sha256": "3caa22a05ad16748a7fb8f4ec16858660312c0004abb172e15d031a360356c8f"
+    },
+    "provider": "Tripo3D, user supplied FBX export",
+    "rightsStatus": "User attests Tripo3D Pro plan on 2026-10-11",
+    "rightsEvidence": {
+      "kind": "direct user statement",
+      "date": "2026-10-11",
+      "text": "i have a pro plan of tripo3dai"
+    }
+  },
+  "rigAuthority": "docs/release1/canonical-rig.json",
+  "actions": [
+    {
+      "duration": 4.0,
+      "loop": true,
+      "name": "relaxed_idle"
+    },
+    {
+      "duration": 2.4,
+      "loop": false,
+      "name": "attentive_request"
+    },
+    {
+      "duration": 1.2,
+      "loop": false,
+      "name": "happy_pounce"
+    },
+    {
+      "duration": 0.8,
+      "loop": true,
+      "name": "garden_walk"
+    },
+    {
+      "duration": 2.4,
+      "loop": false,
+      "name": "settle_cushion"
+    },
+    {
+      "duration": 4.0,
+      "loop": true,
+      "name": "curled_rest"
+    },
+    {
+      "duration": 1.8,
+      "loop": false,
+      "name": "approach_bowl"
+    },
+    {
+      "duration": 2.0,
+      "loop": true,
+      "name": "drink"
+    },
+    {
+      "duration": 1.8,
+      "loop": false,
+      "name": "return_idle"
+    },
+    {
+      "duration": 3.0,
+      "loop": true,
+      "name": "scratch"
+    },
+    {
+      "duration": 2.4,
+      "loop": false,
+      "name": "perch_step"
+    },
+    {
+      "duration": 2.4,
+      "loop": false,
+      "name": "perch_settle"
+    },
+    {
+      "duration": 1.8,
+      "loop": false,
+      "name": "playhouse_enter"
+    },
+    {
+      "duration": 3.0,
+      "loop": true,
+      "name": "playhouse_lookout"
+    },
+    {
+      "duration": 2.4,
+      "loop": false,
+      "name": "picnic_sit"
+    },
+    {
+      "duration": 3.0,
+      "loop": false,
+      "name": "personality_reaction"
+    },
+    {
+      "name": "quest_mouse_collect",
+      "duration": 4.0,
+      "loop": false
+    },
+    {
+      "name": "quest_bed_knead",
+      "duration": 8.0,
+      "loop": false
+    },
+    {
+      "duration": 4.0,
+      "loop": true,
+      "name": "relaxed_idle_forward"
+    },
+    {
+      "duration": 0.8,
+      "loop": true,
+      "name": "garden_walk_forward"
+    },
+    {
+      "duration": 0.8,
+      "loop": true,
+      "name": "turn_left"
+    },
+    {
+      "duration": 0.8,
+      "loop": true,
+      "name": "turn_right"
+    }
+  ],
+  "contacts": {
+    "path": "assets/runtime/models/release1/cats/button/contacts.json",
+    "bytes": 249543,
+    "sha256": "0ee3af350a839019c503dc65003b9607fa8cb2d82e7bd3c198479c81344397e0"
+  },
+  "denseMeasurements": {
+    "path": "artifacts/model-jobs/release1-cats/button/animation-measurements-runtime.json",
+    "bytes": 1643823,
+    "sha256": "03281f4ef9b6b77bc427921d106b8905d9d6b1209051bf1cd2689f44f09f2c46"
+  },
+  "anchors": {
+    "root_origin": {
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "rotationDegrees": [
+        0,
+        0,
+        0
+      ]
+    },
+    "drink_muzzle": {
+      "position": [
+        0.10182733390782331,
+        0.39158004200136337,
+        0.5557363113841495
+      ],
+      "rotationDegrees": [
+        0,
+        0,
+        0
+      ],
+      "action": "drink",
+      "seconds": 0
+    },
+    "drink_root_from_water": {
+      "position": [
+        -0.10182733390782331,
+        0,
+        -0.5557363113841495
+      ],
+      "rotationDegrees": [
+        0,
+        0,
+        0
+      ],
+      "waterY": 0.383,
+      "muzzleClearance": 0.008580042001363364
+    },
+    "rest_root": {
+      "position": [
+        0.19381656497716904,
+        0,
+        -0.06421534717082977
+      ],
+      "rotationDegrees": [
+        0,
+        0,
+        0
+      ],
+      "action": "curled_rest",
+      "supportPlaneY": 0
+    },
+    "rest_root_from_support": {
+      "position": [
+        -0.19381656497716904,
+        0,
+        0.06421534717082977
+      ],
+      "rotationDegrees": [
+        0,
+        0,
+        0
+      ],
+      "action": "curled_rest",
+      "supportPlaneY": 0
+    }
+  },
+  "walk": {
+    "duration": 0.8,
+    "strideMetres": 0.36,
+    "speedMetresPerSecond": 0.45,
+    "rootMotion": false
+  },
+  "choreography": "Use measured per-action contacts. Approach/step/top/exit actor motion and prop support are application-owned; no animation event commits rules or rewards.",
+  "questEndingRevision": "2026-10-13",
+  "questEndingMaster": {
+    "path": "artifacts/model-jobs/quest-endings/2026-10-13/button-endings.blend",
+    "sha256": "35a9192a6c25648dfabeb1605d73e31114c57896c16b0cea7a3a1d01da8001fe"
+  },
+  "idleForwardRevision": "2026-10-14",
+  "walkForwardRevision": "2026-10-14",
+  "walkSpeedRevision": "2026-10-14",
+  "turnRevision": "2026-10-14"
+}

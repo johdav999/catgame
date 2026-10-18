@@ -1,5 +1,6 @@
 /build/
 /dist/
+/artifacts/
 /.tools/
 /CMakeUserPresets.json
 /.developer.ps1
@@ -9,3 +10,4 @@
 *.log
 __pycache__/
 /node_modules/
+/.secrets/

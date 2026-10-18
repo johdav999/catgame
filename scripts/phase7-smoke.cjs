@@ -12,6 +12,10 @@ const settle=()=>page.waitForTimeout(140);
 async function focus(name){for(let n=0;n<120;n++){if(await page.evaluate(()=>document.activeElement?.getAttribute('aria-label'))===name)return;await page.keyboard.press('Tab');await page.waitForTimeout(8);}throw Error('Unreachable '+name);}
 async function action(name){
     console.log('Action:',name);
+    // Logical completion commits before the authored ball travel/reaction ends.
+    // Wait for the actionable reward card rather than racing its publication.
+    if(name==='Back to garden'&&await page.evaluate(()=>!!window.pawsBall?.completionPending))
+        await page.waitForFunction(()=>!window.pawsBall?.completionPending,null,{timeout:30000});
     await settle();await focus(name);await settle();
     if(mode==='keyboard')await page.keyboard.press('Enter');
     else {const b=await page.evaluate(()=>EngineGui.snapshot().widgets.find(w=>w.focused).bounds);if(mode==='touch')await page.touchscreen.tap(b.x+b.width/2,b.y+b.height/2);else await page.mouse.click(b.x+b.width/2,b.y+b.height/2);}

@@ -6,6 +6,7 @@
 namespace paws {
 using namespace engine;
 namespace {
+#include "resource_icons.inc"
 constexpr GuiColor cream{1,248.f/255,233.f/255,1}, ink{37.f/255,62.f/255,55.f/255,1};
 constexpr GuiColor teal{40.f/255,102.f/255,93.f/255,1}, linen{232.f/255,221.f/255,199.f/255,1};
 constexpr GuiColor muted{89.f/255,104.f/255,91.f/255,1}, error{169.f/255,67.f/255,53.f/255,1};
@@ -47,19 +48,21 @@ PawsUi::PawsUi(std::array<std::vector<std::byte>,3> fonts,bool gallery,std::func
     }
 }
 void PawsUi::setFonts() {
-    gui_->setFont(GuiFont::loadTrustedTrueType(fontBytes_[0],26));
-    control_=GuiFont::loadTrustedTrueType(fontBytes_[1],26);
-    heading_=GuiFont::loadTrustedTrueType(fontBytes_[2],36);
+    gui_->setFont(GuiFont::loadTrustedTrueType(fontBytes_[0],20));
+    control_=GuiFont::loadTrustedTrueType(fontBytes_[1],20);
+    heading_=GuiFont::loadTrustedTrueType(fontBytes_[2],30);
     wordmark_=GuiFont::loadTrustedTrueType(fontBytes_[2],68);
 }
 void PawsUi::project(UiModel model) { if(model.attempt!=model_.attempt) hintStep_=1;model_=std::move(model);dirty_=true; }
 void PawsUi::show(UiScreen screen) {
     if(screen==screen_) return;
+    if(!gallery_)emit(UiAction::ConfirmSound,"ui_panel");
     history_.push_back({screen_,focusedName(*gui_)});
-    screen_=screen;pendingFocus_=screen==UiScreen::Restart?"Keep playing":"__first_control__";dirty_=true;down_=false;
+    screen_=screen;pendingFocus_=(screen==UiScreen::Restart||screen==UiScreen::RestartAdventure)?"Keep playing":"__first_control__";dirty_=true;down_=false;
 }
 void PawsUi::close() {
     if(history_.empty()) { show(UiScreen::Garden);return; }
+    if(!gallery_)emit(UiAction::ConfirmSound,"ui_panel");
     screen_=history_.back().first;pendingFocus_=history_.back().second;history_.pop_back();
     if(screen_==UiScreen::Gallery) preview_=false;
     dirty_=true;down_=false;
@@ -106,42 +109,64 @@ std::shared_ptr<const Texture> PawsUi::textArt(const std::string& text,GuiFont& 
     }
     art_[key]=t;return t;
 }
-// Original rounded, 24-unit line icon family and cream stationery skin. Code is
-// the editable master; no external or generated screenshot supplies controls.
+std::shared_ptr<const Texture> PawsUi::resourceIcon(const std::string& icon) {
+    const std::string key="resource:"+icon;
+    if(art_.contains(key))return art_.at(key);
+    const auto bytes=icon=="coin"?std::span<const unsigned char>(coinIconPng):std::span<const unsigned char>(heartIconPng);
+    return art_[key]=Texture::loadMemory(std::as_bytes(bytes),key);
+}
+// Rounded line icons and cream stationery skin; resource counters use original
+// ImageGen artwork separately so the full-color icons remain crisp at high DPI.
 std::shared_ptr<const Texture> PawsUi::tile(int w,int h,int state,bool primary,const std::string& icon) {
     std::string key="tile:"+std::to_string(w)+":"+std::to_string(h)+":"+std::to_string(state)+":"+std::to_string(primary)+icon;
     if(art_.contains(key)) return art_.at(key);
-    auto t=texture(w,h,key);GuiColor fill=primary?teal:cream,edge=teal;
+    auto t=texture(w,h,key);GuiColor fill=primary?teal:cream,edge=primary?teal:muted;
+    const bool surface=state==5||state==6;
+    if(state==5)edge=linen;
+    if(state==6)fill=edge=GuiColor{ink.r,ink.g,ink.b,.12f};
     if(state==4) {fill=linen;edge=muted;}
     if(state==1) fill=primary?GuiColor{.12f,.32f,.29f,1}:linen;
     if(state==2) fill=primary?ink:GuiColor{.85f,.81f,.73f,1};
     for(int y=0;y<h;++y) for(int x=0;x<w;++x) {
-        float d=roundDistance(x+.5f,y+.5f,float(w),float(h),state==5?16.f:12.f);
-        GuiColor c=d>-2?edge:fill;
+        float d=roundDistance(x+.5f,y+.5f,float(w),float(h),surface?20.f:14.f);
+        GuiColor c=d>-1?edge:fill;
         if(state==3) c=d>-3?teal:d>-5?cream:fill;
         pixel(*t,x,y,c,std::clamp(.5f-d,0.f,1.f));
     }
     if(!icon.empty()) {
-        GuiColor color=primary?cream:ink;
+        GuiColor color=primary?cream:icon=="heart"?GuiColor{.69f,.30f,.29f,1}:icon=="coin"?GuiColor{.64f,.44f,.12f,1}:ink;
+        std::array<float,24*24> coverage{};
         const auto line=[&](float x1,float y1,float x2,float y2) {
             for(int y=0;y<24;++y) for(int x=0;x<24;++x) {
                 float dx=x2-x1,dy=y2-y1,u=std::clamp(((x-x1)*dx+(y-y1)*dy)/std::max(.001f,dx*dx+dy*dy),0.f,1.f);
                 float d=std::hypot(x-x1-u*dx,y-y1-u*dy);
-                if(d<1.5f) pixel(*t,x+16,y+(h-24)/2,color,std::clamp(1.5f-d,0.f,1.f));
+                coverage[y*24+x]=std::max(coverage[y*24+x],std::clamp(1.5f-d,0.f,1.f));
             }
         };
         if(icon=="menu") {line(3,5,21,5);line(3,12,21,12);line(3,19,21,19);}
         else if(icon=="home") {line(3,11,12,3);line(12,3,21,11);line(6,9,6,21);line(6,21,18,21);line(18,21,18,9);}
-        else if(icon=="hint") {line(8,17,16,17);line(9,21,15,21);line(8,17,5,10);line(5,10,8,4);line(8,4,16,4);line(16,4,19,10);line(19,10,16,17);}
-        else if(icon=="undo"||icon=="rotate") {line(3,8,17,8);line(17,8,21,12);line(21,12,21,17);line(21,17,15,20);line(3,8,8,3);line(3,8,8,13);}
+        else if(icon=="hint") {
+            for(int i=0;i<20;++i){float a=(35.f+i*14.5f)*3.141593f/180,b=(35.f+(i+1)*14.5f)*3.141593f/180;line(12+7*std::sin(a),9+7*std::cos(a),12+7*std::sin(b),9+7*std::cos(b));}
+            line(8,15,8,18);line(16,15,16,18);line(8,18,16,18);line(10,22,14,22);
+        }
+        else if(icon=="undo"||icon=="rotate") {
+            for(int i=0;i<20;++i){float a=(-145.f+i*14.f)*3.141593f/180,b=(-145.f+(i+1)*14.f)*3.141593f/180;line(12+8*std::cos(a),12+8*std::sin(a),12+8*std::cos(b),12+8*std::sin(b));}
+            line(5,3,5,9);line(5,9,11,9);
+        }
         else if(icon=="coin") {for(int i=0;i<24;++i){float a=i*6.283185f/24,b=(i+1)*6.283185f/24;line(12+8*std::cos(a),12+8*std::sin(a),12+8*std::cos(b),12+8*std::sin(b));}line(12,7,12,17);}
+        else if(icon=="heart") {for(int y=0;y<24;++y)for(int x=0;x<24;++x){const float hx=(x-11.5f)/9.f,hy=(12.f-y)/9.f;const float a=hx*hx+hy*hy-1;if(a*a*a-hx*hx*hy*hy*hy<0)coverage[y*24+x]=1;}}
         else if(icon=="paw") {line(6,17,12,11);line(12,11,18,17);line(18,17,6,17);line(4,8,5,6);line(10,5,10,3);line(15,5,15,3);line(20,8,19,6);}
         else {line(5,12,10,17);line(10,17,20,6);}
+        // Composite the union once, keeping the opaque button beneath the
+        // antialiased strokes and smooth joins between arc segments.
+        for(int y=0;y<24;++y)for(int x=0;x<24;++x){const float a=coverage[y*24+x];
+            if(a>0)pixel(*t,x+16,y+(h-24)/2,{fill.r+(color.r-fill.r)*a,fill.g+(color.g-fill.g)*a,fill.b+(color.b-fill.b)*a,1});}
     }
     art_[key]=t;return t;
 }
 Panel& PawsUi::surface(float x,float y,float w,float h,bool scroll) {
-    auto& outer=gui_->root().add<Panel>();transparent(outer);outer.setPosition({x,y});outer.setSize({w,h});
+    auto& outer=gui_->root().add<Panel>();transparent(outer);outer.setPosition({x,y});outer.setSize({w,h+4});
+    auto& shadow=outer.add<Image>(tile(int(w),int(h),6,false));shadow.setPosition({0,4});shadow.setSize({w,h});shadow.setAccessibilityHidden(true);
     auto& bg=outer.add<Image>(tile(int(w),int(h),5,false));bg.setSize({w,h});bg.setAccessibilityHidden(true);
     Panel* inner=scroll?static_cast<Panel*>(&outer.add<ScrollPanel>()):&outer.add<Panel>();
     transparent(*inner);inner->style.background=cream;inner->style.accent=teal;inner->setPosition({16,12});inner->setSize({w-32,h-24});
@@ -161,7 +186,7 @@ void PawsUi::heading(Widget& parent,const std::string& text,bool wordmark) {
     }
     auto& label=parent.add<Image>(img);label.setSize({float(img->width),float(img->height)});label.setAccessibleName(text);
 }
-Button& PawsUi::button(Widget& parent,const std::string& label,std::function<void()> action,bool primary,bool enabled,std::string icon) {
+Button& PawsUi::button(Widget& parent,const std::string& label,std::function<void()> action,bool primary,bool enabled,std::string icon,std::string sound) {
     std::istringstream words(label);std::string word,line,wrapped;float available=contentWidth_-(icon.empty()?28:68);
     while(words>>word) {auto candidate=line.empty()?word:line+" "+word;if(!line.empty()&&control_->measure(candidate)>available){wrapped+=line+"\n";line=word;}else line=candidate;}
     wrapped+=line;auto lettering=textArt(wrapped,*control_,primary&&enabled);
@@ -169,10 +194,10 @@ Button& PawsUi::button(Widget& parent,const std::string& label,std::function<voi
     auto& row=parent.add<Panel>();transparent(row);row.setStretch(true);row.setSize({contentWidth_,height});
     auto& bg=row.add<Image>();bg.setStretch(true);bg.setSize({contentWidth_,height});bg.setAccessibilityHidden(true);
     auto& b=row.add<Button>();transparent(b);b.setStretch(true);b.setSize({contentWidth_,height});
-    b.setAccessibleName(label);b.setEnabled(enabled);b.onClick([this,action=std::move(action)]{if(!gallery_)emit(UiAction::ConfirmSound);action();});
+    b.setAccessibleName(label);b.setEnabled(enabled);b.onClick([this,action=std::move(action),sound=std::move(sound)]{if(!gallery_)emit(UiAction::ConfirmSound,sound);action();});
     auto& text=row.add<Image>(lettering);
     text.setAccessibilityHidden(true);text.setSize({float(text.texture()->width),float(text.texture()->height)});
-    text.setPosition({icon.empty()?12.f:52.f,(height-text.texture()->height)/2});
+    text.setPosition({(contentWidth_-text.texture()->width+(icon.empty()?0.f:36.f))/2,(height-text.texture()->height)/2});
     skins_.push_back({&b,&bg,&text,label,std::move(icon),primary,-1,0,height});return b;
 }
 void PawsUi::previewImage(Widget& parent,std::shared_ptr<const Texture> image,const std::string& name) {
@@ -184,6 +209,52 @@ void PawsUi::build() {
     const float scale=settings_.largerText?1.25f:1.f;
     const float w=width_/scale,h=height_/scale;
     gui_->setScale(scale);
+    if(screen_==UiScreen::Loading){
+        // A dedicated loading composition, rather than an empty menu dialog.
+        auto& root=gui_->root();
+        const std::string key="loading-backdrop";
+        if(!art_.contains(key)){
+            auto t=texture(256,256,key);
+            for(int y=0;y<256;++y)for(int x=0;x<256;++x){
+                const float glow=std::max(0.f,1.f-std::hypot((x-128)/180.f,(y-80)/200.f));
+                pixel(*t,x,y,{.065f+.07f*glow,.17f+.10f*glow,.145f+.075f*glow,1});
+            }
+            art_[key]=t;
+        }
+        auto& background=root.add<Image>(art_[key]);background.setSize({w,h});background.setAccessibilityHidden(true);
+        const bool compact=h<480;
+        const float heroY=std::max(16.f,(h-(compact?310.f:410.f))*.42f);
+        const auto centered=[&](const std::string& text,GuiFont& font,float y){
+            auto art=textArt(text,font,true);auto& label=root.add<Image>(art);
+            label.setSize({float(art->width),float(art->height)});label.setPosition({(w-art->width)/2,y});label.setAccessibleName(text);
+        };
+        const std::string seal="loading-paw-seal";
+        if(!art_.contains(seal)){
+            auto t=texture(144,144,seal);
+            for(int y=0;y<144;++y)for(int x=0;x<144;++x){
+                const float ring=std::abs(std::hypot(x-72.f,y-72.f)-65.f);
+                const auto oval=[&](float cx,float cy,float rx,float ry){return std::pow((x-cx)/rx,2)+std::pow((y-cy)/ry,2)<1;};
+                const bool paw=oval(72,91,24,19)||oval(42,65,10,14)||oval(61,48,10,14)||oval(84,48,10,14)||oval(103,65,10,14);
+                if(paw||ring<.8f)pixel(*t,x,y,cream,paw?.95f:.3f);
+            }
+            art_[seal]=t;
+        }
+        const float emblem=compact?64:100;
+        auto& mark=root.add<Image>(art_[seal]);mark.setPosition({(w-emblem)/2,heroY});mark.setSize({emblem,emblem});mark.setAccessibilityHidden(true);
+        centered("Paws",*wordmark_,heroY+emblem+12);
+        if(control_->measure("A little garden. A little wonder.")<=w-32)centered("A little garden. A little wonder.",*control_,heroY+emblem+94);
+        else {centered("A little garden.",*control_,heroY+emblem+88);centered("A little wonder.",*control_,heroY+emblem+114);}
+        const float panelWidth=std::min(w-40,600.f),panelHeight=w<600?164:compact?124:140;
+        const float panelY=std::min(h-panelHeight-24,heroY+emblem+158);
+        auto& status=surface((w-panelWidth)/2,panelY,panelWidth,panelHeight,false);
+        heading(status,"A moment of calm");
+        copy(status,model_.feedback.empty()?"Preparing your afternoon…":model_.feedback).setLiveRegion(true);
+        auto dot=texture(16,16,"Loading indicator");
+        for(int y=0;y<16;++y)for(int x=0;x<16;++x)pixel(*dot,x,y,teal,std::clamp(7.f-std::hypot(x-7.5f,y-7.5f),0.f,1.f));
+        auto& activity=status.add<Panel>();transparent(activity);activity.setSize({80,12});activity.setAccessibilityHidden(true);
+        for(unsigned i=0;i<3;++i){auto& image=activity.add<Image>(dot);image.setSize({7,7});image.setPosition({float(i)*15,2});image.setAccessibilityHidden(true);loadingDots_[i]=&image;}
+        return;
+    }
     const bool hud=screen_==UiScreen::Garden||screen_==UiScreen::Puzzle;
     const bool shortView=h<500;
     if(!hud) {auto& backdrop=gui_->root().add<Panel>();backdrop.setSize({w,h});backdrop.style.background={ink.r,ink.g,ink.b,.42f};backdrop.style.border=clear;}
@@ -201,6 +272,8 @@ void PawsUi::build() {
     const auto back=[](std::string ="Close") {}; // Fixed footer below the scroll region.
     if(preview_&&!hud) copy(p,"Component preview · no game progress");
     switch(screen_) {
+    case UiScreen::BeachEnding:
+    case UiScreen::Adventures: break; // Composed by release1::gui::Views.
     case UiScreen::Title:
         heading(p,"Paws",true);heading(p,"A little garden.");copy(p,"A little wonder. Make yourself at home.");
         copy(p,"Pip has a little request for you. Explore at your own pace.");
@@ -257,11 +330,10 @@ void PawsUi::build() {
     case UiScreen::Objects:
         heading(p,model_.questTitle);copy(p,model_.objective);
         if(!model_.feedback.empty()) {auto& feedback=copy(p,model_.feedback);feedback.setLiveRegion(true);}
-        copy(p,"Tap an object to select it. Tap it again to turn a channel. Drag pots and toys to an allowed spot.");
+        copy(p,"Tap a channel to turn it. Tap other objects to select them. Drag pots and toys to an allowed spot.");
         if(!model_.objects.empty()) {
             copy(p,"Selected: "+model_.selectedName);
             for(const auto& a:model_.actions) {
-                if(!gallery_&&(a.action==UiAction::Move||a.action==UiAction::Rotate))continue;
                 button(p,a.label,[this,a]{emit(a.action,a.target);},a.enabled,a.enabled);if(!a.reason.empty()) copy(p,a.reason,!a.enabled);
             }
             heading(p,"Choose an object");
@@ -297,8 +369,8 @@ void PawsUi::build() {
         const auto volume=[&](const std::string& name,int UiSettings::*field){button(p,name+": "+std::to_string(settings_.*field)+"%",[this,field,name]{settings_.*field=(settings_.*field+10)%110;pendingFocus_=name+": "+std::to_string(settings_.*field)+"%";emit(UiAction::Settings,name);dirty_=true;});};
         volume("Music",&UiSettings::music);volume("Ambience",&UiSettings::ambience);volume("Effects",&UiSettings::effects);
         copy(p,"Volume buttons increase by 10%, then return to 0%. Sound never carries the only clue.");
-        const auto qualityLabel=[](int value){return value==1?"Quality: Mobile":value==2?"Quality: Desktop":"Quality: Automatic";};
-        copy(p,"Automatic fits your display. Mobile uses fewer pixels and no shadow maps; Desktop adds detail. Puzzle rules stay the same.");
+        const auto qualityLabel=[](int value){return value==1?"Quality: Mobile":value==2?"Quality: High (2×)":"Quality: Automatic";};
+        copy(p,"Automatic renders at 1× with shadows. High renders at 2× for smoother edges. Mobile uses fewer pixels without shadows.");
         button(p,qualityLabel(settings_.quality),[this,qualityLabel]{settings_.quality=(settings_.quality+1)%3;pendingFocus_=qualityLabel(settings_.quality);emit(UiAction::Settings,"quality");dirty_=true;});
         if(gallery_) copy(p,"Font coverage: Å Ä Ö · å ä ö");
         back("Back");break;
@@ -307,6 +379,13 @@ void PawsUi::build() {
         heading(p,"Start this puzzle again?");copy(p,"Your moves in this attempt will be cleared. Earned rewards stay yours.");
         button(p,"Keep playing",[this]{close();},true);
         button(p,"Restart puzzle",[this]{emit(UiAction::Restart);},false,model_.canRestart);break;
+    case UiScreen::RestartAdventure:
+        heading(p,"Start a new game?");
+        copy(p,"Start again in Chapter 1. All quest progress, coins, friendships and purchased furnishings will be reset. Your sound, display and accessibility settings stay the same.");
+        copy(p,"Export a save first if you want to keep this adventure.");
+        button(p,"Keep playing",[this]{close();},true);
+        button(p,"Export save",[this]{emit(UiAction::ExportSave);},false,model_.canExport);
+        button(p,"New Game",[this]{emit(UiAction::RestartAdventure);});break;
     case UiScreen::Completion:
         heading(p,"Thank you!");previewImage(p,model_.pipPortrait,"Happy Pip");copy(p,model_.questTitle+" complete. Pip gives you a happy little nudge.");
         copy(p,!model_.rewardsReady?"The ball is back where it belongs. Thanks for helping Pip.":model_.rewardGranted?"Earned "+std::to_string(model_.rewardCoins)+" coins and "+std::to_string(model_.rewardFriendship)+" friendship.":"A lovely practice round. This request's reward has already been earned.");
@@ -389,15 +468,15 @@ void PawsUi::build() {
     }
     case UiScreen::Loading:
         heading(p,"Preparing Pip's request…");
-        copy(p,model_.feedback.empty()?"Your current attempt is kept while the next board is prepared.":model_.feedback);
-        button(p,"Back to garden",[this]{emit(UiAction::BackToGarden);},true);break;
+        copy(p,model_.feedback.empty()?"Your current attempt is kept while the next board is prepared.":model_.feedback).setLiveRegion(true);
+        break;
     case UiScreen::LoadFailure:
         heading(p,"Let's try that again");
         copy(p,"The garden models could not load. Your progress and previous view are safe.");
         button(p,"Retry loading",[this]{emit(UiAction::RetryLoad);},true);
         button(p,"Back to garden",[this]{emit(UiAction::BackToGarden);});break;
     }
-    if(!model_.feedback.empty()&&!hud&&screen_!=UiScreen::Objects) {auto& feedback=copy(p,model_.feedback);feedback.setLiveRegion(true);}
+    if(!model_.feedback.empty()&&!hud&&screen_!=UiScreen::Objects&&screen_!=UiScreen::Loading) {auto& feedback=copy(p,model_.feedback);feedback.setLiveRegion(true);}
     if(footer) {
         auto& bar=gui_->root().add<Panel>();transparent(bar);bar.setPosition({cardX+16,cardY+cardHeight-64});bar.setSize({cardWidth-32,52});
         contentWidth_=cardWidth-32;
@@ -414,13 +493,31 @@ void PawsUi::build() {
         });
     }
 }
+void PawsUi::recordFrame(double timestamp,bool rendering) {
+    if(screen_==UiScreen::Loading&&std::isfinite(timestamp))for(unsigned i=0;i<loadingDots_.size();++i)
+        if(auto* dot=loadingDots_[i])dot->style.foreground.a=settings_.reducedMotion?1.f:(unsigned(timestamp*2.5)%3==i?1.f:.25f);
+    // Wall-clock frame cadence, averaged over a second. Hidden/recovery gaps
+    // restart the sample; pause menus still render and therefore still count.
+    if(!rendering||fpsPrevious_==0||timestamp<=fpsPrevious_||timestamp-fpsPrevious_>2) {
+        fpsStart_=timestamp;fpsFrames_=0;fpsText_="FPS: --";
+    } else {
+        ++fpsFrames_;
+        const double elapsed=timestamp-fpsStart_;
+        if(elapsed>=1) {
+            fpsText_="FPS: "+std::to_string(int(std::lround(fpsFrames_/elapsed)));
+            fpsStart_=timestamp;fpsFrames_=0;
+        }
+    }
+    fpsPrevious_=rendering?timestamp:0;
+    if(fpsLabel_)fpsLabel_->setText(fpsText_);
+}
 void PawsUi::update(float width,float height) {
     if(willRebuild(width,height)) {
         const auto focus=pendingFocus_.empty()?focusedName(*gui_):pendingFocus_;
-        width_=width;height_=height;skins_.clear();
+        width_=width;height_=height;skins_.clear();fpsLabel_=nullptr;loadingDots_={};
         auto body=gui_->font();gui_=std::make_unique<GuiSystem>();gui_->setFont(body);
         // Bound resize/state texture cache; fonts and the current draw keep their own snapshots.
-        art_.clear();build();gui_->layout({width,height});focusNamed(*gui_,focus);pendingFocus_.clear();dirty_=false;
+        art_.clear();if(!composition_||!composition_())build();gui_->layout({width,height});focusNamed(*gui_,focus);pendingFocus_.clear();dirty_=false;
     }
     gui_->layout({width,height});
     for(auto& s:skins_) {
@@ -428,6 +525,7 @@ void PawsUi::update(float width,float height) {
         int state=!s.button->enabled()?4:b.contains(pointer_)&&down_?2:gui_->focused()==s.button?3:b.contains(pointer_)?1:0;
         if(state!=s.state||logicalWidth!=s.width) {
             s.image->setTexture(tile(int(logicalWidth),int(s.height),state,s.primary&&s.button->enabled(),s.icon));s.state=state;s.width=logicalWidth;
+            s.text->setPosition({(logicalWidth-s.text->texture()->width+(s.icon.empty()?0.f:36.f))/2,(s.height-s.text->texture()->height)/2});
         }
     }
 }

@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "assets": [
+    {
+      "pivot": "bottom centre",
+      "bytes": 84348,
+      "triangles": 3000,
+      "material": "Matte honey paint",
+      "sourceMaster": "artifacts/model-jobs/quest-marker/2026-10-12-tripo/quest-marker.blend",
+      "sha256": "950b9484f208964ab65a585d380d5c8c2e307932eedaad5e02ee77782c01b1e7",
+      "upAxis": "Y",
+      "url": "assets/models/garden/quest_marker.glb",
+      "rightsRecord": "assets/models/garden/quest-marker-NOTICE.md",
+      "heightMetres": 0.549746,
+      "id": "garden.quest_marker"
+    }
+  ]
+}

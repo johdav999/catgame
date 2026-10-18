@@ -1,0 +1,45 @@
+{
+  "version": "0.1.0",
+  "buildId": "paws-0.1.0-141c15263730f1df",
+  "configuration": "Release",
+  "enginePin": "3fe7d1dc1dc610c703944803cbb717cd65024ec9",
+  "wasmSha256": "98566692b5c8eae482e5b94b1b02b1a8eefdd8313d541751a3b980ec638ad250",
+  "contentSha256": "1959fa2d10a07ef77fba0f6864c9fdf492b7c780fd385cde084568bb25bed7e3",
+  "noticesSha256": "24e12796be95110624b46f338bb1ebb7b71bfe1608848d67af160d729dcaae32",
+  "gallery": false,
+  "schema": "paws-release1-baseline/1",
+  "date": "2026-10-11",
+  "gameBaseCommit": "64a95f15ac530870e4ee689f801a121a0b5efe7a",
+  "nativeSuites": {
+    "passed": 13,
+    "total": 13
+  },
+  "trackBaseline": {
+    "passed": 1,
+    "total": 1
+  },
+  "productionAccepted": false,
+  "browserChecks": [
+    {
+      "name": "journey",
+      "report": "build/evidence/release1/prompt-01/journey-final/report.json",
+      "passed": true
+    },
+    {
+      "name": "recovery",
+      "report": "build/evidence/release1/prompt-01/recovery/report.json",
+      "passed": true
+    },
+    {
+      "name": "direct",
+      "report": "build/evidence/release1/prompt-01/direct/report.json",
+      "passed": true
+    },
+    {
+      "name": "track-preview",
+      "report": "build/evidence/release1/prompt-01/track-preview/report.json",
+      "passed": true
+    }
+  ],
+  "scope": "automated desktop Chrome and touch-oriented layouts; no new puzzles/cats/audio or physical-player acceptance"
+}

@@ -1,0 +1,26 @@
+{
+  "output": "artifacts\\model-jobs\\garden-details\\2026-10-12\\climbing_ivy\\model.glb",
+  "request": {
+    "model": "v3.1-20260211",
+    "geometry_quality": "detailed",
+    "face_limit": 50000,
+    "texture": true,
+    "pbr": true,
+    "quad": false,
+    "texture_quality": "detailed",
+    "texture_version": "v3.5-20260815",
+    "delight": false,
+    "prompt": "One small modular vertical trailing ivy sprig for a cottage garden fence. Several intertwined curved brown stems and grouped thick opaque heart-shaped sage and moss green leaves. Sparse open gaps between clusters, asymmetrical climbing and hanging shape, shallow depth. No fence, no wall, no pot, no ground, no flowers. Standalone stylized 3D prop for Paws, a cosy miniature cat garden. Softly sculpted rounded silhouettes, warm cream/sage/muted terracotta palette, matte non-plastic materials, broad restrained detail, neutral diffuse lighting, no cast shadows painted into textures, no background scene, no cats. Match docs/design/paws-style-reference.png art direction."
+  },
+  "submitted_at": "2026-10-12T06:30:11.296392+00:00",
+  "status": "success",
+  "task_id": "453d7f7d-0bde-4f2c-9588-d73590c52e5a",
+  "checked_at": "2026-10-12T06:34:59.603632+00:00",
+  "provider": "Tripo3D",
+  "api_base": "https://openapi.tripo3d.ai/v3",
+  "sha256": "8bd26d79ba6967a83969d1b7ef6238efce5f595e0ec3ab9d429c716d8c661f6b",
+  "bytes": 8083924,
+  "credits_consumed": 50.0,
+  "completed_at": "2026-10-12T06:34:06.659399Z",
+  "license_status": "Unverified: record account entitlement and applicable rights before release"
+}

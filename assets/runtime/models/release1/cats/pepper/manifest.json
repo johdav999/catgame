@@ -1,0 +1,313 @@
+{
+  "id": "release1/cats/pepper@1",
+  "cat": "pepper",
+  "version": 1,
+  "url": "assets/models/release1/cats/pepper/pepper.glb",
+  "sha256": "8c1f9a653941f339aef38dd9968437bbe11945106b3bcc2b38711be6f38dfea0",
+  "bytes": 5157384,
+  "triangles": 24553,
+  "materials": 1,
+  "embeddedImages": 3,
+  "bones": 31,
+  "bounds": {
+    "min": [
+      -0.20548686385154724,
+      -6.552615872124079e-08,
+      -0.5871899127960205
+    ],
+    "max": [
+      0.2067074179649353,
+      1.0500000715255737,
+      0.6217362284660339
+    ]
+  },
+  "footprint": [
+    0.41219428181648254,
+    1.2089261412620544
+  ],
+  "pivot": "root on support plane; metres, Y up, +Z forward",
+  "portrait": {
+    "path": "assets/runtime/models/release1/cats/pepper/portrait.png",
+    "bytes": 322477,
+    "sha256": "c7209c82b8d211118ac453df5ea898db3ad484fe473fe1817dc9c99f0c76a04d"
+  },
+  "master": {
+    "path": "artifacts/model-jobs/release1-cats/pepper/pepper-r24.blend",
+    "bytes": 36044004,
+    "sha256": "cb5c4d49a1600752ba218dd0cce72c43dc999c1c8a1f1bb53dbe0124f6001aef"
+  },
+  "cleanReimport": {
+    "path": "artifacts/model-jobs/release1-cats/pepper/pepper-clean-reimport.blend",
+    "bytes": 34039069,
+    "sha256": "3842bce6e7b4ef27d5fd950e9906fafccf1c95786e7e6fd33113c4135a08b893"
+  },
+  "materialMaps": [
+    {
+      "path": "artifacts/model-jobs/release1-cats/pepper/textures/final/0-normal.png",
+      "bytes": 533180,
+      "sha256": "fddbbe4e32e9d0418a1d2335671407d470a253589da9bfd3f7151c469c05ff9b"
+    },
+    {
+      "path": "artifacts/model-jobs/release1-cats/pepper/textures/final/1-basecolor.png",
+      "bytes": 1183610,
+      "sha256": "4cf9060947969b812a8680ae616534e5738910a2951cd4302eb65c328fcd86f6"
+    },
+    {
+      "path": "artifacts/model-jobs/release1-cats/pepper/textures/final/2-roughness.png",
+      "bytes": 492529,
+      "sha256": "32da527d129056792a53edaa8f62df37c99ec8bc64b3d447e3c7342fa2ec408f"
+    }
+  ],
+  "rightsRecord": "artifacts/model-jobs/release1-cats/PROVENANCE.md",
+  "sourceIdentity": {
+    "sourceFolder": "assets/mabel",
+    "files": [
+      {
+        "path": "assets/mabel/mabel.fbx",
+        "bytes": 580412,
+        "sha256": "2bf03cbf64cd70ad22bf806fb3cecf8d0163b35dff0c83eb054bf0c573c5ac95"
+      },
+      {
+        "path": "assets/mabel/tripo_convert_3584b3fa-0855-4e01-b018-0ea45bca638e.fbm/cute_calico_cat_3d_model_basecolor.JPEG",
+        "bytes": 2034552,
+        "sha256": "00849209684b07ce202be6e6b76ad64dd9d96ef13e382aaa1b4a481516da675b"
+      },
+      {
+        "path": "assets/mabel/tripo_convert_3584b3fa-0855-4e01-b018-0ea45bca638e.fbm/cute_calico_cat_3d_model_metallic.JPEG",
+        "bytes": 1295142,
+        "sha256": "16b03c242fe81a52160bf3817f505fb53c3b760bdb29bfd46c02c92c490d47d2"
+      },
+      {
+        "path": "assets/mabel/tripo_convert_3584b3fa-0855-4e01-b018-0ea45bca638e.fbm/cute_calico_cat_3d_model_normal.PNG",
+        "bytes": 2925021,
+        "sha256": "801ef7c91068d732420a3f6cd53a86585361ba98360ab76f1c714573001dfb99"
+      },
+      {
+        "path": "assets/mabel/tripo_convert_3584b3fa-0855-4e01-b018-0ea45bca638e.fbm/cute_calico_cat_3d_model_rm.JPEG",
+        "bytes": 1138884,
+        "sha256": "c08eabaa9becbbbe0f15bf51acc8e0db4076a3c90ad3c1fd8ac7e99e5bedff1e"
+      },
+      {
+        "path": "assets/mabel/tripo_convert_3584b3fa-0855-4e01-b018-0ea45bca638e.fbm/cute_calico_cat_3d_model_roughness.JPEG",
+        "bytes": 1085940,
+        "sha256": "9f960992d633d345fed095f7dc26b43fef6af14caef69e58437cf54941393034"
+      }
+    ],
+    "reference": {
+      "path": "artifacts/model-jobs/cat-tripo-inputs/2026-10-11/pepper.png",
+      "bytes": 1431178,
+      "sha256": "ca44e42ee3858e6304b95670b83d2639e5fd6d2720ea4f5c178963de3c669ef4"
+    },
+    "provider": "Tripo3D, user supplied FBX export",
+    "rightsStatus": "User attests Tripo3D Pro plan on 2026-10-11",
+    "rightsEvidence": {
+      "kind": "direct user statement",
+      "date": "2026-10-11",
+      "text": "i have a pro plan of tripo3dai"
+    }
+  },
+  "rigAuthority": "docs/release1/canonical-rig.json",
+  "actions": [
+    {
+      "duration": 4.0,
+      "loop": true,
+      "name": "relaxed_idle"
+    },
+    {
+      "duration": 2.4,
+      "loop": false,
+      "name": "attentive_request"
+    },
+    {
+      "duration": 1.2,
+      "loop": false,
+      "name": "happy_pounce"
+    },
+    {
+      "duration": 0.8,
+      "loop": true,
+      "name": "garden_walk"
+    },
+    {
+      "duration": 2.4,
+      "loop": false,
+      "name": "settle_cushion"
+    },
+    {
+      "duration": 4.0,
+      "loop": true,
+      "name": "curled_rest"
+    },
+    {
+      "duration": 1.8,
+      "loop": false,
+      "name": "approach_bowl"
+    },
+    {
+      "duration": 2.0,
+      "loop": true,
+      "name": "drink"
+    },
+    {
+      "duration": 1.8,
+      "loop": false,
+      "name": "return_idle"
+    },
+    {
+      "duration": 3.0,
+      "loop": true,
+      "name": "scratch"
+    },
+    {
+      "duration": 2.4,
+      "loop": false,
+      "name": "perch_step"
+    },
+    {
+      "duration": 2.4,
+      "loop": false,
+      "name": "perch_settle"
+    },
+    {
+      "duration": 1.8,
+      "loop": false,
+      "name": "playhouse_enter"
+    },
+    {
+      "duration": 3.0,
+      "loop": true,
+      "name": "playhouse_lookout"
+    },
+    {
+      "duration": 2.4,
+      "loop": false,
+      "name": "picnic_sit"
+    },
+    {
+      "duration": 3.0,
+      "loop": false,
+      "name": "personality_reaction"
+    },
+    {
+      "name": "quest_bell_touch",
+      "duration": 4.5,
+      "loop": false
+    },
+    {
+      "duration": 4.0,
+      "loop": true,
+      "name": "relaxed_idle_forward"
+    },
+    {
+      "duration": 0.8,
+      "loop": true,
+      "name": "garden_walk_forward"
+    },
+    {
+      "duration": 0.8,
+      "loop": true,
+      "name": "turn_left"
+    },
+    {
+      "duration": 0.8,
+      "loop": true,
+      "name": "turn_right"
+    }
+  ],
+  "contacts": {
+    "path": "assets/runtime/models/release1/cats/pepper/contacts.json",
+    "bytes": 249723,
+    "sha256": "6e658e744e3a3b980732f101fad6adf46aadbab3e37b07f922c9b62eaaf16c69"
+  },
+  "denseMeasurements": {
+    "path": "artifacts/model-jobs/release1-cats/pepper/animation-measurements-runtime.json",
+    "bytes": 1645001,
+    "sha256": "1aa66bc73dade7b25f4e0259154c8bc28ba80f03e02518d619367f3d482aa004"
+  },
+  "anchors": {
+    "root_origin": {
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "rotationDegrees": [
+        0,
+        0,
+        0
+      ]
+    },
+    "drink_muzzle": {
+      "position": [
+        -0.11851134979062611,
+        0.3939840959178077,
+        0.5381306807200114
+      ],
+      "rotationDegrees": [
+        0,
+        0,
+        0
+      ],
+      "action": "drink",
+      "seconds": 0
+    },
+    "drink_root_from_water": {
+      "position": [
+        0.11851134979062611,
+        0,
+        -0.5381306807200114
+      ],
+      "rotationDegrees": [
+        0,
+        0,
+        0
+      ],
+      "waterY": 0.383,
+      "muzzleClearance": 0.01098409591780769
+    },
+    "rest_root": {
+      "position": [
+        0.09152865409851074,
+        0,
+        0.12530706822872162
+      ],
+      "rotationDegrees": [
+        0,
+        0,
+        0
+      ],
+      "action": "curled_rest",
+      "supportPlaneY": 0
+    },
+    "rest_root_from_support": {
+      "position": [
+        -0.09152865409851074,
+        0,
+        -0.12530706822872162
+      ],
+      "rotationDegrees": [
+        0,
+        0,
+        0
+      ],
+      "action": "curled_rest",
+      "supportPlaneY": 0
+    }
+  },
+  "walk": {
+    "duration": 0.8,
+    "strideMetres": 0.36,
+    "speedMetresPerSecond": 0.45,
+    "rootMotion": false
+  },
+  "choreography": "Use measured per-action contacts. Approach/step/top/exit actor motion and prop support are application-owned; no animation event commits rules or rewards.",
+  "questEndingRevision": "2026-10-13",
+  "questEndingMaster": {
+    "path": "artifacts/model-jobs/quest-endings/2026-10-13/pepper-endings.blend",
+    "sha256": "58a4d4e99593a75a47b16f3e3e6b1a229d4389bdde7387f12bee087f07e85008"
+  },
+  "idleForwardRevision": "2026-10-14",
+  "walkForwardRevision": "2026-10-14",
+  "walkSpeedRevision": "2026-10-14",
+  "turnRevision": "2026-10-14"
+}

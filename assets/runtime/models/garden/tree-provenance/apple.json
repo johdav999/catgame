@@ -1,0 +1,26 @@
+{
+  "output": "artifacts\\model-jobs\\fruit-trees\\2026-10-12\\apple\\model.glb",
+  "request": {
+    "model": "v3.1-20260211",
+    "geometry_quality": "detailed",
+    "face_limit": 50000,
+    "texture": true,
+    "pbr": true,
+    "quad": false,
+    "texture_quality": "detailed",
+    "texture_version": "v3.5-20260815",
+    "delight": false,
+    "prompt": "One complete mature apple tree for a cosy stylized miniature garden 3D game. Broad rounded slightly asymmetric crown, softly sculpted grouped sage and moss green opaque foliage, clearly visible small muted coral red apples nestled among leaves, warm brown branching trunk, graceful natural proportions. Single freestanding tree with trunk rooted at ground origin, about 6 metres tall and 4 metres wide. All sides fully modeled. Matte nonmetallic materials, broad quiet bark detail, clean rounded silhouette, no glossy plastic, no jagged low poly facets. No pot, no ground slab, no grass, no other trees, no buildings, no text, no background geometry. Foliage and fruit made of real solid geometry. Suitable for elevated three-quarter game camera."
+  },
+  "submitted_at": "2026-10-12T07:17:00.718533+00:00",
+  "status": "success",
+  "task_id": "4ef0423a-1a44-4078-8527-6228883443b3",
+  "checked_at": "2026-10-12T07:19:53.452633+00:00",
+  "provider": "Tripo3D",
+  "api_base": "https://openapi.tripo3d.ai/v3",
+  "sha256": "7dc714ddb3e6ffe830c42b3085dffb907fe5f4f66145976939cce391fbbc99f2",
+  "bytes": 7714912,
+  "credits_consumed": 50.0,
+  "completed_at": "2026-10-12T07:19:47.513058Z",
+  "license_status": "Unverified: record account entitlement and applicable rights before release"
+}

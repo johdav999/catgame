@@ -2,20 +2,20 @@
   {
     "id": "garden/cushion-preview@1",
     "source": "assets/runtime/models/garden/cushion.glb",
-    "source_sha256": "aa3d597cabdf17adb69d78b69331da58365cb385f4aac1f3fef894f334a26ef7",
+    "source_sha256": "666f0efb4495e1a30a37bb745220227ba0fe80fd0d002ccaffa12f35055597d7",
     "output": "assets/runtime/models/garden/cushion-preview.png",
-    "sha256": "3680383c20476df7fd47912f561bc47b5b0ed4bf737fc6b4855f95c260099708",
-    "method": "Blender 3.5.1 render of unchanged accepted GLB; transparent 512px PNG"
+    "sha256": "d8c19acd719f75683cd4558f28dd217778bba8206d214a4a11030e67c03a3312",
+    "method": "Blender render of fitted user-supplied replacement GLB; transparent 512px PNG"
   },
   {
     "id": "garden/bowl-preview@1",
     "source": "assets/runtime/models/garden/bowl.glb",
-    "source_sha256": "a0b7c1e0fab2e673e5ee9f7cda7cbf6f4d17836fdda750dea639a66b7acc8314",
+    "source_sha256": "aee2fd64b78e8b7ec3f155e01b4a858b89cb8c542a9401d8c17ce997e2027428",
     "output": "assets/runtime/models/garden/bowl-preview.png",
-    "sha256": "fb6d17eeb6a6a02bd2576c32db8a22234ba92a254f2e9302bf05c38d8ce9d293",
-    "method": "Blender 3.5.1 render of unchanged accepted GLB; transparent 512px PNG",
+    "sha256": "3257b1cf8b4c2a26e946eb390e38093f879c0cbdc60193f334070eab941e3365",
+    "method": "Blender render of fitted user-supplied replacement GLB; transparent 512px PNG",
     "water": {
-      "sha256": "d2774458e7a986695dfc42a0a991f8496f1c46a86e1d5da70e081b93df1df637",
+      "sha256": "6149813cc871ea629fd5172b16d01224b86a7f124efaa909ec7116cd75bffe1e",
       "source_translation": [
         0,
         0,

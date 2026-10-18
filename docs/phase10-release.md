@@ -8,12 +8,29 @@ No user browser saves are changed. No site was published.
 
 ## Delivered corrections
 
-- Settings now offers Automatic, Mobile and Desktop quality. Automatic selects
-  Mobile for a display narrower than 700 CSS px, shorter than 500 CSS px, or
-  primary coarse input; this is conservative display policy, not a GPU classification.
-  Mobile caps at 921,600 pixels/DPR 1 with zero shadow maps. Desktop caps at
-  2,073,600 pixels/DPR 1.5 and at most one 1024 shadow map. Both preserve aspect
-  and all puzzle/selection identities. Existing lights must opt into shadow casting.
+- Settings offers Automatic, Mobile and High (2×) quality. Automatic starts at
+  one backing pixel per CSS pixel, including HiDPI and narrow displays. High
+  explicitly requests two backing pixels per CSS pixel on each axis. Both keep
+  one 1024 shadow map enabled, cap DPR at 1 before applying scale, and retain
+  the 8,294,400-pixel / 8192-axis safety limits. Mobile remains an explicit
+  921,600-pixel / DPR 1 option without shadows. Existing saved Desktop choices
+  select High; saved Automatic choices use the new 1× policy.
+- Garden and puzzle HUDs show FPS beneath Menu, averaged over one second of
+  browser frame cadence. Suspension/recovery gaps reset the sample. The retained
+  label updates without rebuilding the GUI or moving keyboard focus.
+- With the updated WebEngine checkout, High requests 4× MSAA;
+  Automatic and Mobile use one sample. Automatic renders at 1× with shadows enabled.
+  The engine resolves scene samples before the GUI and falls back to one sample
+  on unsupported devices. `pawsQuality.msaaSamples` reports the applied request;
+  `pawsRenderState.effectiveMsaaSamples` reports actual attachments. The old engine
+  pin lacks MSAA, so its compatible build remains single-sampled until the engine
+  changes are committed, pushed and deliberately pinned. Local development uses
+  the ignored `developer-settings.json` and `build/web-local-release/site`.
+  For matched performance comparisons, `?msaa=off` or `?msaa=4` overrides only
+  the sample count for that page, without changing saved quality, resolution or
+  shadows. `scripts/msaa-fps-compare.cjs` runs six counterbalanced warm garden
+  samples against `PAWS_URL` (default port 8121) and saves raw frame intervals,
+  actual renderer settings and engine counters in `build/evidence/msaa-fps`.
 - Quality persists in snapshot version 5; versions 1–4 restore with Automatic.
   Invalid display values fail before import publication.
 - Narrow and short HUDs retain coins, friendship and truthful save status.

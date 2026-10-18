@@ -1,0 +1,28 @@
+{
+  "output": "artifacts\\model-jobs\\quest-reward-coin\\2026-10-15\\model.glb",
+  "request": {
+    "model": "v3.1-20260211",
+    "geometry_quality": "detailed",
+    "face_limit": 50000,
+    "texture": true,
+    "pbr": true,
+    "quad": false,
+    "texture_quality": "detailed",
+    "texture_version": "v3.5-20260815",
+    "delight": false,
+    "enable_image_autofix": false,
+    "input": "file_1e291f66-6ef2-47a7-b5e3-2c20e2c7bfdb"
+  },
+  "submitted_at": "2026-10-15T17:03:57.732745+00:00",
+  "status": "success",
+  "image_sha256": "b9632aa4fa861aeba195806f9225575f508fe9f43bf3d24add18346b03482d6d",
+  "task_id": "0b7d482a-62bc-4ac3-86c2-b0d91435377c",
+  "checked_at": "2026-10-15T17:06:26.365298+00:00",
+  "provider": "Tripo3D",
+  "api_base": "https://openapi.tripo3d.ai/v3",
+  "sha256": "a8cb51917b7ecedbedf22f00cce51f8188518d1dc4715a05bfdadc401319092c",
+  "bytes": 9799808,
+  "credits_consumed": 60.0,
+  "completed_at": "2026-10-15T17:06:23.631626Z",
+  "license_status": "Unverified: record account entitlement and applicable rights before release"
+}

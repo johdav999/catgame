@@ -1,0 +1,16 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Paws · release-one garden harness</title><link rel="stylesheet" href="style.css">
+<body><header><h1>Paws · living garden</h1><p>Development harness · production registration belongs to Prompt 9.</p><p id="status" role="status">Starting…</p><button id="retry" hidden>Retry garden preparation</button></header>
+<main><canvas id="viewport" tabindex="0" aria-label="Garden preview. Arrow keys orbit the view."></canvas><aside>
+<p id="progress"></p><p id="feedback" role="status"></p><p id="save" role="status"></p>
+<fieldset id="actions"><legend>Garden inspection</legend>
+<label>View <select id="view"><option value="0">Whole garden</option><option value="1">Pip close-up</option><option value="2">Mabel close-up</option><option value="3">Button close-up</option><option value="4">Pepper close-up</option></select></label>
+<label><input id="shadows" type="checkbox" checked> Desktop shadows</label><label><input id="reduced" type="checkbox"> Reduced motion</label><button id="pause">Pause</button><button id="rebuild">Rebuild from saved state</button><button id="cancel-load">Cancel preparation</button>
+<button id="trace">Complete next known trace (development)</button>
+<label>Furnishing <select id="item"></select></label><label>Placement spot <select id="spot"></select></label>
+<div class="row"><button id="buy">Buy</button><button id="preview">Preview placement</button><button id="place">Confirm placement</button><button id="cancel">Cancel placement</button></div>
+<label>Cat <select id="cat"><option value="0">Pip</option><option value="1">Mabel</option><option value="2">Button</option><option value="3">Pepper</option></select></label>
+<div class="row"><button id="use">Use furnishing</button><button id="cancel-use">Cancel cat use</button><button id="attention">Attention</button><button id="meet">Continue introduction</button><button id="gather">Gather companions</button><button id="celebrate">Show supplied picnic props</button></div>
+<p id="dialogue"></p><p id="gate"></p><div id="requests"></div><button id="retry-save">Retry save</button>
+</fieldset><details open><summary>Asset and contact gates</summary><p>Missing cats are absent. This harness never substitutes Pip for another identity. Pip’s current cushion pose is a supported low rest; natural sleeping curl remains pending.</p><ul id="gates"></ul></details>
+</aside></main>
+<script src="engine-storage.js"></script><script src="saves.js"></script><script src="host.js"></script><script async src="release1_preview.js"></script></body></html>

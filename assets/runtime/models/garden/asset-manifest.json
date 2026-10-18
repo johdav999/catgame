@@ -1,27 +1,27 @@
 {
   "schema": "paws-garden-kit/1",
   "id": "garden/kit@1",
-  "revision": 7,
+  "revision": 20,
   "units": "metres",
   "axes": "Y up, +Z forward; Blender Z-up -Y forward",
-  "source": "artifacts/model-jobs/garden-kit/2026-10-10/garden-kit-r7.blend",
+  "source": "artifacts/model-jobs/garden-kit/2026-10-11-replacements",
   "assets": [
     {
       "id": "garden/paving@1",
       "file": "paving.glb",
-      "sha256": "1008bcf871ab438ad2f0077b7de074d1f35235e9ead1a5e540c431f5163fd5aa",
-      "bytes": 476772,
-      "triangles": 752,
+      "sha256": "160efeed1e6c2714e3806ac3a6bc286ad4c0eb1240e735ebd9f5a1ae8f96f48b",
+      "bytes": 985284,
+      "triangles": 2498,
       "bounds": {
         "min": [
-          -0.49449998140335083,
-          -0.11999999731779099,
-          -0.49449998140335083
+          -0.4942263662815094,
+          -0.1200951337814331,
+          -0.49423137307167053
         ],
         "max": [
-          0.49449998140335083,
-          0.0,
-          0.49449998140335083
+          0.49400630593299866,
+          0.00017075439973268658,
+          0.4945494830608368
         ]
       },
       "footprint": [
@@ -31,28 +31,30 @@
       "pivot": "floor/contact centre",
       "anchors": {},
       "materials": [
-        "stone"
+        "tripo_mat_5d393e46"
       ],
-      "vertices": 1536,
+      "vertices": 2705,
       "material_count": 1,
-      "primitives": 1
+      "primitives": 1,
+      "source": "assets/runtime/models/garden/paving/tripo_convert_5d393e46-998b-464c-a8ef-3769f217500b.fbx",
+      "sourceSha256": "685e0286d6dd27b2902d5e72e8b82c95d6fd97e7bb69fe76044b263b7280a0b2"
     },
     {
       "id": "garden/edge@1",
       "file": "edge.glb",
-      "sha256": "f7e39f9b9904b9a3965f20ff41fcde092b38b5dda0fc1acc389cbb9f8a6b65ab",
-      "bytes": 436476,
-      "triangles": 188,
+      "sha256": "dd9c67d9b89602e357f43518a8973febdae90925cd4772c06316e0c2426d9043",
+      "bytes": 1110944,
+      "triangles": 2500,
       "bounds": {
         "min": [
-          -0.5,
-          -0.06000000238418579,
-          -0.10999999940395355
+          -0.4999687969684601,
+          -0.05994580686092377,
+          -0.11006638407707214
         ],
         "max": [
-          0.5,
-          0.14000000059604645,
-          0.10999999940395355
+          0.4999504089355469,
+          0.1402464658021927,
+          0.11029922217130661
         ]
       },
       "footprint": [
@@ -62,28 +64,30 @@
       "pivot": "floor/contact centre",
       "anchors": {},
       "materials": [
-        "stone"
+        "tripo_mat_c7994f1d"
       ],
-      "vertices": 384,
+      "vertices": 2785,
       "material_count": 1,
-      "primitives": 1
+      "primitives": 1,
+      "source": "assets/runtime/models/garden/edge/tripo_convert_c7994f1d-0553-4c7d-a886-e706c7328be8.fbx",
+      "sourceSha256": "a65ff4ece5f3e1fc13976c0ca7c7b8995897ffb378b53e5c6b6877addba944d0"
     },
     {
       "id": "garden/fence@1",
       "file": "fence.glb",
-      "sha256": "bf7714573b9174e859c765992756a139ac45e3a3d3e8440426bed81a980c9080",
-      "bytes": 454132,
-      "triangles": 2068,
+      "sha256": "4792ce0d8a709d8fb2d62e07389504854f06c158870c1bfa7afbc8474d0160e1",
+      "bytes": 1075712,
+      "triangles": 2499,
       "bounds": {
         "min": [
-          -0.5174999833106995,
-          0.0,
-          -0.057500001043081284
+          -0.5170736908912659,
+          6.748707528458908e-05,
+          -0.05808858573436737
         ],
         "max": [
-          0.5174999833106995,
-          0.6000000238418579,
-          0.054999999701976776
+          0.517233669757843,
+          0.6006331443786621,
+          0.055042147636413574
         ]
       },
       "footprint": [
@@ -93,28 +97,30 @@
       "pivot": "floor/contact centre",
       "anchors": {},
       "materials": [
-        "wood"
+        "tripo_mat_dc25c7df"
       ],
-      "vertices": 4224,
+      "vertices": 4412,
       "material_count": 1,
-      "primitives": 1
+      "primitives": 1,
+      "source": "assets/runtime/models/garden/fence/tripo_convert_dc25c7df-58fd-4e26-b8d5-b165a52d8138.fbx",
+      "sourceSha256": "8bb2d821b2fad4c02ff1dcbccf373bdbaebefab5a3480a9cce3c1fb9f94e13b5"
     },
     {
       "id": "garden/planting@1",
       "file": "planting.glb",
-      "sha256": "e88c4e2d39a65bca492583bd241b8cd9aceaf3e0fb07cc2e0251cd6db250327d",
-      "bytes": 152172,
-      "triangles": 4716,
+      "sha256": "cc662696fdb36b85ed0e49a212737e49f2960eff54045cc119ae9b01e7260f92",
+      "bytes": 1008940,
+      "triangles": 2500,
       "bounds": {
         "min": [
-          -0.2773192822933197,
-          -0.005100465379655361,
-          -0.14156687259674072
+          -0.27970603108406067,
+          -0.003961978945881128,
+          -0.14161416888237
         ],
         "max": [
-          0.35296884179115295,
-          0.36675623059272766,
-          0.2982217073440552
+          0.3527628481388092,
+          0.3656776249408722,
+          0.298422634601593
         ]
       },
       "footprint": [
@@ -124,31 +130,30 @@
       "pivot": "floor/contact centre",
       "anchors": {},
       "materials": [
-        "cream",
-        "honey",
-        "moss",
-        "sage"
+        "tripo_mat_24075fda"
       ],
-      "vertices": 3744,
-      "material_count": 4,
-      "primitives": 4
+      "vertices": 3292,
+      "material_count": 1,
+      "primitives": 1,
+      "source": "assets/runtime/models/garden/planting/tripo_convert_24075fda-7513-4f3c-b61e-ba637fe0239b.fbx",
+      "sourceSha256": "17876f773c7eece9b4b4068649842ba399573fa6075a5d99f13e1a038cee36f9"
     },
     {
       "id": "garden/bench@1",
       "file": "bench.glb",
-      "sha256": "f3c083a86164047aa66c0ebf7af4efa2e7f9ad236194f230c24135b043a3a287",
-      "bytes": 495320,
-      "triangles": 2632,
+      "sha256": "2b1d6155dba21a5bda2614d80d4cbf365b4205ad4b15714be32189cd5a81fff3",
+      "bytes": 993212,
+      "triangles": 2500,
       "bounds": {
         "min": [
-          -0.6349999904632568,
-          0.0,
-          -0.3100000023841858
+          -0.6346958875656128,
+          0.0008304244838654995,
+          -0.3098113536834717
         ],
         "max": [
-          0.6349999904632568,
-          0.8550000190734863,
-          0.3100000023841858
+          0.6357827186584473,
+          0.8546817898750305,
+          0.3092886209487915
         ]
       },
       "footprint": [
@@ -164,29 +169,30 @@
         ]
       },
       "materials": [
-        "teal",
-        "wood"
+        "tripo_mat_4477cc88"
       ],
-      "vertices": 5376,
-      "material_count": 2,
-      "primitives": 2
+      "vertices": 4527,
+      "material_count": 1,
+      "primitives": 1,
+      "source": "assets/runtime/models/garden/bench/tripo_convert_4477cc88-f1b3-4fe9-85fa-ad3e12b823d2.fbx",
+      "sourceSha256": "b9a7983e03d6550c0f699d090a79560a06bb786e6b9577670b0e68e0354e035f"
     },
     {
       "id": "garden/pot_round@1",
       "file": "pot_round.glb",
-      "sha256": "47b4009890c7f47af63b5e60ca08277160a46b052fbe278952f1dbe62f3fe20d",
-      "bytes": 535420,
-      "triangles": 5612,
+      "sha256": "216e3e82c9d805639cb04fd8aefa770a0fe760d509b2969218d713147f0d48be",
+      "bytes": 950488,
+      "triangles": 2499,
       "bounds": {
         "min": [
-          -0.28999999165534973,
-          0.0,
-          -0.28999999165534973
+          -0.2901166081428528,
+          0.00039277560426853597,
+          -0.2897999882698059
         ],
         "max": [
-          0.35296884179115295,
-          0.7367562055587769,
-          0.2982217073440552
+          0.3536096513271332,
+          0.733779788017273,
+          0.3007239103317261
         ]
       },
       "footprint": [
@@ -207,33 +213,30 @@
         ]
       },
       "materials": [
-        "cream",
-        "honey",
-        "moss",
-        "sage",
-        "soil",
-        "terracotta"
+        "tripo_mat_da4deb60"
       ],
-      "vertices": 4537,
-      "material_count": 6,
-      "primitives": 6
+      "vertices": 2917,
+      "material_count": 1,
+      "primitives": 1,
+      "source": "assets/runtime/models/garden/pot_round/tripo_convert_da4deb60-f828-4e18-88f1-b47b4033c06e.fbx",
+      "sourceSha256": "94f58ed9ee08effa72b6e19714c1fd5209600852b49bf084748f01651b910393"
     },
     {
       "id": "garden/pot_fluted@1",
       "file": "pot_fluted.glb",
-      "sha256": "f76a1df37a6c40c6c23bc3bc0b6af5550669d14618f2b09a2e83c2f38cc2fab7",
-      "bytes": 535356,
-      "triangles": 5612,
+      "sha256": "fdaf3987d6fab9217c739f5fc24191a28a4c9ca4b88c98f252ef84f243bc1ec5",
+      "bytes": 926528,
+      "triangles": 2500,
       "bounds": {
         "min": [
-          -0.2963799834251404,
-          0.0,
-          -0.2963799834251404
+          -0.30050599575042725,
+          0.0010701132705435157,
+          -0.2937912046909332
         ],
         "max": [
-          0.35296884179115295,
-          0.7367562055587769,
-          0.2982217073440552
+          0.3548649549484253,
+          0.7353283166885376,
+          0.30139005184173584
         ]
       },
       "footprint": [
@@ -254,33 +257,30 @@
         ]
       },
       "materials": [
-        "cream",
-        "honey",
-        "moss",
-        "sage",
-        "soil",
-        "terracotta"
+        "tripo_mat_8c1236c2"
       ],
-      "vertices": 4535,
-      "material_count": 6,
-      "primitives": 6
+      "vertices": 3179,
+      "material_count": 1,
+      "primitives": 1,
+      "source": "assets/runtime/models/garden/pot_fluted/tripo_convert_8c1236c2-e532-4f10-a02f-598da6a2b6ec.fbx",
+      "sourceSha256": "2125b4731e101e0ed1f8340349d8f5d0d0636aab41b03992fe88d480d621444c"
     },
     {
       "id": "garden/channel_straight@1",
       "file": "channel_straight.glb",
-      "sha256": "be54be558b9da5f92fdaaded97b16336c0e581ce850956c5ac65fd39c38b3022",
-      "bytes": 319104,
-      "triangles": 572,
+      "sha256": "2cc362125b5471366885ea1cd808ca6825f4dd09f0859cfe192e1718205fea0c",
+      "bytes": 940080,
+      "triangles": 2500,
       "bounds": {
         "min": [
-          -0.5,
-          0.0,
-          -0.1899999976158142
+          -0.4999224543571472,
+          7.792773976689205e-05,
+          -0.18991179764270782
         ],
         "max": [
-          0.5,
-          0.19784942269325256,
-          0.1899999976158142
+          0.5001792311668396,
+          0.19790636003017426,
+          0.1899278610944748
         ]
       },
       "footprint": [
@@ -303,28 +303,32 @@
         "ball_radius": 0.105
       },
       "materials": [
-        "wood"
+        "tripo_mat_12e60879"
       ],
-      "vertices": 288,
+      "vertices": 4268,
       "material_count": 1,
-      "primitives": 1
+      "primitives": 1,
+      "source": "assets/runtime/models/garden/channel_straight/tripo_convert_12e60879-16ea-4b4f-b4db-bb3aef551243.fbx",
+      "sourceSha256": "ff0b45f1363a4193770842bcfab84de5700c959c7d520beb972623e73e60702d",
+      "conversion": "Monotonic full-cross-section route-height remap; preserves source thickness and chipped ends.",
+      "editableSource": "artifacts/model-jobs/garden-kit/2026-10-11-channel-repair/channel_straight.blend"
     },
     {
       "id": "garden/channel_curve@1",
       "file": "channel_curve.glb",
-      "sha256": "c9df5911a46a50c875b6a26194f45332faaedfde43ac636b03576a7f1da8158f",
-      "bytes": 376200,
-      "triangles": 2780,
+      "sha256": "e3cdcb43d1512c8510b642c8d68f3ce8c802e96b71102c91fd9d6f331cb853a5",
+      "bytes": 862116,
+      "triangles": 2500,
       "bounds": {
         "min": [
-          -0.5,
-          0.0,
-          -0.5
+          -0.500167727470398,
+          -4.121924939681776e-05,
+          -0.5001086592674255
         ],
         "max": [
-          0.18973824381828308,
-          0.19784796237945557,
-          0.18973824381828308
+          0.17572686076164246,
+          0.19773423671722412,
+          0.18431872129440308
         ]
       },
       "footprint": [
@@ -347,28 +351,32 @@
         "ball_radius": 0.105
       },
       "materials": [
-        "wood"
+        "tripo_mat_5f7f6c0c"
       ],
-      "vertices": 1658,
+      "vertices": 2810,
       "material_count": 1,
-      "primitives": 1
+      "primitives": 1,
+      "source": "assets/runtime/models/garden/channel_curve/tripo_convert_5f7f6c0c-1693-4068-a6b1-ca50f7bc01d7.fbx",
+      "sourceSha256": "9793973f855945e5a3562cbebe6e56607c1dccbab39e873181ad5ba36250833c",
+      "conversion": "Monotonic full-cross-section route-height remap; preserves source thickness and chipped ends.",
+      "editableSource": "artifacts/model-jobs/garden-kit/2026-10-11-channel-repair/channel_curve.blend"
     },
     {
       "id": "garden/ball@1",
       "file": "ball.glb",
-      "sha256": "82997ad936b1baa7e04afaa61f732d325261e4a6736d14ef6e048cd50d03f04f",
-      "bytes": 29272,
-      "triangles": 960,
+      "sha256": "3119b6eb1a9e1c4d4fde66d965a2ccbb76963c3dfce4368d53f2672c0a130e6b",
+      "bytes": 817608,
+      "triangles": 2500,
       "bounds": {
         "min": [
-          -0.10499989986419678,
-          0.0,
-          -0.10499999672174454
+          -0.1049053743481636,
+          -0.00014194579853210598,
+          -0.10482050478458405
         ],
         "max": [
-          0.10499996691942215,
-          0.20999999344348907,
-          0.10499992966651917
+          0.10504891723394394,
+          0.21010838449001312,
+          0.10487452894449234
         ]
       },
       "footprint": [
@@ -384,29 +392,30 @@
         ]
       },
       "materials": [
-        "coral",
-        "cream"
+        "tripo_mat_965c775c"
       ],
-      "vertices": 666,
-      "material_count": 2,
-      "primitives": 2
+      "vertices": 2156,
+      "material_count": 1,
+      "primitives": 1,
+      "source": "assets/runtime/models/garden/ball/tripo_convert_965c775c-4d49-420d-acc1-d804ce7c9b40.fbx",
+      "sourceSha256": "9e33309ea83db8eb81fb4d438940f8be576cb080700fbc116bb8684fdbfbac80"
     },
     {
       "id": "garden/mouse@1",
       "file": "mouse.glb",
-      "sha256": "7127c649eef2df938d411e9b0be26d4f1a5aa39095cfefbce65fcbc8b2e1ddb0",
-      "bytes": 508468,
-      "triangles": 1836,
+      "sha256": "595eea82e526fccad6656eb2ce042d85ccb984ec0cd5bcc4c21f5716316f2f9d",
+      "bytes": 1129444,
+      "triangles": 2500,
       "bounds": {
         "min": [
-          -0.11499999463558197,
-          0.0,
-          -0.22848528623580933
+          -0.0720575600862503,
+          1.1487769370432943e-05,
+          -0.04603765159845352
         ],
         "max": [
-          0.11500000208616257,
-          0.17499999701976776,
-          0.18000000715255737
+          0.09152140468358994,
+          0.06999531388282776,
+          0.045992668718099594
         ]
       },
       "footprint": [
@@ -416,30 +425,30 @@
       "pivot": "floor/contact centre",
       "anchors": {},
       "materials": [
-        "cloth",
-        "coral",
-        "ink"
+        "tripo_mat_63cc99c2"
       ],
-      "vertices": 1407,
-      "material_count": 3,
-      "primitives": 3
+      "vertices": 2051,
+      "material_count": 1,
+      "primitives": 1,
+      "source": "assets/runtime/models/garden/mouse/tripo_convert_63cc99c2-7042-45ac-a15f-92b968c4ea66.fbx",
+      "sourceSha256": "5ca795abbb59c56d1ac1e9d3d2890385a269f6fed5b25fa25620dc5ff016ef29"
     },
     {
       "id": "garden/fish@1",
       "file": "fish.glb",
-      "sha256": "586b46851d13c0651eaa597ab3793c0b1d381edca9e32693fd71db6763b0e248",
-      "bytes": 40552,
-      "triangles": 984,
+      "sha256": "2f5be0569293f829098c21f25d9cf0c1a70332902229c4c03910940411a1f749",
+      "bytes": 1146704,
+      "triangles": 2500,
       "bounds": {
         "min": [
-          -0.2099999338388443,
-          0.0,
-          -0.11420807987451553
+          -0.14724278450012207,
+          0.00019504509691614658,
+          -0.07999129593372345
         ],
         "max": [
-          0.2076757252216339,
-          0.11385515332221985,
-          0.11420807987451553
+          0.14542482793331146,
+          0.07989978790283203,
+          0.07974781095981598
         ]
       },
       "footprint": [
@@ -449,31 +458,30 @@
       "pivot": "floor/contact centre",
       "anchors": {},
       "materials": [
-        "cream",
-        "ink",
-        "sky",
-        "teal"
+        "tripo_mat_71299c48"
       ],
-      "vertices": 955,
-      "material_count": 4,
-      "primitives": 4
+      "vertices": 2002,
+      "material_count": 1,
+      "primitives": 1,
+      "source": "assets/runtime/models/garden/fish/tripo_convert_71299c48-28e1-40d1-a6a9-514251280edd.fbx",
+      "sourceSha256": "64ed474968101d0f3a7e05e9d9c113c3b03bcb3c9c1c0e3dc1e77005114289a3"
     },
     {
       "id": "garden/basket@1",
       "file": "basket.glb",
-      "sha256": "46468cb9cdbf6c77f6dd2e5ade4d234c8008b56372eb2136b6c54670eb92825a",
-      "bytes": 1081276,
-      "triangles": 4552,
+      "sha256": "b5e2ec7c610d8c168c715eea09c8ad27765af07c4d64d4bc21eb18289ebc8c29",
+      "bytes": 1133180,
+      "triangles": 2500,
       "bounds": {
         "min": [
-          -0.8600000143051147,
-          0.0,
-          -0.35500001907348633
+          -0.8597418665885925,
+          -0.0003988805110566318,
+          -0.3557257652282715
         ],
         "max": [
-          0.8600000143051147,
-          0.24199999868869781,
-          0.35500001907348633
+          0.8582279682159424,
+          0.24391135573387146,
+          0.35619285702705383
         ]
       },
       "footprint": [
@@ -499,30 +507,30 @@
         ]
       },
       "materials": [
-        "cloth",
-        "teal",
-        "wicker"
+        "tripo_mat_4b8ff411"
       ],
-      "vertices": 7267,
-      "material_count": 3,
-      "primitives": 3
+      "vertices": 2409,
+      "material_count": 1,
+      "primitives": 1,
+      "source": "assets/runtime/models/garden/basket/tripo_convert_4b8ff411-4734-48aa-ba87-49fb0d585601.fbx",
+      "sourceSha256": "ad4234beb72230d07002633263de5388bf307e0e676504a30f532fde5ecac803"
     },
     {
       "id": "garden/blocking_cushion@1",
       "file": "blocking_cushion.glb",
-      "sha256": "9acd4e1be933fecff5530a69763cffeec17eb6eee942a70419769f125137a746",
-      "bytes": 551312,
-      "triangles": 3524,
+      "sha256": "5c0b41f3fe53cc2b7901b833b250628546f34064a43f4b397a97cbdd4aecaa9a",
+      "bytes": 926824,
+      "triangles": 2500,
       "bounds": {
         "min": [
-          -0.36900001764297485,
-          0.0,
-          -0.2540000081062317
+          -0.3694089353084564,
+          -5.628006692859344e-05,
+          -0.25370872020721436
         ],
         "max": [
-          0.3689998686313629,
-          0.23399999737739563,
-          0.2540000081062317
+          0.36873146891593933,
+          0.23383235931396484,
+          0.25424858927726746
         ]
       },
       "footprint": [
@@ -532,29 +540,30 @@
       "pivot": "floor/contact centre",
       "anchors": {},
       "materials": [
-        "cloth",
-        "coral"
+        "tripo_mat_5eb48669"
       ],
-      "vertices": 2460,
-      "material_count": 2,
-      "primitives": 2
+      "vertices": 2380,
+      "material_count": 1,
+      "primitives": 1,
+      "source": "assets/runtime/models/garden/blocking_cushion/blocking_cushion.fbx",
+      "sourceSha256": "8dbc013a1b3c6b2ab5b44942814a45b75268d3e7874b61822d05b94b69c1059b"
     },
     {
       "id": "garden/cushion@1",
       "file": "cushion.glb",
-      "sha256": "aa3d597cabdf17adb69d78b69331da58365cb385f4aac1f3fef894f334a26ef7",
-      "bytes": 556964,
-      "triangles": 3852,
+      "sha256": "666f0efb4495e1a30a37bb745220227ba0fe80fd0d002ccaffa12f35055597d7",
+      "bytes": 1045908,
+      "triangles": 2500,
       "bounds": {
         "min": [
-          -0.45899999141693115,
-          0.0,
-          -0.5789999961853027
+          -0.45927533507347107,
+          -0.0004057779733557254,
+          -0.5783226490020752
         ],
         "max": [
-          0.4589999318122864,
-          0.1799997091293335,
-          0.5789999961853027
+          0.4592672884464264,
+          0.18066267669200897,
+          0.5794592499732971
         ]
       },
       "footprint": [
@@ -575,30 +584,30 @@
         ]
       },
       "materials": [
-        "cream",
-        "sage_cloth",
-        "teal"
+        "tripo_mat_b7415fbb"
       ],
-      "vertices": 2559,
-      "material_count": 3,
-      "primitives": 3
+      "vertices": 2111,
+      "material_count": 1,
+      "primitives": 1,
+      "source": "assets/runtime/models/garden/cushion/tripo_convert_b7415fbb-1722-466f-af68-93d7a91b5532.fbx",
+      "sourceSha256": "6b074d28ab835ca8c1191a5748743b191881901cb0803dcd25a66bedf2abc6fc"
     },
     {
       "id": "garden/switch_base@1",
       "file": "switch_base.glb",
-      "sha256": "0a8389edf62d3c4f185cb9d1b09fa495dd3a62510df436d0f71e8cbd4834579d",
-      "bytes": 319948,
-      "triangles": 188,
+      "sha256": "7b9a58815661702a0a4626e4994077910c3654951918abc2cafe1b5d1a971d42",
+      "bytes": 696616,
+      "triangles": 2500,
       "bounds": {
         "min": [
-          -0.23999999463558197,
-          0.0,
-          -0.23999999463558197
+          -0.2401035577058792,
+          -3.67162429029122e-05,
+          -0.24010907113552094
         ],
         "max": [
-          0.23999999463558197,
-          0.07000000029802322,
-          0.23999999463558197
+          0.2399454414844513,
+          0.07004671543836594,
+          0.23996639251708984
         ]
       },
       "footprint": [
@@ -624,28 +633,30 @@
         ]
       },
       "materials": [
-        "wood"
+        "tripo_mat_569b409b"
       ],
-      "vertices": 384,
+      "vertices": 2516,
       "material_count": 1,
-      "primitives": 1
+      "primitives": 1,
+      "source": "assets/runtime/models/garden/switch_base/tripo_convert_569b409b-b405-4d20-b642-54de561362dd.fbx",
+      "sourceSha256": "e4e8809ff77f5de7c7c268687c2503e00e33560c3eada9f696b7311a518fe78d"
     },
     {
       "id": "garden/switch_plate@1",
       "file": "switch_plate.glb",
-      "sha256": "986673d252dc735301f5b569a6ab196c86b76262d06a860cb01e6fbb386c9d12",
-      "bytes": 22788,
-      "triangles": 380,
+      "sha256": "3b6b122ac7678f287acc1999c5501639ba7f0bb707151de2a4e42f1a3c7afdfb",
+      "bytes": 819228,
+      "triangles": 2500,
       "bounds": {
         "min": [
-          -0.19499999284744263,
-          0.0,
-          -0.19499999284744263
+          -0.19497844576835632,
+          2.3410062567563727e-05,
+          -0.19499468803405762
         ],
         "max": [
-          0.19499999284744263,
-          0.06499999761581421,
-          0.19499999284744263
+          0.1949954777956009,
+          0.06497564166784286,
+          0.19498537480831146
         ]
       },
       "footprint": [
@@ -661,29 +672,30 @@
         ]
       },
       "materials": [
-        "cream",
-        "teal"
+        "tripo_mat_381ecf81"
       ],
-      "vertices": 572,
-      "material_count": 2,
-      "primitives": 2
+      "vertices": 2748,
+      "material_count": 1,
+      "primitives": 1,
+      "source": "assets/runtime/models/garden/switch_plate/tripo_convert_381ecf81-452a-4c52-a3c2-ba33e0e098de.fbx",
+      "sourceSha256": "2bdd4e00cb9ff0980b4645740b1e2f924e98a24f3bb96d4ad309c8d1b2d2b7dc"
     },
     {
       "id": "garden/gate_frame@1",
       "file": "gate_frame.glb",
-      "sha256": "28ec88ecfebaa5d99223d9027101ffae3efcf1aaff41abb5ad24b26cef7c520d",
-      "bytes": 347880,
-      "triangles": 824,
+      "sha256": "8003bca79dd00641e507df7e1e30c8bb849e4e6f0ee2ff358168c0cf4b64a51d",
+      "bytes": 1014504,
+      "triangles": 2500,
       "bounds": {
         "min": [
-          -0.6949999928474426,
-          0.0,
-          -0.0949999988079071
+          -0.6950949430465698,
+          0.0003003294696100056,
+          -0.09479881823062897
         ],
         "max": [
-          0.6949999928474426,
-          1.1299999952316284,
-          0.0949999988079071
+          0.6943570375442505,
+          1.1308969259262085,
+          0.09508272260427475
         ]
       },
       "footprint": [
@@ -701,29 +713,30 @@
         "open_angle_degrees": 100
       },
       "materials": [
-        "teal",
-        "wood"
+        "tripo_mat_2b114a40"
       ],
-      "vertices": 1108,
-      "material_count": 2,
-      "primitives": 2
+      "vertices": 3538,
+      "material_count": 1,
+      "primitives": 1,
+      "source": "assets/runtime/models/garden/gate_frame/tripo_convert_2b114a40-5a6c-45e4-8db1-dca72bf0adde.fbx",
+      "sourceSha256": "37ec5767ea0a91581ac601ac61369bb32e6dfd6e1ea9bffd95ede47060ee5291"
     },
     {
       "id": "garden/gate_leaf@1",
       "file": "gate_leaf.glb",
-      "sha256": "97031437ef1befb1f9bef3366a94e1d49a70d067793b03c2b19ff4af29d85e5f",
-      "bytes": 456004,
-      "triangles": 2068,
+      "sha256": "cae8f9b603a380aef5c733cec9b5092b8ff3103b097cf66e7f52237d2511bbe1",
+      "bytes": 1081924,
+      "triangles": 2499,
       "bounds": {
         "min": [
-          -0.0299999937415123,
-          0.009999990463256836,
-          -0.10499999672174454
+          -0.031042633578181267,
+          0.01013143453747034,
+          -0.10610401630401611
         ],
         "max": [
-          1.059999942779541,
-          0.8899999856948853,
-          0.07249999791383743
+          1.059397578239441,
+          0.8894500732421875,
+          0.07294432073831558
         ]
       },
       "footprint": [
@@ -739,30 +752,30 @@
         ]
       },
       "materials": [
-        "ink",
-        "teal",
-        "wood"
+        "tripo_mat_0cc7a61d"
       ],
-      "vertices": 4224,
-      "material_count": 3,
-      "primitives": 3
+      "vertices": 4490,
+      "material_count": 1,
+      "primitives": 1,
+      "source": "assets/runtime/models/garden/gate_leaf/tripo_convert_0cc7a61d-c2b5-4e61-856b-56df6aab1133.fbx",
+      "sourceSha256": "58cf429dcaae1f376e9358f8cb30faf7f44aced611d1968fce6d312395bac4bc"
     },
     {
       "id": "garden/bowl@1",
       "file": "bowl.glb",
-      "sha256": "a0b7c1e0fab2e673e5ee9f7cda7cbf6f4d17836fdda750dea639a66b7acc8314",
-      "bytes": 51848,
-      "triangles": 1440,
+      "sha256": "aee2fd64b78e8b7ec3f155e01b4a858b89cb8c542a9401d8c17ce997e2027428",
+      "bytes": 575916,
+      "triangles": 2500,
       "bounds": {
         "min": [
-          -0.2709999978542328,
-          0.0,
-          -0.2709999978542328
+          -0.270778089761734,
+          1.082540529750986e-05,
+          -0.2707782983779907
         ],
         "max": [
-          0.2709999978542328,
-          0.40799999237060547,
-          0.2709999978542328
+          0.270844966173172,
+          0.4080575108528137,
+          0.27104073762893677
         ]
       },
       "footprint": [
@@ -788,29 +801,30 @@
         ]
       },
       "materials": [
-        "cream",
-        "sky"
+        "tripo_mat_3c835fdb"
       ],
-      "vertices": 1283,
-      "material_count": 2,
-      "primitives": 2
+      "vertices": 2134,
+      "material_count": 1,
+      "primitives": 1,
+      "source": "assets/runtime/models/garden/bowl/tripo_convert_3c835fdb-e318-4850-929c-48af75683081.fbx",
+      "sourceSha256": "52037deb55cd2fbd110e7345b4656b096dca3ce6eba13157a6efcc64c89eaf53"
     },
     {
       "id": "garden/bowl_water@1",
       "file": "bowl_water.glb",
-      "sha256": "d2774458e7a986695dfc42a0a991f8496f1c46a86e1d5da70e081b93df1df637",
-      "bytes": 3072,
-      "triangles": 48,
+      "sha256": "6149813cc871ea629fd5172b16d01224b86a7f124efaa909ec7116cd75bffe1e",
+      "bytes": 683784,
+      "triangles": 2500,
       "bounds": {
         "min": [
-          -0.2199999988079071,
-          0.0,
-          -0.2199999988079071
+          -0.2183864265680313,
+          0,
+          -0.21976710855960846
         ],
         "max": [
-          0.2199999988079071,
-          0.0,
-          0.2199999988079071
+          0.2195863276720047,
+          0,
+          0.21970203518867493
         ]
       },
       "footprint": [
@@ -820,11 +834,957 @@
       "pivot": "floor/contact centre",
       "anchors": {},
       "materials": [
-        "water"
+        "tripo_mat_f9b7b303"
       ],
-      "vertices": 49,
+      "vertices": 4648,
       "material_count": 1,
-      "primitives": 1
+      "primitives": 1,
+      "source": "assets/runtime/models/garden/bowl_water/tripo_convert_f9b7b303-9be0-414a-bda8-a07d5f601c48.fbx",
+      "sourceSha256": "1d3baf45c3805c79b2d7ff437e12e1f92900af5eadf567a0ea70b9e3047508eb"
+    },
+    {
+      "id": "garden/front_enclosure@1",
+      "file": "front_enclosure.glb",
+      "sha256": "3a97b18cbc850cd9630671bf54e2273b0918bbc7479622c0e550eb9fb9294950",
+      "bytes": 3871844,
+      "triangles": 11999,
+      "bounds": {
+        "min": [
+          -1.600000023841858,
+          0,
+          -0.22188344597816467
+        ],
+        "max": [
+          1.5995010137557983,
+          0.549410879611969,
+          0.23999999463558197
+        ]
+      },
+      "anchors": {},
+      "pivot": "floor centre",
+      "source": "assets/runtime/models/garden/front_enclosure/tripo_convert_54f3a337-33e1-4c6f-9adf-d3d857cb62ed.fbx",
+      "sourceSha256": "882edef348ae40722974de58fe81413c48ae73cf7552139b58dab354bbad0b12",
+      "sourceBounds": [
+        [
+          -0.4887085556983948,
+          -0.08206935226917267,
+          7.395199452808754e-10
+        ],
+        [
+          0.4896851181983948,
+          0.08409114181995392,
+          0.19944000244140625
+        ]
+      ],
+      "sourceTriangles": 19237,
+      "materials": 1,
+      "textures": "1024px basecolor, roughness, OpenGL normal; supplied Tripo maps",
+      "license": "User-supplied Tripo output; provider terms apply, no third-party license asserted"
+    },
+    {
+      "id": "garden/left_enclosure@1",
+      "file": "left_enclosure.glb",
+      "sha256": "11ec44f87e2468e1de04d0294c005dec00e48238b29272c29cdbc80c7869df72",
+      "bytes": 4089824,
+      "triangles": 12000,
+      "bounds": {
+        "min": [
+          -1.6014741659164429,
+          -0.001163925277069211,
+          -0.2378285676240921
+        ],
+        "max": [
+          1.5961956977844238,
+          0.8488878607749939,
+          0.2376481145620346
+        ]
+      },
+      "anchors": {},
+      "pivot": "floor centre",
+      "source": "assets/runtime/models/garden/left_enclosure/tripo_convert_cd8189b3-edaa-47d6-9259-4cbc6a3e1e38.fbx",
+      "sourceSha256": "b3beeb346de4dfdeab8cf0b8411a2e6b3ec7a1265567bee0425e1309bfec9436",
+      "sourceBounds": [
+        [
+          -0.4900818467140198,
+          -0.09024043381214142,
+          8.01043564813142e-10
+        ],
+        [
+          0.4894409775733948,
+          0.09027095139026642,
+          0.2624969482421875
+        ]
+      ],
+      "sourceTriangles": 1912012,
+      "materials": 1,
+      "textures": "1024px basecolor, roughness, OpenGL normal; supplied Tripo maps",
+      "license": "User-supplied Tripo output; provider terms apply, no third-party license asserted"
+    },
+    {
+      "id": "garden/right_enclosure@1",
+      "file": "right_enclosure.glb",
+      "sha256": "82c330639f298c7b279de90f13b7354a5c193cdc3e39a465d4e65c7d1fc2d25b",
+      "bytes": 4230076,
+      "triangles": 11999,
+      "bounds": {
+        "min": [
+          -1.5962070226669312,
+          0.0007110592559911311,
+          -0.2414618581533432
+        ],
+        "max": [
+          1.5984092950820923,
+          0.8480991721153259,
+          0.24125142395496368
+        ]
+      },
+      "anchors": {},
+      "pivot": "floor centre",
+      "source": "assets/runtime/models/garden/right_enclosure/tripo_convert_d0b2127f-cd5d-4e12-ac8d-2eb6a35332f4.fbx",
+      "sourceSha256": "ccd359e30e5b4d522f8fee6a9d591e09966cc0ca2212a90ce7b2ddf2afb0d0bb",
+      "sourceBounds": [
+        [
+          -0.4917603135108948,
+          -0.10204312205314636,
+          1.4231785749885262e-09
+        ],
+        [
+          0.4925537705421448,
+          0.10241705179214478,
+          0.269317626953125
+        ]
+      ],
+      "sourceTriangles": 1941182,
+      "materials": 1,
+      "textures": "1024px basecolor, roughness, OpenGL normal; supplied Tripo maps",
+      "license": "User-supplied Tripo output; provider terms apply, no third-party license asserted"
+    },
+    {
+      "id": "garden/house@1",
+      "file": "house.glb",
+      "sha256": "022bd85bae3c10c5fb21897e7ae503b4cf301fef8234fe8d0515f38986abc8dd",
+      "bytes": 3295308,
+      "triangles": 17613,
+      "bounds": {
+        "min": [
+          -3.999999761581421,
+          0,
+          -2.6615254878997803
+        ],
+        "max": [
+          3.999999761581421,
+          5.340961456298828,
+          2.6615254878997803
+        ]
+      },
+      "anchors": {},
+      "pivot": "floor centre",
+      "source": "assets/runtime/models/garden/house/house.fbx",
+      "sourceSha256": "652a884052c46593fd710b282eefbec072057138fbb9b9ef620912d8b3b9787f",
+      "sourceBounds": [
+        [
+          -0.4914551377296448,
+          -0.3265381455421448,
+          1.2770056123656559e-08
+        ],
+        [
+          0.4899597764015198,
+          0.3264771103858948,
+          0.65521240234375
+        ]
+      ],
+      "materials": 1,
+      "textures": "1024px supplied basecolor, roughness and normal",
+      "license": "User-supplied Tripo output; provider terms apply; independent rights not established",
+      "units": "metres",
+      "facing": "verified in runtime"
+    },
+    {
+      "id": "garden/exterior_foliage@4",
+      "file": "exterior_foliage.glb",
+      "sha256": "9d51c18af52fb7b8be671e4ca8bc2350bb8ff0b280b78f974cfdb6bebc409240",
+      "bytes": 925944,
+      "triangles": 5996,
+      "bounds": {
+        "min": [
+          -0.2939544916152954,
+          0.0006488595390692353,
+          -0.2647760510444641
+        ],
+        "max": [
+          0.3079679608345032,
+          0.31254249811172485,
+          0.26860707998275757
+        ]
+      },
+      "anchors": {},
+      "source": "assets/runtime/models/garden/foliage2/tripo_convert_4419ba0f-433e-4954-8a72-e84a652739f0.fbx",
+      "sourceSha256": "90e6c6eb46670301fce3351bc866201816f7adc17d3434f6f221143cc44284f3",
+      "sourceTriangles": 48038,
+      "sourceBounds": [
+        [
+          -0.4901123642921448,
+          -0.41940316557884216,
+          -1.1024406942894416e-09
+        ],
+        [
+          0.4907837510108948,
+          0.4207153618335724,
+          0.4942626953125
+        ]
+      ],
+      "sourceToMetresScale": 0.636152993436232,
+      "pivot": "Floor centre",
+      "units": "metres",
+      "up": "Y in GLB, Z in Blender",
+      "materials": 2,
+      "textures": "512px supplied basecolor, roughness and OpenGL normal; native 4096px retained in source master",
+      "license": "User-supplied Tripo output; provider terms apply; independent rights not established",
+      "provenance": "Supplied dense soft foliage; uniform scale to 0.624m width, optimized to the existing repeated-border triangle budget; supplied maps downsampled from 4096 to 512px; metallic fixed to zero",
+      "doubleSided": [
+        false,
+        true
+      ],
+      "derivation": {
+        "sourceRuntimeSha256": "f4e4bc07dccc755aaf263771b1a772b34008d2f09b6740f760846975f770c219",
+        "job": "artifacts/model-jobs/garden-foliage/2026-10-14-performance",
+        "method": "Seam welding; conservative occluded-island cleanup; small crack caps; outward solid winding; decimation; original maps reused",
+        "culling": "Closed volume back faces culled; 47 open leaf triangles remain double-sided"
+      }
+    },
+    {
+      "id": "garden/lantern@1",
+      "file": "lantern.glb",
+      "bytes": 485752,
+      "sha256": "7d6dee924372bad5676e22186f2d4c01f687341da4a6e10373ca021d15bcdb56",
+      "triangles": 3000,
+      "bounds": {
+        "min": [
+          -0.14003753662109375,
+          -1.765538172548986e-06,
+          -0.1399395614862442
+        ],
+        "max": [
+          0.14046385884284973,
+          0.5193830728530884,
+          0.1403106302022934
+        ]
+      },
+      "anchors": {},
+      "pivot": "floor/contact centre",
+      "units": "metres",
+      "source": "artifacts/model-jobs/garden-details/2026-10-12/lantern/model.glb",
+      "sourceSha256": "8bc40371793fde0f81368d307654717f25896493ffa2f011dd0949b13ca9018e",
+      "materials": 1,
+      "runtimeTextureLimit": 512,
+      "provenance": "garden-details-provenance.json#lantern",
+      "footprint": [
+        0.2805013954639435,
+        0.2802501916885376
+      ]
+    },
+    {
+      "id": "garden/book_stack@1",
+      "file": "book_stack.glb",
+      "bytes": 511100,
+      "sha256": "b5c789037d148b4fcef58eb6f6eabc954050f010a34972a5a8e05458e0ecbd34",
+      "triangles": 2998,
+      "bounds": {
+        "min": [
+          -0.16981707513332367,
+          -0.00018569141684565693,
+          -0.12013596296310425
+        ],
+        "max": [
+          0.16988854110240936,
+          0.22029690444469452,
+          0.11971163749694824
+        ]
+      },
+      "anchors": {},
+      "pivot": "floor/contact centre",
+      "units": "metres",
+      "source": "artifacts/model-jobs/garden-details/2026-10-12/book_stack/model.glb",
+      "sourceSha256": "67d6b620a62b50e1e3b3f37699bf1407d7d3337145beb9c0d5bf8f1bcfedad5e",
+      "materials": 1,
+      "runtimeTextureLimit": 512,
+      "provenance": "garden-details-provenance.json#book_stack",
+      "footprint": [
+        0.33970561623573303,
+        0.2398476004600525
+      ]
+    },
+    {
+      "id": "garden/garden_sign@1",
+      "file": "garden_sign.glb",
+      "bytes": 468960,
+      "sha256": "0cc8cec02d0bca50126b11779fdfaaea82f2b5ed6571dd8c70da462b06fd4b01",
+      "triangles": 3000,
+      "bounds": {
+        "min": [
+          -0.23972156643867493,
+          0.0001983658003155142,
+          -0.04012543335556984
+        ],
+        "max": [
+          0.23971426486968994,
+          0.5599695444107056,
+          0.03991169482469559
+        ]
+      },
+      "anchors": {},
+      "pivot": "floor/contact centre",
+      "units": "metres",
+      "source": "artifacts/model-jobs/garden-details/2026-10-12/garden_sign/model.glb",
+      "sourceSha256": "483de79a291f518489a403499b7b9c1477b6d9e2208ed90c887d4470d30ffdfd",
+      "materials": 1,
+      "runtimeTextureLimit": 512,
+      "provenance": "garden-details-provenance.json#garden_sign",
+      "footprint": [
+        0.47943583130836487,
+        0.08003712818026543
+      ]
+    },
+    {
+      "id": "garden/bench_cushion@1",
+      "file": "bench_cushion.glb",
+      "bytes": 516252,
+      "sha256": "de6f7efad633e8e9416ad28b9b4294ee3b57cac38ca468a0645bc7c9ba562f4d",
+      "triangles": 3000,
+      "bounds": {
+        "min": [
+          -0.5903401970863342,
+          0.00022572645684704185,
+          -0.19499707221984863
+        ],
+        "max": [
+          0.5903503894805908,
+          0.13994818925857544,
+          0.19518274068832397
+        ]
+      },
+      "anchors": {},
+      "pivot": "floor/contact centre",
+      "units": "metres",
+      "source": "artifacts/model-jobs/garden-details/2026-10-12/bench_cushion/model.glb",
+      "sourceSha256": "bca2963840c91b14c7154d94a322a5867eb04a45afb7713d0d2297e06affe06b",
+      "materials": 1,
+      "runtimeTextureLimit": 512,
+      "provenance": "garden-details-provenance.json#bench_cushion",
+      "footprint": [
+        1.180690586566925,
+        0.3901798129081726
+      ]
+    },
+    {
+      "id": "garden/herb_pot@1",
+      "file": "herb_pot.glb",
+      "bytes": 685944,
+      "sha256": "1969d10ef98e1720e13f687c6b9ab7b2f41d3ab9901fcf3d220f74823355dec8",
+      "triangles": 5000,
+      "bounds": {
+        "min": [
+          -0.2402130663394928,
+          0.00024466722970828414,
+          -0.2399911731481552
+        ],
+        "max": [
+          0.24037151038646698,
+          0.6002811789512634,
+          0.23925988376140594
+        ]
+      },
+      "anchors": {},
+      "pivot": "floor/contact centre",
+      "units": "metres",
+      "source": "artifacts/model-jobs/garden-details/2026-10-12/herb_pot/model.glb",
+      "sourceSha256": "7e58d9b4fe94b17a66ea03fd810a1f7115d45eef1d6ab24bb2a5b32beaf46822",
+      "materials": 1,
+      "runtimeTextureLimit": 512,
+      "provenance": "garden-details-provenance.json#herb_pot",
+      "footprint": [
+        0.4805845767259598,
+        0.47925105690956116
+      ]
+    },
+    {
+      "id": "garden/paw_mat@1",
+      "file": "paw_mat.glb",
+      "bytes": 616568,
+      "sha256": "eff2821867107e5f93f259628a20566894f2ae546ce5a5b9ea18635cfbfbea59",
+      "triangles": 3000,
+      "bounds": {
+        "min": [
+          -0.3117428123950958,
+          -0.0005036138463765383,
+          -0.31153595447540283
+        ],
+        "max": [
+          0.3111276626586914,
+          0.034930821508169174,
+          0.31122690439224243
+        ]
+      },
+      "anchors": {},
+      "pivot": "floor/contact centre",
+      "units": "metres",
+      "source": "artifacts/model-jobs/garden-details/2026-10-12/paw_mat/model.glb",
+      "sourceSha256": "d869c25c26ab0316aabf49c82a03afbbd58a5629ab6615c32504baff31a730ba",
+      "materials": 1,
+      "runtimeTextureLimit": 512,
+      "provenance": "garden-details-provenance.json#paw_mat",
+      "footprint": [
+        0.6228704750537872,
+        0.6227628588676453
+      ]
+    },
+    {
+      "id": "garden/empty_pot@1",
+      "file": "empty_pot.glb",
+      "bytes": 356508,
+      "sha256": "69f794807a6380c46a9b97079a0aafba8571cc29dcdb5179bfbb7d62d30fd605",
+      "triangles": 2999,
+      "bounds": {
+        "min": [
+          -0.20022493600845337,
+          -0.000308833085000515,
+          -0.19971387088298798
+        ],
+        "max": [
+          0.20010782778263092,
+          0.48013627529144287,
+          0.20069155097007751
+        ]
+      },
+      "anchors": {},
+      "pivot": "floor/contact centre",
+      "units": "metres",
+      "source": "artifacts/model-jobs/garden-details/2026-10-12/empty_pot/model.glb",
+      "sourceSha256": "751ed06e8e00b05b07ba6cce4b07b751e90be819dccca3d5d8840892eb73499a",
+      "materials": 1,
+      "runtimeTextureLimit": 512,
+      "provenance": "garden-details-provenance.json#empty_pot",
+      "footprint": [
+        0.4003327637910843,
+        0.4004054218530655
+      ]
+    },
+    {
+      "id": "garden/climbing_ivy@1",
+      "file": "climbing_ivy.glb",
+      "bytes": 620092,
+      "sha256": "8943a617c8f7bbf734f3a5684743da2b71d1358295395d69809f896800459bbf",
+      "triangles": 5000,
+      "bounds": {
+        "min": [
+          -0.32422101497650146,
+          0.0004071528383065015,
+          -0.06026826053857803
+        ],
+        "max": [
+          0.3245841860771179,
+          0.8507156372070312,
+          0.059368591755628586
+        ]
+      },
+      "anchors": {},
+      "pivot": "floor/contact centre",
+      "units": "metres",
+      "source": "artifacts/model-jobs/garden-details/2026-10-12/climbing_ivy/model.glb",
+      "sourceSha256": "8bd26d79ba6967a83969d1b7ef6238efce5f595e0ec3ab9d429c716d8c661f6b",
+      "materials": 1,
+      "runtimeTextureLimit": 512,
+      "provenance": "garden-details-provenance.json#climbing_ivy",
+      "footprint": [
+        0.6488052010536194,
+        0.11963685229420662
+      ]
+    },
+    {
+      "id": "garden/moss_flowers@1",
+      "file": "moss_flowers.glb",
+      "bytes": 540132,
+      "sha256": "5c0e35a4e781a993ce369bde3a5c7670daf7523cf442c071e091f0a27701f552",
+      "triangles": 3000,
+      "bounds": {
+        "min": [
+          -0.1898525506258011,
+          -0.0005470588221214712,
+          -0.13533242046833038
+        ],
+        "max": [
+          0.1900150030851364,
+          0.12012912333011627,
+          0.1356855034828186
+        ]
+      },
+      "anchors": {},
+      "pivot": "floor/contact centre",
+      "units": "metres",
+      "source": "artifacts/model-jobs/garden-details/2026-10-12/moss_flowers/model.glb",
+      "sourceSha256": "a6abcb81ca34f59ef700d8c61cb9b4f6d231417bc270636ea0c33139ecece009",
+      "materials": 1,
+      "runtimeTextureLimit": 512,
+      "provenance": "garden-details-provenance.json#moss_flowers",
+      "footprint": [
+        0.3798675537109375,
+        0.271017923951149
+      ]
+    },
+    {
+      "id": "garden/stone_border@1",
+      "file": "stone_border.glb",
+      "bytes": 542116,
+      "sha256": "5adb62ecb257f3e396b5979d1274aa73b97119d93e2b1cef25c163ddba33c133",
+      "triangles": 2999,
+      "bounds": {
+        "min": [
+          -0.6251924633979797,
+          0.0004593183984979987,
+          -0.10659418255090714
+        ],
+        "max": [
+          0.6258820295333862,
+          0.379355788230896,
+          0.11060349643230438
+        ]
+      },
+      "anchors": {},
+      "pivot": "floor/contact centre",
+      "units": "metres",
+      "source": "artifacts/model-jobs/garden-details/2026-10-12/stone_border/model.glb",
+      "sourceSha256": "992f976300d08eb098fa2ad36b09d7cf9169216e261958698ad11095adcc575a",
+      "materials": 1,
+      "runtimeTextureLimit": 512,
+      "provenance": "garden-details-provenance.json#stone_border",
+      "footprint": [
+        1.251074492931366,
+        0.21719767898321152
+      ]
+    },
+    {
+      "id": "garden/watering_can@1",
+      "file": "watering_can.glb",
+      "bytes": 521172,
+      "sha256": "8f67e2b9fe31efc24d0c300aa8d12fd5e33092558bc2bf4c06074ad3c84f1130",
+      "triangles": 3000,
+      "bounds": {
+        "min": [
+          -0.34059417247772217,
+          0.00015511302626691759,
+          -0.1605677306652069
+        ],
+        "max": [
+          0.3394983410835266,
+          0.5500482320785522,
+          0.15871287882328033
+        ]
+      },
+      "anchors": {},
+      "pivot": "floor/contact centre",
+      "units": "metres",
+      "source": "artifacts/model-jobs/garden-details/2026-10-12/watering_can/model.glb",
+      "sourceSha256": "d5620e99f8587ab078d662b0d6ab1f5fb59222efa43a1814e57c6e5277fff3d2",
+      "materials": 1,
+      "runtimeTextureLimit": 512,
+      "provenance": "garden-details-provenance.json#watering_can",
+      "footprint": [
+        0.6800925135612488,
+        0.31928060948848724
+      ]
+    },
+    {
+      "id": "garden/apple_tree@2",
+      "file": "apple_tree.glb",
+      "bytes": 3287004,
+      "sha256": "80cae4a5fd48efb06c8eab34f0e04fcffe90396e84472120f7556e6275afb5d5",
+      "triangles": 20000,
+      "bounds": {
+        "min": [
+          -2.3412983417510986,
+          -0.0038221373688429594,
+          -2.099416971206665
+        ],
+        "max": [
+          2.3910412788391113,
+          5.797297477722168,
+          2.102931261062622
+        ]
+      },
+      "anchors": {},
+      "pivot": "floor/contact centre",
+      "units": "metres",
+      "source": "artifacts/model-jobs/fruit-trees/2026-10-12-natural-v2/apple/model.glb",
+      "sourceSha256": "b95c906eacd52c148ee1d91067fc4551062bea539b039c77260805671b669051",
+      "materials": 1,
+      "runtimeTextureLimit": 1024,
+      "provenance": "fruit-tree-provenance.json#apple",
+      "reference": "artifacts/model-input-images/fruit-trees-natural-v2/apple.png",
+      "footprint": [
+        4.73233962059021,
+        4.202348232269287
+      ]
+    },
+    {
+      "id": "garden/pear_tree@2",
+      "file": "pear_tree.glb",
+      "bytes": 2942324,
+      "sha256": "a413090da0cecf6eb10cb2c30bd10052685d0bde6969ec037e2d02e26b4f0af2",
+      "triangles": 20000,
+      "bounds": {
+        "min": [
+          -1.8734402656555176,
+          -0.001410258118994534,
+          -1.750367522239685
+        ],
+        "max": [
+          1.9070684909820557,
+          6.500897407531738,
+          1.7526201009750366
+        ]
+      },
+      "anchors": {},
+      "pivot": "floor/contact centre",
+      "units": "metres",
+      "source": "artifacts/model-jobs/fruit-trees/2026-10-12-natural-v2/pear/model.glb",
+      "sourceSha256": "cb0f6b91de9e7cbe5728bace47da3ca91a4ec614ea25444ce330f35d9ca4f6be",
+      "materials": 1,
+      "runtimeTextureLimit": 1024,
+      "provenance": "fruit-tree-provenance.json#pear",
+      "reference": "artifacts/model-input-images/fruit-trees-natural-v2/pear.png",
+      "footprint": [
+        3.7805087566375732,
+        3.5029876232147217
+      ]
+    },
+    {
+      "id": "garden/cat_tongue@1",
+      "file": "cat_tongue.glb",
+      "sha256": "43598b0ddd84efa89dfbe9856f6c7ed8d72f9ac8b1597670a65f8293b3c14ab0",
+      "bytes": 7432,
+      "triangles": 224,
+      "bounds": {
+        "min": [
+          -0.018999997526407242,
+          -0.00800000037997961,
+          -0.03200000151991844
+        ],
+        "max": [
+          0.01899999938905239,
+          0.00800000037997961,
+          0.03200000151991844
+        ]
+      },
+      "footprint": [
+        0.038,
+        0.064
+      ],
+      "pivot": "mouth contact centre",
+      "anchors": {},
+      "materials": [
+        "Soft pink tongue"
+      ],
+      "source": "artifacts/model-jobs/quest-endings/2026-10-13",
+      "license": "Original game asset; no external texture"
+    },
+    {
+      "id": "garden/exterior_foliage_lod1@1",
+      "file": "exterior_foliage_lod1.glb",
+      "sha256": "061aa8ff2b70dfead9f07a5946b322ea6ba8eb5f3d1074815633d661b73d57e4",
+      "bytes": 788944,
+      "triangles": 2992,
+      "bounds": {
+        "min": [
+          -0.2921683192253113,
+          0.004787372890859842,
+          -0.2562139630317688
+        ],
+        "max": [
+          0.3010700047016144,
+          0.3083789348602295,
+          0.24721813201904297
+        ]
+      },
+      "anchors": {},
+      "source": "assets/runtime/models/garden/foliage2/tripo_convert_4419ba0f-433e-4954-8a72-e84a652739f0.fbx",
+      "sourceSha256": "90e6c6eb46670301fce3351bc866201816f7adc17d3434f6f221143cc44284f3",
+      "sourceTriangles": 48038,
+      "sourceBounds": [
+        [
+          -0.4901123642921448,
+          -0.41940316557884216,
+          -1.1024406942894416e-09
+        ],
+        [
+          0.4907837510108948,
+          0.4207153618335724,
+          0.4942626953125
+        ]
+      ],
+      "sourceToMetresScale": 0.636152993436232,
+      "pivot": "Floor centre",
+      "units": "metres",
+      "up": "Y in GLB, Z in Blender",
+      "materials": 2,
+      "textures": "512px supplied basecolor, roughness and OpenGL normal; native 4096px retained in source master",
+      "license": "User-supplied Tripo output; provider terms apply; independent rights not established",
+      "provenance": "Supplied dense soft foliage; uniform scale to 0.624m width, optimized to the existing repeated-border triangle budget; supplied maps downsampled from 4096 to 512px; metallic fixed to zero",
+      "doubleSided": [
+        false,
+        true
+      ],
+      "derivation": {
+        "sourceRuntimeSha256": "f4e4bc07dccc755aaf263771b1a772b34008d2f09b6740f760846975f770c219",
+        "job": "artifacts/model-jobs/garden-foliage/2026-10-14-performance",
+        "method": "Seam welding; conservative occluded-island cleanup; small crack caps; outward solid winding; decimation; original maps reused",
+        "culling": "Closed volume back faces culled; 47 open leaf triangles remain double-sided"
+      }
+    },
+    {
+      "id": "garden/exterior_foliage_lod2@1",
+      "file": "exterior_foliage_lod2.glb",
+      "sha256": "a6b748976f8a70e4a247465f164346a146b15ad6dbff98dc251f75956efec28c",
+      "bytes": 695464,
+      "triangles": 1466,
+      "bounds": {
+        "min": [
+          -0.28998833894729614,
+          0.00890329573303461,
+          -0.23304322361946106
+        ],
+        "max": [
+          0.3010700047016144,
+          0.2897477149963379,
+          0.24100272357463837
+        ]
+      },
+      "anchors": {},
+      "source": "assets/runtime/models/garden/foliage2/tripo_convert_4419ba0f-433e-4954-8a72-e84a652739f0.fbx",
+      "sourceSha256": "90e6c6eb46670301fce3351bc866201816f7adc17d3434f6f221143cc44284f3",
+      "sourceTriangles": 48038,
+      "sourceBounds": [
+        [
+          -0.4901123642921448,
+          -0.41940316557884216,
+          -1.1024406942894416e-09
+        ],
+        [
+          0.4907837510108948,
+          0.4207153618335724,
+          0.4942626953125
+        ]
+      ],
+      "sourceToMetresScale": 0.636152993436232,
+      "pivot": "Floor centre",
+      "units": "metres",
+      "up": "Y in GLB, Z in Blender",
+      "materials": 2,
+      "textures": "512px supplied basecolor, roughness and OpenGL normal; native 4096px retained in source master",
+      "license": "User-supplied Tripo output; provider terms apply; independent rights not established",
+      "provenance": "Supplied dense soft foliage; uniform scale to 0.624m width, optimized to the existing repeated-border triangle budget; supplied maps downsampled from 4096 to 512px; metallic fixed to zero",
+      "doubleSided": [
+        false,
+        true
+      ],
+      "derivation": {
+        "sourceRuntimeSha256": "f4e4bc07dccc755aaf263771b1a772b34008d2f09b6740f760846975f770c219",
+        "job": "artifacts/model-jobs/garden-foliage/2026-10-14-performance",
+        "method": "Seam welding; conservative occluded-island cleanup; small crack caps; outward solid winding; decimation; original maps reused",
+        "culling": "Closed volume back faces culled; 47 open leaf triangles remain double-sided"
+      }
+    },
+    {
+      "name": "sequence_blackboard",
+      "id": "garden/sequence_blackboard@1",
+      "file": "sequence_blackboard.glb",
+      "sha256": "74c5d3583f378127cf6a5bf2f25f6edebbfb403e44ef69b9d7c87deb83c57e78",
+      "bytes": 694112,
+      "triangles": 2412,
+      "anchors": {
+        "picture_centre": [
+          0,
+          1.6,
+          0.105
+        ]
+      },
+      "license": "Generated service output; applicable provider terms; account entitlement unverified",
+      "provenance": "Tripo3D image-to-model from original built-in ImageGen reference; fitted, split, optimized in Blender; exact authored clue inlays",
+      "bounds": {
+        "min": [
+          -0.7799331545829773,
+          0.0,
+          -0.28964918851852417
+        ],
+        "max": [
+          0.7799232006072998,
+          2.1603498458862305,
+          0.28959202766418457
+        ]
+      },
+      "vertices": 4438,
+      "materialCount": 2,
+      "textureCount": 1,
+      "runtimeTextureLimit": 512,
+      "maps": [
+        {
+          "name": "Color_4cd0cdd8-200c-49ad-8fe2-c7d9370f6a68",
+          "dimensions": [
+            512,
+            512
+          ]
+        }
+      ],
+      "source": "artifacts/model-jobs/sequence-tripo/2026-10-14/blackboard/raw.glb",
+      "sourceMaster": "artifacts/model-jobs/sequence-tripo/2026-10-14/delivery/sequence_blackboard.blend"
+    },
+    {
+      "name": "sequence_picture_leaf",
+      "id": "garden/sequence_picture_leaf@1",
+      "file": "sequence_picture_leaf.glb",
+      "sha256": "da0d292391e28866331ce0d08d68a07c4e7c01dbb3695a870e2febeb9f36c8b7",
+      "bytes": 2064,
+      "triangles": 20,
+      "anchors": {},
+      "license": "Original Blender geometry authored for Paws",
+      "provenance": "Original geometry and simple flat painted materials; no external source or generated textures",
+      "bounds": {
+        "min": [
+          -0.30000001192092896,
+          -0.25,
+          -0.006000000052154064
+        ],
+        "max": [
+          0.28999999165534973,
+          0.30000001192092896,
+          0.006000000052154064
+        ]
+      }
+    },
+    {
+      "name": "sequence_picture_star",
+      "id": "garden/sequence_picture_star@1",
+      "file": "sequence_picture_star.glb",
+      "sha256": "0880d75a540353c5fe95c530651111a550a2e6e601db2350a23e36bf7da338ab",
+      "bytes": 2752,
+      "triangles": 36,
+      "anchors": {},
+      "license": "Original Blender geometry authored for Paws",
+      "provenance": "Original geometry and simple flat painted materials; no external source or generated textures",
+      "bounds": {
+        "min": [
+          -0.3233592212200165,
+          -0.2750657796859741,
+          -0.006000000052154064
+        ],
+        "max": [
+          0.3233592212200165,
+          0.3400000035762787,
+          0.006000000052154064
+        ]
+      }
+    },
+    {
+      "name": "sequence_picture_paw",
+      "id": "garden/sequence_picture_paw@1",
+      "file": "sequence_picture_paw.glb",
+      "sha256": "6dc8d85266664304b05a277c5796861cf98d02f815f53e182ac62a06aa13db2e",
+      "bytes": 47832,
+      "triangles": 600,
+      "anchors": {},
+      "license": "Original Blender geometry authored for Paws",
+      "provenance": "Original geometry and simple flat painted materials; no external source or generated textures",
+      "bounds": {
+        "min": [
+          -0.30000001192092896,
+          -0.20000000298023224,
+          -0.014000000432133675
+        ],
+        "max": [
+          0.30000001192092896,
+          0.3449999988079071,
+          0.014000000432133675
+        ]
+      }
+    },
+    {
+      "id": "garden/paving_lod1@1",
+      "file": "paving_lod1.glb",
+      "sha256": "d9364febc8edccbf4579e411a37e11b9ca979f20dfe32a8456e3b40b933f2f08",
+      "bytes": 907812,
+      "triangles": 600,
+      "bounds": {
+        "min": [
+          -0.4952406883239746,
+          -0.11993928253650665,
+          -0.492946058511734
+        ],
+        "max": [
+          0.493411660194397,
+          -0.0019338798010721803,
+          0.49415066838264465
+        ]
+      },
+      "footprint": [
+        1,
+        1
+      ],
+      "pivot": "floor/contact centre",
+      "anchors": {},
+      "materials": [
+        "tripo_mat_5d393e46"
+      ],
+      "vertices": 641,
+      "material_count": 1,
+      "primitives": 1,
+      "source": "assets/runtime/models/garden/paving/tripo_convert_5d393e46-998b-464c-a8ef-3769f217500b.fbx",
+      "sourceSha256": "685e0286d6dd27b2902d5e72e8b82c95d6fd97e7bb69fe76044b263b7280a0b2",
+      "editableSource": "artifacts/model-jobs/garden-paving/2026-10-15-lods/paving_lod1.blend",
+      "derivation": {
+        "sourceRuntimeSha256": "160efeed1e6c2714e3806ac3a6bc286ad4c0eb1240e735ebd9f5a1ae8f96f48b",
+        "job": "artifacts/model-jobs/garden-paving/2026-10-15-lods",
+        "method": "Position seam weld preserving corner UVs; 600/200 triangle decimation; approved 512px maps; closed reverse faces culled",
+        "policy": "Camera-only detail. Original near mesh and gameplay footprint unchanged."
+      }
+    },
+    {
+      "id": "garden/paving_lod2@1",
+      "file": "paving_lod2.glb",
+      "sha256": "196dae4badf435bd26efb148a07d833e5d140b093142cad76180a935668dcbe6",
+      "bytes": 894276,
+      "triangles": 200,
+      "bounds": {
+        "min": [
+          -0.49298977851867676,
+          -0.118887759745121,
+          -0.49223700165748596
+        ],
+        "max": [
+          0.49352049827575684,
+          -0.001967409625649452,
+          0.49245771765708923
+        ]
+      },
+      "footprint": [
+        1,
+        1
+      ],
+      "pivot": "floor/contact centre",
+      "anchors": {},
+      "materials": [
+        "tripo_mat_5d393e46"
+      ],
+      "vertices": 293,
+      "material_count": 1,
+      "primitives": 1,
+      "source": "assets/runtime/models/garden/paving/tripo_convert_5d393e46-998b-464c-a8ef-3769f217500b.fbx",
+      "sourceSha256": "685e0286d6dd27b2902d5e72e8b82c95d6fd97e7bb69fe76044b263b7280a0b2",
+      "editableSource": "artifacts/model-jobs/garden-paving/2026-10-15-lods/paving_lod2.blend",
+      "derivation": {
+        "sourceRuntimeSha256": "160efeed1e6c2714e3806ac3a6bc286ad4c0eb1240e735ebd9f5a1ae8f96f48b",
+        "job": "artifacts/model-jobs/garden-paving/2026-10-15-lods",
+        "method": "Position seam weld preserving corner UVs; 600/200 triangle decimation; approved 512px maps; closed reverse faces culled",
+        "policy": "Camera-only detail. Original near mesh and gameplay footprint unchanged."
+      }
     }
   ],
   "materials": [
@@ -1060,6 +2020,110 @@
         0.383,
         0.25
       ]
+    },
+    {
+      "asset": "lantern",
+      "position": [
+        0.0,
+        0,
+        10.0
+      ]
+    },
+    {
+      "asset": "book_stack",
+      "position": [
+        1.6,
+        0,
+        10.0
+      ]
+    },
+    {
+      "asset": "garden_sign",
+      "position": [
+        3.2,
+        0,
+        10.0
+      ]
+    },
+    {
+      "asset": "bench_cushion",
+      "position": [
+        4.800000000000001,
+        0,
+        10.0
+      ]
+    },
+    {
+      "asset": "herb_pot",
+      "position": [
+        0.0,
+        0,
+        11.6
+      ]
+    },
+    {
+      "asset": "paw_mat",
+      "position": [
+        1.6,
+        0,
+        11.6
+      ]
+    },
+    {
+      "asset": "empty_pot",
+      "position": [
+        3.2,
+        0,
+        11.6
+      ]
+    },
+    {
+      "asset": "climbing_ivy",
+      "position": [
+        4.800000000000001,
+        0,
+        11.6
+      ]
+    },
+    {
+      "asset": "moss_flowers",
+      "position": [
+        0.0,
+        0,
+        13.2
+      ]
+    },
+    {
+      "asset": "stone_border",
+      "position": [
+        1.6,
+        0,
+        13.2
+      ]
+    },
+    {
+      "asset": "watering_can",
+      "position": [
+        3.2,
+        0,
+        13.2
+      ]
+    },
+    {
+      "asset": "apple_tree",
+      "position": [
+        -8,
+        0,
+        -8
+      ]
+    },
+    {
+      "asset": "pear_tree",
+      "position": [
+        -3,
+        0,
+        -8
+      ]
     }
   ],
   "source_sha256": "6e7cb2b007f5bc33329ca72b4485d5c3a973e38ff49332cb0afd2574bc128e72",
@@ -1161,5 +2225,6 @@
       "wicker",
       "sage_cloth"
     ]
-  }
+  },
+  "replacementPolicy": "User-supplied FBX models fitted to previous local bounds, preserving stable IDs, anchors and assembly transforms."
 }

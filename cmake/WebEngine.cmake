@@ -28,7 +28,7 @@ function(paws_add_webengine)
   set(renderer_sources "${WEBENGINE_SOURCE_DIR}/src/renderer.cpp"
     "${WEBENGINE_SOURCE_DIR}/src/gui_renderer.cpp")
   # The adjacent development checkout currently splits the backend facade.
-  foreach(backend webgpu_renderer webgl_renderer)
+  foreach(backend webgpu_renderer webgl_renderer webgpu_water webgl_water)
     if(EXISTS "${WEBENGINE_SOURCE_DIR}/src/${backend}.cpp")
       list(APPEND renderer_sources "${WEBENGINE_SOURCE_DIR}/src/${backend}.cpp")
     endif()

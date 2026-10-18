@@ -1,3 +1,0 @@
-import bpy,collections
-bpy.ops.wm.open_mainfile(filepath='C:/Users/Johan/source/repos/CatGame/artifacts/model-jobs/pip/2026-10-11-eyelids/eyes-source.blend')
-b=bpy.data.objects['Pip repaired Tripo skin'];r=bpy.data.objects['PipRig'];print('MODIFIERS',[(m.name,m.type) for m in b.modifiers]);print('MATERIALS',[(i,m.name) for i,m in enumerate(b.data.materials)]);print('FACES',collections.Counter(p.material_index for p in b.data.polygons));print('NLA',len(r.animation_data.nla_tracks));print('SMOOTH',b.data.use_auto_smooth,sum(p.use_smooth for p in b.data.polygons),len(b.data.polygons),b.data.has_custom_normals)

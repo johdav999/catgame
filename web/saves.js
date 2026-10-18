@@ -99,6 +99,24 @@
     else {clearTimeout(timer);timer=setTimeout(flush,500);}
   };
   window.pawsFlushSave=flush;
+  window.pawsCloudSaveText=async()=>{
+    if(!loaded||mode!==0)throw Error('Cloud saves need the main writable game tab.');
+    await flush();Module._paws_cloud_snapshot();
+    const text=window.pawsCloudSnapshot;delete window.pawsCloudSnapshot;
+    if(typeof text!=='string'||valid(encoder.encode(text))<0)throw Error('Your afternoon is not ready to save.');
+    return text;
+  };
+  window.pawsCloudSaveStamp=()=>{
+    if(!loaded||mode!==0)throw Error('Cloud saves need the main writable game tab.');
+    Module._paws_cloud_stamp();return {...window.pawsCloudStamp};
+  };
+  window.pawsStageCloudSave=(bytes,stamp)=>{
+    if(!loaded||mode!==0||valid(bytes)<0)return false;
+    return withBytes(bytes,(p,n)=>Module._paws_stage_import(p,n,stamp.attempt,stamp.revision));
+  };
+  window.pawsSetCloudEntitlements=items=>{
+    if(window.pawsRuntimeReady)Module._paws_cloud_beach_access(items.includes('beach_afternoon')?1:0);
+  };
   window.pawsRetrySave=async()=>{
     if(!loaded){await window.pawsLoadSave();return;}
     if(mode===1){tell('The other tab owns the usual save. Export this temporary afternoon to keep it.');return;}

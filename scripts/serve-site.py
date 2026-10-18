@@ -1,5 +1,6 @@
 """Serve one consistent Paws build without browser cache or duplicate listeners."""
 import argparse
+import errno
 import hashlib
 import io
 import socket
@@ -21,7 +22,10 @@ def main():
     parser = argparse.ArgumentParser(__doc__)
     parser.add_argument('--directory', required=True, type=Path)
     parser.add_argument('--port', type=int, default=8080)
+    parser.add_argument('--port-attempts', type=int, default=1)
     args = parser.parse_args()
+    if not 1 <= args.port <= 65535 or not 1 <= args.port_attempts <= 100:
+        parser.error('port must be 1..65535 and port-attempts must be 1..100')
     directory = args.directory.resolve(strict=True)
     prefix = build_prefix(directory)
 
@@ -64,11 +68,18 @@ def main():
                 self.socket.setsockopt(socket.SOL_SOCKET, socket.SO_EXCLUSIVEADDRUSE, 1)
             super().server_bind()
 
-    try:
-        server = Server(('127.0.0.1', args.port), Handler)
-    except OSError as error:
-        raise SystemExit(f'Port {args.port} is already in use. Stop the existing Paws server or choose another port. ({error})')
-    print(f'Serving {directory} at http://127.0.0.1:{args.port}/ ({prefix})', flush=True)
+    last_port = min(65535, args.port + args.port_attempts - 1)
+    for port in range(args.port, last_port + 1):
+        try:
+            server = Server(('127.0.0.1', port), Handler)
+            break
+        except OSError as error:
+            if error.errno not in (errno.EADDRINUSE, errno.EACCES) and getattr(error, 'winerror', None) not in (10048, 10013):
+                raise
+            if port == last_port:
+                raise SystemExit(f'No available port in {args.port}..{last_port}. Choose another -Port. ({error})')
+            print(f'Port {port} is unavailable; trying {port + 1}.', flush=True)
+    print(f'Serving {directory} at http://127.0.0.1:{port}/ ({prefix})', flush=True)
     with server:
         try:
             server.serve_forever()

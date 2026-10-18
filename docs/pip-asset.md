@@ -88,7 +88,7 @@ All 729 non-facial animation channels retain identical sampled poses.
 | `relaxed_idle` | 4.0 | Yes | 0 | Resting attention and slow blink |
 | `attentive_request` | 2.4 | No | 1.2 | Request head tilt and ear turn |
 | `happy_pounce` | 1.2 | No | 0.6 | Small happy hop; chirrup sound belongs to phase 9 |
-| `garden_walk` | 1.2 | Yes | 0 | In-place short garden gait; caller moves actor |
+| `garden_walk` | 0.8 | Yes | 0 | In-place short garden gait; caller moves actor at 0.45 m/s |
 | `settle_cushion` | 2.4 | No | 2.4 | Lower and fold onto authored cushion contact plane |
 | `curled_rest` | 4.0 | Yes | 0 | Supported low rest, relaxed forelegs, tail beside the haunch |
 | `approach_bowl` | 1.8 | No | 1.8 | Head-lowering end of walk-to-bowl sequence |
@@ -101,6 +101,20 @@ those boundaries and all looping endpoints. `presentPip()` resolves clip names,
 crossfades for 0.18 seconds, or seeks/pauses a meaningful static pose. It changes
 no puzzle, reward, furnishing or save state. Later gameplay chooses successors;
 the inspection harness intentionally holds non-loop endpoints for review.
+
+Default presentation resolves `relaxed_idle` and `garden_walk` to their separate
+`*_forward` variants when present. Both use the reviewed per-cat head/neck yaw
+correction, so walking no longer restores the sideways neutral head after idle.
+Gait, root, blinking, loop timing and all original clips are preserved; interaction
+clips retain their authored poses and joins. The existing `?idlePose=original`
+review switch restores both originals without affecting saves. See the
+[walking correction and evidence](../artifacts/model-jobs/walk-forward/2026-10-14/README.md).
+
+Walking now runs 50% faster: the same 0.36 m stride takes 0.8 seconds rather than
+1.2 seconds, matching 0.45 m/s world travel. Original and corrected walking clips
+share this timing. Garden approaches/returns, attention walks, puzzle endings and
+requester routes use the shared `pipWalkSpeed`; non-walking actions retain their
+timing. See the [retiming evidence](../artifacts/model-jobs/walk-speed/2026-10-14/README.md).
 
 The repaired resting clip presents a supported low rest, not a tight sleeping curl.
 Settle/rest deformation and visual cushion fit were reviewed in the actual WebGPU

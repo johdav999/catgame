@@ -52,8 +52,8 @@ int main(int argc,char** argv) {
                 check(poseDifference(clip.frames[j],clip.frames[(clip.frameCount-1)*skeleton.joints.size()+j])<.001f,"Loop pose seam");
         }
         for(auto pair:{std::pair{4,5},std::pair{6,7},std::pair{7,8},std::pair{8,0}}) {
-            const auto& a=skeleton.clips[paws::pipClip(*mesh,paws::pipActions[pair.first].name)];
-            const auto& b=skeleton.clips[paws::pipClip(*mesh,paws::pipActions[pair.second].name)];
+            const auto& a=skeleton.clips[paws::pipClip(*mesh,paws::pipActions[pair.first].name,false)];
+            const auto& b=skeleton.clips[paws::pipClip(*mesh,paws::pipActions[pair.second].name,false)];
             for(std::size_t j=0;j<skeleton.joints.size();++j)
                 check(poseDifference(a.frames[(a.frameCount-1)*skeleton.joints.size()+j],b.frames[j])<.001f,"Authored transition pose mismatch");
         }

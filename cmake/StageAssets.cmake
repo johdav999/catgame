@@ -1,8 +1,25 @@
 # Only this explicit runtime tree is deployable. Masters stay under artifacts/.
 file(GLOB_RECURSE RUNTIME_FILES RELATIVE "${SOURCE_DIR}/assets/runtime" "${SOURCE_DIR}/assets/runtime/*")
+# User-supplied garden FBX/texture sources and the previous revision are retained
+# locally. Only the converted top-level GLBs and runtime sidecars are deployable.
+list(FILTER RUNTIME_FILES EXCLUDE REGEX "^models/garden/(old/|updated/|[^/]+/|.*\\.zip$)")
+# Retain the user's supplied cat source pack locally; ship reviewed GLBs only.
+list(FILTER RUNTIME_FILES EXCLUDE REGEX "^models/release1/cats/(cartooncat_blend_extracted/|.*\\.fbx$)")
+file(READ "${SOURCE_DIR}/assets/runtime/manifest.json" ACCEPTED_MANIFEST)
 foreach(ASSET IN LISTS RUNTIME_FILES)
   if(ASSET MATCHES "\\.(blend|psd|kra|py|bak)$" OR ASSET MATCHES "(^|/)(sources|raw|rejected)/")
     message(FATAL_ERROR "Source master in runtime tree: ${ASSET}")
   endif()
 endforeach()
-file(COPY "${SOURCE_DIR}/assets/runtime/" DESTINATION "${SITE_DIR}/assets")
+foreach(ASSET IN LISTS RUNTIME_FILES)
+  if(ASSET MATCHES "^audio/.*\\.(wav|mp3|ogg|flac|m4a)$")
+    string(FIND "${ACCEPTED_MANIFEST}" "\"url\": \"assets/${ASSET}\"" ACCEPTED_AUDIO)
+    if(ACCEPTED_AUDIO EQUAL -1)
+      continue()
+    endif()
+  endif()
+  if(ASSET MATCHES "^models/release1/cats/" AND NOT EXISTS "${SOURCE_DIR}/docs/release1/prompt-02-handoff.md")
+    continue()
+  endif()
+  configure_file("${SOURCE_DIR}/assets/runtime/${ASSET}" "${SITE_DIR}/assets/${ASSET}" COPYONLY)
+endforeach()

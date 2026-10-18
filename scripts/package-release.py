@@ -9,7 +9,7 @@ import zipfile
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-FILES = ("index.html", "style.css", "favicon.svg", "host.js", "saves.js",
+FILES = ("index.html", "style.css", "favicon.svg", "host.js", "saves.js", "game-platform.js", "cloud.js",
          "paws-audio.js", "engine-gui.js", "engine-storage.js", "engine-audio.js",
          "paws.js", "paws.wasm", "build-info.js", "build-info.json")
 GATES = ["Final provider audio, rights records and actual-backend listening review",
@@ -42,7 +42,7 @@ def validate(site):
     if hashlib.sha256(notice_content.encode()).hexdigest() != info["noticesSha256"]:
         raise ValueError("Notices changed after build metadata generation")
     payload = f'{info["wasmSha256"]}:{info["contentSha256"]}:{info["enginePin"]}:{info["configuration"]}:{info["noticesSha256"]}'
-    for name in ("index.html", "host.js", "saves.js", "paws-audio.js", "style.css", "engine-gui.js", "engine-storage.js", "engine-audio.js", "paws.js"):
+    for name in ("index.html", "host.js", "saves.js", "game-platform.js", "cloud.js", "paws-audio.js", "style.css", "engine-gui.js", "engine-storage.js", "engine-audio.js", "paws.js"):
         payload += ":" + digest(site / name)
     expected = f'paws-{info["version"]}-{hashlib.sha256(payload.encode()).hexdigest()[:16]}'
     if info["buildId"] != expected:

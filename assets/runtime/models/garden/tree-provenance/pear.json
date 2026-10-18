@@ -1,0 +1,26 @@
+{
+  "output": "artifacts\\model-jobs\\fruit-trees\\2026-10-12\\pear\\model.glb",
+  "request": {
+    "model": "v3.1-20260211",
+    "geometry_quality": "detailed",
+    "face_limit": 50000,
+    "texture": true,
+    "pbr": true,
+    "quad": false,
+    "texture_quality": "detailed",
+    "texture_version": "v3.5-20260815",
+    "delight": false,
+    "prompt": "One complete mature pear tree for a cosy stylized miniature garden 3D game. Taller oval gently tapered slightly asymmetric crown, softly sculpted grouped sage and moss green opaque foliage, clearly visible small golden green pear-shaped fruits nestled among leaves, warm brown branching trunk, graceful natural proportions. Single freestanding tree with trunk rooted at ground origin, about 6 metres tall and 3.5 metres wide. All sides fully modeled. Matte nonmetallic materials, broad quiet bark detail, clean rounded silhouette, no glossy plastic, no jagged low poly facets. No pot, no ground slab, no grass, no other trees, no buildings, no text, no background geometry. Foliage and fruit made of real solid geometry. Suitable for elevated three-quarter game camera."
+  },
+  "submitted_at": "2026-10-12T07:17:01.735627+00:00",
+  "status": "success",
+  "task_id": "37dab7c5-76c5-442c-b1bf-274b23bf14f1",
+  "checked_at": "2026-10-12T07:19:40.589728+00:00",
+  "provider": "Tripo3D",
+  "api_base": "https://openapi.tripo3d.ai/v3",
+  "sha256": "07a35ba558acf67f3a2cbc6afc668e2383c78353e1c31c6b4d9c633da8656541",
+  "bytes": 7757224,
+  "credits_consumed": 50.0,
+  "completed_at": "2026-10-12T07:19:36.712258Z",
+  "license_status": "Unverified: record account entitlement and applicable rights before release"
+}

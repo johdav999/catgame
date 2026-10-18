@@ -8,9 +8,61 @@ const setStatus = (text, error = false) => {
   status.textContent = text; status.dataset.error = String(error);
   if(error) { startup.hidden = false; retry.hidden = false; cancel(); }
 };
-window.engineStatus = (text, error) => { if(error&&!runtimeFailed) setStatus('The garden could not be drawn. Please retry.', true); };
+const rendererMessages = [];
+window.engineStatus = (text, error) => {
+  rendererMessages.push({text, error:!!error});
+  if(rendererMessages.length>20) rendererMessages.shift();
+  if(error&&!runtimeFailed) setStatus('The garden could not be drawn. Please retry.', true);
+};
 window.engineStats = (meshes, lights, layers) => { window.pawsSceneStats = { meshes, lights, layers }; };
-window.enginePerformance = snapshot => { window.pawsPerformance = snapshot; };
+const profiling = new URLSearchParams(location.search).get('profile') === '1';
+const webgpuProbes = {};
+if(profiling&&navigator.gpu) {
+  (async()=>{
+    for(const preference of ['default','low-power','high-performance']) {
+      try {
+        const adapter=await navigator.gpu.requestAdapter(preference==='default'?{}:{powerPreference:preference});
+        const info=adapter?.info;
+        webgpuProbes[preference]=adapter?{available:true,info:info?{
+          vendor:info.vendor,architecture:info.architecture,device:info.device,
+          description:info.description,isFallbackAdapter:info.isFallbackAdapter
+        }:null}:{available:false};
+      } catch(error) {webgpuProbes[preference]={available:false,error:String(error)};}
+    }
+  })();
+}
+let profileOutput, profileStatus;
+if (profiling) {
+  const panel = document.createElement('aside');
+  panel.setAttribute('aria-label', 'WebEngine profiling');
+  panel.style.cssText = 'position:fixed;bottom:12px;right:12px;z-index:100;background:#fff8e9;color:#253e37;padding:12px;border:1px solid #29655e;border-radius:8px;font:14px monospace;max-width:450px;pointer-events:none';
+  profileStatus = document.createElement('div');
+  profileStatus.textContent = 'WebEngine profiler · collecting…';
+  profileOutput = document.createElement('pre');
+  profileOutput.id = 'paws-profile-data';
+  profileOutput.hidden = true;
+  panel.append(profileStatus, profileOutput);document.body.append(panel);
+}
+window.enginePerformance = snapshot => {
+  window.pawsPerformance = snapshot;
+  if (!profiling) return;
+  const sample = { capturedAt: new Date().toISOString(), ...snapshot };
+  let graphics;
+  if(window.pawsRenderState?.backend==='webgl2') {
+    const gl=canvas.getContext('webgl2'), debug=gl?.getExtension('WEBGL_debug_renderer_info');
+    graphics={vendor:debug?gl.getParameter(debug.UNMASKED_VENDOR_WEBGL):null,
+      renderer:debug?gl.getParameter(debug.UNMASKED_RENDERER_WEBGL):null};
+  }
+  profileOutput.textContent = JSON.stringify({
+    build: window.pawsBuild, quality: window.pawsQuality, rendering: window.pawsRenderState,
+    browser: navigator.userAgent, devicePixelRatio, wasmCapacityBytes: window.Module?.HEAPU8?.byteLength,
+    graphics: {secureContext:isSecureContext,webgpuExposed:!!navigator.gpu,...graphics,rendererMessages,webgpuProbes},
+    viewport: { width: innerWidth, height: innerHeight }, latest: sample
+  }, (_, value) => typeof value === 'bigint' ? Number(value) : value);
+  const t = snapshot.timings, c = snapshot.current, gpu = snapshot.gpu;
+  const ms = value => Number.isFinite(value) ? value.toFixed(2) : '—';
+  profileStatus.textContent = `WebEngine · ${ms(t.intervalMs.mean)} ms/frame · CPU ${ms(t.cpuMs.mean)} ms · GPU ${ms(gpu.totalMs?.mean)} ms (${gpu.state}) · ${c.drawCalls} draws`;
+};
 window.pawsMaybeReady = () => {
   if(window.pawsGuiReady && window.pawsRenderState?.state === 'ready' && !runtimeFailed) {
     startup.hidden = true; setStatus('Ready');
@@ -42,6 +94,7 @@ var Module = {
       });
       invoke('_paws_motion', matchMedia('(prefers-reduced-motion: reduce)').matches ? 1 : 0);
       await window.pawsLoadSave();
+      window.pawsRefreshCloudAccess?.();
     } catch { runtimeFailed=true;setStatus('The lettering could not load. Check your connection and retry.',true); }
   }],
   onAbort() { runtimeFailed = true; setStatus('The garden could not start. Please retry.', true); },
@@ -88,6 +141,7 @@ canvas.addEventListener('wheel',event=>{
   invoke('_paws_zoom',Math.sign(event.deltaY)*80);
 },{passive:false});
 document.addEventListener('keydown',event=>{
+  if(document.getElementById('cloud-panel')?.open)return;
   if(event.key==='Escape'&&loaded&&!event.repeat) {event.preventDefault();event.stopImmediatePropagation();cancel();invoke('_paws_escape');}
   if(document.activeElement===canvas&&!blocked()) {
     const key={ArrowUp:0,ArrowRight:1,ArrowDown:2,ArrowLeft:3,r:4,R:4,' ':5}[event.key];
@@ -102,9 +156,10 @@ canvas.addEventListener('keydown',event=>{
 });
 window.addEventListener('blur',cancel);
 window.addEventListener('resize',cancel);
-let pageAway=false, pageFrozen=false;
+let pageAway=false, pageFrozen=false, accountModal=false;
+window.pawsAccountModal=value=>{accountModal=!!value;lifecycle();};
 function lifecycle() {
-  cancel();const suspended=document.hidden||pageAway||pageFrozen;
+  cancel();const suspended=document.hidden||pageAway||pageFrozen||accountModal;
   invoke('_paws_suspend',suspended?1:0);
   if(suspended)window.pawsFlushSave?.();
 }

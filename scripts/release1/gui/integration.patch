@@ -1,0 +1,53 @@
+--- a/src/paws_ui.hpp
++++ b/src/paws_ui.hpp
+@@ -5,6 +5,7 @@
+ #include <map>
+ 
+ namespace paws {
++namespace release1::gui { class Views; }
+ enum class UiScreen { Title, Garden, Puzzle, Dialogue, Hints, Pause, Settings, Objects,
+     Restart, Completion, Shop, Details, Placement, Ending, Recovery, Gallery, Loading, LoadFailure, ImportConfirm };
+ enum class UiAction { Play, Continue, AcceptQuest, SelectObject, Move, Rotate, Roll,
+@@ -73,6 +74,8 @@
+     const UiSettings& settings() const { return settings_; }
+     UiScreen screen() const { return screen_; }
+ private:
++    friend class release1::gui::Views;
++    std::function<bool()> composition_;
+     struct Skin { engine::Button* button; engine::Image* image; engine::Image* text;
+         std::string label, icon; bool primary; int state=-1; float width=0, height=52; };
+     std::unique_ptr<engine::GuiSystem> gui_;
+--- a/src/paws_ui.cpp
++++ b/src/paws_ui.cpp
+@@ -419,7 +419,7 @@
+         width_=width;height_=height;skins_.clear();
+         auto body=gui_->font();gui_=std::make_unique<GuiSystem>();gui_->setFont(body);
+         // Bound resize/state texture cache; fonts and the current draw keep their own snapshots.
+-        art_.clear();build();gui_->layout({width,height});focusNamed(*gui_,focus);pendingFocus_.clear();dirty_=false;
++        art_.clear();if(!composition_||!composition_())build();gui_->layout({width,height});focusNamed(*gui_,focus);pendingFocus_.clear();dirty_=false;
+     }
+     gui_->layout({width,height});
+     for(auto& s:skins_) {
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -36,7 +36,9 @@
+ target_include_directories(paws_audio PUBLIC src)
+ target_link_libraries(paws_audio PUBLIC WebEngine::Core paws_content)
+ target_include_directories(paws_ui PUBLIC src)
+-target_link_libraries(paws_ui PUBLIC engine_gui)
++target_link_libraries(paws_ui PUBLIC engine_gui paws_content)
++target_sources(paws_ui PRIVATE src/release1/gui/views.cpp src/release1/gui/dialogue.cpp)
++target_compile_definitions(paws_ui PUBLIC PAWS_RELEASE1_GUI_PRODUCTION=1)
+ if(MSVC)
+   target_compile_options(paws_game PRIVATE /W4)
+ else()
+@@ -93,6 +95,9 @@
+     target_link_libraries(paws_ui_tests PRIVATE paws_ui)
+     target_compile_definitions(paws_ui_tests PRIVATE PAWS_SOURCE_DIR="${PROJECT_SOURCE_DIR}")
+     add_test(NAME paws_ui COMMAND paws_ui_tests)
++    add_executable(paws_release1_gui_tests tests/release1/gui/tests.cpp)
++    target_link_libraries(paws_release1_gui_tests PRIVATE paws_ui)
++    add_test(NAME paws_release1_gui COMMAND paws_release1_gui_tests)
+     add_executable(paws_phase6_scene_tests tests/phase6_scene_tests.cpp)
+     target_link_libraries(paws_phase6_scene_tests PRIVATE paws_game)
+     target_compile_definitions(paws_phase6_scene_tests PRIVATE PAWS_SOURCE_DIR="${PROJECT_SOURCE_DIR}")

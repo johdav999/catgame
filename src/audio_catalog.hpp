@@ -4,7 +4,7 @@
 #include <string_view>
 namespace paws {
 struct AudioClipSpec { std::string_view id, family; int bus; bool loop; float gain; double cooldown; };
-inline constexpr std::array<AudioClipSpec,47> audioClips{{
+inline constexpr std::array<AudioClipSpec,67> audioClips{{
     {"amb_garden_air_01","amb_garden_air",1,true,0.2f,0.12},
     {"amb_garden_bird_01","amb_garden_bird",1,false,0.2f,0.12},
     {"amb_garden_bird_02","amb_garden_bird",1,false,0.2f,0.12},
@@ -52,5 +52,25 @@ inline constexpr std::array<AudioClipSpec,47> audioClips{{
     {"music_garden_afternoon_01","music_garden_afternoon",0,true,0.18f,0.12},
     {"music_garden_puzzles_01","music_garden_puzzles",0,true,0.18f,0.12},
     {"music_pip_at_home_01","music_pip_at_home",0,false,0.18f,0.12},
+    {"crate_slide_01","crate_slide",2,false,0.35f,0.12},
+    {"crate_slide_02","crate_slide",2,false,0.35f,0.12},
+    {"plank_place_01","plank_place",2,false,0.35f,0.12},
+    {"plank_place_02","plank_place",2,false,0.35f,0.12},
+    {"shape_fit_01","shape_fit",2,false,0.35f,0.12},
+    {"bell_leaf_01","bell_leaf",2,false,0.25f,0.12},
+    {"bell_star_01","bell_star",2,false,0.25f,0.12},
+    {"bell_paw_01","bell_paw",2,false,0.25f,0.12},
+    {"bell_reset_01","bell_reset",2,false,0.25f,0.3},
+    {"water_flow_01","water_flow",2,true,0.35f,4},
+    {"bowl_fill_01","bowl_fill",2,false,0.35f,0.5},
+    {"mabel_request_01","mabel_request",2,false,0.35f,2},
+    {"mabel_happy_01","mabel_happy",2,false,0.35f,2},
+    {"button_request_01","button_request",2,false,0.35f,2},
+    {"button_happy_01","button_happy",2,false,0.35f,2},
+    {"pepper_request_01","pepper_request",2,false,0.35f,2},
+    {"pepper_happy_01","pepper_happy",2,false,0.35f,2},
+    {"cat_scratch_01","cat_scratch",2,false,0.35f,2},
+    {"playhouse_use_01","playhouse_use",2,false,0.35f,1},
+    {"reward_friendship_01","reward_friendship",2,false,0.35f,0.12},
 }};
 }

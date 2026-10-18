@@ -1,5 +1,6 @@
 #include "puzzle.hpp"
 #include "afternoon.hpp"
+#include <algorithm>
 #include <iostream>
 #include <stdexcept>
 using namespace paws;
@@ -8,6 +9,21 @@ CommandResult act(PawsSession& s,Action a,std::string id="",Direction d=Directio
 int main(){
  try {
   auto content=missingBall(); check(validateContent(content).empty(),"known solution validates");
+  {
+   PawsSession shared(content);
+   check(act(shared,Action::Move,"pot_b",Direction::West).accepted&&act(shared,Action::Move,"pot_b",Direction::North).accepted&&act(shared,Action::Move,"pot_a",Direction::North).accepted,"Reproduce reported stacked pots");
+   const auto blocked=shared.state().puzzle;
+   const auto left=slidingRoutes(content,blocked,0),middle=slidingRoutes(content,blocked,1);
+   check(left.size()==2&&left.back().cell==Cell{1,2}&&left.back().moves==std::vector<Direction>{Direction::South},"Reported state exposes the one backward escape move");
+   check(middle.size()==1&&slidingAdvice(content,blocked,1).find("blocked by Left pot")!=std::string::npos,"Blocked pot explains the actual blocker");
+   check(shared.state().puzzle==blocked,"Planning and feedback never change the attempt");
+   check(act(shared,Action::Move,"pot_a",Direction::South).accepted,"Backwards escape frees shared track");
+   const auto routes=slidingRoutes(content,shared.state().puzzle,1);
+   auto home=std::find_if(routes.begin(),routes.end(),[](const auto& route){return route.cell==Cell{2,1};});
+   check(home!=routes.end()&&home->moves==std::vector<Direction>{Direction::South,Direction::East},"Recovery drag follows the free corner to Middle pot's home");
+   for(auto direction:home->moves)check(act(shared,Action::Move,"pot_b",direction).accepted,"Every preflighted recovery step is legal");
+   check(shared.state().puzzle==initialState(content),"Recovery restores the exact fresh layout without restart");
+  }
   PawsSession s(content); const auto initial=s.state().puzzle;
   auto revision=s.state().revision;
   check(!act(s,Action::Move,"pot_a",Direction::East).accepted,"off-slot move rejected");
@@ -59,7 +75,7 @@ int main(){
   auto edge=content; edge.sourceExit=Direction::West;
   check(evaluateRoute(edge,initialState(edge)).message.find("off the board")!=std::string::npos,"off-board route terminates");
   for(auto c:{tidyToys(),stuckGate()}) check(validateContent(c).empty(),"new known solution");
-  PawsSession tidy(tidyToys());
+  PawsSession tidy(tidyToys(1)); // Preserve the original layout's reachability regression.
   check(!act(tidy,Action::PickUp,"ball").accepted,"cushion blocks pickup");
   check(act(tidy,Action::Move,"cushion").accepted,"move cushion");
   check(act(tidy,Action::PickUp,"ball").accepted,"pickup reachable ball");
@@ -75,7 +91,7 @@ int main(){
   check(!place("mouse","ball_recess").accepted,"occupied recess");
   check(act(tidy,Action::Undo).accepted&&act(tidy,Action::Undo).accepted&&tidy.state().puzzle==held,"undo pickup and placement restores held toy");
   check(act(tidy,Action::Restart).accepted&&tidy.state().puzzle==initialState(tidy.content()),"restart toys and sockets");
-  PawsSession gate(stuckGate());
+  PawsSession gate(stuckGate(1)); // The v2 multi-stage gate has separate regression coverage.
   check(!act(gate,Action::PickUp,"mouse").accepted,"closed gate retrieval blocked");
   for(auto step:gate.content().solution) if(step.action!=Action::PickUp) check(act(gate,step.action,step.object,step.direction).accepted,"gate route solution");
   check(switchActive(gate.content(),gate.state().puzzle,"switch")&&gateOpen(gate.content(),gate.state().puzzle,"gate"),"ball opens linked gate");

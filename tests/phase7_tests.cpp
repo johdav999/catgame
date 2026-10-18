@@ -1,7 +1,18 @@
 #include "afternoon.hpp"
 #include <iostream>
+#include <sstream>
+#include <iomanip>
 #include <stdexcept>
 using namespace paws;
+std::string legacySection(const std::string& bytes) {
+    std::istringstream input(bytes);std::string magic,tag,legacy;int version=0;
+    input>>magic>>version;
+    if(version<6)return bytes;
+    input>>tag>>std::quoted(legacy);
+    if(tag!="LEGACY"||!input)throw std::runtime_error("Missing legacy section");
+    return legacy;
+}
+
 void check(bool value,const char* text){if(!value)throw std::runtime_error(text);}
 CommandResult garden(Afternoon& a,Afternoon::GardenAction action,std::string item={},std::string spot={}) {
     const auto s=a.session().state();return a.dispatchGarden({s.attempt,s.revision,action,std::move(item),std::move(spot)});
@@ -40,6 +51,7 @@ int main(){try {
     check(a.endingEligible()&&garden(a,G::RecordEnding).accepted&&a.endingSeen(),"ending records once");rejectedWithoutMutation(a,G::RecordEnding);
     auto bytes=a.encode();auto restored=Afternoon::decode(bytes);check(restored.encode()==bytes&&restored.coins()==5&&restored.endingSeen(),"coherent ownership placements ending restore");
     auto expectBad=[](std::string bytes){bool bad=false;try{Afternoon::decode(bytes);}catch(...){bad=true;}check(bad,"corrupt furnishings rejected");};
+    bytes=legacySection(bytes); // Keep historical corruption fixtures on their original wire format.
     auto bad=bytes;auto at=bad.find("\"quiet_corner\"");bad.replace(at,14,"\"sunny_corner\"");expectBad(bad);
     bad=bytes;at=bad.find("\"sunny_corner\"");bad.replace(at,14,"\"removed_spot\"");expectBad(bad);
     bad=bytes;at=bad.find("1 1 \"sunny_corner\"");bad[at]='0';expectBad(bad);
@@ -48,4 +60,5 @@ int main(){try {
     // Geometric compatibility belongs to the same portable contract as runtime.
     check(fits(shopItems[0],gardenSpots[0])&&!fits(shopItems[0],{"small","Small",{},.5f,.5f}),"footprints enforce compatibility");
     std::cout<<"Phase 7 atomic purchases, free moves, occupancy, stale commands, ending and codec passed\n";
+return 0;
 }catch(const std::exception& e){std::cerr<<e.what()<<'\n';return 1;}}

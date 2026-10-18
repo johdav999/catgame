@@ -1,0 +1,82 @@
+[
+  {
+    "id": "garden_cushion",
+    "url": "assets/models/release1/props/thumbnails/garden_cushion.png",
+    "sha256": "d8c19acd719f75683cd4558f28dd217778bba8206d214a4a11030e67c03a3312",
+    "bytes": 219422,
+    "dimensions": [
+      512,
+      512
+    ]
+  },
+  {
+    "id": "drinking_bowl",
+    "url": "assets/models/release1/props/thumbnails/drinking_bowl.png",
+    "sha256": "3257b1cf8b4c2a26e946eb390e38093f879c0cbdc60193f334070eab941e3365",
+    "bytes": 210805,
+    "dimensions": [
+      512,
+      512
+    ]
+  },
+  {
+    "id": "scratching_post",
+    "url": "assets/models/release1/props/thumbnails/scratching_post.png",
+    "sha256": "47ba4670d1a247a3c8c3fe86bfcf6309a84b5153d4b29d84684e01a40ef0438d",
+    "bytes": 214604,
+    "dimensions": [
+      512,
+      512
+    ]
+  },
+  {
+    "id": "sunny_perch",
+    "url": "assets/models/release1/props/thumbnails/sunny_perch.png",
+    "sha256": "0ee94c2d688a1820ad4dcce5699354c628b46d35481aa399fe39ff8653646835",
+    "bytes": 204724,
+    "dimensions": [
+      512,
+      512
+    ]
+  },
+  {
+    "id": "hammock",
+    "url": "assets/models/release1/props/thumbnails/hammock.png",
+    "sha256": "2557b24e7f93c2b9bad6ce0a43c198d63ee7157213d8988e4b83725c210efc60",
+    "bytes": 207083,
+    "dimensions": [
+      512,
+      512
+    ]
+  },
+  {
+    "id": "playhouse",
+    "url": "assets/models/release1/props/thumbnails/playhouse.png",
+    "sha256": "6179ae9ac66dff671ffd347a61fd88d19dd65b772a55010affff22387a7268ec",
+    "bytes": 283858,
+    "dimensions": [
+      512,
+      512
+    ]
+  },
+  {
+    "id": "low_picnic_table",
+    "url": "assets/models/release1/props/thumbnails/low_picnic_table.png",
+    "sha256": "cefae114347bbab4f55587ff78f17bd961e6059c19cfc7db86c40d866515cb05",
+    "bytes": 202997,
+    "dimensions": [
+      512,
+      512
+    ]
+  },
+  {
+    "id": "picnic_mat",
+    "url": "assets/models/release1/props/thumbnails/picnic_mat.png",
+    "sha256": "d5d29b44bda350949c632d0da86d134905aa04e01ef4901a711e391be466d905",
+    "bytes": 228867,
+    "dimensions": [
+      512,
+      512
+    ]
+  }
+]

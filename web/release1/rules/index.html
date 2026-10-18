@@ -1,0 +1,12 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Paws — development rules harness</title><link rel="icon" href="data:,"><link rel="stylesheet" href="debug.css"></head>
+<body><header><strong>DEVELOPMENT: temporary logical visuals</strong><p>All ten portable puzzle attempts. No rewards, purchases or saves. Production art and GUI are separate tasks.</p>
+<label>Request <select id="quests" aria-label="Request"></select></label>
+<button id="pause">Pause</button><label><input id="large" type="checkbox"> Larger text</label></header>
+<main><section aria-label="Puzzle board"><h1 id="title">Starting…</h1><p id="objective"></p>
+<canvas id="viewport" aria-label="Temporary 3D cell board"></canvas><p id="graphics" role="status">Starting pinned renderer…</p>
+<div id="grid" aria-label="Named logical cells"></div><p id="sequence"></p><p id="feedback" role="status" aria-live="polite"></p><ul id="hints"></ul></section>
+<section aria-label="Portable command controls"><h2>Objects and actions</h2><label>Object <select id="objects" aria-label="Object"></select></label>
+<div id="actions"></div><details><summary>Known solution (development trace)</summary><ol id="trace"></ol></details>
+<details><summary>Object state</summary><ul id="states"></ul></details></section></main>
+<script src="debug.js"></script><script src="release1_preview.js"></script></body></html>

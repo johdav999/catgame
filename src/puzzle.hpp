@@ -9,9 +9,9 @@ using AttemptId = std::uint32_t;
 using Revision = std::uint32_t;
 struct Cell { int x=0, y=0; bool operator==(const Cell&) const = default; };
 enum class Direction { North, East, South, West };
-enum class Kind { Pot, Straight, Curve, Cushion, Toy, Socket, Switch, Gate };
+enum class Kind { Pot, Straight, Curve, Cushion, Toy, Socket, Switch, Gate, Crate, Catch };
 enum class Shape { None, Ball, Mouse, Fish };
-enum class Goal { Route, Tidy, Retrieve };
+enum class Goal { Route, Tidy, Retrieve, Relay };
 enum class Location { Ground, Held, Socket, Collected };
 bool sliding(Kind kind);
 bool channel(Kind kind);
@@ -24,6 +24,8 @@ struct ObjectDefinition {
     std::vector<Cell> slots; // Pots only; channel positions are fixed.
     Shape shape=Shape::None;
     ObjectId link; // Gate -> switch; collectible -> required gate.
+    std::vector<Cell> gatedSlots; // Sliding destinations available only while link's gate is open.
+    std::vector<Cell> approaches; // A toy also needs access to one of these pickup positions.
 };
 enum class Action { Select, Move, Rotate, Roll, Undo, Restart, Hint, Pause, Garden, Resume, PickUp, Place, ReturnBall };
 struct SolutionStep { Action action; ObjectId object; Direction direction=Direction::North; ObjectId target; };
@@ -43,12 +45,17 @@ struct PuzzleDefinition {
     std::vector<Cell> walkable;
     Cell access;
     ObjectId requestedItem, switchRole, gateRole;
+    bool packedToysBlockAccess=false;
+    bool keepBallOnObstacleMove=false;
+    Cell checkpoint;
+    Direction checkpointEntry=Direction::West,checkpointExit=Direction::East;
 };
 struct ObjectState { Cell cell; int orientation=0; Location location=Location::Ground; ObjectId socket; bool operator==(const ObjectState&) const = default; };
 struct PuzzleState {
     std::vector<ObjectState> objects;
     bool completed=false;
     bool ballOnSwitch=false;
+    bool checkpointReached=false;
     bool operator==(const PuzzleState&) const = default;
 };
 struct RouteResult { bool reached=false; std::string message; std::vector<Cell> path; };
@@ -78,6 +85,11 @@ std::string validateContent(const PuzzleDefinition& content, bool replaySolution
 RouteResult traceRoute(const PuzzleDefinition&, const PuzzleState&, Cell start, Direction entry);
 RouteResult evaluateRoute(const PuzzleDefinition&, const PuzzleState&);
 std::string moveBlockage(const PuzzleDefinition&, const PuzzleState&, std::size_t object, Direction);
+struct SlideRoute { Cell cell; std::vector<Direction> moves; };
+// All reachable parking spaces, including the current cell. Shared by the
+// drag preflight and its presentation so an outline always means a legal drop.
+std::vector<SlideRoute> slidingRoutes(const PuzzleDefinition&,const PuzzleState&,std::size_t object);
+std::string slidingAdvice(const PuzzleDefinition&,const PuzzleState&,std::size_t object);
 bool switchActive(const PuzzleDefinition&, const PuzzleState&, const ObjectId&);
 bool gateOpen(const PuzzleDefinition&, const PuzzleState&, const ObjectId&);
 bool reachable(const PuzzleDefinition&, const PuzzleState&, Cell);
@@ -97,7 +109,7 @@ private:
     GameState state_;
     std::vector<PuzzleState> undo_;
 };
-PuzzleDefinition missingBall();
-PuzzleDefinition tidyToys();
-PuzzleDefinition stuckGate();
+PuzzleDefinition missingBall(int version=2);
+PuzzleDefinition tidyToys(int version=2);
+PuzzleDefinition stuckGate(int version=2);
 }

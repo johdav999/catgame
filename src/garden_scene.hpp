@@ -7,6 +7,7 @@ std::span<const FurnishingSpot> furnishingSpots();
 PuzzleScene makeHomeGarden(const GardenMeshes&, bool ballReturned, bool reducedMotion,const Afternoon* afternoon=nullptr);
 void projectHomeGarden(engine::Scene&,SceneBindings&,const Afternoon&,std::string_view previewItem={},std::string_view previewSpot={});
 struct GardenUse {
+    CatCollision collision;
     engine::ActorId actor;
     engine::ComponentId cat;
     std::vector<engine::Vec3> path;

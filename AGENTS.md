@@ -14,6 +14,11 @@ integration foundation described in [docs/architecture.md](docs/architecture.md)
 
 ## Required skills
 
+- Always use the `tripo` skill when generating new 3D models. Its installed
+  entry point is [Tripo](C:/Users/Johan/.codex/skills/tripo/SKILL.md); on other
+  machines, resolve the installed `tripo` skill from the available skill catalog.
+  Follow its ImageGen-reference-first workflow, then use `pawmodels` for asset
+  review, normalization, export and runtime integration.
 - Use the `pawmodels` skill when creating or revising 3D cats, garden props,
   furnishings or puzzle models. Its installed entry point is
   [PawModels](C:/Users/Johan/.codex/skills/pawmodels/SKILL.md); on other machines,

@@ -1,0 +1,26 @@
+{
+  "output": "artifacts\\model-jobs\\garden-details\\2026-10-12\\herb_pot\\model.glb",
+  "request": {
+    "model": "v3.1-20260211",
+    "geometry_quality": "detailed",
+    "face_limit": 50000,
+    "texture": true,
+    "pbr": true,
+    "quad": false,
+    "texture_quality": "detailed",
+    "texture_version": "v3.5-20260815",
+    "delight": false,
+    "prompt": "One squat terracotta garden flowerpot with thick rounded rim, filled with dark soil and a compact bush of broad rounded sage green culinary herb leaves. Grouped opaque thick leaves, natural asymmetric mound, no flowers. Matte warm orange clay, restrained surface mottling, no writing. Standalone stylized 3D prop for Paws, a cosy miniature cat garden. Softly sculpted rounded silhouettes, warm cream/sage/muted terracotta palette, matte non-plastic materials, broad restrained detail, neutral diffuse lighting, no cast shadows painted into textures, no background scene, no cats. Match docs/design/paws-style-reference.png art direction."
+  },
+  "submitted_at": "2026-10-12T06:29:59.988895+00:00",
+  "status": "success",
+  "task_id": "1e0f02d6-bb80-41bd-ba3a-8584f0336951",
+  "checked_at": "2026-10-12T06:35:04.343668+00:00",
+  "provider": "Tripo3D",
+  "api_base": "https://openapi.tripo3d.ai/v3",
+  "sha256": "7e58d9b4fe94b17a66ea03fd810a1f7115d45eef1d6ab24bb2a5b32beaf46822",
+  "bytes": 7495772,
+  "credits_consumed": 50.0,
+  "completed_at": "2026-10-12T06:34:51.698853Z",
+  "license_status": "Unverified: record account entitlement and applicable rights before release"
+}

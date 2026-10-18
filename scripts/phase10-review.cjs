@@ -77,7 +77,7 @@ function distribution(values){values=values.filter(v=>Number.isFinite(v)&&v>0).s
   await settings();await action('Quality: Mobile');await page.waitForFunction(()=>pawsRenderState.maxPixels===2073600);await closeSettings();await captureMetrics('desktop');
   assert.deepEqual(await page.evaluate(()=>({coins:pawsState.coins,attempt:pawsState.attempt,revision:pawsState.revision})),before,'Quality changed rules');
   await page.reload();await ready();await action('Continue');await home();await page.waitForFunction(()=>pawsRenderState.maxPixels===2073600);report.checks.push('Quality switches preserve rule identities and explicit Desktop persists through reload');
-  await settings();await action('Quality: Desktop');await action('Quality: Automatic');await closeSettings();
+  await settings();await action('Quality: High (2×)');await action('Quality: Automatic');await closeSettings();
   for(const [width,height]of[[1440,900],[390,844],[844,390]]){
     await page.setViewportSize({width,height});await page.waitForTimeout(500);await shot(`garden-${width}x${height}`);
     for(const title of ["Pip's missing ball · Practice",'Tidy the toy basket · Practice','The stuck little gate · Practice']){

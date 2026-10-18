@@ -1,7 +1,6816 @@
 {
-  "schemaVersion": 2,
-  "contentId": "pip-afternoon-quests-v1",
-  "quests": ["missing-ball-v1", "tidy-toys-v1", "stuck-gate-v1"],
-  "assetCatalogues": ["models/pip/manifest.json", "models/garden/asset-manifest.json"],
-  "notice": "Runtime-only content. Model provenance and hashes are in the referenced catalogues; editable masters stay under artifacts/."
+  "schemaVersion": 3,
+  "contentId": "paws-release1/1",
+  "quests": [
+    "missing-ball-v1",
+    "tidy-toys-v1",
+    "stuck-gate-v1",
+    "button-mouse-bench-v1",
+    "mabel-sunny-spot-v1",
+    "button-cushion-bed-v1",
+    "mabel-drinking-route-v1",
+    "pepper-garden-bells-v1",
+    "pip-pepper-playhouse-v1",
+    "garden-picnic-v1"
+  ],
+  "assetCatalogues": [
+    "models/pip/manifest.json",
+    "models/garden/asset-manifest.json",
+    "models/garden/quest-marker-manifest.json",
+    "models/release1/props/manifest.json",
+    "audio/catalog.json"
+  ],
+  "assets": [
+    {
+      "id": "garden/paving@1",
+      "file": "paving.glb",
+      "sha256": "160efeed1e6c2714e3806ac3a6bc286ad4c0eb1240e735ebd9f5a1ae8f96f48b",
+      "bytes": 985284,
+      "triangles": 2498,
+      "bounds": {
+        "min": [
+          -0.4942263662815094,
+          -0.1200951337814331,
+          -0.49423137307167053
+        ],
+        "max": [
+          0.49400630593299866,
+          0.00017075439973268658,
+          0.4945494830608368
+        ]
+      },
+      "footprint": [
+        1,
+        1
+      ],
+      "pivot": "floor/contact centre",
+      "anchors": {},
+      "materials": [
+        "tripo_mat_5d393e46"
+      ],
+      "vertices": 2705,
+      "material_count": 1,
+      "primitives": 1,
+      "source": "assets/runtime/models/garden/paving/tripo_convert_5d393e46-998b-464c-a8ef-3769f217500b.fbx",
+      "sourceSha256": "685e0286d6dd27b2902d5e72e8b82c95d6fd97e7bb69fe76044b263b7280a0b2",
+      "url": "assets/models/garden/paving.glb",
+      "rightsRecord": "assets/models/garden/NOTICE.md"
+    },
+    {
+      "id": "garden/edge@1",
+      "file": "edge.glb",
+      "sha256": "dd9c67d9b89602e357f43518a8973febdae90925cd4772c06316e0c2426d9043",
+      "bytes": 1110944,
+      "triangles": 2500,
+      "bounds": {
+        "min": [
+          -0.4999687969684601,
+          -0.05994580686092377,
+          -0.11006638407707214
+        ],
+        "max": [
+          0.4999504089355469,
+          0.1402464658021927,
+          0.11029922217130661
+        ]
+      },
+      "footprint": [
+        1,
+        0.22
+      ],
+      "pivot": "floor/contact centre",
+      "anchors": {},
+      "materials": [
+        "tripo_mat_c7994f1d"
+      ],
+      "vertices": 2785,
+      "material_count": 1,
+      "primitives": 1,
+      "source": "assets/runtime/models/garden/edge/tripo_convert_c7994f1d-0553-4c7d-a886-e706c7328be8.fbx",
+      "sourceSha256": "a65ff4ece5f3e1fc13976c0ca7c7b8995897ffb378b53e5c6b6877addba944d0",
+      "url": "assets/models/garden/edge.glb",
+      "rightsRecord": "assets/models/garden/NOTICE.md"
+    },
+    {
+      "id": "garden/fence@1",
+      "file": "fence.glb",
+      "sha256": "4792ce0d8a709d8fb2d62e07389504854f06c158870c1bfa7afbc8474d0160e1",
+      "bytes": 1075712,
+      "triangles": 2499,
+      "bounds": {
+        "min": [
+          -0.5170736908912659,
+          6.748707528458908e-05,
+          -0.05808858573436737
+        ],
+        "max": [
+          0.517233669757843,
+          0.6006331443786621,
+          0.055042147636413574
+        ]
+      },
+      "footprint": [
+        1,
+        0.14
+      ],
+      "pivot": "floor/contact centre",
+      "anchors": {},
+      "materials": [
+        "tripo_mat_dc25c7df"
+      ],
+      "vertices": 4412,
+      "material_count": 1,
+      "primitives": 1,
+      "source": "assets/runtime/models/garden/fence/tripo_convert_dc25c7df-58fd-4e26-b8d5-b165a52d8138.fbx",
+      "sourceSha256": "8bb2d821b2fad4c02ff1dcbccf373bdbaebefab5a3480a9cce3c1fb9f94e13b5",
+      "url": "assets/models/garden/fence.glb",
+      "rightsRecord": "assets/models/garden/NOTICE.md"
+    },
+    {
+      "id": "garden/planting@1",
+      "file": "planting.glb",
+      "sha256": "cc662696fdb36b85ed0e49a212737e49f2960eff54045cc119ae9b01e7260f92",
+      "bytes": 1008940,
+      "triangles": 2500,
+      "bounds": {
+        "min": [
+          -0.27970603108406067,
+          -0.003961978945881128,
+          -0.14161416888237
+        ],
+        "max": [
+          0.3527628481388092,
+          0.3656776249408722,
+          0.298422634601593
+        ]
+      },
+      "footprint": [
+        0.72,
+        0.65
+      ],
+      "pivot": "floor/contact centre",
+      "anchors": {},
+      "materials": [
+        "tripo_mat_24075fda"
+      ],
+      "vertices": 3292,
+      "material_count": 1,
+      "primitives": 1,
+      "source": "assets/runtime/models/garden/planting/tripo_convert_24075fda-7513-4f3c-b61e-ba637fe0239b.fbx",
+      "sourceSha256": "17876f773c7eece9b4b4068649842ba399573fa6075a5d99f13e1a038cee36f9",
+      "url": "assets/models/garden/planting.glb",
+      "rightsRecord": "assets/models/garden/NOTICE.md"
+    },
+    {
+      "id": "garden/bench@1",
+      "file": "bench.glb",
+      "sha256": "2b1d6155dba21a5bda2614d80d4cbf365b4205ad4b15714be32189cd5a81fff3",
+      "bytes": 993212,
+      "triangles": 2500,
+      "bounds": {
+        "min": [
+          -0.6346958875656128,
+          0.0008304244838654995,
+          -0.3098113536834717
+        ],
+        "max": [
+          0.6357827186584473,
+          0.8546817898750305,
+          0.3092886209487915
+        ]
+      },
+      "footprint": [
+        1.4,
+        0.66
+      ],
+      "pivot": "floor/contact centre",
+      "anchors": {
+        "perch": [
+          0,
+          0.49,
+          0
+        ]
+      },
+      "materials": [
+        "tripo_mat_4477cc88"
+      ],
+      "vertices": 4527,
+      "material_count": 1,
+      "primitives": 1,
+      "source": "assets/runtime/models/garden/bench/tripo_convert_4477cc88-f1b3-4fe9-85fa-ad3e12b823d2.fbx",
+      "sourceSha256": "b9a7983e03d6550c0f699d090a79560a06bb786e6b9577670b0e68e0354e035f",
+      "url": "assets/models/garden/bench.glb",
+      "rightsRecord": "assets/models/garden/NOTICE.md"
+    },
+    {
+      "id": "garden/pot_round@1",
+      "file": "pot_round.glb",
+      "sha256": "216e3e82c9d805639cb04fd8aefa770a0fe760d509b2969218d713147f0d48be",
+      "bytes": 950488,
+      "triangles": 2499,
+      "bounds": {
+        "min": [
+          -0.2901166081428528,
+          0.00039277560426853597,
+          -0.2897999882698059
+        ],
+        "max": [
+          0.3536096513271332,
+          0.733779788017273,
+          0.3007239103317261
+        ]
+      },
+      "footprint": [
+        0.65,
+        0.65
+      ],
+      "pivot": "floor/contact centre",
+      "anchors": {
+        "floor": [
+          0,
+          0,
+          0
+        ],
+        "slide_axis": [
+          1,
+          0,
+          0
+        ]
+      },
+      "materials": [
+        "tripo_mat_da4deb60"
+      ],
+      "vertices": 2917,
+      "material_count": 1,
+      "primitives": 1,
+      "source": "assets/runtime/models/garden/pot_round/tripo_convert_da4deb60-f828-4e18-88f1-b47b4033c06e.fbx",
+      "sourceSha256": "94f58ed9ee08effa72b6e19714c1fd5209600852b49bf084748f01651b910393",
+      "url": "assets/models/garden/pot_round.glb",
+      "rightsRecord": "assets/models/garden/NOTICE.md"
+    },
+    {
+      "id": "garden/pot_fluted@1",
+      "file": "pot_fluted.glb",
+      "sha256": "fdaf3987d6fab9217c739f5fc24191a28a4c9ca4b88c98f252ef84f243bc1ec5",
+      "bytes": 926528,
+      "triangles": 2500,
+      "bounds": {
+        "min": [
+          -0.30050599575042725,
+          0.0010701132705435157,
+          -0.2937912046909332
+        ],
+        "max": [
+          0.3548649549484253,
+          0.7353283166885376,
+          0.30139005184173584
+        ]
+      },
+      "footprint": [
+        0.65,
+        0.65
+      ],
+      "pivot": "floor/contact centre",
+      "anchors": {
+        "floor": [
+          0,
+          0,
+          0
+        ],
+        "slide_axis": [
+          1,
+          0,
+          0
+        ]
+      },
+      "materials": [
+        "tripo_mat_8c1236c2"
+      ],
+      "vertices": 3179,
+      "material_count": 1,
+      "primitives": 1,
+      "source": "assets/runtime/models/garden/pot_fluted/tripo_convert_8c1236c2-e532-4f10-a02f-598da6a2b6ec.fbx",
+      "sourceSha256": "2125b4731e101e0ed1f8340349d8f5d0d0636aab41b03992fe88d480d621444c",
+      "url": "assets/models/garden/pot_fluted.glb",
+      "rightsRecord": "assets/models/garden/NOTICE.md"
+    },
+    {
+      "id": "garden/channel_straight@1",
+      "file": "channel_straight.glb",
+      "sha256": "2cc362125b5471366885ea1cd808ca6825f4dd09f0859cfe192e1718205fea0c",
+      "bytes": 940080,
+      "triangles": 2500,
+      "bounds": {
+        "min": [
+          -0.4999224543571472,
+          7.792773976689205e-05,
+          -0.18991179764270782
+        ],
+        "max": [
+          0.5001792311668396,
+          0.19790636003017426,
+          0.1899278610944748
+        ]
+      },
+      "footprint": [
+        1,
+        1
+      ],
+      "pivot": "floor/contact centre",
+      "anchors": {
+        "port_a": [
+          -0.5,
+          0.06,
+          0
+        ],
+        "port_b": [
+          0.5,
+          0.06,
+          0
+        ],
+        "clear_width": 0.26,
+        "ball_radius": 0.105
+      },
+      "materials": [
+        "tripo_mat_12e60879"
+      ],
+      "vertices": 4268,
+      "material_count": 1,
+      "primitives": 1,
+      "source": "assets/runtime/models/garden/channel_straight/tripo_convert_12e60879-16ea-4b4f-b4db-bb3aef551243.fbx",
+      "sourceSha256": "ff0b45f1363a4193770842bcfab84de5700c959c7d520beb972623e73e60702d",
+      "conversion": "Monotonic full-cross-section route-height remap; preserves source thickness and chipped ends.",
+      "editableSource": "artifacts/model-jobs/garden-kit/2026-10-11-channel-repair/channel_straight.blend",
+      "url": "assets/models/garden/channel_straight.glb",
+      "rightsRecord": "assets/models/garden/NOTICE.md"
+    },
+    {
+      "id": "garden/channel_curve@1",
+      "file": "channel_curve.glb",
+      "sha256": "e3cdcb43d1512c8510b642c8d68f3ce8c802e96b71102c91fd9d6f331cb853a5",
+      "bytes": 862116,
+      "triangles": 2500,
+      "bounds": {
+        "min": [
+          -0.500167727470398,
+          -4.121924939681776e-05,
+          -0.5001086592674255
+        ],
+        "max": [
+          0.17572686076164246,
+          0.19773423671722412,
+          0.18431872129440308
+        ]
+      },
+      "footprint": [
+        1,
+        1
+      ],
+      "pivot": "floor/contact centre",
+      "anchors": {
+        "port_a": [
+          -0.5,
+          0.06,
+          0
+        ],
+        "port_b": [
+          0,
+          0.06,
+          -0.5
+        ],
+        "clear_width": 0.26,
+        "ball_radius": 0.105
+      },
+      "materials": [
+        "tripo_mat_5f7f6c0c"
+      ],
+      "vertices": 2810,
+      "material_count": 1,
+      "primitives": 1,
+      "source": "assets/runtime/models/garden/channel_curve/tripo_convert_5f7f6c0c-1693-4068-a6b1-ca50f7bc01d7.fbx",
+      "sourceSha256": "9793973f855945e5a3562cbebe6e56607c1dccbab39e873181ad5ba36250833c",
+      "conversion": "Monotonic full-cross-section route-height remap; preserves source thickness and chipped ends.",
+      "editableSource": "artifacts/model-jobs/garden-kit/2026-10-11-channel-repair/channel_curve.blend",
+      "url": "assets/models/garden/channel_curve.glb",
+      "rightsRecord": "assets/models/garden/NOTICE.md"
+    },
+    {
+      "id": "garden/ball@1",
+      "file": "ball.glb",
+      "sha256": "3119b6eb1a9e1c4d4fde66d965a2ccbb76963c3dfce4368d53f2672c0a130e6b",
+      "bytes": 817608,
+      "triangles": 2500,
+      "bounds": {
+        "min": [
+          -0.1049053743481636,
+          -0.00014194579853210598,
+          -0.10482050478458405
+        ],
+        "max": [
+          0.10504891723394394,
+          0.21010838449001312,
+          0.10487452894449234
+        ]
+      },
+      "footprint": [
+        0.21,
+        0.21
+      ],
+      "pivot": "floor/contact centre",
+      "anchors": {
+        "centre": [
+          0,
+          0.105,
+          0
+        ]
+      },
+      "materials": [
+        "tripo_mat_965c775c"
+      ],
+      "vertices": 2156,
+      "material_count": 1,
+      "primitives": 1,
+      "source": "assets/runtime/models/garden/ball/tripo_convert_965c775c-4d49-420d-acc1-d804ce7c9b40.fbx",
+      "sourceSha256": "9e33309ea83db8eb81fb4d438940f8be576cb080700fbc116bb8684fdbfbac80",
+      "url": "assets/models/garden/ball.glb",
+      "rightsRecord": "assets/models/garden/NOTICE.md"
+    },
+    {
+      "id": "garden/mouse@1",
+      "file": "mouse.glb",
+      "sha256": "595eea82e526fccad6656eb2ce042d85ccb984ec0cd5bcc4c21f5716316f2f9d",
+      "bytes": 1129444,
+      "triangles": 2500,
+      "bounds": {
+        "min": [
+          -0.0720575600862503,
+          1.1487769370432943e-05,
+          -0.04603765159845352
+        ],
+        "max": [
+          0.09152140468358994,
+          0.06999531388282776,
+          0.045992668718099594
+        ]
+      },
+      "footprint": [
+        0.25,
+        0.39
+      ],
+      "pivot": "floor/contact centre",
+      "anchors": {},
+      "materials": [
+        "tripo_mat_63cc99c2"
+      ],
+      "vertices": 2051,
+      "material_count": 1,
+      "primitives": 1,
+      "source": "assets/runtime/models/garden/mouse/tripo_convert_63cc99c2-7042-45ac-a15f-92b968c4ea66.fbx",
+      "sourceSha256": "5ca795abbb59c56d1ac1e9d3d2890385a269f6fed5b25fa25620dc5ff016ef29",
+      "url": "assets/models/garden/mouse.glb",
+      "rightsRecord": "assets/models/garden/NOTICE.md"
+    },
+    {
+      "id": "garden/fish@1",
+      "file": "fish.glb",
+      "sha256": "2f5be0569293f829098c21f25d9cf0c1a70332902229c4c03910940411a1f749",
+      "bytes": 1146704,
+      "triangles": 2500,
+      "bounds": {
+        "min": [
+          -0.14724278450012207,
+          0.00019504509691614658,
+          -0.07999129593372345
+        ],
+        "max": [
+          0.14542482793331146,
+          0.07989978790283203,
+          0.07974781095981598
+        ]
+      },
+      "footprint": [
+        0.46,
+        0.27
+      ],
+      "pivot": "floor/contact centre",
+      "anchors": {},
+      "materials": [
+        "tripo_mat_71299c48"
+      ],
+      "vertices": 2002,
+      "material_count": 1,
+      "primitives": 1,
+      "source": "assets/runtime/models/garden/fish/tripo_convert_71299c48-28e1-40d1-a6a9-514251280edd.fbx",
+      "sourceSha256": "64ed474968101d0f3a7e05e9d9c113c3b03bcb3c9c1c0e3dc1e77005114289a3",
+      "url": "assets/models/garden/fish.glb",
+      "rightsRecord": "assets/models/garden/NOTICE.md"
+    },
+    {
+      "id": "garden/basket@1",
+      "file": "basket.glb",
+      "sha256": "b5e2ec7c610d8c168c715eea09c8ad27765af07c4d64d4bc21eb18289ebc8c29",
+      "bytes": 1133180,
+      "triangles": 2500,
+      "bounds": {
+        "min": [
+          -0.8597418665885925,
+          -0.0003988805110566318,
+          -0.3557257652282715
+        ],
+        "max": [
+          0.8582279682159424,
+          0.24391135573387146,
+          0.35619285702705383
+        ]
+      },
+      "footprint": [
+        1.78,
+        0.74
+      ],
+      "pivot": "floor/contact centre",
+      "anchors": {
+        "ball_socket": [
+          -0.53,
+          0.059,
+          0
+        ],
+        "mouse_socket": [
+          0,
+          0.059,
+          0
+        ],
+        "fish_socket": [
+          0.52,
+          0.059,
+          0
+        ]
+      },
+      "materials": [
+        "tripo_mat_4b8ff411"
+      ],
+      "vertices": 2409,
+      "material_count": 1,
+      "primitives": 1,
+      "source": "assets/runtime/models/garden/basket/tripo_convert_4b8ff411-4734-48aa-ba87-49fb0d585601.fbx",
+      "sourceSha256": "ad4234beb72230d07002633263de5388bf307e0e676504a30f532fde5ecac803",
+      "url": "assets/models/garden/basket.glb",
+      "rightsRecord": "assets/models/garden/NOTICE.md"
+    },
+    {
+      "id": "garden/blocking_cushion@1",
+      "file": "blocking_cushion.glb",
+      "sha256": "5c0b41f3fe53cc2b7901b833b250628546f34064a43f4b397a97cbdd4aecaa9a",
+      "bytes": 926824,
+      "triangles": 2500,
+      "bounds": {
+        "min": [
+          -0.3694089353084564,
+          -5.628006692859344e-05,
+          -0.25370872020721436
+        ],
+        "max": [
+          0.36873146891593933,
+          0.23383235931396484,
+          0.25424858927726746
+        ]
+      },
+      "footprint": [
+        0.76,
+        0.53
+      ],
+      "pivot": "floor/contact centre",
+      "anchors": {},
+      "materials": [
+        "tripo_mat_5eb48669"
+      ],
+      "vertices": 2380,
+      "material_count": 1,
+      "primitives": 1,
+      "source": "assets/runtime/models/garden/blocking_cushion/blocking_cushion.fbx",
+      "sourceSha256": "8dbc013a1b3c6b2ab5b44942814a45b75268d3e7874b61822d05b94b69c1059b",
+      "url": "assets/models/garden/blocking_cushion.glb",
+      "rightsRecord": "assets/models/garden/NOTICE.md"
+    },
+    {
+      "id": "garden/cushion@1",
+      "file": "cushion.glb",
+      "sha256": "666f0efb4495e1a30a37bb745220227ba0fe80fd0d002ccaffa12f35055597d7",
+      "bytes": 1045908,
+      "triangles": 2500,
+      "bounds": {
+        "min": [
+          -0.45927533507347107,
+          -0.0004057779733557254,
+          -0.5783226490020752
+        ],
+        "max": [
+          0.4592672884464264,
+          0.18066267669200897,
+          0.5794592499732971
+        ]
+      },
+      "footprint": [
+        0.94,
+        1.18
+      ],
+      "pivot": "floor/contact centre",
+      "anchors": {
+        "rest_root": [
+          0,
+          0.16,
+          0
+        ],
+        "approach": [
+          0,
+          0,
+          1.1
+        ]
+      },
+      "materials": [
+        "tripo_mat_b7415fbb"
+      ],
+      "vertices": 2111,
+      "material_count": 1,
+      "primitives": 1,
+      "source": "assets/runtime/models/garden/cushion/tripo_convert_b7415fbb-1722-466f-af68-93d7a91b5532.fbx",
+      "sourceSha256": "6b074d28ab835ca8c1191a5748743b191881901cb0803dcd25a66bedf2abc6fc",
+      "url": "assets/models/garden/cushion.glb",
+      "rightsRecord": "assets/models/garden/NOTICE.md"
+    },
+    {
+      "id": "garden/switch_base@1",
+      "file": "switch_base.glb",
+      "sha256": "7b9a58815661702a0a4626e4994077910c3654951918abc2cafe1b5d1a971d42",
+      "bytes": 696616,
+      "triangles": 2500,
+      "bounds": {
+        "min": [
+          -0.2401035577058792,
+          -3.67162429029122e-05,
+          -0.24010907113552094
+        ],
+        "max": [
+          0.2399454414844513,
+          0.07004671543836594,
+          0.23996639251708984
+        ]
+      },
+      "footprint": [
+        0.5,
+        0.5
+      ],
+      "pivot": "floor/contact centre",
+      "anchors": {
+        "plate_unpressed": [
+          0,
+          0.09,
+          0
+        ],
+        "plate_pressed": [
+          0,
+          0.055,
+          0
+        ],
+        "ball_root_pressed": [
+          0,
+          0.105,
+          0
+        ]
+      },
+      "materials": [
+        "tripo_mat_569b409b"
+      ],
+      "vertices": 2516,
+      "material_count": 1,
+      "primitives": 1,
+      "source": "assets/runtime/models/garden/switch_base/tripo_convert_569b409b-b405-4d20-b642-54de561362dd.fbx",
+      "sourceSha256": "e4e8809ff77f5de7c7c268687c2503e00e33560c3eada9f696b7311a518fe78d",
+      "url": "assets/models/garden/switch_base.glb",
+      "rightsRecord": "assets/models/garden/NOTICE.md"
+    },
+    {
+      "id": "garden/switch_plate@1",
+      "file": "switch_plate.glb",
+      "sha256": "3b6b122ac7678f287acc1999c5501639ba7f0bb707151de2a4e42f1a3c7afdfb",
+      "bytes": 819228,
+      "triangles": 2500,
+      "bounds": {
+        "min": [
+          -0.19497844576835632,
+          2.3410062567563727e-05,
+          -0.19499468803405762
+        ],
+        "max": [
+          0.1949954777956009,
+          0.06497564166784286,
+          0.19498537480831146
+        ]
+      },
+      "footprint": [
+        0.4,
+        0.4
+      ],
+      "pivot": "floor/contact centre",
+      "anchors": {
+        "ball_root": [
+          0,
+          0.05,
+          0
+        ]
+      },
+      "materials": [
+        "tripo_mat_381ecf81"
+      ],
+      "vertices": 2748,
+      "material_count": 1,
+      "primitives": 1,
+      "source": "assets/runtime/models/garden/switch_plate/tripo_convert_381ecf81-452a-4c52-a3c2-ba33e0e098de.fbx",
+      "sourceSha256": "2bdd4e00cb9ff0980b4645740b1e2f924e98a24f3bb96d4ad309c8d1b2d2b7dc",
+      "url": "assets/models/garden/switch_plate.glb",
+      "rightsRecord": "assets/models/garden/NOTICE.md"
+    },
+    {
+      "id": "garden/gate_frame@1",
+      "file": "gate_frame.glb",
+      "sha256": "8003bca79dd00641e507df7e1e30c8bb849e4e6f0ee2ff358168c0cf4b64a51d",
+      "bytes": 1014504,
+      "triangles": 2500,
+      "bounds": {
+        "min": [
+          -0.6950949430465698,
+          0.0003003294696100056,
+          -0.09479881823062897
+        ],
+        "max": [
+          0.6943570375442505,
+          1.1308969259262085,
+          0.09508272260427475
+        ]
+      },
+      "footprint": [
+        1.38,
+        0.24
+      ],
+      "pivot": "floor/contact centre",
+      "anchors": {
+        "hinge": [
+          -0.54,
+          0.08,
+          0
+        ],
+        "passage_width": 1.1,
+        "open_angle_degrees": 100
+      },
+      "materials": [
+        "tripo_mat_2b114a40"
+      ],
+      "vertices": 3538,
+      "material_count": 1,
+      "primitives": 1,
+      "source": "assets/runtime/models/garden/gate_frame/tripo_convert_2b114a40-5a6c-45e4-8db1-dca72bf0adde.fbx",
+      "sourceSha256": "37ec5767ea0a91581ac601ac61369bb32e6dfd6e1ea9bffd95ede47060ee5291",
+      "url": "assets/models/garden/gate_frame.glb",
+      "rightsRecord": "assets/models/garden/NOTICE.md"
+    },
+    {
+      "id": "garden/gate_leaf@1",
+      "file": "gate_leaf.glb",
+      "sha256": "cae8f9b603a380aef5c733cec9b5092b8ff3103b097cf66e7f52237d2511bbe1",
+      "bytes": 1081924,
+      "triangles": 2499,
+      "bounds": {
+        "min": [
+          -0.031042633578181267,
+          0.01013143453747034,
+          -0.10610401630401611
+        ],
+        "max": [
+          1.059397578239441,
+          0.8894500732421875,
+          0.07294432073831558
+        ]
+      },
+      "footprint": [
+        1.06,
+        0.18
+      ],
+      "pivot": "hinge",
+      "anchors": {
+        "hinge": [
+          0,
+          0,
+          0
+        ]
+      },
+      "materials": [
+        "tripo_mat_0cc7a61d"
+      ],
+      "vertices": 4490,
+      "material_count": 1,
+      "primitives": 1,
+      "source": "assets/runtime/models/garden/gate_leaf/tripo_convert_0cc7a61d-c2b5-4e61-856b-56df6aab1133.fbx",
+      "sourceSha256": "58cf429dcaae1f376e9358f8cb30faf7f44aced611d1968fce6d312395bac4bc",
+      "url": "assets/models/garden/gate_leaf.glb",
+      "rightsRecord": "assets/models/garden/NOTICE.md"
+    },
+    {
+      "id": "garden/bowl@1",
+      "file": "bowl.glb",
+      "sha256": "aee2fd64b78e8b7ec3f155e01b4a858b89cb8c542a9401d8c17ce997e2027428",
+      "bytes": 575916,
+      "triangles": 2500,
+      "bounds": {
+        "min": [
+          -0.270778089761734,
+          1.082540529750986e-05,
+          -0.2707782983779907
+        ],
+        "max": [
+          0.270844966173172,
+          0.4080575108528137,
+          0.27104073762893677
+        ]
+      },
+      "footprint": [
+        0.55,
+        0.55
+      ],
+      "pivot": "floor/contact centre",
+      "anchors": {
+        "water": [
+          0,
+          0.383,
+          0
+        ],
+        "drink_root": [
+          0,
+          0,
+          -0.61327
+        ],
+        "approach": [
+          0,
+          0,
+          -1.3
+        ]
+      },
+      "materials": [
+        "tripo_mat_3c835fdb"
+      ],
+      "vertices": 2134,
+      "material_count": 1,
+      "primitives": 1,
+      "source": "assets/runtime/models/garden/bowl/tripo_convert_3c835fdb-e318-4850-929c-48af75683081.fbx",
+      "sourceSha256": "52037deb55cd2fbd110e7345b4656b096dca3ce6eba13157a6efcc64c89eaf53",
+      "url": "assets/models/garden/bowl.glb",
+      "rightsRecord": "assets/models/garden/NOTICE.md"
+    },
+    {
+      "id": "garden/bowl_water@1",
+      "file": "bowl_water.glb",
+      "sha256": "6149813cc871ea629fd5172b16d01224b86a7f124efaa909ec7116cd75bffe1e",
+      "bytes": 683784,
+      "triangles": 2500,
+      "bounds": {
+        "min": [
+          -0.2183864265680313,
+          0,
+          -0.21976710855960846
+        ],
+        "max": [
+          0.2195863276720047,
+          0,
+          0.21970203518867493
+        ]
+      },
+      "footprint": [
+        0.44,
+        0.44
+      ],
+      "pivot": "floor/contact centre",
+      "anchors": {},
+      "materials": [
+        "tripo_mat_f9b7b303"
+      ],
+      "vertices": 4648,
+      "material_count": 1,
+      "primitives": 1,
+      "source": "assets/runtime/models/garden/bowl_water/tripo_convert_f9b7b303-9be0-414a-bda8-a07d5f601c48.fbx",
+      "sourceSha256": "1d3baf45c3805c79b2d7ff437e12e1f92900af5eadf567a0ea70b9e3047508eb",
+      "url": "assets/models/garden/bowl_water.glb",
+      "rightsRecord": "assets/models/garden/NOTICE.md"
+    },
+    {
+      "id": "garden/front_enclosure@1",
+      "file": "front_enclosure.glb",
+      "sha256": "3a97b18cbc850cd9630671bf54e2273b0918bbc7479622c0e550eb9fb9294950",
+      "bytes": 3871844,
+      "triangles": 11999,
+      "bounds": {
+        "min": [
+          -1.600000023841858,
+          0,
+          -0.22188344597816467
+        ],
+        "max": [
+          1.5995010137557983,
+          0.549410879611969,
+          0.23999999463558197
+        ]
+      },
+      "anchors": {},
+      "pivot": "floor centre",
+      "source": "assets/runtime/models/garden/front_enclosure/tripo_convert_54f3a337-33e1-4c6f-9adf-d3d857cb62ed.fbx",
+      "sourceSha256": "882edef348ae40722974de58fe81413c48ae73cf7552139b58dab354bbad0b12",
+      "sourceBounds": [
+        [
+          -0.4887085556983948,
+          -0.08206935226917267,
+          7.395199452808754e-10
+        ],
+        [
+          0.4896851181983948,
+          0.08409114181995392,
+          0.19944000244140625
+        ]
+      ],
+      "sourceTriangles": 19237,
+      "materials": 1,
+      "textures": "1024px basecolor, roughness, OpenGL normal; supplied Tripo maps",
+      "license": "User-supplied Tripo output; provider terms apply, no third-party license asserted",
+      "url": "assets/models/garden/front_enclosure.glb",
+      "rightsRecord": "assets/models/garden/NOTICE.md"
+    },
+    {
+      "id": "garden/left_enclosure@1",
+      "file": "left_enclosure.glb",
+      "sha256": "11ec44f87e2468e1de04d0294c005dec00e48238b29272c29cdbc80c7869df72",
+      "bytes": 4089824,
+      "triangles": 12000,
+      "bounds": {
+        "min": [
+          -1.6014741659164429,
+          -0.001163925277069211,
+          -0.2378285676240921
+        ],
+        "max": [
+          1.5961956977844238,
+          0.8488878607749939,
+          0.2376481145620346
+        ]
+      },
+      "anchors": {},
+      "pivot": "floor centre",
+      "source": "assets/runtime/models/garden/left_enclosure/tripo_convert_cd8189b3-edaa-47d6-9259-4cbc6a3e1e38.fbx",
+      "sourceSha256": "b3beeb346de4dfdeab8cf0b8411a2e6b3ec7a1265567bee0425e1309bfec9436",
+      "sourceBounds": [
+        [
+          -0.4900818467140198,
+          -0.09024043381214142,
+          8.01043564813142e-10
+        ],
+        [
+          0.4894409775733948,
+          0.09027095139026642,
+          0.2624969482421875
+        ]
+      ],
+      "sourceTriangles": 1912012,
+      "materials": 1,
+      "textures": "1024px basecolor, roughness, OpenGL normal; supplied Tripo maps",
+      "license": "User-supplied Tripo output; provider terms apply, no third-party license asserted",
+      "url": "assets/models/garden/left_enclosure.glb",
+      "rightsRecord": "assets/models/garden/NOTICE.md"
+    },
+    {
+      "id": "garden/right_enclosure@1",
+      "file": "right_enclosure.glb",
+      "sha256": "82c330639f298c7b279de90f13b7354a5c193cdc3e39a465d4e65c7d1fc2d25b",
+      "bytes": 4230076,
+      "triangles": 11999,
+      "bounds": {
+        "min": [
+          -1.5962070226669312,
+          0.0007110592559911311,
+          -0.2414618581533432
+        ],
+        "max": [
+          1.5984092950820923,
+          0.8480991721153259,
+          0.24125142395496368
+        ]
+      },
+      "anchors": {},
+      "pivot": "floor centre",
+      "source": "assets/runtime/models/garden/right_enclosure/tripo_convert_d0b2127f-cd5d-4e12-ac8d-2eb6a35332f4.fbx",
+      "sourceSha256": "ccd359e30e5b4d522f8fee6a9d591e09966cc0ca2212a90ce7b2ddf2afb0d0bb",
+      "sourceBounds": [
+        [
+          -0.4917603135108948,
+          -0.10204312205314636,
+          1.4231785749885262e-09
+        ],
+        [
+          0.4925537705421448,
+          0.10241705179214478,
+          0.269317626953125
+        ]
+      ],
+      "sourceTriangles": 1941182,
+      "materials": 1,
+      "textures": "1024px basecolor, roughness, OpenGL normal; supplied Tripo maps",
+      "license": "User-supplied Tripo output; provider terms apply, no third-party license asserted",
+      "url": "assets/models/garden/right_enclosure.glb",
+      "rightsRecord": "assets/models/garden/NOTICE.md"
+    },
+    {
+      "id": "garden/house@1",
+      "file": "house.glb",
+      "sha256": "022bd85bae3c10c5fb21897e7ae503b4cf301fef8234fe8d0515f38986abc8dd",
+      "bytes": 3295308,
+      "triangles": 17613,
+      "bounds": {
+        "min": [
+          -3.999999761581421,
+          0,
+          -2.6615254878997803
+        ],
+        "max": [
+          3.999999761581421,
+          5.340961456298828,
+          2.6615254878997803
+        ]
+      },
+      "anchors": {},
+      "pivot": "floor centre",
+      "source": "assets/runtime/models/garden/house/house.fbx",
+      "sourceSha256": "652a884052c46593fd710b282eefbec072057138fbb9b9ef620912d8b3b9787f",
+      "sourceBounds": [
+        [
+          -0.4914551377296448,
+          -0.3265381455421448,
+          1.2770056123656559e-08
+        ],
+        [
+          0.4899597764015198,
+          0.3264771103858948,
+          0.65521240234375
+        ]
+      ],
+      "materials": 1,
+      "textures": "1024px supplied basecolor, roughness and normal",
+      "license": "User-supplied Tripo output; provider terms apply; independent rights not established",
+      "units": "metres",
+      "facing": "verified in runtime",
+      "url": "assets/models/garden/house.glb",
+      "rightsRecord": "assets/models/garden/NOTICE.md"
+    },
+    {
+      "id": "garden/exterior_foliage@4",
+      "file": "exterior_foliage.glb",
+      "sha256": "9d51c18af52fb7b8be671e4ca8bc2350bb8ff0b280b78f974cfdb6bebc409240",
+      "bytes": 925944,
+      "triangles": 5996,
+      "bounds": {
+        "min": [
+          -0.2939544916152954,
+          0.0006488595390692353,
+          -0.2647760510444641
+        ],
+        "max": [
+          0.3079679608345032,
+          0.31254249811172485,
+          0.26860707998275757
+        ]
+      },
+      "anchors": {},
+      "source": "assets/runtime/models/garden/foliage2/tripo_convert_4419ba0f-433e-4954-8a72-e84a652739f0.fbx",
+      "sourceSha256": "90e6c6eb46670301fce3351bc866201816f7adc17d3434f6f221143cc44284f3",
+      "sourceTriangles": 48038,
+      "sourceBounds": [
+        [
+          -0.4901123642921448,
+          -0.41940316557884216,
+          -1.1024406942894416e-09
+        ],
+        [
+          0.4907837510108948,
+          0.4207153618335724,
+          0.4942626953125
+        ]
+      ],
+      "sourceToMetresScale": 0.636152993436232,
+      "pivot": "Floor centre",
+      "units": "metres",
+      "up": "Y in GLB, Z in Blender",
+      "materials": 2,
+      "textures": "512px supplied basecolor, roughness and OpenGL normal; native 4096px retained in source master",
+      "license": "User-supplied Tripo output; provider terms apply; independent rights not established",
+      "provenance": "Supplied dense soft foliage; uniform scale to 0.624m width, optimized to the existing repeated-border triangle budget; supplied maps downsampled from 4096 to 512px; metallic fixed to zero",
+      "doubleSided": [
+        false,
+        true
+      ],
+      "derivation": {
+        "sourceRuntimeSha256": "f4e4bc07dccc755aaf263771b1a772b34008d2f09b6740f760846975f770c219",
+        "job": "artifacts/model-jobs/garden-foliage/2026-10-14-performance",
+        "method": "Seam welding; conservative occluded-island cleanup; small crack caps; outward solid winding; decimation; original maps reused",
+        "culling": "Closed volume back faces culled; 47 open leaf triangles remain double-sided"
+      },
+      "url": "assets/models/garden/exterior_foliage.glb",
+      "rightsRecord": "assets/models/garden/NOTICE.md"
+    },
+    {
+      "id": "garden/lantern@1",
+      "file": "lantern.glb",
+      "bytes": 485752,
+      "sha256": "7d6dee924372bad5676e22186f2d4c01f687341da4a6e10373ca021d15bcdb56",
+      "triangles": 3000,
+      "bounds": {
+        "min": [
+          -0.14003753662109375,
+          -1.765538172548986e-06,
+          -0.1399395614862442
+        ],
+        "max": [
+          0.14046385884284973,
+          0.5193830728530884,
+          0.1403106302022934
+        ]
+      },
+      "anchors": {},
+      "pivot": "floor/contact centre",
+      "units": "metres",
+      "source": "artifacts/model-jobs/garden-details/2026-10-12/lantern/model.glb",
+      "sourceSha256": "8bc40371793fde0f81368d307654717f25896493ffa2f011dd0949b13ca9018e",
+      "materials": 1,
+      "runtimeTextureLimit": 512,
+      "provenance": "garden-details-provenance.json#lantern",
+      "footprint": [
+        0.2805013954639435,
+        0.2802501916885376
+      ],
+      "url": "assets/models/garden/lantern.glb",
+      "rightsRecord": "assets/models/garden/NOTICE.md"
+    },
+    {
+      "id": "garden/book_stack@1",
+      "file": "book_stack.glb",
+      "bytes": 511100,
+      "sha256": "b5c789037d148b4fcef58eb6f6eabc954050f010a34972a5a8e05458e0ecbd34",
+      "triangles": 2998,
+      "bounds": {
+        "min": [
+          -0.16981707513332367,
+          -0.00018569141684565693,
+          -0.12013596296310425
+        ],
+        "max": [
+          0.16988854110240936,
+          0.22029690444469452,
+          0.11971163749694824
+        ]
+      },
+      "anchors": {},
+      "pivot": "floor/contact centre",
+      "units": "metres",
+      "source": "artifacts/model-jobs/garden-details/2026-10-12/book_stack/model.glb",
+      "sourceSha256": "67d6b620a62b50e1e3b3f37699bf1407d7d3337145beb9c0d5bf8f1bcfedad5e",
+      "materials": 1,
+      "runtimeTextureLimit": 512,
+      "provenance": "garden-details-provenance.json#book_stack",
+      "footprint": [
+        0.33970561623573303,
+        0.2398476004600525
+      ],
+      "url": "assets/models/garden/book_stack.glb",
+      "rightsRecord": "assets/models/garden/NOTICE.md"
+    },
+    {
+      "id": "garden/garden_sign@1",
+      "file": "garden_sign.glb",
+      "bytes": 468960,
+      "sha256": "0cc8cec02d0bca50126b11779fdfaaea82f2b5ed6571dd8c70da462b06fd4b01",
+      "triangles": 3000,
+      "bounds": {
+        "min": [
+          -0.23972156643867493,
+          0.0001983658003155142,
+          -0.04012543335556984
+        ],
+        "max": [
+          0.23971426486968994,
+          0.5599695444107056,
+          0.03991169482469559
+        ]
+      },
+      "anchors": {},
+      "pivot": "floor/contact centre",
+      "units": "metres",
+      "source": "artifacts/model-jobs/garden-details/2026-10-12/garden_sign/model.glb",
+      "sourceSha256": "483de79a291f518489a403499b7b9c1477b6d9e2208ed90c887d4470d30ffdfd",
+      "materials": 1,
+      "runtimeTextureLimit": 512,
+      "provenance": "garden-details-provenance.json#garden_sign",
+      "footprint": [
+        0.47943583130836487,
+        0.08003712818026543
+      ],
+      "url": "assets/models/garden/garden_sign.glb",
+      "rightsRecord": "assets/models/garden/NOTICE.md"
+    },
+    {
+      "id": "garden/bench_cushion@1",
+      "file": "bench_cushion.glb",
+      "bytes": 516252,
+      "sha256": "de6f7efad633e8e9416ad28b9b4294ee3b57cac38ca468a0645bc7c9ba562f4d",
+      "triangles": 3000,
+      "bounds": {
+        "min": [
+          -0.5903401970863342,
+          0.00022572645684704185,
+          -0.19499707221984863
+        ],
+        "max": [
+          0.5903503894805908,
+          0.13994818925857544,
+          0.19518274068832397
+        ]
+      },
+      "anchors": {},
+      "pivot": "floor/contact centre",
+      "units": "metres",
+      "source": "artifacts/model-jobs/garden-details/2026-10-12/bench_cushion/model.glb",
+      "sourceSha256": "bca2963840c91b14c7154d94a322a5867eb04a45afb7713d0d2297e06affe06b",
+      "materials": 1,
+      "runtimeTextureLimit": 512,
+      "provenance": "garden-details-provenance.json#bench_cushion",
+      "footprint": [
+        1.180690586566925,
+        0.3901798129081726
+      ],
+      "url": "assets/models/garden/bench_cushion.glb",
+      "rightsRecord": "assets/models/garden/NOTICE.md"
+    },
+    {
+      "id": "garden/herb_pot@1",
+      "file": "herb_pot.glb",
+      "bytes": 685944,
+      "sha256": "1969d10ef98e1720e13f687c6b9ab7b2f41d3ab9901fcf3d220f74823355dec8",
+      "triangles": 5000,
+      "bounds": {
+        "min": [
+          -0.2402130663394928,
+          0.00024466722970828414,
+          -0.2399911731481552
+        ],
+        "max": [
+          0.24037151038646698,
+          0.6002811789512634,
+          0.23925988376140594
+        ]
+      },
+      "anchors": {},
+      "pivot": "floor/contact centre",
+      "units": "metres",
+      "source": "artifacts/model-jobs/garden-details/2026-10-12/herb_pot/model.glb",
+      "sourceSha256": "7e58d9b4fe94b17a66ea03fd810a1f7115d45eef1d6ab24bb2a5b32beaf46822",
+      "materials": 1,
+      "runtimeTextureLimit": 512,
+      "provenance": "garden-details-provenance.json#herb_pot",
+      "footprint": [
+        0.4805845767259598,
+        0.47925105690956116
+      ],
+      "url": "assets/models/garden/herb_pot.glb",
+      "rightsRecord": "assets/models/garden/NOTICE.md"
+    },
+    {
+      "id": "garden/paw_mat@1",
+      "file": "paw_mat.glb",
+      "bytes": 616568,
+      "sha256": "eff2821867107e5f93f259628a20566894f2ae546ce5a5b9ea18635cfbfbea59",
+      "triangles": 3000,
+      "bounds": {
+        "min": [
+          -0.3117428123950958,
+          -0.0005036138463765383,
+          -0.31153595447540283
+        ],
+        "max": [
+          0.3111276626586914,
+          0.034930821508169174,
+          0.31122690439224243
+        ]
+      },
+      "anchors": {},
+      "pivot": "floor/contact centre",
+      "units": "metres",
+      "source": "artifacts/model-jobs/garden-details/2026-10-12/paw_mat/model.glb",
+      "sourceSha256": "d869c25c26ab0316aabf49c82a03afbbd58a5629ab6615c32504baff31a730ba",
+      "materials": 1,
+      "runtimeTextureLimit": 512,
+      "provenance": "garden-details-provenance.json#paw_mat",
+      "footprint": [
+        0.6228704750537872,
+        0.6227628588676453
+      ],
+      "url": "assets/models/garden/paw_mat.glb",
+      "rightsRecord": "assets/models/garden/NOTICE.md"
+    },
+    {
+      "id": "garden/empty_pot@1",
+      "file": "empty_pot.glb",
+      "bytes": 356508,
+      "sha256": "69f794807a6380c46a9b97079a0aafba8571cc29dcdb5179bfbb7d62d30fd605",
+      "triangles": 2999,
+      "bounds": {
+        "min": [
+          -0.20022493600845337,
+          -0.000308833085000515,
+          -0.19971387088298798
+        ],
+        "max": [
+          0.20010782778263092,
+          0.48013627529144287,
+          0.20069155097007751
+        ]
+      },
+      "anchors": {},
+      "pivot": "floor/contact centre",
+      "units": "metres",
+      "source": "artifacts/model-jobs/garden-details/2026-10-12/empty_pot/model.glb",
+      "sourceSha256": "751ed06e8e00b05b07ba6cce4b07b751e90be819dccca3d5d8840892eb73499a",
+      "materials": 1,
+      "runtimeTextureLimit": 512,
+      "provenance": "garden-details-provenance.json#empty_pot",
+      "footprint": [
+        0.4003327637910843,
+        0.4004054218530655
+      ],
+      "url": "assets/models/garden/empty_pot.glb",
+      "rightsRecord": "assets/models/garden/NOTICE.md"
+    },
+    {
+      "id": "garden/climbing_ivy@1",
+      "file": "climbing_ivy.glb",
+      "bytes": 620092,
+      "sha256": "8943a617c8f7bbf734f3a5684743da2b71d1358295395d69809f896800459bbf",
+      "triangles": 5000,
+      "bounds": {
+        "min": [
+          -0.32422101497650146,
+          0.0004071528383065015,
+          -0.06026826053857803
+        ],
+        "max": [
+          0.3245841860771179,
+          0.8507156372070312,
+          0.059368591755628586
+        ]
+      },
+      "anchors": {},
+      "pivot": "floor/contact centre",
+      "units": "metres",
+      "source": "artifacts/model-jobs/garden-details/2026-10-12/climbing_ivy/model.glb",
+      "sourceSha256": "8bd26d79ba6967a83969d1b7ef6238efce5f595e0ec3ab9d429c716d8c661f6b",
+      "materials": 1,
+      "runtimeTextureLimit": 512,
+      "provenance": "garden-details-provenance.json#climbing_ivy",
+      "footprint": [
+        0.6488052010536194,
+        0.11963685229420662
+      ],
+      "url": "assets/models/garden/climbing_ivy.glb",
+      "rightsRecord": "assets/models/garden/NOTICE.md"
+    },
+    {
+      "id": "garden/moss_flowers@1",
+      "file": "moss_flowers.glb",
+      "bytes": 540132,
+      "sha256": "5c0e35a4e781a993ce369bde3a5c7670daf7523cf442c071e091f0a27701f552",
+      "triangles": 3000,
+      "bounds": {
+        "min": [
+          -0.1898525506258011,
+          -0.0005470588221214712,
+          -0.13533242046833038
+        ],
+        "max": [
+          0.1900150030851364,
+          0.12012912333011627,
+          0.1356855034828186
+        ]
+      },
+      "anchors": {},
+      "pivot": "floor/contact centre",
+      "units": "metres",
+      "source": "artifacts/model-jobs/garden-details/2026-10-12/moss_flowers/model.glb",
+      "sourceSha256": "a6abcb81ca34f59ef700d8c61cb9b4f6d231417bc270636ea0c33139ecece009",
+      "materials": 1,
+      "runtimeTextureLimit": 512,
+      "provenance": "garden-details-provenance.json#moss_flowers",
+      "footprint": [
+        0.3798675537109375,
+        0.271017923951149
+      ],
+      "url": "assets/models/garden/moss_flowers.glb",
+      "rightsRecord": "assets/models/garden/NOTICE.md"
+    },
+    {
+      "id": "garden/stone_border@1",
+      "file": "stone_border.glb",
+      "bytes": 542116,
+      "sha256": "5adb62ecb257f3e396b5979d1274aa73b97119d93e2b1cef25c163ddba33c133",
+      "triangles": 2999,
+      "bounds": {
+        "min": [
+          -0.6251924633979797,
+          0.0004593183984979987,
+          -0.10659418255090714
+        ],
+        "max": [
+          0.6258820295333862,
+          0.379355788230896,
+          0.11060349643230438
+        ]
+      },
+      "anchors": {},
+      "pivot": "floor/contact centre",
+      "units": "metres",
+      "source": "artifacts/model-jobs/garden-details/2026-10-12/stone_border/model.glb",
+      "sourceSha256": "992f976300d08eb098fa2ad36b09d7cf9169216e261958698ad11095adcc575a",
+      "materials": 1,
+      "runtimeTextureLimit": 512,
+      "provenance": "garden-details-provenance.json#stone_border",
+      "footprint": [
+        1.251074492931366,
+        0.21719767898321152
+      ],
+      "url": "assets/models/garden/stone_border.glb",
+      "rightsRecord": "assets/models/garden/NOTICE.md"
+    },
+    {
+      "id": "garden/watering_can@1",
+      "file": "watering_can.glb",
+      "bytes": 521172,
+      "sha256": "8f67e2b9fe31efc24d0c300aa8d12fd5e33092558bc2bf4c06074ad3c84f1130",
+      "triangles": 3000,
+      "bounds": {
+        "min": [
+          -0.34059417247772217,
+          0.00015511302626691759,
+          -0.1605677306652069
+        ],
+        "max": [
+          0.3394983410835266,
+          0.5500482320785522,
+          0.15871287882328033
+        ]
+      },
+      "anchors": {},
+      "pivot": "floor/contact centre",
+      "units": "metres",
+      "source": "artifacts/model-jobs/garden-details/2026-10-12/watering_can/model.glb",
+      "sourceSha256": "d5620e99f8587ab078d662b0d6ab1f5fb59222efa43a1814e57c6e5277fff3d2",
+      "materials": 1,
+      "runtimeTextureLimit": 512,
+      "provenance": "garden-details-provenance.json#watering_can",
+      "footprint": [
+        0.6800925135612488,
+        0.31928060948848724
+      ],
+      "url": "assets/models/garden/watering_can.glb",
+      "rightsRecord": "assets/models/garden/NOTICE.md"
+    },
+    {
+      "id": "garden/apple_tree@2",
+      "file": "apple_tree.glb",
+      "bytes": 3287004,
+      "sha256": "80cae4a5fd48efb06c8eab34f0e04fcffe90396e84472120f7556e6275afb5d5",
+      "triangles": 20000,
+      "bounds": {
+        "min": [
+          -2.3412983417510986,
+          -0.0038221373688429594,
+          -2.099416971206665
+        ],
+        "max": [
+          2.3910412788391113,
+          5.797297477722168,
+          2.102931261062622
+        ]
+      },
+      "anchors": {},
+      "pivot": "floor/contact centre",
+      "units": "metres",
+      "source": "artifacts/model-jobs/fruit-trees/2026-10-12-natural-v2/apple/model.glb",
+      "sourceSha256": "b95c906eacd52c148ee1d91067fc4551062bea539b039c77260805671b669051",
+      "materials": 1,
+      "runtimeTextureLimit": 1024,
+      "provenance": "fruit-tree-provenance.json#apple",
+      "reference": "artifacts/model-input-images/fruit-trees-natural-v2/apple.png",
+      "footprint": [
+        4.73233962059021,
+        4.202348232269287
+      ],
+      "url": "assets/models/garden/apple_tree.glb",
+      "rightsRecord": "assets/models/garden/NOTICE.md"
+    },
+    {
+      "id": "garden/pear_tree@2",
+      "file": "pear_tree.glb",
+      "bytes": 2942324,
+      "sha256": "a413090da0cecf6eb10cb2c30bd10052685d0bde6969ec037e2d02e26b4f0af2",
+      "triangles": 20000,
+      "bounds": {
+        "min": [
+          -1.8734402656555176,
+          -0.001410258118994534,
+          -1.750367522239685
+        ],
+        "max": [
+          1.9070684909820557,
+          6.500897407531738,
+          1.7526201009750366
+        ]
+      },
+      "anchors": {},
+      "pivot": "floor/contact centre",
+      "units": "metres",
+      "source": "artifacts/model-jobs/fruit-trees/2026-10-12-natural-v2/pear/model.glb",
+      "sourceSha256": "cb0f6b91de9e7cbe5728bace47da3ca91a4ec614ea25444ce330f35d9ca4f6be",
+      "materials": 1,
+      "runtimeTextureLimit": 1024,
+      "provenance": "fruit-tree-provenance.json#pear",
+      "reference": "artifacts/model-input-images/fruit-trees-natural-v2/pear.png",
+      "footprint": [
+        3.7805087566375732,
+        3.5029876232147217
+      ],
+      "url": "assets/models/garden/pear_tree.glb",
+      "rightsRecord": "assets/models/garden/NOTICE.md"
+    },
+    {
+      "id": "garden/cat_tongue@1",
+      "file": "cat_tongue.glb",
+      "sha256": "43598b0ddd84efa89dfbe9856f6c7ed8d72f9ac8b1597670a65f8293b3c14ab0",
+      "bytes": 7432,
+      "triangles": 224,
+      "bounds": {
+        "min": [
+          -0.018999997526407242,
+          -0.00800000037997961,
+          -0.03200000151991844
+        ],
+        "max": [
+          0.01899999938905239,
+          0.00800000037997961,
+          0.03200000151991844
+        ]
+      },
+      "footprint": [
+        0.038,
+        0.064
+      ],
+      "pivot": "mouth contact centre",
+      "anchors": {},
+      "materials": [
+        "Soft pink tongue"
+      ],
+      "source": "artifacts/model-jobs/quest-endings/2026-10-13",
+      "license": "Original game asset; no external texture",
+      "url": "assets/models/garden/cat_tongue.glb",
+      "rightsRecord": "assets/models/garden/NOTICE.md"
+    },
+    {
+      "id": "garden/exterior_foliage_lod1@1",
+      "file": "exterior_foliage_lod1.glb",
+      "sha256": "061aa8ff2b70dfead9f07a5946b322ea6ba8eb5f3d1074815633d661b73d57e4",
+      "bytes": 788944,
+      "triangles": 2992,
+      "bounds": {
+        "min": [
+          -0.2921683192253113,
+          0.004787372890859842,
+          -0.2562139630317688
+        ],
+        "max": [
+          0.3010700047016144,
+          0.3083789348602295,
+          0.24721813201904297
+        ]
+      },
+      "anchors": {},
+      "source": "assets/runtime/models/garden/foliage2/tripo_convert_4419ba0f-433e-4954-8a72-e84a652739f0.fbx",
+      "sourceSha256": "90e6c6eb46670301fce3351bc866201816f7adc17d3434f6f221143cc44284f3",
+      "sourceTriangles": 48038,
+      "sourceBounds": [
+        [
+          -0.4901123642921448,
+          -0.41940316557884216,
+          -1.1024406942894416e-09
+        ],
+        [
+          0.4907837510108948,
+          0.4207153618335724,
+          0.4942626953125
+        ]
+      ],
+      "sourceToMetresScale": 0.636152993436232,
+      "pivot": "Floor centre",
+      "units": "metres",
+      "up": "Y in GLB, Z in Blender",
+      "materials": 2,
+      "textures": "512px supplied basecolor, roughness and OpenGL normal; native 4096px retained in source master",
+      "license": "User-supplied Tripo output; provider terms apply; independent rights not established",
+      "provenance": "Supplied dense soft foliage; uniform scale to 0.624m width, optimized to the existing repeated-border triangle budget; supplied maps downsampled from 4096 to 512px; metallic fixed to zero",
+      "doubleSided": [
+        false,
+        true
+      ],
+      "derivation": {
+        "sourceRuntimeSha256": "f4e4bc07dccc755aaf263771b1a772b34008d2f09b6740f760846975f770c219",
+        "job": "artifacts/model-jobs/garden-foliage/2026-10-14-performance",
+        "method": "Seam welding; conservative occluded-island cleanup; small crack caps; outward solid winding; decimation; original maps reused",
+        "culling": "Closed volume back faces culled; 47 open leaf triangles remain double-sided"
+      },
+      "url": "assets/models/garden/exterior_foliage_lod1.glb",
+      "rightsRecord": "assets/models/garden/NOTICE.md"
+    },
+    {
+      "id": "garden/exterior_foliage_lod2@1",
+      "file": "exterior_foliage_lod2.glb",
+      "sha256": "a6b748976f8a70e4a247465f164346a146b15ad6dbff98dc251f75956efec28c",
+      "bytes": 695464,
+      "triangles": 1466,
+      "bounds": {
+        "min": [
+          -0.28998833894729614,
+          0.00890329573303461,
+          -0.23304322361946106
+        ],
+        "max": [
+          0.3010700047016144,
+          0.2897477149963379,
+          0.24100272357463837
+        ]
+      },
+      "anchors": {},
+      "source": "assets/runtime/models/garden/foliage2/tripo_convert_4419ba0f-433e-4954-8a72-e84a652739f0.fbx",
+      "sourceSha256": "90e6c6eb46670301fce3351bc866201816f7adc17d3434f6f221143cc44284f3",
+      "sourceTriangles": 48038,
+      "sourceBounds": [
+        [
+          -0.4901123642921448,
+          -0.41940316557884216,
+          -1.1024406942894416e-09
+        ],
+        [
+          0.4907837510108948,
+          0.4207153618335724,
+          0.4942626953125
+        ]
+      ],
+      "sourceToMetresScale": 0.636152993436232,
+      "pivot": "Floor centre",
+      "units": "metres",
+      "up": "Y in GLB, Z in Blender",
+      "materials": 2,
+      "textures": "512px supplied basecolor, roughness and OpenGL normal; native 4096px retained in source master",
+      "license": "User-supplied Tripo output; provider terms apply; independent rights not established",
+      "provenance": "Supplied dense soft foliage; uniform scale to 0.624m width, optimized to the existing repeated-border triangle budget; supplied maps downsampled from 4096 to 512px; metallic fixed to zero",
+      "doubleSided": [
+        false,
+        true
+      ],
+      "derivation": {
+        "sourceRuntimeSha256": "f4e4bc07dccc755aaf263771b1a772b34008d2f09b6740f760846975f770c219",
+        "job": "artifacts/model-jobs/garden-foliage/2026-10-14-performance",
+        "method": "Seam welding; conservative occluded-island cleanup; small crack caps; outward solid winding; decimation; original maps reused",
+        "culling": "Closed volume back faces culled; 47 open leaf triangles remain double-sided"
+      },
+      "url": "assets/models/garden/exterior_foliage_lod2.glb",
+      "rightsRecord": "assets/models/garden/NOTICE.md"
+    },
+    {
+      "name": "sequence_blackboard",
+      "id": "garden/sequence_blackboard@1",
+      "file": "sequence_blackboard.glb",
+      "sha256": "74c5d3583f378127cf6a5bf2f25f6edebbfb403e44ef69b9d7c87deb83c57e78",
+      "bytes": 694112,
+      "triangles": 2412,
+      "anchors": {
+        "picture_centre": [
+          0,
+          1.6,
+          0.105
+        ]
+      },
+      "license": "Generated service output; applicable provider terms; account entitlement unverified",
+      "provenance": "Tripo3D image-to-model from original built-in ImageGen reference; fitted, split, optimized in Blender; exact authored clue inlays",
+      "bounds": {
+        "min": [
+          -0.7799331545829773,
+          0.0,
+          -0.28964918851852417
+        ],
+        "max": [
+          0.7799232006072998,
+          2.1603498458862305,
+          0.28959202766418457
+        ]
+      },
+      "vertices": 4438,
+      "materialCount": 2,
+      "textureCount": 1,
+      "runtimeTextureLimit": 512,
+      "maps": [
+        {
+          "name": "Color_4cd0cdd8-200c-49ad-8fe2-c7d9370f6a68",
+          "dimensions": [
+            512,
+            512
+          ]
+        }
+      ],
+      "source": "artifacts/model-jobs/sequence-tripo/2026-10-14/blackboard/raw.glb",
+      "sourceMaster": "artifacts/model-jobs/sequence-tripo/2026-10-14/delivery/sequence_blackboard.blend",
+      "url": "assets/models/garden/sequence_blackboard.glb",
+      "rightsRecord": "assets/models/garden/NOTICE.md"
+    },
+    {
+      "name": "sequence_picture_leaf",
+      "id": "garden/sequence_picture_leaf@1",
+      "file": "sequence_picture_leaf.glb",
+      "sha256": "da0d292391e28866331ce0d08d68a07c4e7c01dbb3695a870e2febeb9f36c8b7",
+      "bytes": 2064,
+      "triangles": 20,
+      "anchors": {},
+      "license": "Original Blender geometry authored for Paws",
+      "provenance": "Original geometry and simple flat painted materials; no external source or generated textures",
+      "bounds": {
+        "min": [
+          -0.30000001192092896,
+          -0.25,
+          -0.006000000052154064
+        ],
+        "max": [
+          0.28999999165534973,
+          0.30000001192092896,
+          0.006000000052154064
+        ]
+      },
+      "url": "assets/models/garden/sequence_picture_leaf.glb",
+      "rightsRecord": "assets/models/garden/NOTICE.md"
+    },
+    {
+      "name": "sequence_picture_star",
+      "id": "garden/sequence_picture_star@1",
+      "file": "sequence_picture_star.glb",
+      "sha256": "0880d75a540353c5fe95c530651111a550a2e6e601db2350a23e36bf7da338ab",
+      "bytes": 2752,
+      "triangles": 36,
+      "anchors": {},
+      "license": "Original Blender geometry authored for Paws",
+      "provenance": "Original geometry and simple flat painted materials; no external source or generated textures",
+      "bounds": {
+        "min": [
+          -0.3233592212200165,
+          -0.2750657796859741,
+          -0.006000000052154064
+        ],
+        "max": [
+          0.3233592212200165,
+          0.3400000035762787,
+          0.006000000052154064
+        ]
+      },
+      "url": "assets/models/garden/sequence_picture_star.glb",
+      "rightsRecord": "assets/models/garden/NOTICE.md"
+    },
+    {
+      "name": "sequence_picture_paw",
+      "id": "garden/sequence_picture_paw@1",
+      "file": "sequence_picture_paw.glb",
+      "sha256": "6dc8d85266664304b05a277c5796861cf98d02f815f53e182ac62a06aa13db2e",
+      "bytes": 47832,
+      "triangles": 600,
+      "anchors": {},
+      "license": "Original Blender geometry authored for Paws",
+      "provenance": "Original geometry and simple flat painted materials; no external source or generated textures",
+      "bounds": {
+        "min": [
+          -0.30000001192092896,
+          -0.20000000298023224,
+          -0.014000000432133675
+        ],
+        "max": [
+          0.30000001192092896,
+          0.3449999988079071,
+          0.014000000432133675
+        ]
+      },
+      "url": "assets/models/garden/sequence_picture_paw.glb",
+      "rightsRecord": "assets/models/garden/NOTICE.md"
+    },
+    {
+      "id": "garden/paving_lod1@1",
+      "file": "paving_lod1.glb",
+      "sha256": "d9364febc8edccbf4579e411a37e11b9ca979f20dfe32a8456e3b40b933f2f08",
+      "bytes": 907812,
+      "triangles": 600,
+      "bounds": {
+        "min": [
+          -0.4952406883239746,
+          -0.11993928253650665,
+          -0.492946058511734
+        ],
+        "max": [
+          0.493411660194397,
+          -0.0019338798010721803,
+          0.49415066838264465
+        ]
+      },
+      "footprint": [
+        1,
+        1
+      ],
+      "pivot": "floor/contact centre",
+      "anchors": {},
+      "materials": [
+        "tripo_mat_5d393e46"
+      ],
+      "vertices": 641,
+      "material_count": 1,
+      "primitives": 1,
+      "source": "assets/runtime/models/garden/paving/tripo_convert_5d393e46-998b-464c-a8ef-3769f217500b.fbx",
+      "sourceSha256": "685e0286d6dd27b2902d5e72e8b82c95d6fd97e7bb69fe76044b263b7280a0b2",
+      "editableSource": "artifacts/model-jobs/garden-paving/2026-10-15-lods/paving_lod1.blend",
+      "derivation": {
+        "sourceRuntimeSha256": "160efeed1e6c2714e3806ac3a6bc286ad4c0eb1240e735ebd9f5a1ae8f96f48b",
+        "job": "artifacts/model-jobs/garden-paving/2026-10-15-lods",
+        "method": "Position seam weld preserving corner UVs; 600/200 triangle decimation; approved 512px maps; closed reverse faces culled",
+        "policy": "Camera-only detail. Original near mesh and gameplay footprint unchanged."
+      },
+      "url": "assets/models/garden/paving_lod1.glb",
+      "rightsRecord": "assets/models/garden/NOTICE.md"
+    },
+    {
+      "id": "garden/paving_lod2@1",
+      "file": "paving_lod2.glb",
+      "sha256": "196dae4badf435bd26efb148a07d833e5d140b093142cad76180a935668dcbe6",
+      "bytes": 894276,
+      "triangles": 200,
+      "bounds": {
+        "min": [
+          -0.49298977851867676,
+          -0.118887759745121,
+          -0.49223700165748596
+        ],
+        "max": [
+          0.49352049827575684,
+          -0.001967409625649452,
+          0.49245771765708923
+        ]
+      },
+      "footprint": [
+        1,
+        1
+      ],
+      "pivot": "floor/contact centre",
+      "anchors": {},
+      "materials": [
+        "tripo_mat_5d393e46"
+      ],
+      "vertices": 293,
+      "material_count": 1,
+      "primitives": 1,
+      "source": "assets/runtime/models/garden/paving/tripo_convert_5d393e46-998b-464c-a8ef-3769f217500b.fbx",
+      "sourceSha256": "685e0286d6dd27b2902d5e72e8b82c95d6fd97e7bb69fe76044b263b7280a0b2",
+      "editableSource": "artifacts/model-jobs/garden-paving/2026-10-15-lods/paving_lod2.blend",
+      "derivation": {
+        "sourceRuntimeSha256": "160efeed1e6c2714e3806ac3a6bc286ad4c0eb1240e735ebd9f5a1ae8f96f48b",
+        "job": "artifacts/model-jobs/garden-paving/2026-10-15-lods",
+        "method": "Position seam weld preserving corner UVs; 600/200 triangle decimation; approved 512px maps; closed reverse faces culled",
+        "policy": "Camera-only detail. Original near mesh and gameplay footprint unchanged."
+      },
+      "url": "assets/models/garden/paving_lod2.glb",
+      "rightsRecord": "assets/models/garden/NOTICE.md"
+    },
+    {
+      "pivot": "bottom centre",
+      "bytes": 84348,
+      "triangles": 3000,
+      "material": "Matte honey paint",
+      "sourceMaster": "artifacts/model-jobs/quest-marker/2026-10-12-tripo/quest-marker.blend",
+      "sha256": "950b9484f208964ab65a585d380d5c8c2e307932eedaad5e02ee77782c01b1e7",
+      "upAxis": "Y",
+      "url": "assets/models/garden/quest_marker.glb",
+      "rightsRecord": "assets/models/garden/quest-marker-NOTICE.md",
+      "heightMetres": 0.549746,
+      "id": "garden.quest_marker"
+    },
+    {
+      "name": "reward_coin",
+      "id": "rewards/coin@1",
+      "url": "assets/models/rewards/reward_coin.glb",
+      "file": "reward_coin.glb",
+      "bytes": 335028,
+      "sha256": "f7db44bc358c8e56a57a43fda806ce1ccdd7481ec9978076b0e5a7ab35e626b3",
+      "triangles": 2400,
+      "sourceTriangles": 47490,
+      "rawDimensions": [
+        0.28726255893707275,
+        0.9780784845352173,
+        0.979765772819519
+      ],
+      "blenderBounds": [
+        [
+          -0.22996430099010468,
+          -0.06757786870002747,
+          -0.23044443130493164
+        ],
+        [
+          0.22998641431331635,
+          0.06747415661811829,
+          0.23062820732593536
+        ]
+      ],
+      "materials": 1,
+      "textures": [
+        {
+          "name": "Color_0b7d482a-62bc-4ac3-86c2-b0d91435377c",
+          "size": [
+            512,
+            512
+          ]
+        },
+        {
+          "name": "NormalGL_0b7d482a-62bc-4ac3-86c2-b0d91435377c",
+          "size": [
+            512,
+            512
+          ]
+        },
+        {
+          "name": "ORM_0b7d482a-62bc-4ac3-86c2-b0d91435377c",
+          "size": [
+            512,
+            512
+          ]
+        }
+      ],
+      "minimum": [
+        -0.22996430099010468,
+        -0.23044443130493164,
+        -0.06747415661811829
+      ],
+      "maximum": [
+        0.22998641431331635,
+        0.23062820732593536,
+        0.06757786870002747
+      ],
+      "rightsRecord": "assets/models/rewards/NOTICE.md"
+    },
+    {
+      "name": "reward_heart",
+      "id": "rewards/heart@1",
+      "url": "assets/models/rewards/reward_heart.glb",
+      "file": "reward_heart.glb",
+      "bytes": 223216,
+      "sha256": "0c1a97df352a6d063f0dfb29e1f6e4d634dc67f3d08abbffbdc59896476710e4",
+      "triangles": 1600,
+      "sourceTriangles": 47348,
+      "rawDimensions": [
+        0.43938013911247253,
+        0.9798390865325928,
+        0.8958168625831604
+      ],
+      "blenderBounds": [
+        [
+          -0.2300127148628235,
+          -0.10304444283246994,
+          -0.21021363139152527
+        ],
+        [
+          0.23017080128192902,
+          0.1032969281077385,
+          0.21013709902763367
+        ]
+      ],
+      "materials": 1,
+      "textures": [
+        {
+          "name": "Color_a590c9b8-fa5b-4eb1-85b2-81e0197d2667",
+          "size": [
+            512,
+            512
+          ]
+        },
+        {
+          "name": "NormalGL_a590c9b8-fa5b-4eb1-85b2-81e0197d2667",
+          "size": [
+            512,
+            512
+          ]
+        },
+        {
+          "name": "ORM_a590c9b8-fa5b-4eb1-85b2-81e0197d2667",
+          "size": [
+            512,
+            512
+          ]
+        }
+      ],
+      "minimum": [
+        -0.2300127148628235,
+        -0.21021363139152527,
+        -0.1032969281077385
+      ],
+      "maximum": [
+        0.23017080128192902,
+        0.21013709902763367,
+        0.10304444283246994
+      ],
+      "rightsRecord": "assets/models/rewards/NOTICE.md"
+    },
+    {
+      "path": "assets/runtime/models/pip/pip.glb",
+      "bytes": 4862756,
+      "sha256": "af9d273664284a3091f22304bc27b3c2fb37d3c5915d6ed746a343c976cea0ad",
+      "idleForwardRevision": "2026-10-14",
+      "walkForwardRevision": "2026-10-14",
+      "walkSpeedRevision": "2026-10-14",
+      "turnRevision": "2026-10-14",
+      "id": "cats/pip@1",
+      "url": "assets/models/pip/pip.glb",
+      "rightsRecord": "assets/models/pip/NOTICE.md"
+    },
+    {
+      "path": "assets/runtime/models/pip/portrait-dialogue.png",
+      "bytes": 294657,
+      "sha256": "89f33b85977454cc52c8b570cbf0bf472fac5b69307e7db0b9b8f7764e185015",
+      "id": "pip/portrait-dialogue",
+      "url": "assets/models/pip/portrait-dialogue.png",
+      "rightsRecord": "assets/models/pip/NOTICE.md"
+    },
+    {
+      "path": "assets/runtime/models/pip/portrait-ending.png",
+      "bytes": 201140,
+      "sha256": "ce229bab55c3e0f67a573a3c7c24194a3fe74bfddb83bc81528a841a40a74a4b",
+      "id": "pip/portrait-ending",
+      "url": "assets/models/pip/portrait-ending.png",
+      "rightsRecord": "assets/models/pip/NOTICE.md"
+    },
+    {
+      "path": "assets/runtime/models/pip/portrait-shop.png",
+      "bytes": 296602,
+      "sha256": "8bda3f338f0230d62e69a054dac645cd683655b855857d919fbf5f4e03de4693",
+      "id": "pip/portrait-shop",
+      "url": "assets/models/pip/portrait-shop.png",
+      "rightsRecord": "assets/models/pip/NOTICE.md"
+    },
+    {
+      "name": "crate",
+      "bytes": 592732,
+      "sha256": "a3ad254953d2d1529d4a59266162745013851ce850b0d6e51442b0bc2b981b4b",
+      "bounds": {
+        "min": [
+          -0.39750000834465027,
+          0.0,
+          -0.4050000011920929
+        ],
+        "max": [
+          0.39750000834465027,
+          0.5799999833106995,
+          0.4050000011920929
+        ]
+      },
+      "triangles": 4532,
+      "footprint": [
+        0.82,
+        0.82
+      ],
+      "anchors": {
+        "slide_origin": {
+          "position": [
+            0,
+            0,
+            0
+          ],
+          "rotationDegrees": [
+            0,
+            0,
+            0
+          ]
+        }
+      },
+      "materials": [
+        "cream",
+        "wood"
+      ],
+      "id": "release1/props/crate@1",
+      "url": "assets/models/release1/props/crate.glb",
+      "rightsRecord": "assets/models/release1/props/PROVENANCE.md",
+      "vertices": 8064,
+      "materialCount": 2,
+      "textureCount": 3,
+      "pivot": "floor/contact centre"
+    },
+    {
+      "name": "plank_1m",
+      "bytes": 346640,
+      "sha256": "adcf2fd86fe12a61533f26f0500991bb3fd9ed2c38073923c6165e7358579b23",
+      "bounds": {
+        "min": [
+          -0.5,
+          0.04999999701976776,
+          -0.25
+        ],
+        "max": [
+          0.5,
+          0.1599999964237213,
+          0.25
+        ]
+      },
+      "triangles": 856,
+      "footprint": [
+        1,
+        0.5
+      ],
+      "anchors": {
+        "port_a": {
+          "position": [
+            -0.5,
+            0.16,
+            0
+          ],
+          "rotationDegrees": [
+            0,
+            0,
+            0
+          ]
+        },
+        "port_b": {
+          "position": [
+            0.5,
+            0.16,
+            0
+          ],
+          "rotationDegrees": [
+            0,
+            0,
+            0
+          ]
+        },
+        "support_a": {
+          "position": [
+            -0.5,
+            0.16,
+            0
+          ],
+          "rotationDegrees": [
+            0,
+            0,
+            0
+          ]
+        },
+        "support_b": {
+          "position": [
+            0.5,
+            0.16,
+            0
+          ],
+          "rotationDegrees": [
+            0,
+            0,
+            0
+          ]
+        }
+      },
+      "materials": [
+        "teal",
+        "wood"
+      ],
+      "id": "release1/props/plank_1m@1",
+      "url": "assets/models/release1/props/plank_1m.glb",
+      "rightsRecord": "assets/models/release1/props/PROVENANCE.md",
+      "vertices": 1064,
+      "materialCount": 2,
+      "textureCount": 3,
+      "pivot": "floor/contact centre"
+    },
+    {
+      "name": "plank_2m",
+      "bytes": 346636,
+      "sha256": "4a519c32683f3ae24a1d8072cae98e9b4e5566abb092cac91e8864d881e0e1db",
+      "bounds": {
+        "min": [
+          -1.0,
+          0.04999999701976776,
+          -0.25
+        ],
+        "max": [
+          1.0,
+          0.1599999964237213,
+          0.25
+        ]
+      },
+      "triangles": 856,
+      "footprint": [
+        2,
+        0.5
+      ],
+      "anchors": {
+        "port_a": {
+          "position": [
+            -1.0,
+            0.16,
+            0
+          ],
+          "rotationDegrees": [
+            0,
+            0,
+            0
+          ]
+        },
+        "port_b": {
+          "position": [
+            1.0,
+            0.16,
+            0
+          ],
+          "rotationDegrees": [
+            0,
+            0,
+            0
+          ]
+        },
+        "support_a": {
+          "position": [
+            -1.0,
+            0.16,
+            0
+          ],
+          "rotationDegrees": [
+            0,
+            0,
+            0
+          ]
+        },
+        "support_b": {
+          "position": [
+            1.0,
+            0.16,
+            0
+          ],
+          "rotationDegrees": [
+            0,
+            0,
+            0
+          ]
+        }
+      },
+      "materials": [
+        "teal",
+        "wood"
+      ],
+      "id": "release1/props/plank_2m@1",
+      "url": "assets/models/release1/props/plank_2m.glb",
+      "rightsRecord": "assets/models/release1/props/PROVENANCE.md",
+      "vertices": 1064,
+      "materialCount": 2,
+      "textureCount": 3,
+      "pivot": "floor/contact centre"
+    },
+    {
+      "name": "platform",
+      "bytes": 319908,
+      "sha256": "4064e7f8dad81a5915e61e5a9c0f3daced8f5a538fea1fe4f9f5506dacb97346",
+      "bounds": {
+        "min": [
+          -0.5,
+          0.0,
+          -0.4000000059604645
+        ],
+        "max": [
+          0.5,
+          0.1599999964237213,
+          0.4000000059604645
+        ]
+      },
+      "triangles": 188,
+      "footprint": [
+        1,
+        0.8
+      ],
+      "anchors": {
+        "port_a": {
+          "position": [
+            -0.5,
+            0.16,
+            0
+          ],
+          "rotationDegrees": [
+            0,
+            0,
+            0
+          ]
+        },
+        "port_b": {
+          "position": [
+            0.5,
+            0.16,
+            0
+          ],
+          "rotationDegrees": [
+            0,
+            0,
+            0
+          ]
+        },
+        "paw_contact": {
+          "position": [
+            0,
+            0.16,
+            0
+          ],
+          "rotationDegrees": [
+            0,
+            0,
+            0
+          ]
+        }
+      },
+      "materials": [
+        "wood"
+      ],
+      "id": "release1/props/platform@1",
+      "url": "assets/models/release1/props/platform.glb",
+      "rightsRecord": "assets/models/release1/props/PROVENANCE.md",
+      "vertices": 384,
+      "materialCount": 1,
+      "textureCount": 3,
+      "pivot": "floor/contact centre"
+    },
+    {
+      "name": "plank_socket",
+      "bytes": 42452,
+      "sha256": "612429bfaf0058193de131287f0cf64c71d7980630fa52fd00e7135a4b1f06e1",
+      "bounds": {
+        "min": [
+          -0.10999999940395355,
+          0.0,
+          -0.28049999475479126
+        ],
+        "max": [
+          0.10999999940395355,
+          0.125,
+          0.28049999475479126
+        ]
+      },
+      "triangles": 564,
+      "footprint": [
+        0.22,
+        0.56
+      ],
+      "anchors": {
+        "port_a": {
+          "position": [
+            0,
+            0.16,
+            0
+          ],
+          "rotationDegrees": [
+            0,
+            0,
+            0
+          ]
+        },
+        "port_b": {
+          "position": [
+            0,
+            0.16,
+            0
+          ],
+          "rotationDegrees": [
+            0,
+            0,
+            0
+          ]
+        },
+        "support_a": {
+          "position": [
+            0,
+            0.16,
+            0
+          ],
+          "rotationDegrees": [
+            0,
+            0,
+            0
+          ]
+        },
+        "support_b": {
+          "position": [
+            0,
+            0.16,
+            0
+          ],
+          "rotationDegrees": [
+            0,
+            0,
+            0
+          ]
+        }
+      },
+      "materials": [
+        "cream",
+        "teal"
+      ],
+      "id": "release1/props/plank_socket@1",
+      "url": "assets/models/release1/props/plank_socket.glb",
+      "rightsRecord": "assets/models/release1/props/PROVENANCE.md",
+      "vertices": 1152,
+      "materialCount": 2,
+      "textureCount": 0,
+      "pivot": "floor/contact centre"
+    },
+    {
+      "name": "cushion_square",
+      "bytes": 472360,
+      "sha256": "b4a75e9cd653855f16a99ca6988e9db226c838ca6245bddaf96692ffeae17584",
+      "bounds": {
+        "min": [
+          0.01100000087171793,
+          0.00800000037997961,
+          0.01100000087171793
+        ],
+        "max": [
+          0.48899999260902405,
+          0.12999999523162842,
+          0.48899999260902405
+        ]
+      },
+      "triangles": 386,
+      "footprint": [
+        0.5,
+        0.5
+      ],
+      "anchors": {
+        "footprint_origin": {
+          "position": [
+            0,
+            0,
+            0
+          ],
+          "rotationDegrees": [
+            0,
+            0,
+            0
+          ]
+        },
+        "fit_origin": {
+          "position": [
+            0,
+            0,
+            0
+          ],
+          "rotationDegrees": [
+            0,
+            0,
+            0
+          ]
+        }
+      },
+      "materials": [
+        "cream",
+        "sage_cloth"
+      ],
+      "id": "release1/props/cushion_square@1",
+      "url": "assets/models/release1/props/cushion_square.glb",
+      "rightsRecord": "assets/models/release1/props/PROVENANCE.md",
+      "vertices": 594,
+      "materialCount": 2,
+      "textureCount": 3,
+      "pivot": "local footprint origin"
+    },
+    {
+      "name": "socket_square",
+      "bytes": 870456,
+      "sha256": "4962610af512205395742244241e833abb01c63c43fa3a187345cb4b85ea1b58",
+      "bounds": {
+        "min": [
+          -0.050000011920928955,
+          0.0,
+          -0.050000011920928955
+        ],
+        "max": [
+          0.550000011920929,
+          0.10499999672174454,
+          0.550000011920929
+        ]
+      },
+      "triangles": 766,
+      "footprint": [
+        0.6,
+        0.6
+      ],
+      "anchors": {
+        "socket_square": {
+          "position": [
+            0,
+            0.036,
+            0
+          ],
+          "rotationDegrees": [
+            0,
+            0,
+            0
+          ]
+        }
+      },
+      "materials": [
+        "cloth",
+        "teal",
+        "wicker"
+      ],
+      "id": "release1/props/socket_square@1",
+      "url": "assets/models/release1/props/socket_square.glb",
+      "rightsRecord": "assets/models/release1/props/PROVENANCE.md",
+      "vertices": 1389,
+      "materialCount": 3,
+      "textureCount": 5,
+      "pivot": "local footprint origin"
+    },
+    {
+      "name": "cushion_bar",
+      "bytes": 474060,
+      "sha256": "eb9dfb61dce36f1160ee35aebf5c081d82c9ab3974b0636da08592c17f092787",
+      "bounds": {
+        "min": [
+          0.01100000087171793,
+          0.00800000037997961,
+          0.01100000087171793
+        ],
+        "max": [
+          0.7374082803726196,
+          0.12999999523162842,
+          0.23899999260902405
+        ]
+      },
+      "triangles": 392,
+      "footprint": [
+        0.75,
+        0.25
+      ],
+      "anchors": {
+        "footprint_origin": {
+          "position": [
+            0,
+            0,
+            0
+          ],
+          "rotationDegrees": [
+            0,
+            0,
+            0
+          ]
+        },
+        "fit_origin": {
+          "position": [
+            0,
+            0,
+            0
+          ],
+          "rotationDegrees": [
+            0,
+            0,
+            0
+          ]
+        }
+      },
+      "materials": [
+        "cloth",
+        "cream"
+      ],
+      "id": "release1/props/cushion_bar@1",
+      "url": "assets/models/release1/props/cushion_bar.glb",
+      "rightsRecord": "assets/models/release1/props/PROVENANCE.md",
+      "vertices": 634,
+      "materialCount": 2,
+      "textureCount": 3,
+      "pivot": "local footprint origin"
+    },
+    {
+      "name": "socket_bar",
+      "bytes": 871260,
+      "sha256": "678eb179f360534f857ad7ab78936fe935dda1ff9f244f2e350bca3d6bcc1479",
+      "bounds": {
+        "min": [
+          -0.050000011920928955,
+          0.0,
+          -0.04999999701976776
+        ],
+        "max": [
+          0.800000011920929,
+          0.10499999672174454,
+          0.30000001192092896
+        ]
+      },
+      "triangles": 772,
+      "footprint": [
+        0.85,
+        0.35
+      ],
+      "anchors": {
+        "socket_bar": {
+          "position": [
+            0,
+            0.036,
+            0
+          ],
+          "rotationDegrees": [
+            0,
+            0,
+            0
+          ]
+        }
+      },
+      "materials": [
+        "cloth",
+        "teal",
+        "wicker"
+      ],
+      "id": "release1/props/socket_bar@1",
+      "url": "assets/models/release1/props/socket_bar.glb",
+      "rightsRecord": "assets/models/release1/props/PROVENANCE.md",
+      "vertices": 1413,
+      "materialCount": 3,
+      "textureCount": 5,
+      "pivot": "local footprint origin"
+    },
+    {
+      "name": "cushion_elbow",
+      "bytes": 477928,
+      "sha256": "47b023ff886dadae0e4c1211b5ece89ba312510a04af24b7a49a4d945e5220c4",
+      "bounds": {
+        "min": [
+          0.01100000087171793,
+          0.00800000037997961,
+          0.01100000087171793
+        ],
+        "max": [
+          0.48740825057029724,
+          0.12999999523162842,
+          0.48740825057029724
+        ]
+      },
+      "triangles": 450,
+      "footprint": [
+        0.5,
+        0.5
+      ],
+      "anchors": {
+        "footprint_origin": {
+          "position": [
+            0,
+            0,
+            0
+          ],
+          "rotationDegrees": [
+            0,
+            0,
+            0
+          ]
+        },
+        "fit_origin": {
+          "position": [
+            0,
+            0,
+            0
+          ],
+          "rotationDegrees": [
+            0,
+            0,
+            0
+          ]
+        }
+      },
+      "materials": [
+        "cream",
+        "sage_cloth"
+      ],
+      "id": "release1/props/cushion_elbow@1",
+      "url": "assets/models/release1/props/cushion_elbow.glb",
+      "rightsRecord": "assets/models/release1/props/PROVENANCE.md",
+      "vertices": 756,
+      "materialCount": 2,
+      "textureCount": 3,
+      "pivot": "local footprint origin"
+    },
+    {
+      "name": "socket_elbow",
+      "bytes": 875576,
+      "sha256": "8ef768fb849db9b620b9a21f9725ea2adfd043b3bd76921236657a77e45d427a",
+      "bounds": {
+        "min": [
+          -0.050000011920928955,
+          0.0,
+          -0.050000011920928955
+        ],
+        "max": [
+          0.550000011920929,
+          0.10499999672174454,
+          0.550000011920929
+        ]
+      },
+      "triangles": 830,
+      "footprint": [
+        0.6,
+        0.6
+      ],
+      "anchors": {
+        "socket_elbow": {
+          "position": [
+            0,
+            0.036,
+            0
+          ],
+          "rotationDegrees": [
+            0,
+            0,
+            0
+          ]
+        }
+      },
+      "materials": [
+        "cloth",
+        "teal",
+        "wicker"
+      ],
+      "id": "release1/props/socket_elbow@1",
+      "url": "assets/models/release1/props/socket_elbow.glb",
+      "rightsRecord": "assets/models/release1/props/PROVENANCE.md",
+      "vertices": 1537,
+      "materialCount": 3,
+      "textureCount": 5,
+      "pivot": "local footprint origin"
+    },
+    {
+      "name": "bell_leaf",
+      "bytes": 654500,
+      "sha256": "214ca64c94e04fbe141f0777213047640b3b1d85e776cd541e8997b674cfe483",
+      "bounds": {
+        "min": [
+          -0.290010929107666,
+          -0.47008293867111206,
+          -0.22046944499015808
+        ],
+        "max": [
+          0.2888451814651489,
+          0.07999999821186066,
+          0.2413800060749054
+        ]
+      },
+      "triangles": 2032,
+      "footprint": [
+        0.5788561105728149,
+        0.4618494510650635
+      ],
+      "anchors": {
+        "hang": {
+          "position": [
+            0,
+            0.08,
+            0
+          ],
+          "rotationDegrees": [
+            0,
+            0,
+            0
+          ]
+        },
+        "symbol_face": {
+          "position": [
+            0,
+            -0.2,
+            0.24
+          ],
+          "rotationDegrees": [
+            0,
+            0,
+            0
+          ]
+        }
+      },
+      "materials": [
+        "cream",
+        "honey",
+        "ink",
+        "teal"
+      ],
+      "id": "release1/props/bell_leaf@1",
+      "url": "assets/models/release1/props/bell_leaf.glb",
+      "rightsRecord": "assets/models/release1/props/PROVENANCE.md",
+      "vertices": 2192,
+      "materialCount": 3,
+      "textureCount": 1,
+      "pivot": "hang",
+      "runtimeTextureLimit": 512,
+      "maps": [
+        {
+          "name": "Color_ec8e0434-564d-4789-853f-343823787558",
+          "dimensions": [
+            512,
+            512
+          ]
+        }
+      ],
+      "source": "artifacts/model-jobs/sequence-tripo/2026-10-14/bells/raw.glb",
+      "sourceMaster": "artifacts/model-jobs/sequence-tripo/2026-10-14/delivery/bell_leaf.blend",
+      "provenance": "Tripo3D image-to-model from original built-in ImageGen reference; fitted, split, optimized in Blender; exact authored clue inlays",
+      "license": "Generated service output; applicable provider terms; account entitlement unverified"
+    },
+    {
+      "name": "bell_star",
+      "bytes": 653292,
+      "sha256": "c21db5a1d0919c53891b1b087fb7c1897fbee2d312ed0d22c35691d0eb2ca905",
+      "bounds": {
+        "min": [
+          -0.29041463136672974,
+          -0.46978676319122314,
+          -0.21968282759189606
+        ],
+        "max": [
+          0.29065781831741333,
+          0.07999999821186066,
+          0.2413800060749054
+        ]
+      },
+      "triangles": 2047,
+      "footprint": [
+        0.5810724496841431,
+        0.46106283366680145
+      ],
+      "anchors": {
+        "hang": {
+          "position": [
+            0,
+            0.08,
+            0
+          ],
+          "rotationDegrees": [
+            0,
+            0,
+            0
+          ]
+        },
+        "symbol_face": {
+          "position": [
+            0,
+            -0.2,
+            0.24
+          ],
+          "rotationDegrees": [
+            0,
+            0,
+            0
+          ]
+        }
+      },
+      "materials": [
+        "cream",
+        "honey",
+        "ink",
+        "teal"
+      ],
+      "id": "release1/props/bell_star@1",
+      "url": "assets/models/release1/props/bell_star.glb",
+      "rightsRecord": "assets/models/release1/props/PROVENANCE.md",
+      "vertices": 2157,
+      "materialCount": 3,
+      "textureCount": 1,
+      "pivot": "hang",
+      "runtimeTextureLimit": 512,
+      "maps": [
+        {
+          "name": "Color_ec8e0434-564d-4789-853f-343823787558",
+          "dimensions": [
+            512,
+            512
+          ]
+        }
+      ],
+      "source": "artifacts/model-jobs/sequence-tripo/2026-10-14/bells/raw.glb",
+      "sourceMaster": "artifacts/model-jobs/sequence-tripo/2026-10-14/delivery/bell_star.blend",
+      "provenance": "Tripo3D image-to-model from original built-in ImageGen reference; fitted, split, optimized in Blender; exact authored clue inlays",
+      "license": "Generated service output; applicable provider terms; account entitlement unverified"
+    },
+    {
+      "name": "bell_paw",
+      "bytes": 698044,
+      "sha256": "ba3f0cc989cdf72e833af13e5f888a1b6b7ae4f2e8b23b3e655eb6b48f8c1c38",
+      "bounds": {
+        "min": [
+          -0.28934434056282043,
+          -0.47066959738731384,
+          -0.22006621956825256
+        ],
+        "max": [
+          0.28912171721458435,
+          0.07999999821186066,
+          0.2432200014591217
+        ]
+      },
+      "triangles": 2610,
+      "footprint": [
+        0.5784660577774048,
+        0.46328622102737427
+      ],
+      "anchors": {
+        "hang": {
+          "position": [
+            0,
+            0.08,
+            0
+          ],
+          "rotationDegrees": [
+            0,
+            0,
+            0
+          ]
+        },
+        "symbol_face": {
+          "position": [
+            0,
+            -0.2,
+            0.24
+          ],
+          "rotationDegrees": [
+            0,
+            0,
+            0
+          ]
+        }
+      },
+      "materials": [
+        "cream",
+        "honey",
+        "ink",
+        "teal"
+      ],
+      "id": "release1/props/bell_paw@1",
+      "url": "assets/models/release1/props/bell_paw.glb",
+      "rightsRecord": "assets/models/release1/props/PROVENANCE.md",
+      "vertices": 3353,
+      "materialCount": 3,
+      "textureCount": 1,
+      "pivot": "hang",
+      "runtimeTextureLimit": 512,
+      "maps": [
+        {
+          "name": "Color_ec8e0434-564d-4789-853f-343823787558",
+          "dimensions": [
+            512,
+            512
+          ]
+        }
+      ],
+      "source": "artifacts/model-jobs/sequence-tripo/2026-10-14/bells/raw.glb",
+      "sourceMaster": "artifacts/model-jobs/sequence-tripo/2026-10-14/delivery/bell_paw.blend",
+      "provenance": "Tripo3D image-to-model from original built-in ImageGen reference; fitted, split, optimized in Blender; exact authored clue inlays",
+      "license": "Generated service output; applicable provider terms; account entitlement unverified"
+    },
+    {
+      "name": "bell_support",
+      "bytes": 828316,
+      "sha256": "b3f4d5faad69527cc7fc4a93db2b38323a9e00e0a0d0aa50121cf9a3f5e58227",
+      "bounds": {
+        "min": [
+          -1.6498818397521973,
+          0.0,
+          -0.3101014494895935
+        ],
+        "max": [
+          1.6517329216003418,
+          1.4198143482208252,
+          0.30954137444496155
+        ]
+      },
+      "triangles": 3999,
+      "footprint": [
+        3.301614761352539,
+        0.619642823934555
+      ],
+      "anchors": {
+        "floor_origin": {
+          "position": [
+            0,
+            0,
+            0
+          ],
+          "rotationDegrees": [
+            0,
+            0,
+            0
+          ]
+        },
+        "beam": {
+          "position": [
+            0,
+            1.3,
+            0
+          ],
+          "rotationDegrees": [
+            0,
+            0,
+            0
+          ]
+        }
+      },
+      "materials": [
+        "teal",
+        "wood"
+      ],
+      "id": "release1/props/bell_support@1",
+      "url": "assets/models/release1/props/bell_support.glb",
+      "rightsRecord": "assets/models/release1/props/PROVENANCE.md",
+      "vertices": 7307,
+      "materialCount": 1,
+      "textureCount": 1,
+      "pivot": "floor/contact centre",
+      "runtimeTextureLimit": 512,
+      "maps": [
+        {
+          "name": "Color_ec8e0434-564d-4789-853f-343823787558",
+          "dimensions": [
+            512,
+            512
+          ]
+        }
+      ],
+      "source": "artifacts/model-jobs/sequence-tripo/2026-10-14/bells/raw.glb",
+      "sourceMaster": "artifacts/model-jobs/sequence-tripo/2026-10-14/delivery/bell_support.blend",
+      "provenance": "Tripo3D image-to-model from original built-in ImageGen reference; fitted, split, optimized in Blender; exact authored clue inlays",
+      "license": "Generated service output; applicable provider terms; account entitlement unverified"
+    },
+    {
+      "name": "rain_barrel",
+      "bytes": 483220,
+      "sha256": "7f288bff606a189cd3cb77e864003cd20012656f4f34c5dc87f2f7e9b17fca4a",
+      "bounds": {
+        "min": [
+          -0.4570000171661377,
+          0.0,
+          -0.4570000171661377
+        ],
+        "max": [
+          0.5,
+          0.9399999976158142,
+          0.4570000171661377
+        ]
+      },
+      "triangles": 4428,
+      "footprint": [
+        1,
+        0.88
+      ],
+      "anchors": {
+        "water_out": {
+          "position": [
+            0.5,
+            0.06,
+            0
+          ],
+          "rotationDegrees": [
+            0,
+            0,
+            0
+          ]
+        }
+      },
+      "materials": [
+        "cream",
+        "honey",
+        "teal",
+        "wood"
+      ],
+      "id": "release1/props/rain_barrel@1",
+      "url": "assets/models/release1/props/rain_barrel.glb",
+      "rightsRecord": "assets/models/release1/props/PROVENANCE.md",
+      "vertices": 4606,
+      "materialCount": 4,
+      "textureCount": 3,
+      "pivot": "floor/contact centre"
+    },
+    {
+      "name": "water_straight",
+      "bytes": 14640,
+      "sha256": "44c3ef8ff37873fa251be018a08b043d079ee9da96b686fc3a714c5226bff600",
+      "bounds": {
+        "min": [
+          -0.5,
+          -0.0035000001080334187,
+          -0.10899999737739563
+        ],
+        "max": [
+          0.5,
+          0.0035000001080334187,
+          0.10899999737739563
+        ]
+      },
+      "triangles": 188,
+      "footprint": [
+        1,
+        0.22
+      ],
+      "anchors": {
+        "fill_origin": {
+          "position": [
+            0,
+            0,
+            0
+          ],
+          "rotationDegrees": [
+            0,
+            0,
+            0
+          ]
+        },
+        "port_a": {
+          "position": [
+            -0.5,
+            0,
+            0
+          ],
+          "rotationDegrees": [
+            0,
+            0,
+            0
+          ]
+        },
+        "port_b": {
+          "position": [
+            0.5,
+            0,
+            0
+          ],
+          "rotationDegrees": [
+            0,
+            0,
+            0
+          ]
+        }
+      },
+      "materials": [
+        "water"
+      ],
+      "id": "release1/props/water_straight@1",
+      "url": "assets/models/release1/props/water_straight.glb",
+      "rightsRecord": "assets/models/release1/props/PROVENANCE.md",
+      "vertices": 384,
+      "materialCount": 1,
+      "textureCount": 0,
+      "pivot": "floor/contact centre"
+    },
+    {
+      "name": "water_curve",
+      "bytes": 3072,
+      "sha256": "9260c6d08058a3c2ac3d26807d728d480dcc4526d81f3dbd0746026c5b419be0",
+      "bounds": {
+        "min": [
+          -0.5,
+          0.0,
+          -0.5
+        ],
+        "max": [
+          0.10899999737739563,
+          0.0,
+          0.10899999737739563
+        ]
+      },
+      "triangles": 48,
+      "footprint": [
+        1,
+        1
+      ],
+      "anchors": {
+        "fill_origin": {
+          "position": [
+            0,
+            0,
+            0
+          ],
+          "rotationDegrees": [
+            0,
+            0,
+            0
+          ]
+        },
+        "port_a": {
+          "position": [
+            -0.5,
+            0,
+            0
+          ],
+          "rotationDegrees": [
+            0,
+            0,
+            0
+          ]
+        },
+        "port_b": {
+          "position": [
+            0,
+            0,
+            -0.5
+          ],
+          "rotationDegrees": [
+            0,
+            0,
+            0
+          ]
+        }
+      },
+      "materials": [
+        "water"
+      ],
+      "id": "release1/props/water_curve@1",
+      "url": "assets/models/release1/props/water_curve.glb",
+      "rightsRecord": "assets/models/release1/props/PROVENANCE.md",
+      "vertices": 50,
+      "materialCount": 1,
+      "textureCount": 0,
+      "pivot": "floor/contact centre"
+    },
+    {
+      "name": "water_support",
+      "bytes": 374584,
+      "sha256": "459178c8bde535d8326c6ee8d3acf37b51c4228d90f974a1ff2baa9d4c1166b7",
+      "bounds": {
+        "min": [
+          -0.44999998807907104,
+          0.0,
+          -0.44999998807907104
+        ],
+        "max": [
+          0.44999998807907104,
+          0.4000000059604645,
+          0.44999998807907104
+        ]
+      },
+      "triangles": 940,
+      "footprint": [
+        0.9,
+        0.9
+      ],
+      "anchors": {
+        "support": {
+          "position": [
+            0,
+            0.4,
+            0
+          ],
+          "rotationDegrees": [
+            0,
+            0,
+            0
+          ]
+        }
+      },
+      "materials": [
+        "teal",
+        "wood"
+      ],
+      "id": "release1/props/water_support@1",
+      "url": "assets/models/release1/props/water_support.glb",
+      "rightsRecord": "assets/models/release1/props/PROVENANCE.md",
+      "vertices": 1920,
+      "materialCount": 2,
+      "textureCount": 3,
+      "pivot": "floor/contact centre"
+    },
+    {
+      "name": "water_drop",
+      "bytes": 1352,
+      "sha256": "3c4c0f24c40e45dc10259c853f0aa1929832c0f7be3235fcde93cc526b1cd7ce",
+      "bounds": {
+        "min": [
+          -0.10899999737739563,
+          0.382999986410141,
+          -0.4000000059604645
+        ],
+        "max": [
+          0.10899999737739563,
+          0.47200000286102295,
+          -0.0
+        ]
+      },
+      "triangles": 2,
+      "footprint": [
+        0.218,
+        0.4
+      ],
+      "anchors": {
+        "port_a": {
+          "position": [
+            0,
+            0.472,
+            0
+          ],
+          "rotationDegrees": [
+            0,
+            0,
+            0
+          ]
+        },
+        "port_b": {
+          "position": [
+            0,
+            0.383,
+            -0.4
+          ],
+          "rotationDegrees": [
+            0,
+            0,
+            0
+          ]
+        },
+        "fill_origin": {
+          "position": [
+            0,
+            0.383,
+            -0.4
+          ],
+          "rotationDegrees": [
+            0,
+            0,
+            0
+          ]
+        }
+      },
+      "materials": [
+        "water"
+      ],
+      "id": "release1/props/water_drop@1",
+      "url": "assets/models/release1/props/water_drop.glb",
+      "rightsRecord": "assets/models/release1/props/PROVENANCE.md",
+      "vertices": 4,
+      "materialCount": 1,
+      "textureCount": 0,
+      "pivot": "floor/contact centre"
+    },
+    {
+      "name": "scratching_post",
+      "bytes": 863488,
+      "sha256": "4a965568c8a86df5834b6a29ca1c669698a9fc91dcb1e0146803621385a193d3",
+      "bounds": {
+        "min": [
+          -0.3149999976158142,
+          0.0,
+          -0.3149999976158142
+        ],
+        "max": [
+          0.3149999976158142,
+          0.89000004529953,
+          0.3149999976158142
+        ]
+      },
+      "triangles": 4368,
+      "footprint": [
+        0.65,
+        0.65
+      ],
+      "anchors": {
+        "approach": {
+          "position": [
+            0,
+            0,
+            0.65
+          ],
+          "rotationDegrees": [
+            0,
+            0,
+            0
+          ]
+        },
+        "front_paw_contact": {
+          "position": [
+            0,
+            0.62,
+            0.13
+          ],
+          "rotationDegrees": [
+            0,
+            0,
+            0
+          ]
+        }
+      },
+      "materials": [
+        "teal",
+        "wicker",
+        "wood"
+      ],
+      "id": "release1/props/scratching_post@1",
+      "url": "assets/models/release1/props/scratching_post.glb",
+      "rightsRecord": "assets/models/release1/props/PROVENANCE.md",
+      "vertices": 4996,
+      "materialCount": 3,
+      "textureCount": 5,
+      "pivot": "floor/contact centre"
+    },
+    {
+      "name": "sunny_perch",
+      "bytes": 441672,
+      "sha256": "66b6fcc983f14287a703e8be0368fcbede1927afbdb0d4111246eb1a49be6eda",
+      "bounds": {
+        "min": [
+          -0.38999998569488525,
+          0.0,
+          -0.421999990940094
+        ],
+        "max": [
+          0.38999998569488525,
+          0.46000000834465027,
+          0.699999988079071
+        ]
+      },
+      "triangles": 1880,
+      "footprint": [
+        0.8,
+        1.4
+      ],
+      "anchors": {
+        "approach": {
+          "position": [
+            0,
+            0,
+            1.0
+          ],
+          "rotationDegrees": [
+            0,
+            0,
+            0
+          ]
+        },
+        "step": {
+          "position": [
+            0,
+            0.2,
+            0.575
+          ],
+          "rotationDegrees": [
+            0,
+            0,
+            0
+          ]
+        },
+        "paw_contact": {
+          "position": [
+            0,
+            0.46,
+            0
+          ],
+          "rotationDegrees": [
+            0,
+            0,
+            0
+          ]
+        },
+        "rest_root": {
+          "position": [
+            0,
+            0.46,
+            0
+          ],
+          "rotationDegrees": [
+            0,
+            0,
+            0
+          ]
+        }
+      },
+      "materials": [
+        "teal",
+        "wood"
+      ],
+      "id": "release1/props/sunny_perch@1",
+      "url": "assets/models/release1/props/sunny_perch.glb",
+      "rightsRecord": "assets/models/release1/props/PROVENANCE.md",
+      "vertices": 3840,
+      "materialCount": 2,
+      "textureCount": 3,
+      "pivot": "floor/contact centre"
+    },
+    {
+      "name": "hammock",
+      "bytes": 1269256,
+      "sha256": "4b4124e33ebbb63f1d339898f0343da7c44b427b0ae4e6ad5a5e442148678eb1",
+      "bounds": {
+        "min": [
+          -0.5249999761581421,
+          0.0,
+          -0.7649999856948853
+        ],
+        "max": [
+          0.5249999761581421,
+          0.7358353734016418,
+          0.7649999856948853
+        ]
+      },
+      "triangles": 3328,
+      "footprint": [
+        1.1,
+        1.6
+      ],
+      "anchors": {
+        "approach": {
+          "position": [
+            0.85,
+            0,
+            0
+          ],
+          "rotationDegrees": [
+            0,
+            0,
+            0
+          ]
+        },
+        "rest_root": {
+          "position": [
+            0,
+            0.33,
+            0
+          ],
+          "rotationDegrees": [
+            0,
+            0,
+            0
+          ]
+        },
+        "paw_contact": {
+          "position": [
+            0,
+            0.33,
+            0
+          ],
+          "rotationDegrees": [
+            0,
+            0,
+            0
+          ]
+        }
+      },
+      "materials": [
+        "cream",
+        "sage_cloth",
+        "teal",
+        "wicker",
+        "wood"
+      ],
+      "id": "release1/props/hammock@1",
+      "url": "assets/models/release1/props/hammock.glb",
+      "rightsRecord": "assets/models/release1/props/PROVENANCE.md",
+      "vertices": 3792,
+      "materialCount": 5,
+      "textureCount": 7,
+      "pivot": "floor/contact centre"
+    },
+    {
+      "name": "playhouse_frame",
+      "bytes": 670664,
+      "sha256": "7e55293ee45a8b74b27bcddd9bc71683bf3184bd134c802f309386a2eec46ded",
+      "bounds": {
+        "min": [
+          -0.717840313911438,
+          0.0,
+          -0.7925000786781311
+        ],
+        "max": [
+          0.717840313911438,
+          1.6746203899383545,
+          0.7925000786781311
+        ]
+      },
+      "triangles": 5076,
+      "footprint": [
+        1.5,
+        1.6
+      ],
+      "anchors": {
+        "entry": {
+          "position": [
+            0,
+            0.07,
+            0.75
+          ],
+          "rotationDegrees": [
+            0,
+            0,
+            0
+          ]
+        },
+        "exit": {
+          "position": [
+            0,
+            0.07,
+            -0.75
+          ],
+          "rotationDegrees": [
+            0,
+            0,
+            0
+          ]
+        },
+        "door_hinge": {
+          "position": [
+            -0.36,
+            0.07,
+            0.73
+          ],
+          "rotationDegrees": [
+            0,
+            0,
+            0
+          ]
+        },
+        "lookout": {
+          "position": [
+            0,
+            0.5,
+            -0.7
+          ],
+          "rotationDegrees": [
+            0,
+            0,
+            0
+          ]
+        },
+        "rest_root": {
+          "position": [
+            0,
+            0.07,
+            0
+          ],
+          "rotationDegrees": [
+            0,
+            0,
+            0
+          ]
+        }
+      },
+      "materials": [
+        "cream",
+        "teal",
+        "wood"
+      ],
+      "id": "release1/props/playhouse_frame@1",
+      "url": "assets/models/release1/props/playhouse_frame.glb",
+      "rightsRecord": "assets/models/release1/props/PROVENANCE.md",
+      "vertices": 10368,
+      "materialCount": 3,
+      "textureCount": 3,
+      "pivot": "floor/contact centre"
+    },
+    {
+      "name": "playhouse_door",
+      "bytes": 387992,
+      "sha256": "d810aa5c531b5206e8e81e2e41f57d7663f42e76f0269c36f482cf4cb0beee47",
+      "bounds": {
+        "min": [
+          0.01000000536441803,
+          0.0,
+          -0.04749999940395355
+        ],
+        "max": [
+          0.7100000381469727,
+          0.9800000190734863,
+          0.02500000037252903
+        ]
+      },
+      "triangles": 1128,
+      "footprint": [
+        0.72,
+        0.09
+      ],
+      "anchors": {
+        "door_hinge": {
+          "position": [
+            0,
+            0,
+            0
+          ],
+          "rotationDegrees": [
+            0,
+            0,
+            0
+          ]
+        }
+      },
+      "materials": [
+        "teal",
+        "wood"
+      ],
+      "id": "release1/props/playhouse_door@1",
+      "url": "assets/models/release1/props/playhouse_door.glb",
+      "rightsRecord": "assets/models/release1/props/PROVENANCE.md",
+      "vertices": 2304,
+      "materialCount": 2,
+      "textureCount": 3,
+      "pivot": "hinge"
+    },
+    {
+      "name": "low_picnic_table",
+      "bytes": 441664,
+      "sha256": "c4bda9278371bb0a30e88986cdc4ad22793cf381e4ec1182198cec2636b0b3a4",
+      "bounds": {
+        "min": [
+          -0.5799999833106995,
+          0.03486255183815956,
+          -0.653499960899353
+        ],
+        "max": [
+          0.5799999833106995,
+          0.5,
+          0.653499960899353
+        ]
+      },
+      "triangles": 1880,
+      "footprint": [
+        1.2,
+        1.4
+      ],
+      "anchors": {
+        "gather_pip": {
+          "position": [
+            -0.85,
+            0,
+            0
+          ],
+          "rotationDegrees": [
+            0,
+            0,
+            0
+          ]
+        },
+        "gather_mabel": {
+          "position": [
+            0,
+            0,
+            -0.95
+          ],
+          "rotationDegrees": [
+            0,
+            0,
+            0
+          ]
+        },
+        "gather_button": {
+          "position": [
+            0.85,
+            0,
+            0
+          ],
+          "rotationDegrees": [
+            0,
+            0,
+            0
+          ]
+        },
+        "gather_pepper": {
+          "position": [
+            0,
+            0,
+            0.95
+          ],
+          "rotationDegrees": [
+            0,
+            0,
+            0
+          ]
+        }
+      },
+      "materials": [
+        "teal",
+        "wood"
+      ],
+      "id": "release1/props/low_picnic_table@1",
+      "url": "assets/models/release1/props/low_picnic_table.glb",
+      "rightsRecord": "assets/models/release1/props/PROVENANCE.md",
+      "vertices": 3840,
+      "materialCount": 2,
+      "textureCount": 3,
+      "pivot": "floor/contact centre"
+    },
+    {
+      "name": "picnic_mat",
+      "bytes": 757564,
+      "sha256": "976a7ac13931d9d34faf33798dcf26e08ef20c478501be86d73b1812b4a407f0",
+      "bounds": {
+        "min": [
+          -0.7300000190734863,
+          0.0,
+          -0.7300000190734863
+        ],
+        "max": [
+          0.7300000190734863,
+          0.0494999997317791,
+          0.7300000190734863
+        ]
+      },
+      "triangles": 9004,
+      "footprint": [
+        1.5,
+        1.5
+      ],
+      "anchors": {
+        "sit_pip": {
+          "position": [
+            -0.36,
+            0.04,
+            0.36
+          ],
+          "rotationDegrees": [
+            0,
+            0,
+            0
+          ]
+        },
+        "sit_mabel": {
+          "position": [
+            -0.36,
+            0.04,
+            -0.36
+          ],
+          "rotationDegrees": [
+            0,
+            0,
+            0
+          ]
+        },
+        "sit_button": {
+          "position": [
+            0.36,
+            0.04,
+            -0.36
+          ],
+          "rotationDegrees": [
+            0,
+            0,
+            0
+          ]
+        },
+        "sit_pepper": {
+          "position": [
+            0.36,
+            0.04,
+            0.36
+          ],
+          "rotationDegrees": [
+            0,
+            0,
+            0
+          ]
+        }
+      },
+      "materials": [
+        "cream",
+        "sage_cloth"
+      ],
+      "id": "release1/props/picnic_mat@1",
+      "url": "assets/models/release1/props/picnic_mat.glb",
+      "rightsRecord": "assets/models/release1/props/PROVENANCE.md",
+      "vertices": 7890,
+      "materialCount": 2,
+      "textureCount": 3,
+      "pivot": "floor/contact centre"
+    },
+    {
+      "name": "shade_clue",
+      "bytes": 359596,
+      "sha256": "167f62b6df731b9b42f3c479db13a94d15f8d9738ee1fcb503d30e13bf164c42",
+      "bounds": {
+        "min": [
+          -0.27000001072883606,
+          0.0,
+          -0.23499999940395355
+        ],
+        "max": [
+          0.27000001072883606,
+          0.0989999994635582,
+          0.23499999940395355
+        ]
+      },
+      "triangles": 752,
+      "footprint": [
+        0.54,
+        0.47
+      ],
+      "anchors": {
+        "symbol_face": {
+          "position": [
+            0,
+            0.08,
+            0
+          ],
+          "rotationDegrees": [
+            0,
+            0,
+            0
+          ]
+        },
+        "footprint_origin": {
+          "position": [
+            0,
+            0,
+            0
+          ],
+          "rotationDegrees": [
+            0,
+            0,
+            0
+          ]
+        }
+      },
+      "materials": [
+        "cream",
+        "teal",
+        "wood"
+      ],
+      "id": "release1/props/shade_clue@1",
+      "url": "assets/models/release1/props/shade_clue.glb",
+      "rightsRecord": "assets/models/release1/props/PROVENANCE.md",
+      "vertices": 1459,
+      "materialCount": 3,
+      "textureCount": 3,
+      "pivot": "floor/contact centre"
+    },
+    {
+      "name": "adjacency_clue",
+      "bytes": 363188,
+      "sha256": "6563da56abd7da6e0fd5967499608f631dfc81f3aa6e2d619623b21e0fc5fc52",
+      "bounds": {
+        "min": [
+          -0.27000001072883606,
+          0.0,
+          -0.23499999940395355
+        ],
+        "max": [
+          0.27000001072883606,
+          0.10999999940395355,
+          0.23499999940395355
+        ]
+      },
+      "triangles": 780,
+      "footprint": [
+        0.54,
+        0.47
+      ],
+      "anchors": {
+        "symbol_face": {
+          "position": [
+            0,
+            0.08,
+            0
+          ],
+          "rotationDegrees": [
+            0,
+            0,
+            0
+          ]
+        },
+        "footprint_origin": {
+          "position": [
+            0,
+            0,
+            0
+          ],
+          "rotationDegrees": [
+            0,
+            0,
+            0
+          ]
+        }
+      },
+      "materials": [
+        "cream",
+        "teal",
+        "wood"
+      ],
+      "id": "release1/props/adjacency_clue@1",
+      "url": "assets/models/release1/props/adjacency_clue.glb",
+      "rightsRecord": "assets/models/release1/props/PROVENANCE.md",
+      "vertices": 1566,
+      "materialCount": 3,
+      "textureCount": 3,
+      "pivot": "floor/contact centre"
+    },
+    {
+      "name": "quiet_clue",
+      "bytes": 360308,
+      "sha256": "50209e370a394df954c6a0a50d19114d7302bbcb2f1303d0624f9e6af54ac669",
+      "bounds": {
+        "min": [
+          -0.27000001072883606,
+          0.0,
+          -0.23499999940395355
+        ],
+        "max": [
+          0.27000001072883606,
+          0.10999999940395355,
+          0.23499999940395355
+        ]
+      },
+      "triangles": 1132,
+      "footprint": [
+        0.54,
+        0.47
+      ],
+      "anchors": {
+        "symbol_face": {
+          "position": [
+            0,
+            0.08,
+            0
+          ],
+          "rotationDegrees": [
+            0,
+            0,
+            0
+          ]
+        },
+        "footprint_origin": {
+          "position": [
+            0,
+            0,
+            0
+          ],
+          "rotationDegrees": [
+            0,
+            0,
+            0
+          ]
+        }
+      },
+      "materials": [
+        "cream",
+        "teal",
+        "wood"
+      ],
+      "id": "release1/props/quiet_clue@1",
+      "url": "assets/models/release1/props/quiet_clue.glb",
+      "rightsRecord": "assets/models/release1/props/PROVENANCE.md",
+      "vertices": 1410,
+      "materialCount": 3,
+      "textureCount": 3,
+      "pivot": "floor/contact centre"
+    },
+    {
+      "id": "shop/garden_cushion",
+      "url": "assets/models/release1/props/thumbnails/garden_cushion.png",
+      "sha256": "d8c19acd719f75683cd4558f28dd217778bba8206d214a4a11030e67c03a3312",
+      "bytes": 219422,
+      "dimensions": [
+        512,
+        512
+      ],
+      "rightsRecord": "assets/models/release1/props/PROVENANCE.md"
+    },
+    {
+      "id": "shop/drinking_bowl",
+      "url": "assets/models/release1/props/thumbnails/drinking_bowl.png",
+      "sha256": "3257b1cf8b4c2a26e946eb390e38093f879c0cbdc60193f334070eab941e3365",
+      "bytes": 210805,
+      "dimensions": [
+        512,
+        512
+      ],
+      "rightsRecord": "assets/models/release1/props/PROVENANCE.md"
+    },
+    {
+      "id": "shop/scratching_post",
+      "url": "assets/models/release1/props/thumbnails/scratching_post.png",
+      "sha256": "47ba4670d1a247a3c8c3fe86bfcf6309a84b5153d4b29d84684e01a40ef0438d",
+      "bytes": 214604,
+      "dimensions": [
+        512,
+        512
+      ],
+      "rightsRecord": "assets/models/release1/props/PROVENANCE.md"
+    },
+    {
+      "id": "shop/sunny_perch",
+      "url": "assets/models/release1/props/thumbnails/sunny_perch.png",
+      "sha256": "0ee94c2d688a1820ad4dcce5699354c628b46d35481aa399fe39ff8653646835",
+      "bytes": 204724,
+      "dimensions": [
+        512,
+        512
+      ],
+      "rightsRecord": "assets/models/release1/props/PROVENANCE.md"
+    },
+    {
+      "id": "shop/hammock",
+      "url": "assets/models/release1/props/thumbnails/hammock.png",
+      "sha256": "2557b24e7f93c2b9bad6ce0a43c198d63ee7157213d8988e4b83725c210efc60",
+      "bytes": 207083,
+      "dimensions": [
+        512,
+        512
+      ],
+      "rightsRecord": "assets/models/release1/props/PROVENANCE.md"
+    },
+    {
+      "id": "shop/playhouse",
+      "url": "assets/models/release1/props/thumbnails/playhouse.png",
+      "sha256": "6179ae9ac66dff671ffd347a61fd88d19dd65b772a55010affff22387a7268ec",
+      "bytes": 283858,
+      "dimensions": [
+        512,
+        512
+      ],
+      "rightsRecord": "assets/models/release1/props/PROVENANCE.md"
+    },
+    {
+      "id": "shop/low_picnic_table",
+      "url": "assets/models/release1/props/thumbnails/low_picnic_table.png",
+      "sha256": "cefae114347bbab4f55587ff78f17bd961e6059c19cfc7db86c40d866515cb05",
+      "bytes": 202997,
+      "dimensions": [
+        512,
+        512
+      ],
+      "rightsRecord": "assets/models/release1/props/PROVENANCE.md"
+    },
+    {
+      "id": "shop/picnic_mat",
+      "url": "assets/models/release1/props/thumbnails/picnic_mat.png",
+      "sha256": "d5d29b44bda350949c632d0da86d134905aa04e01ef4901a711e391be466d905",
+      "bytes": 228867,
+      "dimensions": [
+        512,
+        512
+      ],
+      "rightsRecord": "assets/models/release1/props/PROVENANCE.md"
+    },
+    {
+      "id": "fonts/Fraunces-Semibold",
+      "file": "Fraunces-Semibold.ttf",
+      "source": "https://raw.githubusercontent.com/google/fonts/bd8f81ddb5c74d5c8897b36ad88b440266245103/ofl/fraunces/Fraunces%5BSOFT%2CWONK%2Copsz%2Cwght%5D.ttf",
+      "source_sha256": "177ff6c0f14e5550a3c624247cd1189611d4eb65d000b14944c63d967958abbb",
+      "axes": {
+        "opsz": 24,
+        "wght": 600,
+        "SOFT": 0.0,
+        "WONK": 1.0
+      },
+      "sha256": "9b340368f85739fdbe160ab1d4f4a824f7786b7044070514ecb1671d4328b3db",
+      "bytes": 72976,
+      "license": "fraunces-OFL.txt",
+      "modification": "Static instance using fontTools 4.60.1; no subsetting",
+      "date": "2026-10-10",
+      "url": "assets/fonts/Fraunces-Semibold.ttf",
+      "rightsRecord": "assets/fonts/fraunces-OFL.txt"
+    },
+    {
+      "id": "fonts/NunitoSans-Regular",
+      "file": "NunitoSans-Regular.ttf",
+      "source": "https://raw.githubusercontent.com/google/fonts/bd8f81ddb5c74d5c8897b36ad88b440266245103/ofl/nunitosans/NunitoSans%5BYTLC%2Copsz%2Cwdth%2Cwght%5D.ttf",
+      "source_sha256": "f934d7142fb4784bf828da485b7dcbd90c0c80d514e9d49a5da0ed3a1ae2491d",
+      "axes": {
+        "wght": 400,
+        "wdth": 100.0,
+        "opsz": 12,
+        "YTLC": 500.0
+      },
+      "sha256": "a0dd7a78a7956a2607955f1cc96e241eec9131ff1f6db9b12169beed332e3fe2",
+      "bytes": 113504,
+      "license": "nunitosans-OFL.txt",
+      "modification": "Static instance using fontTools 4.60.1; no subsetting",
+      "date": "2026-10-10",
+      "url": "assets/fonts/NunitoSans-Regular.ttf",
+      "rightsRecord": "assets/fonts/nunitosans-OFL.txt"
+    },
+    {
+      "id": "fonts/NunitoSans-Semibold",
+      "file": "NunitoSans-Semibold.ttf",
+      "source": "https://raw.githubusercontent.com/google/fonts/bd8f81ddb5c74d5c8897b36ad88b440266245103/ofl/nunitosans/NunitoSans%5BYTLC%2Copsz%2Cwdth%2Cwght%5D.ttf",
+      "source_sha256": "f934d7142fb4784bf828da485b7dcbd90c0c80d514e9d49a5da0ed3a1ae2491d",
+      "axes": {
+        "wght": 600,
+        "wdth": 100.0,
+        "opsz": 12,
+        "YTLC": 500.0
+      },
+      "sha256": "136c75f0844a31f0dc3f81e9ec0c3070b40df23697d120d89d517c7e3f665849",
+      "bytes": 113596,
+      "license": "nunitosans-OFL.txt",
+      "modification": "Static instance using fontTools 4.60.1; no subsetting",
+      "date": "2026-10-10",
+      "url": "assets/fonts/NunitoSans-Semibold.ttf",
+      "rightsRecord": "assets/fonts/nunitosans-OFL.txt"
+    },
+    {
+      "rightsRecord": "assets/textures/garden/grass-lawn-v1.provenance.txt",
+      "bytes": 4742896,
+      "url": "assets/textures/garden/grass-lawn-v1.png",
+      "id": "garden/grass-lawn@1",
+      "sha256": "b523f462a17d5c65b3b6637fad905f6f7e1b0a8b32e81a00827a3c44964e77a7"
+    },
+    {
+      "rightsRecord": "assets/textures/garden/terrain/NOTICE.md",
+      "bytes": 3957510,
+      "url": "assets/textures/garden/terrain/meadow-v1.png",
+      "id": "garden/terrain-meadow@1",
+      "sha256": "2dd53b1997fc4a0e173588d7150730eea2bccf549b20b4b88176914ae5cbd133"
+    },
+    {
+      "rightsRecord": "assets/textures/garden/terrain/NOTICE.md",
+      "bytes": 3922866,
+      "url": "assets/textures/garden/terrain/earth-v1.png",
+      "id": "garden/terrain-earth@1",
+      "sha256": "67b1993e4e09acac39db402ab7f77228564ea14c4178f92e9e3a1ceada37c81c"
+    },
+    {
+      "id": "release1/cats/pip@3",
+      "cat": "pip",
+      "version": 3,
+      "url": "assets/models/release1/cats/toon-v2/pip/pip.glb",
+      "sha256": "b8d69723c517a65c1b606b902c5195f599eefaad25dd4934f0d8b7e850c6f658",
+      "bytes": 9613756,
+      "triangles": 8134,
+      "materials": 1,
+      "bones": 51,
+      "rig": "toon-cat/1",
+      "coat": 4,
+      "portrait": {
+        "path": "assets/runtime/models/release1/cats/toon-v2/pip/portrait.png",
+        "bytes": 300559,
+        "sha256": "b6448fdb7a16cd5c0b302b8091ec2a5e20852c632a7399224a5499b2bbf8ea8c"
+      },
+      "contacts": {
+        "path": "assets/runtime/models/release1/cats/toon-v2/pip/contacts.json",
+        "bytes": 6323687,
+        "sha256": "3b4dac6dd2734090d6cc5f60a332ee24e2017fe71f093ab1e8e75934743f5d23"
+      },
+      "master": {
+        "path": "artifacts/model-jobs/toon-cats/2026-10-17-gait/pip-runtime.blend",
+        "bytes": 103443710,
+        "sha256": "555b67a6c52a53aed583f7ac4e7f59d26c22be2ec30866c0f491b72ab9807012"
+      },
+      "rightsRecord": "assets/models/release1/cats/NOTICE.md",
+      "actions": [
+        {
+          "name": "relaxed_idle",
+          "source": "Idle_1",
+          "duration": 4.0,
+          "loop": true
+        },
+        {
+          "name": "attentive_request",
+          "source": "Idle_3",
+          "duration": 2.4,
+          "loop": false
+        },
+        {
+          "name": "happy_pounce",
+          "source": "Jump_Place_IP",
+          "duration": 1.2,
+          "loop": false
+        },
+        {
+          "name": "garden_walk",
+          "source": "Walk_F_IP",
+          "duration": 2.3,
+          "loop": true
+        },
+        {
+          "name": "settle_cushion",
+          "source": "Lie_belly_start",
+          "duration": 2.4,
+          "loop": false
+        },
+        {
+          "name": "curled_rest",
+          "source": "Lie_belly_sleep",
+          "duration": 4.0,
+          "loop": true
+        },
+        {
+          "name": "approach_bowl",
+          "source": "EatDrink_start",
+          "duration": 1.8,
+          "loop": false
+        },
+        {
+          "name": "drink",
+          "source": "Drinking",
+          "duration": 2.0,
+          "loop": true
+        },
+        {
+          "name": "return_idle",
+          "source": "EatDrink_end",
+          "duration": 1.8,
+          "loop": false
+        },
+        {
+          "name": "scratch",
+          "source": "SharpenClaws_Vert",
+          "duration": 3.0,
+          "loop": true
+        },
+        {
+          "name": "perch_step",
+          "source": "Jump_F_IP",
+          "duration": 2.4,
+          "loop": false
+        },
+        {
+          "name": "perch_settle",
+          "source": "Sit_start",
+          "duration": 2.4,
+          "loop": false
+        },
+        {
+          "name": "playhouse_enter",
+          "source": "Crouch_F_IP",
+          "duration": 1.8,
+          "loop": false
+        },
+        {
+          "name": "playhouse_lookout",
+          "source": "Sit_loop_2",
+          "duration": 3.0,
+          "loop": true
+        },
+        {
+          "name": "picnic_sit",
+          "source": "Sit_start",
+          "duration": 2.4,
+          "loop": false
+        },
+        {
+          "name": "personality_reaction",
+          "source": "Caress_idle",
+          "duration": 3.0,
+          "loop": false
+        },
+        {
+          "name": "turn_left",
+          "source": "Turn_L_IP",
+          "duration": 2.3,
+          "loop": true
+        },
+        {
+          "name": "turn_right",
+          "source": "Turn_R_IP",
+          "duration": 2.3,
+          "loop": true
+        },
+        {
+          "name": "rest_leave",
+          "source": "Lie_belly_end",
+          "duration": 2.4,
+          "loop": false
+        },
+        {
+          "name": "sit_idle",
+          "source": "Sit_loop_1",
+          "duration": 3,
+          "loop": true
+        },
+        {
+          "name": "sit_leave",
+          "source": "Sit_end",
+          "duration": 1.8,
+          "loop": false
+        },
+        {
+          "name": "quest_ball_play",
+          "source": "Attack_down",
+          "duration": 3.2,
+          "loop": false
+        },
+        {
+          "name": "quest_basket_finish",
+          "source": "Attack_down",
+          "duration": 5.4,
+          "loop": false
+        },
+        {
+          "name": "quest_gate_collect",
+          "source": "EatDrink_start|EatDrink_end",
+          "duration": 3.6,
+          "loop": false
+        },
+        {
+          "name": "quest_mouse_collect",
+          "source": "EatDrink_start|EatDrink_end",
+          "duration": 4.0,
+          "loop": false
+        },
+        {
+          "name": "quest_sun_stretch",
+          "source": "Lie_belly_start|Lie_belly_loop_2|Lie_belly_sleep",
+          "duration": 5.0,
+          "loop": false
+        },
+        {
+          "name": "quest_bed_knead",
+          "source": "SharpenClaws_Horiz|Lie_belly_start|Lie_belly_sleep",
+          "duration": 8.0,
+          "loop": false
+        },
+        {
+          "name": "quest_drink_finish",
+          "source": "EatDrink_start|Drinking|EatDrink_end",
+          "duration": 5.0,
+          "loop": false
+        },
+        {
+          "name": "quest_bell_touch",
+          "source": "Attack_F",
+          "duration": 4.5,
+          "loop": false
+        }
+      ],
+      "sourceIdentity": {
+        "pack": "Toon Cats pack",
+        "author": "Radik Bilalov",
+        "mesh": "/Game/CartoonCats/Cat/Meshes/Mesh_CartoonCat",
+        "coatTexture": "T_CartoonCat_BaseColor4.png",
+        "exportManifest": "artifacts/model-jobs/toon-cats/2026-10-16/asset-manifest.json"
+      },
+      "walk": {
+        "duration": 2.3,
+        "strideMetres": 1.035,
+        "speedMetresPerSecond": 0.45,
+        "rootMotion": false
+      },
+      "gaitRevision": "2026-10-17"
+    },
+    {
+      "path": "assets/runtime/models/release1/cats/toon-v2/pip/portrait.png",
+      "bytes": 300559,
+      "sha256": "b6448fdb7a16cd5c0b302b8091ec2a5e20852c632a7399224a5499b2bbf8ea8c",
+      "id": "release1/cats/pip@3/portrait",
+      "url": "assets/models/release1/cats/toon-v2/pip/portrait.png",
+      "rightsRecord": "assets/models/release1/cats/NOTICE.md"
+    },
+    {
+      "path": "assets/runtime/models/release1/cats/toon-v2/pip/contacts.json",
+      "bytes": 6323687,
+      "sha256": "3b4dac6dd2734090d6cc5f60a332ee24e2017fe71f093ab1e8e75934743f5d23",
+      "id": "release1/cats/pip@3/contacts",
+      "url": "assets/models/release1/cats/toon-v2/pip/contacts.json",
+      "rightsRecord": "assets/models/release1/cats/NOTICE.md"
+    },
+    {
+      "id": "release1/cats/mabel@3",
+      "cat": "mabel",
+      "version": 3,
+      "url": "assets/models/release1/cats/toon-v2/mabel/mabel.glb",
+      "sha256": "07924e33817339876aea6cb07ce5a3b1e03ca37ccb5d0a4c027784a97a37b84c",
+      "bytes": 9310880,
+      "triangles": 8134,
+      "materials": 1,
+      "bones": 51,
+      "rig": "toon-cat/1",
+      "coat": 12,
+      "portrait": {
+        "path": "assets/runtime/models/release1/cats/toon-v2/mabel/portrait.png",
+        "bytes": 290287,
+        "sha256": "f959c2eea3c95d9c5be220b89de3930ddeb43f1079c96bdfada3dedb8d8d08e8"
+      },
+      "contacts": {
+        "path": "assets/runtime/models/release1/cats/toon-v2/mabel/contacts.json",
+        "bytes": 6323687,
+        "sha256": "49604572b30e08d5b423439d45550912a43ab4a16676a0515c1daf697b17d29b"
+      },
+      "master": {
+        "path": "artifacts/model-jobs/toon-cats/2026-10-17-gait/mabel-runtime.blend",
+        "bytes": 103140830,
+        "sha256": "3f369dbdf3829ceafb0ec60d56b0d4c09dea0d2aa5c58b7f5bf800411fc458b3"
+      },
+      "rightsRecord": "assets/models/release1/cats/NOTICE.md",
+      "actions": [
+        {
+          "name": "relaxed_idle",
+          "source": "Idle_1",
+          "duration": 4.0,
+          "loop": true
+        },
+        {
+          "name": "attentive_request",
+          "source": "Idle_3",
+          "duration": 2.4,
+          "loop": false
+        },
+        {
+          "name": "happy_pounce",
+          "source": "Jump_Place_IP",
+          "duration": 1.2,
+          "loop": false
+        },
+        {
+          "name": "garden_walk",
+          "source": "Walk_F_IP",
+          "duration": 2.3,
+          "loop": true
+        },
+        {
+          "name": "settle_cushion",
+          "source": "Lie_belly_start",
+          "duration": 2.4,
+          "loop": false
+        },
+        {
+          "name": "curled_rest",
+          "source": "Lie_belly_sleep",
+          "duration": 4.0,
+          "loop": true
+        },
+        {
+          "name": "approach_bowl",
+          "source": "EatDrink_start",
+          "duration": 1.8,
+          "loop": false
+        },
+        {
+          "name": "drink",
+          "source": "Drinking",
+          "duration": 2.0,
+          "loop": true
+        },
+        {
+          "name": "return_idle",
+          "source": "EatDrink_end",
+          "duration": 1.8,
+          "loop": false
+        },
+        {
+          "name": "scratch",
+          "source": "SharpenClaws_Vert",
+          "duration": 3.0,
+          "loop": true
+        },
+        {
+          "name": "perch_step",
+          "source": "Jump_F_IP",
+          "duration": 2.4,
+          "loop": false
+        },
+        {
+          "name": "perch_settle",
+          "source": "Sit_start",
+          "duration": 2.4,
+          "loop": false
+        },
+        {
+          "name": "playhouse_enter",
+          "source": "Crouch_F_IP",
+          "duration": 1.8,
+          "loop": false
+        },
+        {
+          "name": "playhouse_lookout",
+          "source": "Sit_loop_2",
+          "duration": 3.0,
+          "loop": true
+        },
+        {
+          "name": "picnic_sit",
+          "source": "Sit_start",
+          "duration": 2.4,
+          "loop": false
+        },
+        {
+          "name": "personality_reaction",
+          "source": "Caress_idle",
+          "duration": 3.0,
+          "loop": false
+        },
+        {
+          "name": "turn_left",
+          "source": "Turn_L_IP",
+          "duration": 2.3,
+          "loop": true
+        },
+        {
+          "name": "turn_right",
+          "source": "Turn_R_IP",
+          "duration": 2.3,
+          "loop": true
+        },
+        {
+          "name": "rest_leave",
+          "source": "Lie_belly_end",
+          "duration": 2.4,
+          "loop": false
+        },
+        {
+          "name": "sit_idle",
+          "source": "Sit_loop_1",
+          "duration": 3,
+          "loop": true
+        },
+        {
+          "name": "sit_leave",
+          "source": "Sit_end",
+          "duration": 1.8,
+          "loop": false
+        },
+        {
+          "name": "quest_ball_play",
+          "source": "Attack_down",
+          "duration": 3.2,
+          "loop": false
+        },
+        {
+          "name": "quest_basket_finish",
+          "source": "Attack_down",
+          "duration": 5.4,
+          "loop": false
+        },
+        {
+          "name": "quest_gate_collect",
+          "source": "EatDrink_start|EatDrink_end",
+          "duration": 3.6,
+          "loop": false
+        },
+        {
+          "name": "quest_mouse_collect",
+          "source": "EatDrink_start|EatDrink_end",
+          "duration": 4.0,
+          "loop": false
+        },
+        {
+          "name": "quest_sun_stretch",
+          "source": "Lie_belly_start|Lie_belly_loop_2|Lie_belly_sleep",
+          "duration": 5.0,
+          "loop": false
+        },
+        {
+          "name": "quest_bed_knead",
+          "source": "SharpenClaws_Horiz|Lie_belly_start|Lie_belly_sleep",
+          "duration": 8.0,
+          "loop": false
+        },
+        {
+          "name": "quest_drink_finish",
+          "source": "EatDrink_start|Drinking|EatDrink_end",
+          "duration": 5.0,
+          "loop": false
+        },
+        {
+          "name": "quest_bell_touch",
+          "source": "Attack_F",
+          "duration": 4.5,
+          "loop": false
+        }
+      ],
+      "sourceIdentity": {
+        "pack": "Toon Cats pack",
+        "author": "Radik Bilalov",
+        "mesh": "/Game/CartoonCats/Cat/Meshes/Mesh_CartoonCat",
+        "coatTexture": "T_CartoonCat_BaseColor12.png",
+        "exportManifest": "artifacts/model-jobs/toon-cats/2026-10-16/asset-manifest.json"
+      },
+      "walk": {
+        "duration": 2.3,
+        "strideMetres": 1.035,
+        "speedMetresPerSecond": 0.45,
+        "rootMotion": false
+      },
+      "gaitRevision": "2026-10-17"
+    },
+    {
+      "path": "assets/runtime/models/release1/cats/toon-v2/mabel/portrait.png",
+      "bytes": 290287,
+      "sha256": "f959c2eea3c95d9c5be220b89de3930ddeb43f1079c96bdfada3dedb8d8d08e8",
+      "id": "release1/cats/mabel@3/portrait",
+      "url": "assets/models/release1/cats/toon-v2/mabel/portrait.png",
+      "rightsRecord": "assets/models/release1/cats/NOTICE.md"
+    },
+    {
+      "path": "assets/runtime/models/release1/cats/toon-v2/mabel/contacts.json",
+      "bytes": 6323687,
+      "sha256": "49604572b30e08d5b423439d45550912a43ab4a16676a0515c1daf697b17d29b",
+      "id": "release1/cats/mabel@3/contacts",
+      "url": "assets/models/release1/cats/toon-v2/mabel/contacts.json",
+      "rightsRecord": "assets/models/release1/cats/NOTICE.md"
+    },
+    {
+      "id": "release1/cats/button@3",
+      "cat": "button",
+      "version": 3,
+      "url": "assets/models/release1/cats/toon-v2/button/button.glb",
+      "sha256": "192c063c9e74cd1548214728929e9bf246ac1a8ee9173ff24376f4769fe028b0",
+      "bytes": 9126144,
+      "triangles": 8134,
+      "materials": 1,
+      "bones": 51,
+      "rig": "toon-cat/1",
+      "coat": 3,
+      "portrait": {
+        "path": "assets/runtime/models/release1/cats/toon-v2/button/portrait.png",
+        "bytes": 276651,
+        "sha256": "3ae6c2878c6c1a5d55e5fb39b2140c6c7d8ec0772de1c59e8afbadde916e653e"
+      },
+      "contacts": {
+        "path": "assets/runtime/models/release1/cats/toon-v2/button/contacts.json",
+        "bytes": 6323687,
+        "sha256": "08041c5687c4399347ba7c11558a4d899aa0323fcd74a9fc2b28e9c7098df809"
+      },
+      "master": {
+        "path": "artifacts/model-jobs/toon-cats/2026-10-17-gait/button-runtime.blend",
+        "bytes": 102956098,
+        "sha256": "49dc36e721d4c3432788c46dfb38995d83cca39a22c88bb9f109a5d022fd8004"
+      },
+      "rightsRecord": "assets/models/release1/cats/NOTICE.md",
+      "actions": [
+        {
+          "name": "relaxed_idle",
+          "source": "Idle_1",
+          "duration": 4.0,
+          "loop": true
+        },
+        {
+          "name": "attentive_request",
+          "source": "Idle_3",
+          "duration": 2.4,
+          "loop": false
+        },
+        {
+          "name": "happy_pounce",
+          "source": "Jump_Place_IP",
+          "duration": 1.2,
+          "loop": false
+        },
+        {
+          "name": "garden_walk",
+          "source": "Walk_F_IP",
+          "duration": 2.3,
+          "loop": true
+        },
+        {
+          "name": "settle_cushion",
+          "source": "Lie_belly_start",
+          "duration": 2.4,
+          "loop": false
+        },
+        {
+          "name": "curled_rest",
+          "source": "Lie_belly_sleep",
+          "duration": 4.0,
+          "loop": true
+        },
+        {
+          "name": "approach_bowl",
+          "source": "EatDrink_start",
+          "duration": 1.8,
+          "loop": false
+        },
+        {
+          "name": "drink",
+          "source": "Drinking",
+          "duration": 2.0,
+          "loop": true
+        },
+        {
+          "name": "return_idle",
+          "source": "EatDrink_end",
+          "duration": 1.8,
+          "loop": false
+        },
+        {
+          "name": "scratch",
+          "source": "SharpenClaws_Vert",
+          "duration": 3.0,
+          "loop": true
+        },
+        {
+          "name": "perch_step",
+          "source": "Jump_F_IP",
+          "duration": 2.4,
+          "loop": false
+        },
+        {
+          "name": "perch_settle",
+          "source": "Sit_start",
+          "duration": 2.4,
+          "loop": false
+        },
+        {
+          "name": "playhouse_enter",
+          "source": "Crouch_F_IP",
+          "duration": 1.8,
+          "loop": false
+        },
+        {
+          "name": "playhouse_lookout",
+          "source": "Sit_loop_2",
+          "duration": 3.0,
+          "loop": true
+        },
+        {
+          "name": "picnic_sit",
+          "source": "Sit_start",
+          "duration": 2.4,
+          "loop": false
+        },
+        {
+          "name": "personality_reaction",
+          "source": "Caress_idle",
+          "duration": 3.0,
+          "loop": false
+        },
+        {
+          "name": "turn_left",
+          "source": "Turn_L_IP",
+          "duration": 2.3,
+          "loop": true
+        },
+        {
+          "name": "turn_right",
+          "source": "Turn_R_IP",
+          "duration": 2.3,
+          "loop": true
+        },
+        {
+          "name": "rest_leave",
+          "source": "Lie_belly_end",
+          "duration": 2.4,
+          "loop": false
+        },
+        {
+          "name": "sit_idle",
+          "source": "Sit_loop_1",
+          "duration": 3,
+          "loop": true
+        },
+        {
+          "name": "sit_leave",
+          "source": "Sit_end",
+          "duration": 1.8,
+          "loop": false
+        },
+        {
+          "name": "quest_ball_play",
+          "source": "Attack_down",
+          "duration": 3.2,
+          "loop": false
+        },
+        {
+          "name": "quest_basket_finish",
+          "source": "Attack_down",
+          "duration": 5.4,
+          "loop": false
+        },
+        {
+          "name": "quest_gate_collect",
+          "source": "EatDrink_start|EatDrink_end",
+          "duration": 3.6,
+          "loop": false
+        },
+        {
+          "name": "quest_mouse_collect",
+          "source": "EatDrink_start|EatDrink_end",
+          "duration": 4.0,
+          "loop": false
+        },
+        {
+          "name": "quest_sun_stretch",
+          "source": "Lie_belly_start|Lie_belly_loop_2|Lie_belly_sleep",
+          "duration": 5.0,
+          "loop": false
+        },
+        {
+          "name": "quest_bed_knead",
+          "source": "SharpenClaws_Horiz|Lie_belly_start|Lie_belly_sleep",
+          "duration": 8.0,
+          "loop": false
+        },
+        {
+          "name": "quest_drink_finish",
+          "source": "EatDrink_start|Drinking|EatDrink_end",
+          "duration": 5.0,
+          "loop": false
+        },
+        {
+          "name": "quest_bell_touch",
+          "source": "Attack_F",
+          "duration": 4.5,
+          "loop": false
+        }
+      ],
+      "sourceIdentity": {
+        "pack": "Toon Cats pack",
+        "author": "Radik Bilalov",
+        "mesh": "/Game/CartoonCats/Cat/Meshes/Mesh_CartoonCat",
+        "coatTexture": "T_CartoonCat_BaseColor3.png",
+        "exportManifest": "artifacts/model-jobs/toon-cats/2026-10-16/asset-manifest.json"
+      },
+      "walk": {
+        "duration": 2.3,
+        "strideMetres": 1.035,
+        "speedMetresPerSecond": 0.45,
+        "rootMotion": false
+      },
+      "gaitRevision": "2026-10-17"
+    },
+    {
+      "path": "assets/runtime/models/release1/cats/toon-v2/button/portrait.png",
+      "bytes": 276651,
+      "sha256": "3ae6c2878c6c1a5d55e5fb39b2140c6c7d8ec0772de1c59e8afbadde916e653e",
+      "id": "release1/cats/button@3/portrait",
+      "url": "assets/models/release1/cats/toon-v2/button/portrait.png",
+      "rightsRecord": "assets/models/release1/cats/NOTICE.md"
+    },
+    {
+      "path": "assets/runtime/models/release1/cats/toon-v2/button/contacts.json",
+      "bytes": 6323687,
+      "sha256": "08041c5687c4399347ba7c11558a4d899aa0323fcd74a9fc2b28e9c7098df809",
+      "id": "release1/cats/button@3/contacts",
+      "url": "assets/models/release1/cats/toon-v2/button/contacts.json",
+      "rightsRecord": "assets/models/release1/cats/NOTICE.md"
+    },
+    {
+      "id": "release1/cats/pepper@3",
+      "cat": "pepper",
+      "version": 3,
+      "url": "assets/models/release1/cats/toon-v2/pepper/pepper.glb",
+      "sha256": "4642058899580cd10e0335e456f74750fa47ce808bd098255de9b2228c816014",
+      "bytes": 9244480,
+      "triangles": 8134,
+      "materials": 1,
+      "bones": 51,
+      "rig": "toon-cat/1",
+      "coat": 8,
+      "portrait": {
+        "path": "assets/runtime/models/release1/cats/toon-v2/pepper/portrait.png",
+        "bytes": 281099,
+        "sha256": "93cdc2d3401e88bbdb7d73d3c5d7707d31c7a5be2635ad144d2cc6b3646bd943"
+      },
+      "contacts": {
+        "path": "assets/runtime/models/release1/cats/toon-v2/pepper/contacts.json",
+        "bytes": 6323687,
+        "sha256": "a9aed4976e4f01ac883ba284a6ab67d23adca0d3312f64cd9c033fde0318b696"
+      },
+      "master": {
+        "path": "artifacts/model-jobs/toon-cats/2026-10-17-gait/pepper-runtime.blend",
+        "bytes": 103074434,
+        "sha256": "77bcc0780eb6f62502829b7160be624f4650a0d9e479417a5b5e17f8742914b1"
+      },
+      "rightsRecord": "assets/models/release1/cats/NOTICE.md",
+      "actions": [
+        {
+          "name": "relaxed_idle",
+          "source": "Idle_1",
+          "duration": 4.0,
+          "loop": true
+        },
+        {
+          "name": "attentive_request",
+          "source": "Idle_3",
+          "duration": 2.4,
+          "loop": false
+        },
+        {
+          "name": "happy_pounce",
+          "source": "Jump_Place_IP",
+          "duration": 1.2,
+          "loop": false
+        },
+        {
+          "name": "garden_walk",
+          "source": "Walk_F_IP",
+          "duration": 2.3,
+          "loop": true
+        },
+        {
+          "name": "settle_cushion",
+          "source": "Lie_belly_start",
+          "duration": 2.4,
+          "loop": false
+        },
+        {
+          "name": "curled_rest",
+          "source": "Lie_belly_sleep",
+          "duration": 4.0,
+          "loop": true
+        },
+        {
+          "name": "approach_bowl",
+          "source": "EatDrink_start",
+          "duration": 1.8,
+          "loop": false
+        },
+        {
+          "name": "drink",
+          "source": "Drinking",
+          "duration": 2.0,
+          "loop": true
+        },
+        {
+          "name": "return_idle",
+          "source": "EatDrink_end",
+          "duration": 1.8,
+          "loop": false
+        },
+        {
+          "name": "scratch",
+          "source": "SharpenClaws_Vert",
+          "duration": 3.0,
+          "loop": true
+        },
+        {
+          "name": "perch_step",
+          "source": "Jump_F_IP",
+          "duration": 2.4,
+          "loop": false
+        },
+        {
+          "name": "perch_settle",
+          "source": "Sit_start",
+          "duration": 2.4,
+          "loop": false
+        },
+        {
+          "name": "playhouse_enter",
+          "source": "Crouch_F_IP",
+          "duration": 1.8,
+          "loop": false
+        },
+        {
+          "name": "playhouse_lookout",
+          "source": "Sit_loop_2",
+          "duration": 3.0,
+          "loop": true
+        },
+        {
+          "name": "picnic_sit",
+          "source": "Sit_start",
+          "duration": 2.4,
+          "loop": false
+        },
+        {
+          "name": "personality_reaction",
+          "source": "Caress_idle",
+          "duration": 3.0,
+          "loop": false
+        },
+        {
+          "name": "turn_left",
+          "source": "Turn_L_IP",
+          "duration": 2.3,
+          "loop": true
+        },
+        {
+          "name": "turn_right",
+          "source": "Turn_R_IP",
+          "duration": 2.3,
+          "loop": true
+        },
+        {
+          "name": "rest_leave",
+          "source": "Lie_belly_end",
+          "duration": 2.4,
+          "loop": false
+        },
+        {
+          "name": "sit_idle",
+          "source": "Sit_loop_1",
+          "duration": 3,
+          "loop": true
+        },
+        {
+          "name": "sit_leave",
+          "source": "Sit_end",
+          "duration": 1.8,
+          "loop": false
+        },
+        {
+          "name": "quest_ball_play",
+          "source": "Attack_down",
+          "duration": 3.2,
+          "loop": false
+        },
+        {
+          "name": "quest_basket_finish",
+          "source": "Attack_down",
+          "duration": 5.4,
+          "loop": false
+        },
+        {
+          "name": "quest_gate_collect",
+          "source": "EatDrink_start|EatDrink_end",
+          "duration": 3.6,
+          "loop": false
+        },
+        {
+          "name": "quest_mouse_collect",
+          "source": "EatDrink_start|EatDrink_end",
+          "duration": 4.0,
+          "loop": false
+        },
+        {
+          "name": "quest_sun_stretch",
+          "source": "Lie_belly_start|Lie_belly_loop_2|Lie_belly_sleep",
+          "duration": 5.0,
+          "loop": false
+        },
+        {
+          "name": "quest_bed_knead",
+          "source": "SharpenClaws_Horiz|Lie_belly_start|Lie_belly_sleep",
+          "duration": 8.0,
+          "loop": false
+        },
+        {
+          "name": "quest_drink_finish",
+          "source": "EatDrink_start|Drinking|EatDrink_end",
+          "duration": 5.0,
+          "loop": false
+        },
+        {
+          "name": "quest_bell_touch",
+          "source": "Attack_F",
+          "duration": 4.5,
+          "loop": false
+        }
+      ],
+      "sourceIdentity": {
+        "pack": "Toon Cats pack",
+        "author": "Radik Bilalov",
+        "mesh": "/Game/CartoonCats/Cat/Meshes/Mesh_CartoonCat",
+        "coatTexture": "T_CartoonCat_BaseColor8.png",
+        "exportManifest": "artifacts/model-jobs/toon-cats/2026-10-16/asset-manifest.json"
+      },
+      "walk": {
+        "duration": 2.3,
+        "strideMetres": 1.035,
+        "speedMetresPerSecond": 0.45,
+        "rootMotion": false
+      },
+      "gaitRevision": "2026-10-17"
+    },
+    {
+      "path": "assets/runtime/models/release1/cats/toon-v2/pepper/portrait.png",
+      "bytes": 281099,
+      "sha256": "93cdc2d3401e88bbdb7d73d3c5d7707d31c7a5be2635ad144d2cc6b3646bd943",
+      "id": "release1/cats/pepper@3/portrait",
+      "url": "assets/models/release1/cats/toon-v2/pepper/portrait.png",
+      "rightsRecord": "assets/models/release1/cats/NOTICE.md"
+    },
+    {
+      "path": "assets/runtime/models/release1/cats/toon-v2/pepper/contacts.json",
+      "bytes": 6323687,
+      "sha256": "a9aed4976e4f01ac883ba284a6ab67d23adca0d3312f64cd9c033fde0318b696",
+      "id": "release1/cats/pepper@3/contacts",
+      "url": "assets/models/release1/cats/toon-v2/pepper/contacts.json",
+      "rightsRecord": "assets/models/release1/cats/NOTICE.md"
+    },
+    {
+      "id": "audio/amb_garden_air_01",
+      "url": "assets/audio/amb_garden_air_01.wav",
+      "sha256": "1710b486944e13b5e137d966ddfea175fb751fd6dea747c6ffb7368471890d3a",
+      "bytes": 4365988,
+      "accepted": false,
+      "rightsRecord": "assets/audio/amb_garden_air_01.source-rights.txt"
+    },
+    {
+      "id": "audio/amb_garden_bird_01",
+      "url": "assets/audio/amb_garden_bird_01.wav",
+      "sha256": "36690f88eb9ab1eb6ecc98a916a12afdca2b5abb9cee332d4caf349b3763e71f",
+      "bytes": 218780,
+      "accepted": false,
+      "rightsRecord": "assets/audio/amb_garden_bird_01.source-rights.txt"
+    },
+    {
+      "id": "audio/amb_garden_bird_02",
+      "url": "assets/audio/amb_garden_bird_02.wav",
+      "sha256": "5559e7bcbeaf09f9ba986670feb185c7fa185f696c92a4d2f91aa4f8e9c26cf9",
+      "bytes": 218780,
+      "accepted": false,
+      "rightsRecord": "assets/audio/amb_garden_bird_02.source-rights.txt"
+    },
+    {
+      "id": "audio/amb_garden_bird_03",
+      "url": "assets/audio/amb_garden_bird_03.wav",
+      "sha256": "2f3f92ad940d53b53a0bf81b6d34dfb82ab056168535dc280418435262a80f5b",
+      "bytes": 218780,
+      "accepted": false,
+      "rightsRecord": "assets/audio/amb_garden_bird_03.source-rights.txt"
+    },
+    {
+      "id": "audio/pip_request_01",
+      "url": "assets/audio/pip_request_01.wav",
+      "sha256": "290e81878aa291c40d84c1b96113fceb50865d05cb762697ea0f7faee81cbdd1",
+      "bytes": 105884,
+      "accepted": false,
+      "rightsRecord": "assets/audio/pip_request_01.source-rights.txt"
+    },
+    {
+      "id": "audio/pip_request_02",
+      "url": "assets/audio/pip_request_02.wav",
+      "sha256": "f415cd6606462cf498d506bc5e460e210e897f144a09a8ce9a35618141828866",
+      "bytes": 105884,
+      "accepted": false,
+      "rightsRecord": "assets/audio/pip_request_02.source-rights.txt"
+    },
+    {
+      "id": "audio/pip_happy_01",
+      "url": "assets/audio/pip_happy_01.wav",
+      "sha256": "1e13205f0dbb3a159d95a6807343b3fc874e54e40b4b4e1183e4829d175a3285",
+      "bytes": 70604,
+      "accepted": false,
+      "rightsRecord": "assets/audio/pip_happy_01.source-rights.txt"
+    },
+    {
+      "id": "audio/pip_happy_02",
+      "url": "assets/audio/pip_happy_02.wav",
+      "sha256": "8763df8ffff2b4ed154288bd2be16228567bdfdaa35e7f01d7d68945e4d81fba",
+      "bytes": 70604,
+      "accepted": false,
+      "rightsRecord": "assets/audio/pip_happy_02.source-rights.txt"
+    },
+    {
+      "id": "audio/pip_purr_01",
+      "url": "assets/audio/pip_purr_01.wav",
+      "sha256": "f8082c2bb7d3e6dce3a34c0fe48b69dd7871fd0b73321c247f65dfc0562466b6",
+      "bytes": 859994,
+      "accepted": false,
+      "rightsRecord": "assets/audio/pip_purr_01.source-rights.txt"
+    },
+    {
+      "id": "audio/pip_paws_stone_01",
+      "url": "assets/audio/pip_paws_stone_01.wav",
+      "sha256": "fa9ea7cf986262658b7dc6ab55ecfb4d817e3724d18bb67cc84a68713387ebe4",
+      "bytes": 20330,
+      "accepted": false,
+      "rightsRecord": "assets/audio/pip_paws_stone_01.source-rights.txt"
+    },
+    {
+      "id": "audio/pip_paws_stone_02",
+      "url": "assets/audio/pip_paws_stone_02.wav",
+      "sha256": "60fb43f989ecc193575d8b729a22654d84f76c414436844c3ea3c7efed16fb73",
+      "bytes": 20330,
+      "accepted": false,
+      "rightsRecord": "assets/audio/pip_paws_stone_02.source-rights.txt"
+    },
+    {
+      "id": "audio/pip_paws_stone_03",
+      "url": "assets/audio/pip_paws_stone_03.wav",
+      "sha256": "308c344ca24d2d1070453ae697888793e5bce73d155d88d347a45fe7b0db6b29",
+      "bytes": 20330,
+      "accepted": false,
+      "rightsRecord": "assets/audio/pip_paws_stone_03.source-rights.txt"
+    },
+    {
+      "id": "audio/pip_settle_01",
+      "url": "assets/audio/pip_settle_01.wav",
+      "sha256": "d11ab07f283904cdff8d834ec8f6cf55f01f00e32e67217aaaef980c44b4cd3c",
+      "bytes": 77660,
+      "accepted": false,
+      "rightsRecord": "assets/audio/pip_settle_01.source-rights.txt"
+    },
+    {
+      "id": "audio/pip_drink_01",
+      "url": "assets/audio/pip_drink_01.wav",
+      "sha256": "1d55f3267b35b1c9e7ba78965ddb5f5a2693dd840445afa9e870a40daa3ace2c",
+      "bytes": 264644,
+      "accepted": false,
+      "rightsRecord": "assets/audio/pip_drink_01.source-rights.txt"
+    },
+    {
+      "id": "audio/ui_select_01",
+      "url": "assets/audio/ui_select_01.wav",
+      "sha256": "d6d2f37f66c89790976db1edbdc5d128a4a11cd0f9e9c61f54222ddf84962a9e",
+      "bytes": 14156,
+      "accepted": false,
+      "rightsRecord": "assets/audio/ui_select_01.source-rights.txt"
+    },
+    {
+      "id": "audio/ui_select_02",
+      "url": "assets/audio/ui_select_02.wav",
+      "sha256": "a824b813e7c4b3cee77f4551df52119a195fb0f449db4500af6f2776b7dcdd27",
+      "bytes": 14156,
+      "accepted": false,
+      "rightsRecord": "assets/audio/ui_select_02.source-rights.txt"
+    },
+    {
+      "id": "audio/ui_confirm_01",
+      "url": "assets/audio/ui_confirm_01.wav",
+      "sha256": "d0be2f9bebdbb7545bf8e2884cbff8f74b5fda16bf8e503014f6df73ba779dc5",
+      "bytes": 21212,
+      "accepted": false,
+      "rightsRecord": "assets/audio/ui_confirm_01.source-rights.txt"
+    },
+    {
+      "id": "audio/ui_panel_01",
+      "url": "assets/audio/ui_panel_01.wav",
+      "sha256": "7511ab6db97000c982a823ded2829aa40a2e58e9de2741d99f475deae162ee56",
+      "bytes": 52964,
+      "accepted": false,
+      "rightsRecord": "assets/audio/ui_panel_01.source-rights.txt"
+    },
+    {
+      "id": "audio/ui_undo_01",
+      "url": "assets/audio/ui_undo_01.wav",
+      "sha256": "3655d68632aa495c0df221762cfb01d0606c29975896da534959a776af112f61",
+      "bytes": 42380,
+      "accepted": false,
+      "rightsRecord": "assets/audio/ui_undo_01.source-rights.txt"
+    },
+    {
+      "id": "audio/ui_hint_01",
+      "url": "assets/audio/ui_hint_01.wav",
+      "sha256": "5f30b709f74896685736b885a6788281aa356d768b332545eefb2e9a23193f9e",
+      "bytes": 60042,
+      "accepted": false,
+      "rightsRecord": "assets/audio/ui_hint_01.source-rights.txt"
+    },
+    {
+      "id": "audio/ui_blocked_01",
+      "url": "assets/audio/ui_blocked_01.wav",
+      "sha256": "8a2636f19e6ccca2070c6340ea769f3de70d367d59810426b56b81b2cbcdae4a",
+      "bytes": 26504,
+      "accepted": false,
+      "rightsRecord": "assets/audio/ui_blocked_01.source-rights.txt"
+    },
+    {
+      "id": "audio/reward_coins_01",
+      "url": "assets/audio/reward_coins_01.wav",
+      "sha256": "4a96b58d769c75e3b163e0e2159943d8bfd58e86ea1ad7fd47ac5194ff101e2e",
+      "bytes": 105884,
+      "accepted": false,
+      "rightsRecord": "assets/audio/reward_coins_01.source-rights.txt"
+    },
+    {
+      "id": "audio/shop_purchase_01",
+      "url": "assets/audio/shop_purchase_01.wav",
+      "sha256": "db3f6379bd360ba102322acbc56e1242e735a2845a1b32357c0a0076396e80ee",
+      "bytes": 77660,
+      "accepted": false,
+      "rightsRecord": "assets/audio/shop_purchase_01.source-rights.txt"
+    },
+    {
+      "id": "audio/pot_slide_01",
+      "url": "assets/audio/pot_slide_01.wav",
+      "sha256": "a7a2aed30f6a8cca2ac6e0b032711db8cc1c070c2218b5be4de31d2c66fe5380",
+      "bytes": 70604,
+      "accepted": false,
+      "rightsRecord": "assets/audio/pot_slide_01.source-rights.txt"
+    },
+    {
+      "id": "audio/pot_slide_02",
+      "url": "assets/audio/pot_slide_02.wav",
+      "sha256": "e872d6e342c46381726fec8758be6386b2d657107a73b8228f0b7f64e03a1a2d",
+      "bytes": 70604,
+      "accepted": false,
+      "rightsRecord": "assets/audio/pot_slide_02.source-rights.txt"
+    },
+    {
+      "id": "audio/pot_slide_03",
+      "url": "assets/audio/pot_slide_03.wav",
+      "sha256": "4027ff29086d02d836a1a84574f19321f5b827db682af5c6e4b7b6b5fefe4c8d",
+      "bytes": 70604,
+      "accepted": false,
+      "rightsRecord": "assets/audio/pot_slide_03.source-rights.txt"
+    },
+    {
+      "id": "audio/channel_rotate_01",
+      "url": "assets/audio/channel_rotate_01.wav",
+      "sha256": "5968accf8b11687e3c7465b4185100f3624c2273167359bb7482664bd678baeb",
+      "bytes": 70604,
+      "accepted": false,
+      "rightsRecord": "assets/audio/channel_rotate_01.source-rights.txt"
+    },
+    {
+      "id": "audio/channel_rotate_02",
+      "url": "assets/audio/channel_rotate_02.wav",
+      "sha256": "38a4f28568ee42d5f8fc08e7682bfc53f7f4fcaa0db8cb8bf57973043849b8ed",
+      "bytes": 70604,
+      "accepted": false,
+      "rightsRecord": "assets/audio/channel_rotate_02.source-rights.txt"
+    },
+    {
+      "id": "audio/ball_roll_01",
+      "url": "assets/audio/ball_roll_01.wav",
+      "sha256": "e60946abde4442f9ff4befa710c594c60f1ba360aeeec38454e44874e7ab4b61",
+      "bytes": 242594,
+      "accepted": false,
+      "rightsRecord": "assets/audio/ball_roll_01.source-rights.txt"
+    },
+    {
+      "id": "audio/ball_contact_01",
+      "url": "assets/audio/ball_contact_01.wav",
+      "sha256": "997c569aa90435a04a0318da62c5713711ef9dc2f1aacd3f8204d0c44a19ffa9",
+      "bytes": 26504,
+      "accepted": false,
+      "rightsRecord": "assets/audio/ball_contact_01.source-rights.txt"
+    },
+    {
+      "id": "audio/ball_contact_02",
+      "url": "assets/audio/ball_contact_02.wav",
+      "sha256": "354a04f173b6d73b34ec9bfd088ea98507c117bdc0d1f9fc991bd5e87a6cb506",
+      "bytes": 26504,
+      "accepted": false,
+      "rightsRecord": "assets/audio/ball_contact_02.source-rights.txt"
+    },
+    {
+      "id": "audio/ball_contact_03",
+      "url": "assets/audio/ball_contact_03.wav",
+      "sha256": "b95f76541ebd613775a2aca73a2b59bfb9004f7ba6b38d654715beee3592bed0",
+      "bytes": 26504,
+      "accepted": false,
+      "rightsRecord": "assets/audio/ball_contact_03.source-rights.txt"
+    },
+    {
+      "id": "audio/toy_pickup_01",
+      "url": "assets/audio/toy_pickup_01.wav",
+      "sha256": "909617cbb36402f22c66b7df9e1953b93fd6be9b82b01791b67cd316b8db6881",
+      "bytes": 42380,
+      "accepted": false,
+      "rightsRecord": "assets/audio/toy_pickup_01.source-rights.txt"
+    },
+    {
+      "id": "audio/toy_pickup_02",
+      "url": "assets/audio/toy_pickup_02.wav",
+      "sha256": "e980c73fa1abb2522d45896bb636c4271c262a5fcb7a397d46ba0fe3986e6e11",
+      "bytes": 42380,
+      "accepted": false,
+      "rightsRecord": "assets/audio/toy_pickup_02.source-rights.txt"
+    },
+    {
+      "id": "audio/basket_place_01",
+      "url": "assets/audio/basket_place_01.wav",
+      "sha256": "3fbeb12a2796fd5f0cc931a972bc42d9f6ea3f73453025c35d85752233e6cb5e",
+      "bytes": 52964,
+      "accepted": false,
+      "rightsRecord": "assets/audio/basket_place_01.source-rights.txt"
+    },
+    {
+      "id": "audio/basket_place_02",
+      "url": "assets/audio/basket_place_02.wav",
+      "sha256": "4cb413c36e76c225702df453f9b1f3cf6e2b6ce86692a3a3b6e7f7db3433efe8",
+      "bytes": 52964,
+      "accepted": false,
+      "rightsRecord": "assets/audio/basket_place_02.source-rights.txt"
+    },
+    {
+      "id": "audio/cushion_move_01",
+      "url": "assets/audio/cushion_move_01.wav",
+      "sha256": "9b50ccaff743fda5c0bdb9a2cab951e9daf092bac165cea87941e098f5b828a6",
+      "bytes": 70604,
+      "accepted": false,
+      "rightsRecord": "assets/audio/cushion_move_01.source-rights.txt"
+    },
+    {
+      "id": "audio/cushion_move_02",
+      "url": "assets/audio/cushion_move_02.wav",
+      "sha256": "6f9085a2de0044fc18253854b4e797948a57a3c2e8ed35eeef972912daea8ae4",
+      "bytes": 70604,
+      "accepted": false,
+      "rightsRecord": "assets/audio/cushion_move_02.source-rights.txt"
+    },
+    {
+      "id": "audio/switch_down_01",
+      "url": "assets/audio/switch_down_01.wav",
+      "sha256": "20ab0032cd0b7d2f0b9044aad252b3c022d2f7d0f9993d9c3edb5af0649b44d7",
+      "bytes": 26504,
+      "accepted": false,
+      "rightsRecord": "assets/audio/switch_down_01.source-rights.txt"
+    },
+    {
+      "id": "audio/switch_up_01",
+      "url": "assets/audio/switch_up_01.wav",
+      "sha256": "60f5a8174ac52dd55da2aa8f9a6ba61970780636e9a68dfbf06a3b829df9c521",
+      "bytes": 26504,
+      "accepted": false,
+      "rightsRecord": "assets/audio/switch_up_01.source-rights.txt"
+    },
+    {
+      "id": "audio/gate_open_01",
+      "url": "assets/audio/gate_open_01.wav",
+      "sha256": "bab6c55a7c6449979204976a7a19e135e02d171732bd49735b4fc577d94d8217",
+      "bytes": 95300,
+      "accepted": false,
+      "rightsRecord": "assets/audio/gate_open_01.source-rights.txt"
+    },
+    {
+      "id": "audio/gate_close_01",
+      "url": "assets/audio/gate_close_01.wav",
+      "sha256": "5e2e4867e3dfba850819fb2c7654407037236731c6012e455c718caadf83c7c4",
+      "bytes": 95300,
+      "accepted": false,
+      "rightsRecord": "assets/audio/gate_close_01.source-rights.txt"
+    },
+    {
+      "id": "audio/furnishing_place_01",
+      "url": "assets/audio/furnishing_place_01.wav",
+      "sha256": "0cd77d8282eb0da746cae6419dededc8fcf13f10c1e2ac59d3d610db9d5789a1",
+      "bytes": 60042,
+      "accepted": false,
+      "rightsRecord": "assets/audio/furnishing_place_01.source-rights.txt"
+    },
+    {
+      "id": "audio/bowl_place_01",
+      "url": "assets/audio/bowl_place_01.wav",
+      "sha256": "366dc341c80af849eb31db77f832ca181134c2a63338fd7350f157fc57f7d6f3",
+      "bytes": 60042,
+      "accepted": false,
+      "rightsRecord": "assets/audio/bowl_place_01.source-rights.txt"
+    },
+    {
+      "id": "audio/music_garden_afternoon_01",
+      "url": "assets/audio/music_garden_afternoon_01.mp3",
+      "sha256": "5da9f04b6a823c2d1d53d9f0601ac63087837dfff670cfb99991ce83dc0cc49a",
+      "bytes": 4283180,
+      "accepted": false,
+      "rightsRecord": "assets/audio/music_garden_afternoon_01.source-rights.txt"
+    },
+    {
+      "id": "audio/music_garden_puzzles_01",
+      "url": "assets/audio/music_garden_puzzles_01.mp3",
+      "sha256": "2543fcc7e5eba6270738b6fa4f173d7c077524432cca1779d8800be9270db77f",
+      "bytes": 4378220,
+      "accepted": false,
+      "rightsRecord": "assets/audio/music_garden_puzzles_01.source-rights.txt"
+    },
+    {
+      "id": "audio/crate_slide_01",
+      "url": "assets/audio/release1/crate_slide_01.wav",
+      "sha256": "68de433884bca879d3e53592b70d925114a3562b738d9653aea80036e9e29466",
+      "bytes": 77660,
+      "accepted": false,
+      "rightsRecord": "assets/audio/crate_slide_01.source-rights.txt"
+    },
+    {
+      "id": "audio/crate_slide_02",
+      "url": "assets/audio/release1/crate_slide_02.wav",
+      "sha256": "86c6352d1c7f85721d8cc52fd4a51dd857d81a85910adaf95a88f4199527dad9",
+      "bytes": 77660,
+      "accepted": false,
+      "rightsRecord": "assets/audio/crate_slide_02.source-rights.txt"
+    },
+    {
+      "id": "audio/plank_place_01",
+      "url": "assets/audio/release1/plank_place_01.wav",
+      "sha256": "22e2bfc10c4d9815fe331f165bc4d957aced71a5a1e2f102af5e4e4be6bebf24",
+      "bytes": 60042,
+      "accepted": false,
+      "rightsRecord": "assets/audio/plank_place_01.source-rights.txt"
+    },
+    {
+      "id": "audio/plank_place_02",
+      "url": "assets/audio/release1/plank_place_02.wav",
+      "sha256": "0cca760f4fd84999db5371e8f319903d9c0ac328f6ba4b3d12a90041aa7345ee",
+      "bytes": 60042,
+      "accepted": false,
+      "rightsRecord": "assets/audio/plank_place_02.source-rights.txt"
+    },
+    {
+      "id": "audio/shape_fit_01",
+      "url": "assets/audio/release1/shape_fit_01.wav",
+      "sha256": "2822803c03e8320288bf675608cb171148bbc0a22b1df3e56d880dee5cabb4b3",
+      "bytes": 70604,
+      "accepted": false,
+      "rightsRecord": "assets/audio/shape_fit_01.source-rights.txt"
+    },
+    {
+      "id": "audio/bell_leaf_01",
+      "url": "assets/audio/release1/bell_leaf_01.wav",
+      "sha256": "f69f60b247ac8fafd344d3c61fe23de3855d65db763e5d6231ac473e05d641f2",
+      "bytes": 123522,
+      "accepted": false,
+      "rightsRecord": "assets/audio/bell_leaf_01.source-rights.txt"
+    },
+    {
+      "id": "audio/bell_star_01",
+      "url": "assets/audio/release1/bell_star_01.wav",
+      "sha256": "46a7be173950e77e5478f811a6f5f08c7f3e6e013d1628a484baa9fff656de4b",
+      "bytes": 123522,
+      "accepted": false,
+      "rightsRecord": "assets/audio/bell_star_01.source-rights.txt"
+    },
+    {
+      "id": "audio/bell_paw_01",
+      "url": "assets/audio/release1/bell_paw_01.wav",
+      "sha256": "6015170953793324c5f40958df53bcd847ab9e5e471a162e2381eeca9e261fcd",
+      "bytes": 45976,
+      "accepted": false,
+      "rightsRecord": "assets/audio/bell_paw_01.source-rights.txt"
+    },
+    {
+      "id": "audio/bell_reset_01",
+      "url": "assets/audio/release1/bell_reset_01.wav",
+      "sha256": "cb6f9cb825030a14532619a88a133b748940dd5000507adda0a78dc7b0e5b242",
+      "bytes": 60042,
+      "accepted": false,
+      "rightsRecord": "assets/audio/bell_reset_01.source-rights.txt"
+    },
+    {
+      "id": "audio/water_flow_01",
+      "url": "assets/audio/release1/water_flow_01.wav",
+      "sha256": "c13632e3a1ae208129908893105b161f001e944c380a1eb6d4a57400fac09e58",
+      "bytes": 242594,
+      "accepted": false,
+      "rightsRecord": "assets/audio/water_flow_01.source-rights.txt"
+    },
+    {
+      "id": "audio/bowl_fill_01",
+      "url": "assets/audio/release1/bowl_fill_01.wav",
+      "sha256": "14a05929cc04839036ad22ecdc6dd4389ddbe65fff4b9c26a411c6efc6b13493",
+      "bytes": 141164,
+      "accepted": false,
+      "rightsRecord": "assets/audio/bowl_fill_01.source-rights.txt"
+    },
+    {
+      "id": "audio/mabel_request_01",
+      "url": "assets/audio/release1/mabel_request_01.wav",
+      "sha256": "4a95dfa4fbae10dc23c502e98af5b81db53907fce41567b2d64a1c1b2f9fca44",
+      "bytes": 119996,
+      "accepted": false,
+      "rightsRecord": "assets/audio/mabel_request_01.source-rights.txt"
+    },
+    {
+      "id": "audio/mabel_happy_01",
+      "url": "assets/audio/release1/mabel_happy_01.wav",
+      "sha256": "8a0cfce825b78fab149902e5803bd53e463174c59e05f4df6998df23c98bd234",
+      "bytes": 88244,
+      "accepted": false,
+      "rightsRecord": "assets/audio/mabel_happy_01.source-rights.txt"
+    },
+    {
+      "id": "audio/button_request_01",
+      "url": "assets/audio/release1/button_request_01.wav",
+      "sha256": "e4fb76a6bd8725fdc993d6c8c8dfd920dc91371fa766d3a16fe69f649b53dd48",
+      "bytes": 95300,
+      "accepted": false,
+      "rightsRecord": "assets/audio/button_request_01.source-rights.txt"
+    },
+    {
+      "id": "audio/button_happy_01",
+      "url": "assets/audio/release1/button_happy_01.wav",
+      "sha256": "035705e706678c04ddbc6da521447dfe8ffc733ba25fafb3bd47357db8e93dad",
+      "bytes": 70604,
+      "accepted": false,
+      "rightsRecord": "assets/audio/button_happy_01.source-rights.txt"
+    },
+    {
+      "id": "audio/pepper_request_01",
+      "url": "assets/audio/release1/pepper_request_01.wav",
+      "sha256": "655375d4c302d1389ebc8119fc3672f2704b7aa9499454334a929622bcf3631f",
+      "bytes": 88244,
+      "accepted": false,
+      "rightsRecord": "assets/audio/pepper_request_01.source-rights.txt"
+    },
+    {
+      "id": "audio/pepper_happy_01",
+      "url": "assets/audio/release1/pepper_happy_01.wav",
+      "sha256": "000f84fc784ee7f61fb75296715306e9b5e95a2ef8d8b985321aefd0321d09d0",
+      "bytes": 70604,
+      "accepted": false,
+      "rightsRecord": "assets/audio/pepper_happy_01.source-rights.txt"
+    },
+    {
+      "id": "audio/cat_scratch_01",
+      "url": "assets/audio/release1/cat_scratch_01.wav",
+      "sha256": "b84cf0ffb01489f32cbcc78b7365701cef68d90d089d5072d78f55dae428eae7",
+      "bytes": 155276,
+      "accepted": false,
+      "rightsRecord": "assets/audio/cat_scratch_01.source-rights.txt"
+    },
+    {
+      "id": "audio/playhouse_use_01",
+      "url": "assets/audio/release1/playhouse_use_01.wav",
+      "sha256": "fefd6f809a6577151da8659e39d69e86f32fc3d3e851a362d4da0bef0fe9bb32",
+      "bytes": 112940,
+      "accepted": false,
+      "rightsRecord": "assets/audio/playhouse_use_01.source-rights.txt"
+    },
+    {
+      "id": "audio/reward_friendship_01",
+      "url": "assets/audio/reward_friendship_01.wav",
+      "sha256": "7a86c71a7b29abf1866bfb6c2e797f5e007b3c4c3f4b3669bf96cc2c496673d5",
+      "bytes": 194084,
+      "accepted": false,
+      "rightsRecord": "assets/audio/reward_friendship_01.source-rights.txt"
+    }
+  ],
+  "assemblies": {
+    "bells": [
+      {
+        "asset": "release1/props/bell_support@1",
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "rotationDegrees": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "asset": "release1/props/bell_leaf@1",
+        "position": [
+          -1,
+          1.25,
+          0
+        ],
+        "rotationDegrees": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "asset": "release1/props/bell_star@1",
+        "position": [
+          0,
+          1.25,
+          0
+        ],
+        "rotationDegrees": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "asset": "release1/props/bell_paw@1",
+        "position": [
+          1,
+          1.25,
+          0
+        ],
+        "rotationDegrees": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    ],
+    "cushion_basket": [
+      {
+        "asset": "release1/props/socket_square@1",
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "rotationDegrees": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "asset": "release1/props/socket_bar@1",
+        "position": [
+          0.66,
+          0,
+          0
+        ],
+        "rotationDegrees": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "asset": "release1/props/socket_elbow@1",
+        "position": [
+          0.66,
+          0,
+          0.42
+        ],
+        "rotationDegrees": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    ],
+    "cushion_basket_fitted": [
+      {
+        "asset": "release1/props/socket_square@1",
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "rotationDegrees": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "asset": "release1/props/cushion_square@1",
+        "position": [
+          0,
+          0.036,
+          0
+        ],
+        "rotationDegrees": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "asset": "release1/props/socket_bar@1",
+        "position": [
+          0.66,
+          0,
+          0
+        ],
+        "rotationDegrees": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "asset": "release1/props/cushion_bar@1",
+        "position": [
+          0.66,
+          0.036,
+          0
+        ],
+        "rotationDegrees": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "asset": "release1/props/socket_elbow@1",
+        "position": [
+          0.66,
+          0,
+          0.42
+        ],
+        "rotationDegrees": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "asset": "release1/props/cushion_elbow@1",
+        "position": [
+          0.66,
+          0.036,
+          0.42
+        ],
+        "rotationDegrees": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    ],
+    "water_route": [
+      {
+        "asset": "release1/props/water_support@1",
+        "position": [
+          -1,
+          0,
+          0
+        ],
+        "rotationDegrees": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "asset": "release1/props/water_support@1",
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "rotationDegrees": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "asset": "release1/props/water_support@1",
+        "position": [
+          1,
+          0,
+          0
+        ],
+        "rotationDegrees": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "asset": "release1/props/rain_barrel@1",
+        "position": [
+          -1,
+          0.4,
+          0
+        ],
+        "rotationDegrees": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "asset": "garden/channel_straight@1",
+        "position": [
+          0,
+          0.4,
+          0
+        ],
+        "rotationDegrees": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "asset": "garden/channel_curve@1",
+        "position": [
+          1,
+          0.4,
+          0
+        ],
+        "rotationDegrees": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "asset": "release1/props/water_straight@1",
+        "position": [
+          0,
+          0.472,
+          0
+        ],
+        "rotationDegrees": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "asset": "release1/props/water_curve@1",
+        "position": [
+          1,
+          0.472,
+          0
+        ],
+        "rotationDegrees": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "asset": "release1/props/water_drop@1",
+        "position": [
+          1,
+          0,
+          -0.5
+        ],
+        "rotationDegrees": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "asset": "garden/bowl@1",
+        "position": [
+          1,
+          0,
+          -0.9
+        ],
+        "rotationDegrees": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "asset": "garden/bowl_water@1",
+        "position": [
+          1,
+          0.383,
+          -0.9
+        ],
+        "rotationDegrees": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    ],
+    "playhouse": [
+      {
+        "asset": "release1/props/playhouse_frame@1",
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "rotationDegrees": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "asset": "release1/props/playhouse_door@1",
+        "position": [
+          -0.36,
+          0.07,
+          0.73
+        ],
+        "rotationDegrees": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "asset": "garden/switch_base@1",
+        "position": [
+          -0.85,
+          0,
+          1.25
+        ],
+        "rotationDegrees": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "asset": "garden/switch_plate@1",
+        "position": [
+          -0.85,
+          0.09,
+          1.25
+        ],
+        "rotationDegrees": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "asset": "garden/switch_base@1",
+        "position": [
+          0.85,
+          0,
+          1.25
+        ],
+        "rotationDegrees": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "asset": "garden/switch_plate@1",
+        "position": [
+          0.85,
+          0.09,
+          1.25
+        ],
+        "rotationDegrees": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    ],
+    "retrieval": [
+      {
+        "asset": "garden/bench@1",
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "rotationDegrees": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "asset": "garden/mouse@1",
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "rotationDegrees": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "asset": "release1/props/crate@1",
+        "position": [
+          -1.1,
+          0,
+          0.5
+        ],
+        "rotationDegrees": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "asset": "release1/props/crate@1",
+        "position": [
+          1.1,
+          0,
+          0.5
+        ],
+        "rotationDegrees": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    ],
+    "plank_route": [
+      {
+        "asset": "release1/props/platform@1",
+        "position": [
+          -1.5,
+          0,
+          0
+        ],
+        "rotationDegrees": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "asset": "release1/props/plank_2m@1",
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "rotationDegrees": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "asset": "release1/props/platform@1",
+        "position": [
+          1.5,
+          0,
+          0
+        ],
+        "rotationDegrees": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "asset": "release1/props/plank_socket@1",
+        "position": [
+          -1,
+          0,
+          0
+        ],
+        "rotationDegrees": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "asset": "release1/props/plank_socket@1",
+        "position": [
+          1,
+          0,
+          0
+        ],
+        "rotationDegrees": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    ],
+    "picnic": [
+      {
+        "asset": "release1/props/low_picnic_table@1",
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "rotationDegrees": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "asset": "release1/props/picnic_mat@1",
+        "position": [
+          2,
+          0,
+          0
+        ],
+        "rotationDegrees": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "asset": "garden/cushion@1",
+        "position": [
+          -1.2,
+          0,
+          0
+        ],
+        "rotationDegrees": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "asset": "garden/bowl@1",
+        "position": [
+          0,
+          0,
+          1.1
+        ],
+        "rotationDegrees": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "asset": "garden/bowl_water@1",
+        "position": [
+          0,
+          0.383,
+          1.1
+        ],
+        "rotationDegrees": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "asset": "release1/props/shade_clue@1",
+        "position": [
+          -1.2,
+          0,
+          1.1
+        ],
+        "rotationDegrees": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "asset": "release1/props/adjacency_clue@1",
+        "position": [
+          1.2,
+          0,
+          1.1
+        ],
+        "rotationDegrees": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "asset": "release1/props/quiet_clue@1",
+        "position": [
+          -1.2,
+          0,
+          -1
+        ],
+        "rotationDegrees": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    ],
+    "legacy_switch": [
+      {
+        "asset": "garden/switch_base@1",
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "rotationDegrees": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "asset": "garden/switch_plate@1",
+        "position": [
+          0,
+          0.09,
+          0
+        ],
+        "rotationDegrees": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    ],
+    "playhouse_furnishing": [
+      {
+        "asset": "release1/props/playhouse_frame@1",
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "rotationDegrees": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "asset": "release1/props/playhouse_door@1",
+        "position": [
+          -0.36,
+          0.07,
+          0.73
+        ],
+        "rotationDegrees": [
+          0,
+          100,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    ]
+  },
+  "catalog": [
+    {
+      "id": "garden_cushion",
+      "price": 30,
+      "unlock": "pip_missing_ball",
+      "role": "rest",
+      "footprintMetres": [
+        0.94,
+        1.18
+      ],
+      "spotRoles": [
+        "rest",
+        "quiet"
+      ],
+      "useCats": [
+        "button",
+        "pip",
+        "mabel",
+        "pepper"
+      ],
+      "asset": "garden/cushion@1",
+      "thumbnail": "assets/models/release1/props/thumbnails/garden_cushion.png",
+      "contactStatus": "authored support/approach anchors; final per-cat contact acceptance belongs to Prompt 6"
+    },
+    {
+      "id": "drinking_bowl",
+      "price": 25,
+      "unlock": "pip_missing_ball",
+      "role": "drink",
+      "footprintMetres": [
+        0.56,
+        0.56
+      ],
+      "spotRoles": [
+        "drink",
+        "sunny",
+        "quiet"
+      ],
+      "useCats": [
+        "mabel"
+      ],
+      "asset": "garden/bowl@1",
+      "thumbnail": "assets/models/release1/props/thumbnails/drinking_bowl.png",
+      "contactStatus": "authored support/approach anchors; final per-cat contact acceptance belongs to Prompt 6"
+    },
+    {
+      "id": "scratching_post",
+      "price": 20,
+      "unlock": "pip_tidy_toys",
+      "role": "scratch",
+      "footprintMetres": [
+        0.65,
+        0.65
+      ],
+      "spotRoles": [
+        "scratch"
+      ],
+      "useCats": [
+        "pip"
+      ],
+      "asset": "release1/props/scratching_post@1",
+      "thumbnail": "assets/models/release1/props/thumbnails/scratching_post.png",
+      "contactStatus": "authored support/approach anchors; final per-cat contact acceptance belongs to Prompt 6"
+    },
+    {
+      "id": "sunny_perch",
+      "price": 20,
+      "unlock": "mabel_sunny_spot",
+      "role": "perch",
+      "footprintMetres": [
+        0.8,
+        1.4
+      ],
+      "spotRoles": [
+        "perch"
+      ],
+      "useCats": [
+        "mabel"
+      ],
+      "asset": "release1/props/sunny_perch@1",
+      "thumbnail": "assets/models/release1/props/thumbnails/sunny_perch.png",
+      "contactStatus": "authored support/approach anchors; final per-cat contact acceptance belongs to Prompt 6"
+    },
+    {
+      "id": "hammock",
+      "price": 25,
+      "unlock": "button_cushion_bed",
+      "role": "rest",
+      "footprintMetres": [
+        1.1,
+        1.6
+      ],
+      "spotRoles": [
+        "hammock"
+      ],
+      "useCats": [
+        "button"
+      ],
+      "asset": "release1/props/hammock@1",
+      "thumbnail": "assets/models/release1/props/thumbnails/hammock.png",
+      "contactStatus": "authored support/approach anchors; final per-cat contact acceptance belongs to Prompt 6"
+    },
+    {
+      "id": "playhouse",
+      "price": 30,
+      "unlock": "pip_pepper_playhouse",
+      "role": "enter",
+      "footprintMetres": [
+        1.5,
+        1.6
+      ],
+      "spotRoles": [
+        "playhouse"
+      ],
+      "useCats": [
+        "pip",
+        "pepper"
+      ],
+      "asset": "assembly:playhouse_furnishing",
+      "thumbnail": "assets/models/release1/props/thumbnails/playhouse.png",
+      "contactStatus": "authored support/approach anchors; final per-cat contact acceptance belongs to Prompt 6"
+    },
+    {
+      "id": "low_picnic_table",
+      "price": 20,
+      "unlock": "chapter2_complete",
+      "role": "gather",
+      "footprintMetres": [
+        1.2,
+        1.4
+      ],
+      "spotRoles": [
+        "picnic_table"
+      ],
+      "useCats": [
+        "pip",
+        "mabel",
+        "button",
+        "pepper"
+      ],
+      "asset": "release1/props/low_picnic_table@1",
+      "thumbnail": "assets/models/release1/props/thumbnails/low_picnic_table.png",
+      "contactStatus": "authored support/approach anchors; final per-cat contact acceptance belongs to Prompt 6"
+    },
+    {
+      "id": "picnic_mat",
+      "price": 20,
+      "unlock": "chapter2_complete",
+      "role": "sit",
+      "footprintMetres": [
+        1.5,
+        1.5
+      ],
+      "spotRoles": [
+        "picnic_mat"
+      ],
+      "useCats": [
+        "pepper",
+        "pip",
+        "mabel",
+        "button"
+      ],
+      "asset": "release1/props/picnic_mat@1",
+      "thumbnail": "assets/models/release1/props/thumbnails/picnic_mat.png",
+      "contactStatus": "authored support/approach anchors; final per-cat contact acceptance belongs to Prompt 6"
+    }
+  ],
+  "missingAcceptance": [
+    "1 clips have no playable delivery; final rights/listening pending for 67 clips"
+  ],
+  "notice": "Accepted runtime content only; source masters and development previews are excluded."
 }

@@ -1,0 +1,26 @@
+{
+  "output": "artifacts\\model-jobs\\garden-details\\2026-10-12\\empty_pot\\model.glb",
+  "request": {
+    "model": "v3.1-20260211",
+    "geometry_quality": "detailed",
+    "face_limit": 50000,
+    "texture": true,
+    "pbr": true,
+    "quad": false,
+    "texture_quality": "detailed",
+    "texture_version": "v3.5-20260815",
+    "delight": false,
+    "prompt": "One empty open terracotta garden vessel, rounded slightly tapered cylindrical body, thick softly rolled lip, visible deep hollow dark clay interior, flat standing base. A dark brown cat paw print emblem on its front. Matte warm muted terracotta, no plant, no lid, no writing. Standalone stylized 3D prop for Paws, a cosy miniature cat garden. Softly sculpted rounded silhouettes, warm cream/sage/muted terracotta palette, matte non-plastic materials, broad restrained detail, neutral diffuse lighting, no cast shadows painted into textures, no background scene, no cats. Match docs/design/paws-style-reference.png art direction."
+  },
+  "submitted_at": "2026-10-12T06:30:07.818118+00:00",
+  "status": "success",
+  "task_id": "3fc498d4-30ec-4cba-9e89-6d51cefb8d72",
+  "checked_at": "2026-10-12T06:36:21.950304+00:00",
+  "provider": "Tripo3D",
+  "api_base": "https://openapi.tripo3d.ai/v3",
+  "sha256": "751ed06e8e00b05b07ba6cce4b07b751e90be819dccca3d5d8840892eb73499a",
+  "bytes": 6301820,
+  "credits_consumed": 50.0,
+  "completed_at": "2026-10-12T06:35:38.291326Z",
+  "license_status": "Unverified: record account entitlement and applicable rights before release"
+}

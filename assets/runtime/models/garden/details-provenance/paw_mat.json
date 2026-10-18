@@ -1,0 +1,26 @@
+{
+  "output": "artifacts\\model-jobs\\garden-details\\2026-10-12\\paw_mat\\model.glb",
+  "request": {
+    "model": "v3.1-20260211",
+    "geometry_quality": "detailed",
+    "face_limit": 50000,
+    "texture": true,
+    "pbr": true,
+    "quad": false,
+    "texture_quality": "detailed",
+    "texture_version": "v3.5-20260815",
+    "delight": false,
+    "prompt": "One flat circular woven garden doormat, muted deep teal center with a large cream cat paw print emblem and thick natural beige rope braid border. Very thin disc, broad simple weave texture. Entire top face visible, no standing parts, no floor, no other objects. Standalone stylized 3D prop for Paws, a cosy miniature cat garden. Softly sculpted rounded silhouettes, warm cream/sage/muted terracotta palette, matte non-plastic materials, broad restrained detail, neutral diffuse lighting, no cast shadows painted into textures, no background scene, no cats. Match docs/design/paws-style-reference.png art direction."
+  },
+  "submitted_at": "2026-10-12T06:30:03.800216+00:00",
+  "status": "success",
+  "task_id": "23ba0f6e-b4cb-4e30-9766-c7faf9875b5e",
+  "checked_at": "2026-10-12T06:33:51.546129+00:00",
+  "provider": "Tripo3D",
+  "api_base": "https://openapi.tripo3d.ai/v3",
+  "sha256": "d869c25c26ab0316aabf49c82a03afbbd58a5629ab6615c32504baff31a730ba",
+  "bytes": 12216284,
+  "credits_consumed": 50.0,
+  "completed_at": "2026-10-12T06:33:39.565809Z",
+  "license_status": "Unverified: record account entitlement and applicable rights before release"
+}

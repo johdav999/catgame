@@ -5,6 +5,7 @@
   <title>Paws · A little garden, a little wonder</title>
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="style.css">
+  <meta name="game-api" content="/api/index.php">
   <script src="build-info.js" defer></script>
   <script src="engine-gui.js" defer></script>
   <script src="engine-storage.js" defer></script>
@@ -12,13 +13,46 @@
   <script src="paws-audio.js" defer></script>
   <script src="host.js" defer></script>
   <script src="saves.js" defer></script>
+  <script src="game-platform.js" defer></script>
+  <script src="cloud.js" defer></script>
 </head><body>
   <main aria-label="Paws">
     <canvas id="viewport" tabindex="0" aria-label="Paws garden. Tab through named objects and actions. Escape opens the menu. Drag the background to look around."></canvas>
     <section id="startup" aria-label="Starting Paws">
-      <h1>Paws</h1><p>A little garden. A little wonder.</p>
-      <p id="status" role="status">Preparing your afternoon…</p>
-      <button id="retry" hidden>Retry</button>
+      <div class="loading-brand">
+        <div class="loading-seal" aria-hidden="true"><svg viewBox="0 0 144 144" fill="currentColor"><ellipse cx="72" cy="91" rx="24" ry="19"/><ellipse cx="42" cy="65" rx="10" ry="14"/><ellipse cx="61" cy="48" rx="10" ry="14"/><ellipse cx="84" cy="48" rx="10" ry="14"/><ellipse cx="103" cy="65" rx="10" ry="14"/></svg></div>
+        <h1>Paws</h1><p class="loading-tagline">A little garden. A little wonder.</p>
+      </div>
+      <div class="loading-status">
+        <h2>A moment of calm</h2>
+        <p id="status" role="status" aria-live="polite">Preparing your afternoon…</p>
+        <button id="retry" hidden>Retry</button>
+      </div>
     </section>
   </main>
+  <button id="cloud-open" aria-haspopup="dialog">Account &amp; cloud</button>
+  <dialog id="cloud-panel" aria-labelledby="cloud-title">
+    <h2 id="cloud-title">Your games account</h2>
+    <p id="cloud-status" role="status" aria-live="polite"></p>
+    <form id="cloud-auth">
+      <label>Email <input name="email" type="email" autocomplete="email" maxlength="254" required></label>
+      <label>Password <input name="password" type="password" autocomplete="current-password" minlength="12" maxlength="72" required></label>
+      <p>Use 12–72 bytes for your password. This account works across our games.</p>
+      <button type="submit" value="login">Sign in</button>
+      <button type="submit" value="register">Create account</button>
+      <button type="button" id="cloud-reset-password">Forgot password</button>
+    </form>
+    <section id="cloud-account" hidden>
+      <p id="cloud-identity"></p>
+      <p>Local progress stays on this browser, including when you sign out. Load your cloud save when using a shared device.</p>
+      <button id="cloud-upload">Save to cloud</button>
+      <button id="cloud-download">Load from cloud</button>
+      <button id="cloud-replace" hidden>Replace cloud save</button>
+      <h3>Game purchases</h3><div id="cloud-products"></div>
+      <button id="cloud-refresh">Refresh purchases</button>
+      <ul id="cloud-history" aria-label="Purchase history"></ul>
+      <button id="cloud-logout">Sign out</button>
+    </section>
+    <button id="cloud-close">Back to game</button>
+  </dialog>
 </body></html>

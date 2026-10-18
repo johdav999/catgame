@@ -8,6 +8,8 @@ void check(bool value,const char* message){if(!value)throw std::runtime_error(me
 int main(int argc,char** argv){try {
     check(argc==2,"Expected Pip GLB path");
     const auto mesh=engine::GlbImporter::loadFile(argv[1]);paws::validatePip(*mesh);
+    check(std::abs(mesh->skeleton->clips[paws::pipClip(*mesh,"garden_walk")].duration-paws::pipWalkDuration)<.0001,
+          "Walking clip duration must match world travel cadence");
     auto preview=paws::makePipPreview(mesh);
     auto* cat=dynamic_cast<engine::SkeletalMeshComponent*>(preview.scene.scene->findComponent(preview.cat));
         // Measure exported skin in world space while translating at the authored
@@ -35,7 +37,7 @@ int main(int argc,char** argv){try {
                 centroid=centroid*(1.f/sole.size());maxLift=std::max(maxLift,floor);
                 // One contiguous contact interval; avoid wrap to the next footprint.
                 if(phase>=contact+.025&&phase<=contact+2./3.-.025) {
-                    const float worldZ=centroid.z+float(phase)*paws::pipWalkStride;
+                    const float worldZ=centroid.z+float(phase*paws::pipWalkDuration)*paws::pipWalkSpeed;
                     minZ=std::min(minZ,worldZ);maxZ=std::max(maxZ,worldZ);
                     minX=std::min(minX,centroid.x);maxX=std::max(maxX,centroid.x);
                     maxFloorError=std::max(maxFloorError,std::abs(floor-.003f));

@@ -1,0 +1,26 @@
+{
+  "output": "artifacts\\model-jobs\\garden-details\\2026-10-12\\stone_border\\model.glb",
+  "request": {
+    "model": "v3.1-20260211",
+    "geometry_quality": "detailed",
+    "face_limit": 50000,
+    "texture": true,
+    "pbr": true,
+    "quad": false,
+    "texture_quality": "detailed",
+    "texture_version": "v3.5-20260815",
+    "delight": false,
+    "prompt": "One short low cottage garden border wall segment built of two courses of warm cream sandstone blocks. Thick rounded uneven rectangular stones, soft chamfered corners, pale mortar seams, flat bottom, restrained mottling, quiet warm beige color. Straight segment, no pillars, no plants, no ground plane. Standalone stylized 3D prop for Paws, a cosy miniature cat garden. Softly sculpted rounded silhouettes, warm cream/sage/muted terracotta palette, matte non-plastic materials, broad restrained detail, neutral diffuse lighting, no cast shadows painted into textures, no background scene, no cats. Match docs/design/paws-style-reference.png art direction."
+  },
+  "submitted_at": "2026-10-12T06:32:46.893654+00:00",
+  "status": "success",
+  "task_id": "04738721-930c-4eb5-8032-66aaee5c0d6c",
+  "checked_at": "2026-10-12T06:36:24.939156+00:00",
+  "provider": "Tripo3D",
+  "api_base": "https://openapi.tripo3d.ai/v3",
+  "sha256": "992f976300d08eb098fa2ad36b09d7cf9169216e261958698ad11095adcc575a",
+  "bytes": 9635648,
+  "credits_consumed": 50.0,
+  "completed_at": "2026-10-12T06:36:09.097788Z",
+  "license_status": "Unverified: record account entitlement and applicable rights before release"
+}

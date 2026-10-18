@@ -1,0 +1,21 @@
+cmake_minimum_required(VERSION 3.24)
+project(PawsCatWorkshop LANGUAGES C CXX)
+get_filename_component(CAT_REPO "${CMAKE_CURRENT_LIST_DIR}/../../.." ABSOLUTE)
+set(PAWS_TRACK cats CACHE STRING "Cat production track" FORCE)
+set(PAWS_TRACK_SOURCES "${CAT_REPO}/src/release1/cats/cat_assets.cpp" CACHE STRING "Cat module" FORCE)
+set(PAWS_TRACK_TEST "${CAT_REPO}/tests/release1/cats/tests.cpp" CACHE FILEPATH "Cat validation" FORCE)
+set(PAWS_TRACK_BROWSER_MAIN "${CAT_REPO}/src/release1/cats/preview_main.cpp" CACHE FILEPATH "Cat preview" FORCE)
+set(PAWS_TRACK_WEB "${CAT_REPO}/web/release1/cats" CACHE PATH "Cat shell" FORCE)
+# Reuse the pinned consumer bridge and common track setup. The cat workshop
+# only needs paws_pip and engine facilities. Whole-game presentation modules
+# are independently edited during the parallel release tracks.
+include("${CAT_REPO}/tools/release1-track/CMakeLists.txt")
+if(EMSCRIPTEN)
+  get_target_property(CAT_LIBRARIES release1_preview LINK_LIBRARIES)
+  list(REMOVE_ITEM CAT_LIBRARIES paws_game paws_ui paws_audio paws_content)
+  set_property(TARGET release1_preview PROPERTY LINK_LIBRARIES "${CAT_LIBRARIES}")
+else()
+  get_target_property(CAT_LIBRARIES release1_track_tests LINK_LIBRARIES)
+  list(REMOVE_ITEM CAT_LIBRARIES paws_content)
+  set_property(TARGET release1_track_tests PROPERTY LINK_LIBRARIES "${CAT_LIBRARIES}")
+endif()

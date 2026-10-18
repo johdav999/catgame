@@ -1,0 +1,26 @@
+{
+  "output": "artifacts\\model-jobs\\garden-details\\2026-10-12\\watering_can\\model.glb",
+  "request": {
+    "model": "v3.1-20260211",
+    "geometry_quality": "detailed",
+    "face_limit": 50000,
+    "texture": true,
+    "pbr": true,
+    "quad": false,
+    "texture_quality": "detailed",
+    "texture_version": "v3.5-20260815",
+    "delight": false,
+    "prompt": "One standalone cosy stylized garden watering can, muted sage green painted metal, rounded cylindrical body, broad curved carrying handle, long gently rising spout with round perforated sprinkler rose, cream paw print emblem on the front. Soft bevels, matte surfaces, warm miniature garden game art, restrained wear, no glossy plastic, no ground plane, no other props, no text. Matches a sunlit cream sandstone and terracotta cottage garden with cats."
+  },
+  "submitted_at": "2026-10-12T06:28:08.295129+00:00",
+  "status": "success",
+  "task_id": "2e43590c-39d0-4955-851a-4f9f7a1dc0f8",
+  "checked_at": "2026-10-12T06:32:21.031139+00:00",
+  "provider": "Tripo3D",
+  "api_base": "https://openapi.tripo3d.ai/v3",
+  "sha256": "d5620e99f8587ab078d662b0d6ab1f5fb59222efa43a1814e57c6e5277fff3d2",
+  "bytes": 8051480,
+  "credits_consumed": 50.0,
+  "completed_at": "2026-10-12T06:30:42.693044Z",
+  "license_status": "Unverified: record account entitlement and applicable rights before release"
+}

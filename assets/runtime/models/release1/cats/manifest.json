@@ -1,0 +1,885 @@
+{
+  "schema": "paws-release1-fragment/1",
+  "namespace": "release1/cats",
+  "assets": [
+    {
+      "id": "release1/cats/pip@3",
+      "cat": "pip",
+      "version": 3,
+      "url": "assets/models/release1/cats/toon-v2/pip/pip.glb",
+      "sha256": "b8d69723c517a65c1b606b902c5195f599eefaad25dd4934f0d8b7e850c6f658",
+      "bytes": 9613756,
+      "triangles": 8134,
+      "materials": 1,
+      "bones": 51,
+      "rig": "toon-cat/1",
+      "coat": 4,
+      "portrait": {
+        "path": "assets/runtime/models/release1/cats/toon-v2/pip/portrait.png",
+        "bytes": 300559,
+        "sha256": "b6448fdb7a16cd5c0b302b8091ec2a5e20852c632a7399224a5499b2bbf8ea8c"
+      },
+      "contacts": {
+        "path": "assets/runtime/models/release1/cats/toon-v2/pip/contacts.json",
+        "bytes": 6323687,
+        "sha256": "3b4dac6dd2734090d6cc5f60a332ee24e2017fe71f093ab1e8e75934743f5d23"
+      },
+      "master": {
+        "path": "artifacts/model-jobs/toon-cats/2026-10-17-gait/pip-runtime.blend",
+        "bytes": 103443710,
+        "sha256": "555b67a6c52a53aed583f7ac4e7f59d26c22be2ec30866c0f491b72ab9807012"
+      },
+      "rightsRecord": "artifacts/model-jobs/toon-cats/2026-10-16/PROVENANCE.md",
+      "actions": [
+        {
+          "name": "relaxed_idle",
+          "source": "Idle_1",
+          "duration": 4.0,
+          "loop": true
+        },
+        {
+          "name": "attentive_request",
+          "source": "Idle_3",
+          "duration": 2.4,
+          "loop": false
+        },
+        {
+          "name": "happy_pounce",
+          "source": "Jump_Place_IP",
+          "duration": 1.2,
+          "loop": false
+        },
+        {
+          "name": "garden_walk",
+          "source": "Walk_F_IP",
+          "duration": 2.3,
+          "loop": true
+        },
+        {
+          "name": "settle_cushion",
+          "source": "Lie_belly_start",
+          "duration": 2.4,
+          "loop": false
+        },
+        {
+          "name": "curled_rest",
+          "source": "Lie_belly_sleep",
+          "duration": 4.0,
+          "loop": true
+        },
+        {
+          "name": "approach_bowl",
+          "source": "EatDrink_start",
+          "duration": 1.8,
+          "loop": false
+        },
+        {
+          "name": "drink",
+          "source": "Drinking",
+          "duration": 2.0,
+          "loop": true
+        },
+        {
+          "name": "return_idle",
+          "source": "EatDrink_end",
+          "duration": 1.8,
+          "loop": false
+        },
+        {
+          "name": "scratch",
+          "source": "SharpenClaws_Vert",
+          "duration": 3.0,
+          "loop": true
+        },
+        {
+          "name": "perch_step",
+          "source": "Jump_F_IP",
+          "duration": 2.4,
+          "loop": false
+        },
+        {
+          "name": "perch_settle",
+          "source": "Sit_start",
+          "duration": 2.4,
+          "loop": false
+        },
+        {
+          "name": "playhouse_enter",
+          "source": "Crouch_F_IP",
+          "duration": 1.8,
+          "loop": false
+        },
+        {
+          "name": "playhouse_lookout",
+          "source": "Sit_loop_2",
+          "duration": 3.0,
+          "loop": true
+        },
+        {
+          "name": "picnic_sit",
+          "source": "Sit_start",
+          "duration": 2.4,
+          "loop": false
+        },
+        {
+          "name": "personality_reaction",
+          "source": "Caress_idle",
+          "duration": 3.0,
+          "loop": false
+        },
+        {
+          "name": "turn_left",
+          "source": "Turn_L_IP",
+          "duration": 2.3,
+          "loop": true
+        },
+        {
+          "name": "turn_right",
+          "source": "Turn_R_IP",
+          "duration": 2.3,
+          "loop": true
+        },
+        {
+          "name": "rest_leave",
+          "source": "Lie_belly_end",
+          "duration": 2.4,
+          "loop": false
+        },
+        {
+          "name": "sit_idle",
+          "source": "Sit_loop_1",
+          "duration": 3,
+          "loop": true
+        },
+        {
+          "name": "sit_leave",
+          "source": "Sit_end",
+          "duration": 1.8,
+          "loop": false
+        },
+        {
+          "name": "quest_ball_play",
+          "source": "Attack_down",
+          "duration": 3.2,
+          "loop": false
+        },
+        {
+          "name": "quest_basket_finish",
+          "source": "Attack_down",
+          "duration": 5.4,
+          "loop": false
+        },
+        {
+          "name": "quest_gate_collect",
+          "source": "EatDrink_start|EatDrink_end",
+          "duration": 3.6,
+          "loop": false
+        },
+        {
+          "name": "quest_mouse_collect",
+          "source": "EatDrink_start|EatDrink_end",
+          "duration": 4.0,
+          "loop": false
+        },
+        {
+          "name": "quest_sun_stretch",
+          "source": "Lie_belly_start|Lie_belly_loop_2|Lie_belly_sleep",
+          "duration": 5.0,
+          "loop": false
+        },
+        {
+          "name": "quest_bed_knead",
+          "source": "SharpenClaws_Horiz|Lie_belly_start|Lie_belly_sleep",
+          "duration": 8.0,
+          "loop": false
+        },
+        {
+          "name": "quest_drink_finish",
+          "source": "EatDrink_start|Drinking|EatDrink_end",
+          "duration": 5.0,
+          "loop": false
+        },
+        {
+          "name": "quest_bell_touch",
+          "source": "Attack_F",
+          "duration": 4.5,
+          "loop": false
+        }
+      ],
+      "sourceIdentity": {
+        "pack": "Toon Cats pack",
+        "author": "Radik Bilalov",
+        "mesh": "/Game/CartoonCats/Cat/Meshes/Mesh_CartoonCat",
+        "coatTexture": "T_CartoonCat_BaseColor4.png",
+        "exportManifest": "artifacts/model-jobs/toon-cats/2026-10-16/asset-manifest.json"
+      },
+      "walk": {
+        "duration": 2.3,
+        "strideMetres": 1.035,
+        "speedMetresPerSecond": 0.45,
+        "rootMotion": false
+      },
+      "gaitRevision": "2026-10-17"
+    },
+    {
+      "id": "release1/cats/mabel@3",
+      "cat": "mabel",
+      "version": 3,
+      "url": "assets/models/release1/cats/toon-v2/mabel/mabel.glb",
+      "sha256": "07924e33817339876aea6cb07ce5a3b1e03ca37ccb5d0a4c027784a97a37b84c",
+      "bytes": 9310880,
+      "triangles": 8134,
+      "materials": 1,
+      "bones": 51,
+      "rig": "toon-cat/1",
+      "coat": 12,
+      "portrait": {
+        "path": "assets/runtime/models/release1/cats/toon-v2/mabel/portrait.png",
+        "bytes": 290287,
+        "sha256": "f959c2eea3c95d9c5be220b89de3930ddeb43f1079c96bdfada3dedb8d8d08e8"
+      },
+      "contacts": {
+        "path": "assets/runtime/models/release1/cats/toon-v2/mabel/contacts.json",
+        "bytes": 6323687,
+        "sha256": "49604572b30e08d5b423439d45550912a43ab4a16676a0515c1daf697b17d29b"
+      },
+      "master": {
+        "path": "artifacts/model-jobs/toon-cats/2026-10-17-gait/mabel-runtime.blend",
+        "bytes": 103140830,
+        "sha256": "3f369dbdf3829ceafb0ec60d56b0d4c09dea0d2aa5c58b7f5bf800411fc458b3"
+      },
+      "rightsRecord": "artifacts/model-jobs/toon-cats/2026-10-16/PROVENANCE.md",
+      "actions": [
+        {
+          "name": "relaxed_idle",
+          "source": "Idle_1",
+          "duration": 4.0,
+          "loop": true
+        },
+        {
+          "name": "attentive_request",
+          "source": "Idle_3",
+          "duration": 2.4,
+          "loop": false
+        },
+        {
+          "name": "happy_pounce",
+          "source": "Jump_Place_IP",
+          "duration": 1.2,
+          "loop": false
+        },
+        {
+          "name": "garden_walk",
+          "source": "Walk_F_IP",
+          "duration": 2.3,
+          "loop": true
+        },
+        {
+          "name": "settle_cushion",
+          "source": "Lie_belly_start",
+          "duration": 2.4,
+          "loop": false
+        },
+        {
+          "name": "curled_rest",
+          "source": "Lie_belly_sleep",
+          "duration": 4.0,
+          "loop": true
+        },
+        {
+          "name": "approach_bowl",
+          "source": "EatDrink_start",
+          "duration": 1.8,
+          "loop": false
+        },
+        {
+          "name": "drink",
+          "source": "Drinking",
+          "duration": 2.0,
+          "loop": true
+        },
+        {
+          "name": "return_idle",
+          "source": "EatDrink_end",
+          "duration": 1.8,
+          "loop": false
+        },
+        {
+          "name": "scratch",
+          "source": "SharpenClaws_Vert",
+          "duration": 3.0,
+          "loop": true
+        },
+        {
+          "name": "perch_step",
+          "source": "Jump_F_IP",
+          "duration": 2.4,
+          "loop": false
+        },
+        {
+          "name": "perch_settle",
+          "source": "Sit_start",
+          "duration": 2.4,
+          "loop": false
+        },
+        {
+          "name": "playhouse_enter",
+          "source": "Crouch_F_IP",
+          "duration": 1.8,
+          "loop": false
+        },
+        {
+          "name": "playhouse_lookout",
+          "source": "Sit_loop_2",
+          "duration": 3.0,
+          "loop": true
+        },
+        {
+          "name": "picnic_sit",
+          "source": "Sit_start",
+          "duration": 2.4,
+          "loop": false
+        },
+        {
+          "name": "personality_reaction",
+          "source": "Caress_idle",
+          "duration": 3.0,
+          "loop": false
+        },
+        {
+          "name": "turn_left",
+          "source": "Turn_L_IP",
+          "duration": 2.3,
+          "loop": true
+        },
+        {
+          "name": "turn_right",
+          "source": "Turn_R_IP",
+          "duration": 2.3,
+          "loop": true
+        },
+        {
+          "name": "rest_leave",
+          "source": "Lie_belly_end",
+          "duration": 2.4,
+          "loop": false
+        },
+        {
+          "name": "sit_idle",
+          "source": "Sit_loop_1",
+          "duration": 3,
+          "loop": true
+        },
+        {
+          "name": "sit_leave",
+          "source": "Sit_end",
+          "duration": 1.8,
+          "loop": false
+        },
+        {
+          "name": "quest_ball_play",
+          "source": "Attack_down",
+          "duration": 3.2,
+          "loop": false
+        },
+        {
+          "name": "quest_basket_finish",
+          "source": "Attack_down",
+          "duration": 5.4,
+          "loop": false
+        },
+        {
+          "name": "quest_gate_collect",
+          "source": "EatDrink_start|EatDrink_end",
+          "duration": 3.6,
+          "loop": false
+        },
+        {
+          "name": "quest_mouse_collect",
+          "source": "EatDrink_start|EatDrink_end",
+          "duration": 4.0,
+          "loop": false
+        },
+        {
+          "name": "quest_sun_stretch",
+          "source": "Lie_belly_start|Lie_belly_loop_2|Lie_belly_sleep",
+          "duration": 5.0,
+          "loop": false
+        },
+        {
+          "name": "quest_bed_knead",
+          "source": "SharpenClaws_Horiz|Lie_belly_start|Lie_belly_sleep",
+          "duration": 8.0,
+          "loop": false
+        },
+        {
+          "name": "quest_drink_finish",
+          "source": "EatDrink_start|Drinking|EatDrink_end",
+          "duration": 5.0,
+          "loop": false
+        },
+        {
+          "name": "quest_bell_touch",
+          "source": "Attack_F",
+          "duration": 4.5,
+          "loop": false
+        }
+      ],
+      "sourceIdentity": {
+        "pack": "Toon Cats pack",
+        "author": "Radik Bilalov",
+        "mesh": "/Game/CartoonCats/Cat/Meshes/Mesh_CartoonCat",
+        "coatTexture": "T_CartoonCat_BaseColor12.png",
+        "exportManifest": "artifacts/model-jobs/toon-cats/2026-10-16/asset-manifest.json"
+      },
+      "walk": {
+        "duration": 2.3,
+        "strideMetres": 1.035,
+        "speedMetresPerSecond": 0.45,
+        "rootMotion": false
+      },
+      "gaitRevision": "2026-10-17"
+    },
+    {
+      "id": "release1/cats/button@3",
+      "cat": "button",
+      "version": 3,
+      "url": "assets/models/release1/cats/toon-v2/button/button.glb",
+      "sha256": "192c063c9e74cd1548214728929e9bf246ac1a8ee9173ff24376f4769fe028b0",
+      "bytes": 9126144,
+      "triangles": 8134,
+      "materials": 1,
+      "bones": 51,
+      "rig": "toon-cat/1",
+      "coat": 3,
+      "portrait": {
+        "path": "assets/runtime/models/release1/cats/toon-v2/button/portrait.png",
+        "bytes": 276651,
+        "sha256": "3ae6c2878c6c1a5d55e5fb39b2140c6c7d8ec0772de1c59e8afbadde916e653e"
+      },
+      "contacts": {
+        "path": "assets/runtime/models/release1/cats/toon-v2/button/contacts.json",
+        "bytes": 6323687,
+        "sha256": "08041c5687c4399347ba7c11558a4d899aa0323fcd74a9fc2b28e9c7098df809"
+      },
+      "master": {
+        "path": "artifacts/model-jobs/toon-cats/2026-10-17-gait/button-runtime.blend",
+        "bytes": 102956098,
+        "sha256": "49dc36e721d4c3432788c46dfb38995d83cca39a22c88bb9f109a5d022fd8004"
+      },
+      "rightsRecord": "artifacts/model-jobs/toon-cats/2026-10-16/PROVENANCE.md",
+      "actions": [
+        {
+          "name": "relaxed_idle",
+          "source": "Idle_1",
+          "duration": 4.0,
+          "loop": true
+        },
+        {
+          "name": "attentive_request",
+          "source": "Idle_3",
+          "duration": 2.4,
+          "loop": false
+        },
+        {
+          "name": "happy_pounce",
+          "source": "Jump_Place_IP",
+          "duration": 1.2,
+          "loop": false
+        },
+        {
+          "name": "garden_walk",
+          "source": "Walk_F_IP",
+          "duration": 2.3,
+          "loop": true
+        },
+        {
+          "name": "settle_cushion",
+          "source": "Lie_belly_start",
+          "duration": 2.4,
+          "loop": false
+        },
+        {
+          "name": "curled_rest",
+          "source": "Lie_belly_sleep",
+          "duration": 4.0,
+          "loop": true
+        },
+        {
+          "name": "approach_bowl",
+          "source": "EatDrink_start",
+          "duration": 1.8,
+          "loop": false
+        },
+        {
+          "name": "drink",
+          "source": "Drinking",
+          "duration": 2.0,
+          "loop": true
+        },
+        {
+          "name": "return_idle",
+          "source": "EatDrink_end",
+          "duration": 1.8,
+          "loop": false
+        },
+        {
+          "name": "scratch",
+          "source": "SharpenClaws_Vert",
+          "duration": 3.0,
+          "loop": true
+        },
+        {
+          "name": "perch_step",
+          "source": "Jump_F_IP",
+          "duration": 2.4,
+          "loop": false
+        },
+        {
+          "name": "perch_settle",
+          "source": "Sit_start",
+          "duration": 2.4,
+          "loop": false
+        },
+        {
+          "name": "playhouse_enter",
+          "source": "Crouch_F_IP",
+          "duration": 1.8,
+          "loop": false
+        },
+        {
+          "name": "playhouse_lookout",
+          "source": "Sit_loop_2",
+          "duration": 3.0,
+          "loop": true
+        },
+        {
+          "name": "picnic_sit",
+          "source": "Sit_start",
+          "duration": 2.4,
+          "loop": false
+        },
+        {
+          "name": "personality_reaction",
+          "source": "Caress_idle",
+          "duration": 3.0,
+          "loop": false
+        },
+        {
+          "name": "turn_left",
+          "source": "Turn_L_IP",
+          "duration": 2.3,
+          "loop": true
+        },
+        {
+          "name": "turn_right",
+          "source": "Turn_R_IP",
+          "duration": 2.3,
+          "loop": true
+        },
+        {
+          "name": "rest_leave",
+          "source": "Lie_belly_end",
+          "duration": 2.4,
+          "loop": false
+        },
+        {
+          "name": "sit_idle",
+          "source": "Sit_loop_1",
+          "duration": 3,
+          "loop": true
+        },
+        {
+          "name": "sit_leave",
+          "source": "Sit_end",
+          "duration": 1.8,
+          "loop": false
+        },
+        {
+          "name": "quest_ball_play",
+          "source": "Attack_down",
+          "duration": 3.2,
+          "loop": false
+        },
+        {
+          "name": "quest_basket_finish",
+          "source": "Attack_down",
+          "duration": 5.4,
+          "loop": false
+        },
+        {
+          "name": "quest_gate_collect",
+          "source": "EatDrink_start|EatDrink_end",
+          "duration": 3.6,
+          "loop": false
+        },
+        {
+          "name": "quest_mouse_collect",
+          "source": "EatDrink_start|EatDrink_end",
+          "duration": 4.0,
+          "loop": false
+        },
+        {
+          "name": "quest_sun_stretch",
+          "source": "Lie_belly_start|Lie_belly_loop_2|Lie_belly_sleep",
+          "duration": 5.0,
+          "loop": false
+        },
+        {
+          "name": "quest_bed_knead",
+          "source": "SharpenClaws_Horiz|Lie_belly_start|Lie_belly_sleep",
+          "duration": 8.0,
+          "loop": false
+        },
+        {
+          "name": "quest_drink_finish",
+          "source": "EatDrink_start|Drinking|EatDrink_end",
+          "duration": 5.0,
+          "loop": false
+        },
+        {
+          "name": "quest_bell_touch",
+          "source": "Attack_F",
+          "duration": 4.5,
+          "loop": false
+        }
+      ],
+      "sourceIdentity": {
+        "pack": "Toon Cats pack",
+        "author": "Radik Bilalov",
+        "mesh": "/Game/CartoonCats/Cat/Meshes/Mesh_CartoonCat",
+        "coatTexture": "T_CartoonCat_BaseColor3.png",
+        "exportManifest": "artifacts/model-jobs/toon-cats/2026-10-16/asset-manifest.json"
+      },
+      "walk": {
+        "duration": 2.3,
+        "strideMetres": 1.035,
+        "speedMetresPerSecond": 0.45,
+        "rootMotion": false
+      },
+      "gaitRevision": "2026-10-17"
+    },
+    {
+      "id": "release1/cats/pepper@3",
+      "cat": "pepper",
+      "version": 3,
+      "url": "assets/models/release1/cats/toon-v2/pepper/pepper.glb",
+      "sha256": "4642058899580cd10e0335e456f74750fa47ce808bd098255de9b2228c816014",
+      "bytes": 9244480,
+      "triangles": 8134,
+      "materials": 1,
+      "bones": 51,
+      "rig": "toon-cat/1",
+      "coat": 8,
+      "portrait": {
+        "path": "assets/runtime/models/release1/cats/toon-v2/pepper/portrait.png",
+        "bytes": 281099,
+        "sha256": "93cdc2d3401e88bbdb7d73d3c5d7707d31c7a5be2635ad144d2cc6b3646bd943"
+      },
+      "contacts": {
+        "path": "assets/runtime/models/release1/cats/toon-v2/pepper/contacts.json",
+        "bytes": 6323687,
+        "sha256": "a9aed4976e4f01ac883ba284a6ab67d23adca0d3312f64cd9c033fde0318b696"
+      },
+      "master": {
+        "path": "artifacts/model-jobs/toon-cats/2026-10-17-gait/pepper-runtime.blend",
+        "bytes": 103074434,
+        "sha256": "77bcc0780eb6f62502829b7160be624f4650a0d9e479417a5b5e17f8742914b1"
+      },
+      "rightsRecord": "artifacts/model-jobs/toon-cats/2026-10-16/PROVENANCE.md",
+      "actions": [
+        {
+          "name": "relaxed_idle",
+          "source": "Idle_1",
+          "duration": 4.0,
+          "loop": true
+        },
+        {
+          "name": "attentive_request",
+          "source": "Idle_3",
+          "duration": 2.4,
+          "loop": false
+        },
+        {
+          "name": "happy_pounce",
+          "source": "Jump_Place_IP",
+          "duration": 1.2,
+          "loop": false
+        },
+        {
+          "name": "garden_walk",
+          "source": "Walk_F_IP",
+          "duration": 2.3,
+          "loop": true
+        },
+        {
+          "name": "settle_cushion",
+          "source": "Lie_belly_start",
+          "duration": 2.4,
+          "loop": false
+        },
+        {
+          "name": "curled_rest",
+          "source": "Lie_belly_sleep",
+          "duration": 4.0,
+          "loop": true
+        },
+        {
+          "name": "approach_bowl",
+          "source": "EatDrink_start",
+          "duration": 1.8,
+          "loop": false
+        },
+        {
+          "name": "drink",
+          "source": "Drinking",
+          "duration": 2.0,
+          "loop": true
+        },
+        {
+          "name": "return_idle",
+          "source": "EatDrink_end",
+          "duration": 1.8,
+          "loop": false
+        },
+        {
+          "name": "scratch",
+          "source": "SharpenClaws_Vert",
+          "duration": 3.0,
+          "loop": true
+        },
+        {
+          "name": "perch_step",
+          "source": "Jump_F_IP",
+          "duration": 2.4,
+          "loop": false
+        },
+        {
+          "name": "perch_settle",
+          "source": "Sit_start",
+          "duration": 2.4,
+          "loop": false
+        },
+        {
+          "name": "playhouse_enter",
+          "source": "Crouch_F_IP",
+          "duration": 1.8,
+          "loop": false
+        },
+        {
+          "name": "playhouse_lookout",
+          "source": "Sit_loop_2",
+          "duration": 3.0,
+          "loop": true
+        },
+        {
+          "name": "picnic_sit",
+          "source": "Sit_start",
+          "duration": 2.4,
+          "loop": false
+        },
+        {
+          "name": "personality_reaction",
+          "source": "Caress_idle",
+          "duration": 3.0,
+          "loop": false
+        },
+        {
+          "name": "turn_left",
+          "source": "Turn_L_IP",
+          "duration": 2.3,
+          "loop": true
+        },
+        {
+          "name": "turn_right",
+          "source": "Turn_R_IP",
+          "duration": 2.3,
+          "loop": true
+        },
+        {
+          "name": "rest_leave",
+          "source": "Lie_belly_end",
+          "duration": 2.4,
+          "loop": false
+        },
+        {
+          "name": "sit_idle",
+          "source": "Sit_loop_1",
+          "duration": 3,
+          "loop": true
+        },
+        {
+          "name": "sit_leave",
+          "source": "Sit_end",
+          "duration": 1.8,
+          "loop": false
+        },
+        {
+          "name": "quest_ball_play",
+          "source": "Attack_down",
+          "duration": 3.2,
+          "loop": false
+        },
+        {
+          "name": "quest_basket_finish",
+          "source": "Attack_down",
+          "duration": 5.4,
+          "loop": false
+        },
+        {
+          "name": "quest_gate_collect",
+          "source": "EatDrink_start|EatDrink_end",
+          "duration": 3.6,
+          "loop": false
+        },
+        {
+          "name": "quest_mouse_collect",
+          "source": "EatDrink_start|EatDrink_end",
+          "duration": 4.0,
+          "loop": false
+        },
+        {
+          "name": "quest_sun_stretch",
+          "source": "Lie_belly_start|Lie_belly_loop_2|Lie_belly_sleep",
+          "duration": 5.0,
+          "loop": false
+        },
+        {
+          "name": "quest_bed_knead",
+          "source": "SharpenClaws_Horiz|Lie_belly_start|Lie_belly_sleep",
+          "duration": 8.0,
+          "loop": false
+        },
+        {
+          "name": "quest_drink_finish",
+          "source": "EatDrink_start|Drinking|EatDrink_end",
+          "duration": 5.0,
+          "loop": false
+        },
+        {
+          "name": "quest_bell_touch",
+          "source": "Attack_F",
+          "duration": 4.5,
+          "loop": false
+        }
+      ],
+      "sourceIdentity": {
+        "pack": "Toon Cats pack",
+        "author": "Radik Bilalov",
+        "mesh": "/Game/CartoonCats/Cat/Meshes/Mesh_CartoonCat",
+        "coatTexture": "T_CartoonCat_BaseColor8.png",
+        "exportManifest": "artifacts/model-jobs/toon-cats/2026-10-16/asset-manifest.json"
+      },
+      "walk": {
+        "duration": 2.3,
+        "strideMetres": 1.035,
+        "speedMetresPerSecond": 0.45,
+        "rootMotion": false
+      },
+      "gaitRevision": "2026-10-17"
+    }
+  ],
+  "provenance": [
+    "artifacts/model-jobs/toon-cats/2026-10-16/PROVENANCE.md"
+  ]
+}

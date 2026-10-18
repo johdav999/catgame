@@ -1,0 +1,23 @@
+[
+  {
+    "rightsRecord": "assets/textures/garden/grass-lawn-v1.provenance.txt",
+    "bytes": 4742896,
+    "url": "assets/textures/garden/grass-lawn-v1.png",
+    "id": "garden/grass-lawn@1",
+    "sha256": "b523f462a17d5c65b3b6637fad905f6f7e1b0a8b32e81a00827a3c44964e77a7"
+  },
+  {
+    "rightsRecord": "assets/textures/garden/terrain/NOTICE.md",
+    "bytes": 3957510,
+    "url": "assets/textures/garden/terrain/meadow-v1.png",
+    "id": "garden/terrain-meadow@1",
+    "sha256": "2dd53b1997fc4a0e173588d7150730eea2bccf549b20b4b88176914ae5cbd133"
+  },
+  {
+    "rightsRecord": "assets/textures/garden/terrain/NOTICE.md",
+    "bytes": 3922866,
+    "url": "assets/textures/garden/terrain/earth-v1.png",
+    "id": "garden/terrain-earth@1",
+    "sha256": "67b1993e4e09acac39db402ab7f77228564ea14c4178f92e9e3a1ceada37c81c"
+  }
+]

@@ -1,7 +1,18 @@
 #include "afternoon.hpp"
 #include <iostream>
+#include <sstream>
+#include <iomanip>
 #include <stdexcept>
 using namespace paws;
+std::string legacySection(const std::string& bytes) {
+    std::istringstream input(bytes);std::string magic,tag,legacy;int version=0;
+    input>>magic>>version;
+    if(version<6)return bytes;
+    input>>tag>>std::quoted(legacy);
+    if(tag!="LEGACY"||!input)throw std::runtime_error("Missing legacy section");
+    return legacy;
+}
+
 void check(bool value,const char* message){if(!value)throw std::runtime_error(message);}
 void act(Afternoon& a,Action action,std::string object={},Direction direction=Direction::North) {
     const auto s=a.session().state();check(a.dispatch({s.attempt,s.revision,action,object,direction}).accepted,"action accepted");
@@ -9,14 +20,14 @@ void act(Afternoon& a,Action action,std::string object={},Direction direction=Di
 int main(){try {
     Afternoon a;act(a,Action::Move,"pot_a",Direction::North);
     a.saveRevision=42;a.saveSession="session-test-123";a.userPaused=true;a.settings.reducedMotion=true;
-    const auto bytes=a.encode();auto b=Afternoon::decode(bytes);
-    check(b.encode()==bytes&&b.saveRevision==42&&b.userPaused&&b.settings.reducedMotion,"v5 exact roundtrip and metadata");
+    const auto encoded=a.encode();const auto bytes=legacySection(encoded);auto b=Afternoon::decode(bytes);
+    check(b.encode()==encoded&&b.saveRevision==42&&b.userPaused&&b.settings.reducedMotion,"v5 exact roundtrip and metadata");
     auto display=a;display.settings.quality=1;
     check(Afternoon::decode(display.encode()).settings.quality==1,"mobile display preference restores");
     display.settings.quality=2;check(Afternoon::decode(display.encode()).settings.quality==2,"desktop display preference restores");
     check(b.session().canUndo(),"undo restored");act(b,Action::Undo);
     check(b.session().state().puzzle.objects[0].cell==Afternoon().session().state().puzzle.objects[0].cell,"undo restores pre-move state");
-    auto expectBad=[&](std::string data){bool failed=false;try{auto c=Afternoon::decode(data);(void)c;}catch(...){failed=true;}check(failed,"bad import rejected");check(a.encode()==bytes,"validation preserves current model");};
+    auto expectBad=[&](std::string data){bool failed=false;try{auto c=Afternoon::decode(data);(void)c;}catch(...){failed=true;}check(failed,"bad import rejected");check(a.encode()==encoded,"validation preserves current model");};
     auto bad=bytes;bad.replace(0,16,"PAWS_AFTERNOON 99");expectBad(bad);
     display.settings.quality=3;expectBad(display.encode());
     expectBad(bytes+"trailing");expectBad(bytes.substr(0,bytes.size()/2));
@@ -31,4 +42,5 @@ int main(){try {
     check(!imported.dispatch({old.attempt,old.revision,Action::Undo,{}}).accepted,"pre-import command rejected");
     check(imported.saveRevision==42&&Afternoon::decode(imported.encode()).encode()==imported.encode(),"rebased import remains valid");
     std::cout<<"Phase 8 portable metadata, v3 migration, undo, malformed/future data and imported-command invalidation passed\n";
+return 0;
 }catch(const std::exception& e){std::cerr<<e.what()<<'\n';return 1;}}

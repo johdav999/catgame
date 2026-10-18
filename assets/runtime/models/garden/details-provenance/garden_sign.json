@@ -1,0 +1,26 @@
+{
+  "output": "artifacts\\model-jobs\\garden-details\\2026-10-12\\garden_sign\\model.glb",
+  "request": {
+    "model": "v3.1-20260211",
+    "geometry_quality": "detailed",
+    "face_limit": 50000,
+    "texture": true,
+    "pbr": true,
+    "quad": false,
+    "texture_quality": "detailed",
+    "texture_version": "v3.5-20260815",
+    "delight": false,
+    "prompt": "One hanging rectangular wooden garden plaque, front facing the viewer, light warm honey wood with rounded corners, two short rope loops above the top edge. A single large dark brown cat paw print emblem centered on the front, absolutely no words or lettering. Thin board, softly carved rim. Standalone stylized 3D prop for Paws, a cosy miniature cat garden. Softly sculpted rounded silhouettes, warm cream/sage/muted terracotta palette, matte non-plastic materials, broad restrained detail, neutral diffuse lighting, no cast shadows painted into textures, no background scene, no cats. Match docs/design/paws-style-reference.png art direction."
+  },
+  "submitted_at": "2026-10-12T06:29:52.143933+00:00",
+  "status": "success",
+  "task_id": "15e2d373-9f5b-4ad5-9de7-c27c337bfe1a",
+  "checked_at": "2026-10-12T06:33:41.677384+00:00",
+  "provider": "Tripo3D",
+  "api_base": "https://openapi.tripo3d.ai/v3",
+  "sha256": "483de79a291f518489a403499b7b9c1477b6d9e2208ed90c887d4470d30ffdfd",
+  "bytes": 8115828,
+  "credits_consumed": 50.0,
+  "completed_at": "2026-10-12T06:33:39.223043Z",
+  "license_status": "Unverified: record account entitlement and applicable rights before release"
+}

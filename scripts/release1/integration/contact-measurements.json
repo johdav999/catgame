@@ -1,0 +1,17 @@
+{
+  "buttonHammock": {
+    "meshSha256": "f60259cba9f775dd30d72d8df5ffcf2ded98c912febe13a81124ecef5bfb753b",
+    "action": "curled_rest",
+    "samples": 241,
+    "sampleRate": 60,
+    "minimumRootY": 0.402113,
+    "rootY": 0.405,
+    "method": "Actual engine skin matrices and all final mesh vertices, evaluated against the accepted curved hammock cloth envelope",
+    "evidence": "tests/release1/integration/garden_tests.cpp",
+    "questEndingPreservationEvidence": "artifacts/model-jobs/quest-endings/2026-10-13/merge-report.json",
+    "idleForwardPreservationEvidence": "artifacts/model-jobs/idle-forward/2026-10-14/report.json",
+    "walkForwardPreservationEvidence": "artifacts/model-jobs/walk-forward/2026-10-14/report.json",
+    "walkSpeedPreservationEvidence": "artifacts/model-jobs/walk-speed/2026-10-14/report.json",
+    "turnPreservationEvidence": "artifacts/model-jobs/cat-turns/2026-10-14/report.json"
+  }
+}

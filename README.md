@@ -1,5 +1,16 @@
 # Paws
 
+The [Loopia games platform](docs/loopia-platform.md) adds shared PHP/MariaDB
+accounts, manual cloud saves and game-scoped Stripe purchase tracking for Paws
+and future games. Hosting and live payment configuration are separate deployment
+steps; no products or prices are enabled by default.
+
+The six-quest beach adventure is available as a development preview with
+`?devBeach=1`: Play/Continue → Adventures → Start / Continue beach. It includes
+six greybox quests, story continuation, a saved four-cat picnic ending and
+independent progress with garden return; purchases are not enabled. See [the beach milestone](docs/beach-adventure.md) for its
+separate test build, access boundary and verification.
+
 A browser 3D puzzle game built in C++20 and WebAssembly on WebEngine. This repository
 contains three playable requests: Pip's missing ball, Tidy the toy basket, and
 The stuck little gate. Portable C++ rules own legality, ordered unlocks, undo,
@@ -32,6 +43,10 @@ docs/                Architecture and validation handoff
 
 ## First build on Windows
 
+The supplied Golden Afternoon Garden tracks play as an ordered, repeating
+background playlist after Play/Continue activates sound. Music volume and mute
+are in Settings. See [the music playlist](docs/garden-music.md).
+
 Install Git, Python, CMake 3.22+, and Ninja on PATH. Then:
 
 ```powershell
@@ -41,12 +56,21 @@ git submodule update --init --recursive
 ./scripts/serve.ps1
 ```
 
-Open `http://localhost:8080`. Without arguments, `serve.ps1` selects the newest built
+Open the URL printed by the server. It starts at port 8080 and tries up to 100
+consecutive ports if a port is occupied or unavailable. Use `-Port` to choose the
+starting port, or `-PortAttempts 1` to require that exact port.
+Without arguments, `serve.ps1` selects the newest built
 game under `build/*/site` by its `paws.wasm` timestamp and prints the selected folder.
 This includes pinned and local builds; use `-SiteDirectory` to choose explicitly.
 The local server uses versioned asset URLs and disables caching to prevent an old
-JavaScript/Wasm build from surviving a refresh. It rejects a second listener on
-the same port; stop the existing server before changing the served build.
+JavaScript/Wasm build from surviving a refresh. Existing listeners stay running;
+stop or restart the existing server to replace the build on its current port.
+After building into a different directory, run `./scripts/serve.ps1 -Restart` to
+replace this repository's existing server on port 8080 with the selected build.
+An already running server keeps its original site directory until restarted;
+refreshing the browser alone cannot switch it to another build. `-Restart` refuses
+to stop a listener belonging to another application. Use `-SiteDirectory` to
+select a particular built site when restarting.
 The default build is Debug; use `-Configuration Release` for release output in
 `build/web-pinned-release/site/`. Deploy the entire generated `site/` directory together,
 including `paws.js`, `paws.wasm`, assets and licenses. Serve over HTTPS in production.
@@ -65,6 +89,25 @@ a second one:
 ./scripts/build.ps1 -Pinned -EmsdkPath C:/Users/Johan/source/repos/WebEngine/.tools/emsdk
 ./scripts/build.ps1 -WebEngineSourceDir C:/Users/Johan/source/repos/WebEngine -EmsdkPath C:/Users/Johan/source/repos/WebEngine/.tools/emsdk
 ```
+
+The daytime sky sphere currently requires the adjacent development engine's sky
+API. Build with the explicit local engine command above (add `-Configuration
+Release`), then serve `build/web-local-release/site` explicitly. The pinned engine
+does not yet include sky rendering and retains the previous background. The sky
+keeps a fixed daytime atmosphere and soft static clouds without changing garden
+lighting or introducing a day/night cycle. Browser verification:
+`node scripts/daytime-sky-smoke.cjs` with `PAWS_URL` set to that site's server.
+To see the sun, drag upward on the garden background beyond the horizon, then
+drag sideways to look around. The camera tilts upward without moving underground.
+Drag down again or use Reset view to return to the garden. Arrow keys with the
+canvas focused also control the view. `node scripts/garden-sun-smoke.cjs` verifies
+the visible sun and zoom; set `WEBGL=1` to exercise the fallback renderer.
+
+The local engine also supplies [hilly garden terrain](docs/garden-terrain.md),
+with ImageGen meadow/earth textures and a flat house/garden apron. The same
+local Release build enables it; the current pin keeps its previous lawn slabs.
+Verify with `node scripts/garden-terrain-smoke.cjs` against the selected site's
+`PAWS_URL`. Texture provenance is bundled beside the runtime PNGs.
 
 For persistent local settings, copy `developer-settings.json.example` to the ignored
 `developer-settings.json`. The build script reads it unless `-Pinned` is used.
@@ -132,6 +175,17 @@ acceptance](docs/phase9-audio.md) and the [47-clip production checklist](docs/ph
 `build/web-phase9-pinned-release/site` with isolated test-only audio signals.
 These signals are never shipped as game assets or treated as an audible production
 review. Music, Ambience, Effects, mute and Enable sound are in Settings.
+
+The [Pip sound delivery](docs/pip-audio.md) adds ten playable ElevenLabs effects:
+request meows, happy trills, purring, padded paw steps, cushion settling and
+drinking. WAVs are in `assets/runtime/audio/`; original downloads and provenance
+are in `artifacts/audio-production/sources/pip-sounds/`. Human listening and
+distribution-rights acceptance remain tracked separately from local playback.
+
+The [remaining sound effects](docs/remaining-sound-effects.md) add the other 49
+requested cat, UI, puzzle, bell, water and furnishing effects. They play through
+actual actions and contacts; menu feedback stays audible while the world pauses.
+Run `npm run test:browser:remaining-effects` for the real-file browser journey.
 
 Implement reusable features in WebEngine and game rules here. Test engine changes
 and the game using the local override; commit and push the engine changes before

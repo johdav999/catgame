@@ -1,0 +1,38 @@
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -28,6 +28,11 @@
+ target_include_directories(paws_rules PUBLIC src)
+ add_library(paws_content src/content.cpp src/afternoon.cpp)
+ target_link_libraries(paws_content PUBLIC paws_rules)
++add_library(paws_release1_rules src/release1/rules/puzzles.cpp)
++target_include_directories(paws_release1_rules PUBLIC src)
++target_link_libraries(paws_release1_rules PUBLIC paws_rules)
++add_library(paws_release1_content src/release1/rules/content.cpp)
++target_link_libraries(paws_release1_content PUBLIC paws_release1_rules paws_content)
+ add_library(paws_game src/starter_scene.cpp src/puzzle_scene.cpp src/garden_scene.cpp)
+ target_include_directories(paws_game PUBLIC src)
+ target_link_libraries(paws_game PUBLIC WebEngine::Core paws_content)
+@@ -46,10 +51,12 @@
+ if(EMSCRIPTEN)
+   target_compile_options(paws_rules PRIVATE -fexceptions)
+   target_compile_options(paws_content PRIVATE -fexceptions)
++  target_compile_options(paws_release1_rules PRIVATE -fexceptions)
++  target_compile_options(paws_release1_content PRIVATE -fexceptions)
+   target_compile_options(paws_game PRIVATE -fexceptions)
+   target_compile_options(paws_audio PRIVATE -fexceptions)
+   add_executable(paws src/browser_main.cpp)
+-  target_link_libraries(paws PRIVATE paws_game paws_ui paws_audio WebEngine::Browser engine_gui_browser engine_audio_browser)
++  target_link_libraries(paws PRIVATE paws_game paws_ui paws_audio paws_release1_content WebEngine::Browser engine_gui_browser engine_audio_browser)
+   target_compile_definitions(paws PRIVATE PAWS_GUI_GALLERY=$<BOOL:${PAWS_GUI_GALLERY}>)
+   target_link_options(paws PRIVATE
+     -sALLOW_MEMORY_GROWTH=1 -sSTACK_SIZE=1048576 -sENVIRONMENT=web
+@@ -86,6 +93,9 @@
+     add_executable(paws_scene_tests tests/starter_scene_tests.cpp)
+     target_link_libraries(paws_scene_tests PRIVATE paws_game)
+     add_test(NAME paws_starter_scene COMMAND paws_scene_tests)
++    add_executable(paws_release1_rules_tests tests/release1/rules/tests.cpp)
++    target_link_libraries(paws_release1_rules_tests PRIVATE paws_release1_content)
++    add_test(NAME paws_release1_rules COMMAND paws_release1_rules_tests)
+     add_executable(paws_rules_tests tests/puzzle_tests.cpp)
+     target_link_libraries(paws_rules_tests PRIVATE paws_content)
+     add_test(NAME paws_rules COMMAND paws_rules_tests)

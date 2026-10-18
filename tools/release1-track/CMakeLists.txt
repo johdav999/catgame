@@ -1,0 +1,77 @@
+cmake_minimum_required(VERSION 3.22)
+project(PawsReleaseOneTrack LANGUAGES C CXX)
+set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+get_filename_component(PAWS_ROOT "${CMAKE_CURRENT_LIST_DIR}/../.." ABSOLUTE)
+set(PAWS_TRACK "rules" CACHE STRING "cats, props, rules, progression, garden, gui or audio")
+set(TRACKS cats props rules progression garden gui audio)
+if(NOT PAWS_TRACK IN_LIST TRACKS)
+  message(FATAL_ERROR "Unknown PAWS_TRACK: ${PAWS_TRACK}")
+endif()
+set(WEBENGINE_SOURCE_DIR "${PAWS_ROOT}/external/WebEngine" CACHE PATH "Pinned dependency")
+get_filename_component(PIN "${PAWS_ROOT}/external/WebEngine" REALPATH)
+get_filename_component(SELECTED "${WEBENGINE_SOURCE_DIR}" REALPATH)
+if(NOT PIN STREQUAL SELECTED)
+  message(FATAL_ERROR "Release-one track harness requires the pinned checkout")
+endif()
+set(PAWS_TRACK_SOURCES "" CACHE STRING "Semicolon-separated absolute task module sources")
+set(PAWS_TRACK_TEST "${CMAKE_CURRENT_LIST_DIR}/baseline.cpp" CACHE FILEPATH "Native test main")
+set(PAWS_TRACK_BROWSER_MAIN "" CACHE FILEPATH "Task-owned browser main; empty disables preview")
+set(PAWS_TRACK_WEB "" CACHE PATH "Task-owned preview shell with index.html")
+# Only the task's executable is registered; baseline suites run in build/native.
+set(BUILD_TESTING OFF)
+add_subdirectory("${PAWS_ROOT}" baseline EXCLUDE_FROM_ALL)
+set(LIB paws_content)
+if(PAWS_TRACK STREQUAL "cats")
+  set(LIB paws_pip)
+elseif(PAWS_TRACK STREQUAL "props")
+  set(LIB paws_garden)
+elseif(PAWS_TRACK STREQUAL "garden")
+  set(LIB paws_game)
+elseif(PAWS_TRACK STREQUAL "gui")
+  set(LIB paws_ui paws_content)
+elseif(PAWS_TRACK STREQUAL "audio")
+  set(LIB paws_audio)
+endif()
+if(PAWS_TRACK_SOURCES)
+  add_library(release1_${PAWS_TRACK} STATIC ${PAWS_TRACK_SOURCES})
+  target_include_directories(release1_${PAWS_TRACK} PUBLIC "${PAWS_ROOT}/src")
+  target_link_libraries(release1_${PAWS_TRACK} PUBLIC ${LIB})
+  if(EMSCRIPTEN)
+    target_compile_options(release1_${PAWS_TRACK} PRIVATE -fexceptions)
+  endif()
+  set(LIB release1_${PAWS_TRACK} paws_content)
+endif()
+if(NOT EMSCRIPTEN)
+  enable_testing()
+  add_executable(release1_track_tests "${PAWS_TRACK_TEST}")
+  target_include_directories(release1_track_tests PRIVATE "${PAWS_ROOT}/src")
+  target_link_libraries(release1_track_tests PRIVATE ${LIB} paws_content)
+  add_test(NAME release1_${PAWS_TRACK} COMMAND release1_track_tests)
+elseif(PAWS_TRACK_BROWSER_MAIN)
+  if(NOT EXISTS "${PAWS_TRACK_WEB}/index.html")
+    message(FATAL_ERROR "A task-owned preview shell is required")
+  endif()
+  add_executable(release1_preview "${PAWS_TRACK_BROWSER_MAIN}")
+  target_include_directories(release1_preview PRIVATE "${PAWS_ROOT}/src")
+  target_link_libraries(release1_preview PRIVATE ${LIB} paws_game paws_ui paws_audio
+    WebEngine::Browser engine_assets_browser engine_gui_browser engine_audio_browser)
+  target_compile_options(release1_preview PRIVATE -fexceptions)
+  target_link_options(release1_preview PRIVATE -sALLOW_MEMORY_GROWTH=1
+    -sSTACK_SIZE=1048576 -sENVIRONMENT=web -sEXIT_RUNTIME=0 -sFILESYSTEM=0
+    "-sEXPORTED_FUNCTIONS=['_main','_malloc','_free']"
+    "-sEXPORTED_RUNTIME_METHODS=['HEAPU8','UTF8ToString']")
+  set_target_properties(release1_preview PROPERTIES SUFFIX ".js"
+    RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/site")
+  add_custom_target(release1_track_site
+    COMMAND ${CMAKE_COMMAND} -E copy_directory "${PAWS_TRACK_WEB}" "${CMAKE_BINARY_DIR}/site"
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different "${PIN}/web/gui.js" "${CMAKE_BINARY_DIR}/site/engine-gui.js"
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different "${PIN}/web/storage.js" "${CMAKE_BINARY_DIR}/site/engine-storage.js"
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different "${PIN}/web/audio-system.js" "${CMAKE_BINARY_DIR}/site/engine-audio.js"
+    COMMAND ${CMAKE_COMMAND} -DSOURCE_DIR=${PAWS_ROOT} -DSITE_DIR=${CMAKE_BINARY_DIR}/site
+      -P "${PAWS_ROOT}/cmake/StageAssets.cmake"
+    DEPENDS release1_preview VERBATIM)
+elseif(PAWS_TRACK_SOURCES)
+  # Portable Wasm compilation without a browser main is useful before preview wiring.
+  add_custom_target(release1_track_compile DEPENDS release1_${PAWS_TRACK})
+endif()

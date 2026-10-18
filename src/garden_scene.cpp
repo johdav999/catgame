@@ -1,4 +1,5 @@
 #include "garden_scene.hpp"
+#include "water_surface.hpp"
 #include "engine/light_component.hpp"
 #include <cmath>
 #include <algorithm>
@@ -23,13 +24,9 @@ PuzzleScene makeHomeGarden(const GardenMeshes& meshes,bool returned,bool reduced
     };
     for(int x=-3;x<3;++x) for(int z=-2;z<2;++z)
         prop("paving","Courtyard sandstone",{x+.5f,0,z+.5f});
-    for(int x=-3;x<3;++x) {
-        prop("fence","Low garden boundary",{x+.5f,0,-2});
-        prop("edge","Courtyard front edge",{x+.5f,0,2});
-    }
-    for(int z=-2;z<2;++z) for(float x:{-3.f,3.f})
-        prop("edge","Courtyard side edge",{x,0,z+.5f},engine::pi/2);
-    prop("bench","Pip's bench",{-.6f,0,-1.5f});
+    addGardenEnclosure(scene,meshes,-3,3,-2,2);
+    prop("bench","Pip's bench",{2.35f,0,-2.35f});
+    prop("bench_cushion","Checked bench cushion",{2.35f,.49f,-2.32f});
     prop("planting","Left flowers",{-2.6f,0,-1.45f});
     prop("planting","Right flowers",{2.6f,0,-1.45f});
     prop("pot_round","Garden terracotta",{-2.65f,0,1.45f});
@@ -58,7 +55,7 @@ PuzzleScene makeHomeGarden(const GardenMeshes& meshes,bool returned,bool reduced
             a.setSavedId(std::string(preview?"preview.":"furnishing.")+std::string(item.id));
             if(item.id=="drinking_bowl") {
                 auto& water=a.addComponent<engine::MeshComponent>("Cool water",meshes.at("bowl_water"));
-                water.color={1,1,1};water.transform.position=gardenAnchor("bowl","water");
+                dressWater(water);water.transform.position=gardenAnchor("bowl","water");
             }
             a.enabled=false;
             (preview?out.bindings.furnishingPreviews:out.bindings.furnishings)[i]=a.id();
@@ -70,7 +67,7 @@ PuzzleScene makeHomeGarden(const GardenMeshes& meshes,bool returned,bool reduced
     sun.direction={-.5f,-1,-.6f};sun.color={1,.95f,.87f};sun.intensity=1.7f;
     auto& camera=scene.spawn("Garden view").addComponent<engine::CameraComponent>("Camera");
     camera.setPerspective(engine::pi*40/180,.05f,60);out.camera=&camera;
-    return out;
+    out.bindings.collision.build(scene,meshes);return out;
 }
 void projectHomeGarden(engine::Scene& scene,SceneBindings& b,const Afternoon& afternoon,std::string_view previewItem,std::string_view previewSpot) {
     if(!b.garden)return;
@@ -107,7 +104,7 @@ GardenUse beginGardenUse(engine::Scene& scene,const SceneBindings& b,std::string
     // traverse the bench, boundary, plants or another furnishing footprint.
     actor->transform.position={0,0,.15f};actor->transform.rotation={};
     use.yaw=use.cushion?engine::pi:0;
-    const float approachZ=use.cushion?spot->position.z+.72f:use.root.z;
+    const float approachZ=use.cushion?spot->position.z+.85f:use.root.z;
     if(spotId=="quiet_corner"&&!use.cushion) {
         // Approach from the courtyard side so Pip's body stays inside the fence.
         use.yaw=engine::pi/2;auto anchor=gardenAnchor("bowl","drink_root");
@@ -117,6 +114,8 @@ GardenUse beginGardenUse(engine::Scene& scene,const SceneBindings& b,std::string
         use.path={{0,0,.15f},{.75f,0,.15f},{.75f,0,approachZ},{use.root.x,0,approachZ},use.root};
     } else if(use.cushion)use.path={{0,0,.15f},{0,0,approachZ},{use.root.x,0,approachZ},use.root};
     else use.path={{0,0,.15f},{use.root.x,0,.15f},use.root};
+    use.collision=b.collision;use.collision.synchronize(scene);
+    use.path=use.collision.supportedRoute(scene,use.path);if(use.path.empty())return {};
     use.phase=reduced?3:1;
     if(reduced) {actor->transform.position=use.root;actor->transform.rotation.y=use.yaw;presentPip(*cat,use.cushion?5:7,true);}
     else presentPip(*cat,3,false);
@@ -130,12 +129,13 @@ void cancelGardenUse(engine::Scene& scene,GardenUse& use,bool reduced) {
 void updateGardenUse(engine::Scene& scene,GardenUse& use,float delta) {
     auto* actor=scene.findActor(use.actor);auto* cat=dynamic_cast<engine::SkeletalMeshComponent*>(scene.findComponent(use.cat));
     if(!actor||!cat||!use.phase||delta<=0)return;
+    use.collision.synchronize(scene);
     use.elapsed+=delta;
     if(use.phase==1) {
-        const auto from=use.path[use.segment],to=use.path[use.segment+1],d=to-from;
-        const float duration=std::max(.0001f,std::sqrt(engine::dot(d,d))/pipWalkSpeed),t=std::min(1.f,use.elapsed/duration);
-        actor->transform.position=from+d*t;actor->transform.rotation.y=std::atan2(d.x,d.z);
-        if(t>=1) {use.elapsed=0;if(++use.segment+1==use.path.size()){use.phase=2;actor->transform.position=use.root;actor->transform.rotation.y=use.yaw;presentPip(*cat,use.cushion?4:6,false);}}
+        const bool travelling=use.segment+1<use.path.size();
+        const bool reached=use.collision.follow(scene,*actor,use.path,use.segment,delta*pipWalkSpeed);
+        sampleCatWalk(*actor,*cat,cat->animation().time(),false);
+        if(reached&&!travelling&&faceCat(*actor,*cat,use.yaw,delta)){use.elapsed=0;use.phase=2;actor->transform.rotation.y=use.yaw;presentPip(*cat,use.cushion?4:6,false);}
     } else if(use.phase==2&&use.elapsed>=(use.cushion?2.4f:1.8f)) {
         use.phase=3;use.elapsed=0;presentPip(*cat,use.cushion?5:7,false);
     } else if(use.phase==3&&use.elapsed>=5.f) {
@@ -148,10 +148,10 @@ void updateGardenUse(engine::Scene& scene,GardenUse& use,float delta) {
     } else if(use.phase==4&&use.cushion&&!use.reduced) {
         cat->animation().seek(std::max(0.f,2.4f-use.elapsed));
     } else if(use.phase==5) {
-        const auto from=use.path[use.segment],to=use.path[use.segment+1],d=to-from;
-        const float duration=std::max(.0001f,std::sqrt(engine::dot(d,d))/pipWalkSpeed),t=std::min(1.f,use.elapsed/duration);
-        actor->transform.position=from+d*t;actor->transform.rotation.y=std::atan2(d.x,d.z);
-        if(t>=1){use.elapsed=0;if(++use.segment+1==use.path.size())cancelGardenUse(scene,use,false);}
+        const bool travelling=use.segment+1<use.path.size();
+        const bool reached=use.collision.follow(scene,*actor,use.path,use.segment,delta*pipWalkSpeed);
+        sampleCatWalk(*actor,*cat,cat->animation().time(),false);
+        if(reached&&!travelling&&faceCat(*actor,*cat,0,delta))cancelGardenUse(scene,use,false);
     }
 }
 }

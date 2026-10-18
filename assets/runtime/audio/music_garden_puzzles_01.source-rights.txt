@@ -1,0 +1,3 @@
+The user supplied these tracks, stated that they created them, and requested playback in Paws.
+Originals are retained in assets/music. No provider, account plan, or third-party license is inferred.
+Local game integration is authorized; distribution entitlement has not been independently verified.

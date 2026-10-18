@@ -1,0 +1,294 @@
+{
+  "id": "release1/cats/pip@1",
+  "cat": "pip",
+  "version": 1,
+  "url": "assets/models/release1/cats/pip/pip.glb",
+  "sha256": "a479b9ee636a6fabdf4b2717d145d7746cf50e76d8d8ddad1699346a2e7f1ebd",
+  "bytes": 5688012,
+  "triangles": 20762,
+  "materials": 2,
+  "embeddedImages": 3,
+  "bones": 31,
+  "bounds": {
+    "min": [
+      -0.19980588555335999,
+      -6.69129036623417e-08,
+      -0.6182976365089417
+    ],
+    "max": [
+      0.19980588555335999,
+      1.0530091524124146,
+      0.6355335712432861
+    ]
+  },
+  "footprint": [
+    0.39961177110671997,
+    1.2538312077522278
+  ],
+  "pivot": "root on support plane; metres, Y up, +Z forward",
+  "portrait": {
+    "path": "assets/runtime/models/release1/cats/pip/portrait.png",
+    "bytes": 324175,
+    "sha256": "643a132df26334e7c3cb94ee933e17bc63e969aa6d4f2cf27132566cfa3ee584"
+  },
+  "master": {
+    "path": "artifacts/model-jobs/release1-cats/pip/pip-r24.blend",
+    "bytes": 33410388,
+    "sha256": "121cb8d41f82f632aee91781213452e7f66e9e38fedc769d866905546f35bc7e"
+  },
+  "cleanReimport": {
+    "path": "artifacts/model-jobs/release1-cats/pip/pip-clean-reimport.blend",
+    "bytes": 33787377,
+    "sha256": "689f9f48e474145b49d353799d93c960baa11915c3aa0979fc570b40f219ecda"
+  },
+  "materialMaps": [
+    {
+      "path": "artifacts/model-jobs/release1-cats/pip/textures/final/0-pip-normal.png",
+      "bytes": 549450,
+      "sha256": "479851669ceac01794463b9b319cfe99e76d072a507ef9c57c1146d32b8dcb1b"
+    },
+    {
+      "path": "artifacts/model-jobs/release1-cats/pip/textures/final/1-pip-basecolor.png",
+      "bytes": 1179526,
+      "sha256": "e4899308997dfbc554233f6f81c1c438ee5cac777d89b2758f444290a88eabbc"
+    },
+    {
+      "path": "artifacts/model-jobs/release1-cats/pip/textures/final/2-pip-metallic-1024-pip-roughness-1024.png",
+      "bytes": 810313,
+      "sha256": "c8b956293ad3b524e61a1a2ac08a45e56577f5ad7ffcc4a8fcd6990f3a03f181"
+    }
+  ],
+  "rightsRecord": "artifacts/model-jobs/release1-cats/PROVENANCE.md",
+  "sourceIdentity": {
+    "glb": {
+      "path": "assets/runtime/models/pip/pip.glb",
+      "bytes": 4282748,
+      "sha256": "da50380685ce63cd7ea42d7ed3f49580ed607e4fc3a7ce9093f377533be241e2"
+    },
+    "master": {
+      "path": "artifacts/model-jobs/pip/2026-10-11-eye-rim/pip-blink.blend",
+      "bytes": 20699828,
+      "sha256": "dc71709dc81327f5d94d5db6db8fe499af8e182d3d6a57d66ede66e8c07a1d9d"
+    },
+    "rigSnapshot": {
+      "path": "docs/release1/canonical-rig.json",
+      "bytes": 20233,
+      "sha256": "cf1016823394055ea7859aecbfb96e656caa533464483dd60c6d6e3c709570ab"
+    }
+  },
+  "rigAuthority": "docs/release1/canonical-rig.json",
+  "actions": [
+    {
+      "duration": 4.0,
+      "loop": true,
+      "name": "relaxed_idle"
+    },
+    {
+      "duration": 2.4,
+      "loop": false,
+      "name": "attentive_request"
+    },
+    {
+      "duration": 1.2,
+      "loop": false,
+      "name": "happy_pounce"
+    },
+    {
+      "duration": 0.8,
+      "loop": true,
+      "name": "garden_walk"
+    },
+    {
+      "duration": 2.4,
+      "loop": false,
+      "name": "settle_cushion"
+    },
+    {
+      "duration": 4.0,
+      "loop": true,
+      "name": "curled_rest"
+    },
+    {
+      "duration": 1.8,
+      "loop": false,
+      "name": "approach_bowl"
+    },
+    {
+      "duration": 2.0,
+      "loop": true,
+      "name": "drink"
+    },
+    {
+      "duration": 1.8,
+      "loop": false,
+      "name": "return_idle"
+    },
+    {
+      "duration": 3.0,
+      "loop": true,
+      "name": "scratch"
+    },
+    {
+      "duration": 2.4,
+      "loop": false,
+      "name": "perch_step"
+    },
+    {
+      "duration": 2.4,
+      "loop": false,
+      "name": "perch_settle"
+    },
+    {
+      "duration": 1.8,
+      "loop": false,
+      "name": "playhouse_enter"
+    },
+    {
+      "duration": 3.0,
+      "loop": true,
+      "name": "playhouse_lookout"
+    },
+    {
+      "duration": 2.4,
+      "loop": false,
+      "name": "picnic_sit"
+    },
+    {
+      "duration": 3.0,
+      "loop": false,
+      "name": "personality_reaction"
+    },
+    {
+      "name": "quest_ball_play",
+      "duration": 3.2,
+      "loop": false
+    },
+    {
+      "name": "quest_basket_finish",
+      "duration": 5.4,
+      "loop": false
+    },
+    {
+      "name": "quest_gate_collect",
+      "duration": 3.6,
+      "loop": false
+    },
+    {
+      "duration": 4.0,
+      "loop": true,
+      "name": "relaxed_idle_forward"
+    },
+    {
+      "duration": 0.8,
+      "loop": true,
+      "name": "garden_walk_forward"
+    },
+    {
+      "duration": 0.8,
+      "loop": true,
+      "name": "turn_left"
+    },
+    {
+      "duration": 0.8,
+      "loop": true,
+      "name": "turn_right"
+    }
+  ],
+  "contacts": {
+    "path": "assets/runtime/models/release1/cats/pip/contacts.json",
+    "bytes": 249530,
+    "sha256": "e35fff14675231d9379483cbb325a41e6e4bed6f5c9e18859c17c0b4aa4a38dc"
+  },
+  "denseMeasurements": {
+    "path": "artifacts/model-jobs/release1-cats/pip/animation-measurements-runtime.json",
+    "bytes": 1645972,
+    "sha256": "5071737f11497004035488694daa18879f5d412659b003aac93c94879cbe5870"
+  },
+  "anchors": {
+    "root_origin": {
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "rotationDegrees": [
+        0,
+        0,
+        0
+      ]
+    },
+    "drink_muzzle": {
+      "position": [
+        0.0765788783045376,
+        0.3919999792295344,
+        0.5831271900850183
+      ],
+      "rotationDegrees": [
+        0,
+        0,
+        0
+      ],
+      "action": "drink",
+      "seconds": 0
+    },
+    "drink_root_from_water": {
+      "position": [
+        -0.0765788783045376,
+        0,
+        -0.5831271900850183
+      ],
+      "rotationDegrees": [
+        0,
+        0,
+        0
+      ],
+      "waterY": 0.383,
+      "muzzleClearance": 0.008999979229534383
+    },
+    "rest_root": {
+      "position": [
+        0.2160244956612587,
+        0,
+        -0.06816071271896362
+      ],
+      "rotationDegrees": [
+        0,
+        0,
+        0
+      ],
+      "action": "curled_rest",
+      "supportPlaneY": 0
+    },
+    "rest_root_from_support": {
+      "position": [
+        -0.2160244956612587,
+        0,
+        0.06816071271896362
+      ],
+      "rotationDegrees": [
+        0,
+        0,
+        0
+      ],
+      "action": "curled_rest",
+      "supportPlaneY": 0
+    }
+  },
+  "walk": {
+    "duration": 0.8,
+    "strideMetres": 0.36,
+    "speedMetresPerSecond": 0.45,
+    "rootMotion": false
+  },
+  "choreography": "Use measured per-action contacts. Approach/step/top/exit actor motion and prop support are application-owned; no animation event commits rules or rewards.",
+  "questEndingRevision": "2026-10-13",
+  "questEndingProvenance": "artifacts/model-jobs/pip/2026-10-13-quest-endings",
+  "questEndingMaster": {
+    "path": "artifacts/model-jobs/pip/2026-10-13-quest-endings/pip-quest-endings.blend",
+    "sha256": "26efb9bb3119230927f77f4a2978ec8acecb3766cfeb4ee7af03703e5a3577fc"
+  },
+  "idleForwardRevision": "2026-10-14",
+  "walkForwardRevision": "2026-10-14",
+  "walkSpeedRevision": "2026-10-14",
+  "turnRevision": "2026-10-14"
+}

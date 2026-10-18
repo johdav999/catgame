@@ -1,0 +1,318 @@
+{
+  "id": "release1/cats/mabel@1",
+  "cat": "mabel",
+  "version": 1,
+  "url": "assets/models/release1/cats/mabel/mabel.glb",
+  "sha256": "b1b6824c9df0ac0177f41f75bf1374440fdd2aa96464250f91cf34e255a590ec",
+  "bytes": 5317836,
+  "triangles": 24109,
+  "materials": 1,
+  "embeddedImages": 3,
+  "bones": 31,
+  "bounds": {
+    "min": [
+      -0.19437478482723236,
+      -6.509977623636587e-08,
+      -0.5581987500190735
+    ],
+    "max": [
+      0.19780784845352173,
+      1.0500001907348633,
+      0.5679213404655457
+    ]
+  },
+  "footprint": [
+    0.3921826332807541,
+    1.1261200904846191
+  ],
+  "pivot": "root on support plane; metres, Y up, +Z forward",
+  "portrait": {
+    "path": "assets/runtime/models/release1/cats/mabel/portrait.png",
+    "bytes": 329022,
+    "sha256": "6f818dcb7f7a37b6f54e0b6e4b5d1e75e2f4ff3cd81aab81b71eba4d3572ac0c"
+  },
+  "master": {
+    "path": "artifacts/model-jobs/release1-cats/mabel/mabel-r24.blend",
+    "bytes": 35922632,
+    "sha256": "15b13ee61e662bbb252f9a038c075093ca3e7d7e8deaeb884edd47999f7a6522"
+  },
+  "cleanReimport": {
+    "path": "artifacts/model-jobs/release1-cats/mabel/mabel-clean-reimport.blend",
+    "bytes": 33911969,
+    "sha256": "6dd8f1caeb32ae45b60e0ca7d887c43029d371a48f420da2eb5cf3d476789073"
+  },
+  "materialMaps": [
+    {
+      "path": "artifacts/model-jobs/release1-cats/mabel/textures/final/0-normal.png",
+      "bytes": 538267,
+      "sha256": "83f42b4c44d7ccecc1c2961560ce684110c07a5211b821c886bdbb360010430d"
+    },
+    {
+      "path": "artifacts/model-jobs/release1-cats/mabel/textures/final/1-basecolor.png",
+      "bytes": 1140373,
+      "sha256": "807686ac7a1a0cbe90600af80a7d68615b65cc5a6982fc76d6121c6de0ae191c"
+    },
+    {
+      "path": "artifacts/model-jobs/release1-cats/mabel/textures/final/2-roughness.png",
+      "bytes": 480497,
+      "sha256": "f281e6489178209079528e6eb3c5cd4b06ee6e5936ce4f46a6cd75499cadc987"
+    }
+  ],
+  "rightsRecord": "artifacts/model-jobs/release1-cats/PROVENANCE.md",
+  "sourceIdentity": {
+    "sourceFolder": "assets/pepper",
+    "files": [
+      {
+        "path": "assets/pepper/pepper.fbx",
+        "bytes": 575532,
+        "sha256": "75edbfbb62eca2b29482ae71d7825500c57c7d960d25f07e3d144e916d4b8b99"
+      },
+      {
+        "path": "assets/pepper/tripo_convert_6206f271-4ff9-4ccb-a084-b16c6578ba76.fbm/cat_3d_model_basecolor.JPEG",
+        "bytes": 1878878,
+        "sha256": "1722316101bc80efda5eaabcc4012a88eecf4f91594e18894929ae7026e0e866"
+      },
+      {
+        "path": "assets/pepper/tripo_convert_6206f271-4ff9-4ccb-a084-b16c6578ba76.fbm/cat_3d_model_metallic.JPEG",
+        "bytes": 1278461,
+        "sha256": "145ac72697ed1b683fd4d10bbad13e4a101d1810d714b4bcb4cd69ef144db97e"
+      },
+      {
+        "path": "assets/pepper/tripo_convert_6206f271-4ff9-4ccb-a084-b16c6578ba76.fbm/cat_3d_model_normal.PNG",
+        "bytes": 2952872,
+        "sha256": "9eaaa0d2bad00b46e1e39792ce8dca51050391d49aedc7de5826d4cda2401d22"
+      },
+      {
+        "path": "assets/pepper/tripo_convert_6206f271-4ff9-4ccb-a084-b16c6578ba76.fbm/cat_3d_model_rm.JPEG",
+        "bytes": 1094366,
+        "sha256": "4723f0a969530a9b73d83d80178d9df02e7e7133e02eba5179c9431c0ebc6453"
+      },
+      {
+        "path": "assets/pepper/tripo_convert_6206f271-4ff9-4ccb-a084-b16c6578ba76.fbm/cat_3d_model_roughness.JPEG",
+        "bytes": 1047508,
+        "sha256": "53a5022b5a278e3273db41d74ac9c704bc24eb42d817193206840ee2e7a45dcd"
+      }
+    ],
+    "reference": {
+      "path": "artifacts/model-jobs/cat-tripo-inputs/2026-10-11/mabel.png",
+      "bytes": 1453877,
+      "sha256": "a8f4a0a4c12310af15e346eb3dec1f9199f45b8175393d1a07b0e490978fcf83"
+    },
+    "provider": "Tripo3D, user supplied FBX export",
+    "rightsStatus": "User attests Tripo3D Pro plan on 2026-10-11",
+    "rightsEvidence": {
+      "kind": "direct user statement",
+      "date": "2026-10-11",
+      "text": "i have a pro plan of tripo3dai"
+    }
+  },
+  "rigAuthority": "docs/release1/canonical-rig.json",
+  "actions": [
+    {
+      "duration": 4.0,
+      "loop": true,
+      "name": "relaxed_idle"
+    },
+    {
+      "duration": 2.4,
+      "loop": false,
+      "name": "attentive_request"
+    },
+    {
+      "duration": 1.2,
+      "loop": false,
+      "name": "happy_pounce"
+    },
+    {
+      "duration": 0.8,
+      "loop": true,
+      "name": "garden_walk"
+    },
+    {
+      "duration": 2.4,
+      "loop": false,
+      "name": "settle_cushion"
+    },
+    {
+      "duration": 4.0,
+      "loop": true,
+      "name": "curled_rest"
+    },
+    {
+      "duration": 1.8,
+      "loop": false,
+      "name": "approach_bowl"
+    },
+    {
+      "duration": 2.0,
+      "loop": true,
+      "name": "drink"
+    },
+    {
+      "duration": 1.8,
+      "loop": false,
+      "name": "return_idle"
+    },
+    {
+      "duration": 3.0,
+      "loop": true,
+      "name": "scratch"
+    },
+    {
+      "duration": 2.4,
+      "loop": false,
+      "name": "perch_step"
+    },
+    {
+      "duration": 2.4,
+      "loop": false,
+      "name": "perch_settle"
+    },
+    {
+      "duration": 1.8,
+      "loop": false,
+      "name": "playhouse_enter"
+    },
+    {
+      "duration": 3.0,
+      "loop": true,
+      "name": "playhouse_lookout"
+    },
+    {
+      "duration": 2.4,
+      "loop": false,
+      "name": "picnic_sit"
+    },
+    {
+      "duration": 3.0,
+      "loop": false,
+      "name": "personality_reaction"
+    },
+    {
+      "name": "quest_sun_stretch",
+      "duration": 5.0,
+      "loop": false
+    },
+    {
+      "name": "quest_drink_finish",
+      "duration": 5.0,
+      "loop": false
+    },
+    {
+      "duration": 4.0,
+      "loop": true,
+      "name": "relaxed_idle_forward"
+    },
+    {
+      "duration": 0.8,
+      "loop": true,
+      "name": "garden_walk_forward"
+    },
+    {
+      "duration": 0.8,
+      "loop": true,
+      "name": "turn_left"
+    },
+    {
+      "duration": 0.8,
+      "loop": true,
+      "name": "turn_right"
+    }
+  ],
+  "contacts": {
+    "path": "assets/runtime/models/release1/cats/mabel/contacts.json",
+    "bytes": 249900,
+    "sha256": "50682e43eee091c81fad6e0e00d390ffebc2bd8d7a4fa0eb1911c68a94f70d7d"
+  },
+  "denseMeasurements": {
+    "path": "artifacts/model-jobs/release1-cats/mabel/animation-measurements-runtime.json",
+    "bytes": 1648544,
+    "sha256": "1e4b606c6889bc74874e21ba2cd2ceaf96a8a3fddb4eac345dd8b7b9de7c6dbb"
+  },
+  "anchors": {
+    "root_origin": {
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "rotationDegrees": [
+        0,
+        0,
+        0
+      ]
+    },
+    "drink_muzzle": {
+      "position": [
+        0.048327176043620475,
+        0.3921123720132388,
+        0.5223514177860358
+      ],
+      "rotationDegrees": [
+        0,
+        0,
+        0
+      ],
+      "action": "drink",
+      "seconds": 0
+    },
+    "drink_root_from_water": {
+      "position": [
+        -0.048327176043620475,
+        0,
+        -0.5223514177860358
+      ],
+      "rotationDegrees": [
+        0,
+        0,
+        0
+      ],
+      "waterY": 0.383,
+      "muzzleClearance": 0.009112372013238779
+    },
+    "rest_root": {
+      "position": [
+        0.09514088183641434,
+        0,
+        0.10155627131462097
+      ],
+      "rotationDegrees": [
+        0,
+        0,
+        0
+      ],
+      "action": "curled_rest",
+      "supportPlaneY": 0
+    },
+    "rest_root_from_support": {
+      "position": [
+        -0.09514088183641434,
+        0,
+        -0.10155627131462097
+      ],
+      "rotationDegrees": [
+        0,
+        0,
+        0
+      ],
+      "action": "curled_rest",
+      "supportPlaneY": 0
+    }
+  },
+  "walk": {
+    "duration": 0.8,
+    "strideMetres": 0.36,
+    "speedMetresPerSecond": 0.45,
+    "rootMotion": false
+  },
+  "choreography": "Use measured per-action contacts. Approach/step/top/exit actor motion and prop support are application-owned; no animation event commits rules or rewards.",
+  "questEndingRevision": "2026-10-13",
+  "questEndingMaster": {
+    "path": "artifacts/model-jobs/quest-endings/2026-10-13/mabel-endings.blend",
+    "sha256": "3dffa7578049bddc7cfdfcfd4af5085b8f66a61b2cd047f5baf53fe97b352a84"
+  },
+  "idleForwardRevision": "2026-10-14",
+  "walkForwardRevision": "2026-10-14",
+  "walkSpeedRevision": "2026-10-14",
+  "turnRevision": "2026-10-14"
+}

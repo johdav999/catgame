@@ -59,7 +59,10 @@
     "curled_rest",
     "approach_bowl",
     "drink",
-    "return_idle"
+    "return_idle",
+    "quest_ball_play",
+    "quest_basket_finish",
+    "quest_gate_collect"
   ],
   "triangles": 20762,
   "source_vertices": 10499,
@@ -151,8 +154,12 @@
     },
     {
       "path": "assets/runtime/models/pip/pip.glb",
-      "bytes": 4282748,
-      "sha256": "da50380685ce63cd7ea42d7ed3f49580ed607e4fc3a7ce9093f377533be241e2"
+      "bytes": 4862756,
+      "sha256": "af9d273664284a3091f22304bc27b3c2fb37d3c5915d6ed746a343c976cea0ad",
+      "idleForwardRevision": "2026-10-14",
+      "walkForwardRevision": "2026-10-14",
+      "walkSpeedRevision": "2026-10-14",
+      "turnRevision": "2026-10-14"
     },
     {
       "path": "assets/runtime/models/pip/portrait-dialogue.png",
@@ -245,5 +252,10 @@
       "hold": 0.06666666666666667,
       "open": 0.2
     }
+  },
+  "questEndingRevision": "2026-10-13",
+  "questEndingMaster": {
+    "path": "artifacts/model-jobs/pip/2026-10-13-quest-endings/pip-quest-endings.blend",
+    "sha256": "26efb9bb3119230927f77f4a2978ec8acecb3766cfeb4ee7af03703e5a3577fc"
   }
 }

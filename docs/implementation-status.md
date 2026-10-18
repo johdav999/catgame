@@ -1,5 +1,149 @@
 # Implementation status
 
+## Complete beach greybox story, 18 October 2026
+
+`beach_afternoon` now contains six sequential requests: Pip's beach ball,
+Button's supported bridge, Mabel's shade panels, Pepper's four-stop basket trail,
+a six-picture shell-chime tune, and four-cat picnic placement. Completion offers
+Continue beach story; Adventures lists individual revisits and overall progress.
+Named picnic mats carry distinct picture symbols. Saved cove landmarks project
+the once-only beach completion ledger. The final Watch beach ending intent
+records a seaside postcard independently of the garden ending and wallet.
+
+Version-11 saves preserve versions 1–10, including the first beach quest's
+original version, journal and completion. New journals initialize fresh.
+Development access remains transient (`?devBeach=1`). Beach progression changes
+no base coins, friendship, chapters or garden picnic eligibility.
+
+See [the beach contract](beach-adventure.md), the complete story regression
+`paws_beach_story`, retained GUI/scene tests and
+`scripts/beach-story-smoke.cjs`. Final reports identify the exact tested build at
+`build/evidence/beach-story/{webgpu,webgl2}/report.json`. Production beach art,
+original audio, payment services, physical-device acceptance and first-time human
+pacing remain outside this gameplay milestone.
+
+## Beach adventure first milestone, 17 October 2026
+
+`?devBeach=1` exposes Adventures from the garden. A Seaside Afternoon includes
+Pip's runaway beach ball, a separate saved attempt, remembered garden return,
+free hints, Undo, explicit restart and completion/practice without base-game
+rewards. Version-10 saves retain beach progress and read versions 1–9.
+Development access is transient and never restored from a local save.
+
+The generated `build/web-beach-local-release/site` was exercised in desktop
+Chrome on WebGPU and forced WebGL2 with real GUI activation, drag cancellation,
+Undo, portrait dragging, route clicks, mid-beach reload, garden/reload/revisit,
+access removal/restoration and completed revisits. Both reports passed with no
+browser errors. Primitive closed blocks stand in for beach baskets; sand, sea
+and dunes are greyboxed. This is one integration quest, with no payment backend,
+production beach art or physical-device acceptance.
+See [the milestone contract](beach-adventure.md) and
+`build/evidence/beach-adventure/{webgpu,webgl2}/report.json`.
+
+## Scent and balance requests, 17 October 2026
+
+The catalogue includes Follow the scent (six evidence-and-choice stops) and
+Pip's wobbly perch (four changing support/load setups). These optional later
+quests target 6–10 minutes each; first-time human pacing remains unmeasured.
+Both use normal unlocks, Undo, restart, hints, saved attempts and once-only
+rewards. Version-seven saves preserve version-six progress and its original
+picnic ending requirements. See [the contract](trail-and-balance-quests.md).
+
+## All ten quests use scene mouse controls, 12 October 2026
+
+All ten requests complete with clicks and drag-and-drop in the generated game.
+Quest object/action panels and GUI route checks are removed. Clicks rotate loose
+or fitted planks/cushions, channels and gutters, ring bells, release sources and
+retrieve the bench mouse. Drags move props, fit cushions/planks and place kittens.
+Valid plank, switch and picnic arrangements complete automatically. Rejected
+drops preserve state and display feedback. Menu retains paused Undo/hints,
+restart and service controls. Undo restores legacy actor poses immediately.
+
+Pinned Release `paws-0.1.0-31f0ecfe283d39f9` passed all ten quests with mouse-only
+puzzle actions at `http://127.0.0.1:8080/`, including the 200-coin ledger, blocked
+retrieval, wrong switches/bells, invalid cushion/plank drops, cancellation and
+Menu Undo/hints. No browser errors were recorded. Evidence:
+`build/evidence/all-quest-mouse/report.json` and ten completion screenshots;
+runner: `scripts/all-quest-mouse-smoke.cjs`. The local server was restarted on
+this exact pinned site. Four affected portable suites passed: rules, progression
+(including direct-rotation save replay), GUI and scene. Physical devices were
+not tested. See [the complete controls table](quest-mouse-controls.md).
+
+## Earlier Sunny spot control pass, 12 October 2026 (superseded)
+
+Mouse release without dragging rotates a plank through the existing pick-up and
+rotate commands. Dragging previews movement and fits the plank to the crossing
+under the pointer on release. Unsupported, occupied, wrong-length or misaligned
+drops preserve the attempt. Blur, resize and pointer cancellation restore the
+committed presentation. The objective now describes click and drag controls;
+This earlier pass retained Puzzle controls and a manual route check; the all-quest
+pass above replaces those with direct gestures and automatic completion.
+
+Pinned Release build `paws-0.1.0-9471c99dc65f64c5` passed the actual Chrome game
+flow in `scripts/plank-controls-smoke.cjs`: first-click rotation, cancelled and
+invalid drops, drag-away-and-return, three mouse placements and route completion.
+Evidence: `build/evidence/plank-controls/report.json` and `route.png`. This is
+desktop browser evidence; physical touch devices were not tested for this change.
+
+## Release one Prompt 9 — integrated production review candidate, 11 October 2026
+
+The actual production target now runs ten requests, four r24 cats, three chapters,
+per-cat friendship, eight purchases/placements/uses and the separate once-only
+four-cat picnic. The existing owner/save coordinator writes version 6 and migrates
+supported MVP versions 1–5 without duplicate rewards or skipping the new finale.
+Retained GUI, actual prop/cat/portrait assets, checked scene preparation, contact
+paths, cancellation, reduced motion and cue composition are integrated. Development
+track shells/fixtures/previews are excluded from production staging.
+
+Exact clean engine pin: `3fe7d1dc1dc610c703944803cbb717cd65024ec9`.
+Final Release build: `paws-0.1.0-074a5b58a29b2231`; Wasm SHA-256
+`03963903380fb652765f624309489c2069cddbeb2eb4940da90f2147a1512ac9`.
+Evidence: **21/21 portable suites**, all ten authored solutions and eight real
+furnishing uses through the generated production site, alternate orders, accessible
+layout/action checks, save/file/tab/lifecycle and actual WebGPU recovery. Final
+mouse/touch/loading/restart/interruption checks and actual animated contact/gathering
+reports are scoped in [the handoff](release1/prompt-09-handoff.md).
+
+The site audits 56 GLBs and 94 hashed deliveries. Sixteen actual audio files are
+technically playable locally; 50 clips remain undelivered and final rights/listening
+remain pending for all 66 slots. The candidate is **not production-ready**.
+Independent-player pace/discovery, final audio, sustained/device/Safari and final
+package acceptance remain Prompt 10 gates. Earlier phase/Prompt 1 entries below
+document historical baselines, not the current production scope. Unrelated
+concurrent assets/audio work was preserved; no commit, push or publication.
+
+## Release one Prompt 1 — contracts and verified MVP baseline, 11 October 2026
+
+Implemented [release-one contracts](release1/contracts.md), the machine-readable
+ID/progression/asset/ownership contract, numerical canonical-rig snapshot,
+portable intent/read-model DTOs, isolated native/browser track harness and
+contract validator. Seven later tasks have disjoint module/test/preview/asset
+paths; shared owner changes and production registration remain Prompt 9 patches.
+The production game still uses three quests, two items and the version-5 save
+codec. The version-6 migration and separate picnic ending are frozen future work.
+
+The fresh baseline found and corrected hidden Move/Rotate controls in the
+production Objects panel. Explicit keyboard actions now coexist with direct
+board gestures. The phase-7 runner now waits for authored ball arrival before
+seeking its completion card. Portable UI regression coverage preserves identity
+and disabled-action behavior. No engine source or pin changed.
+
+Pinned Emscripten 6.0.11 Release, gallery OFF:
+`paws-0.1.0-141c15263730f1df`; Wasm SHA-256
+`98566692b5c8eae482e5b94b1b02b1a8eefdd8313d541751a3b980ec638ad250`.
+Fresh acceptance: **13/13 portable suites**, isolated native baseline **1/1**,
+contract validator/invariant checks, complete MVP earn/buy/place/reload/ending
+journey, save/recovery/GPU cancellation checks, mouse/emulated-touch direct
+completion, and actual accepted-Pip loading in the standalone browser harness.
+Browser runs used Chrome 154.0.8037.99 with isolated contexts and zero errors.
+Evidence: `build/evidence/release1/prompt-01/`; exact commands, failed-run
+corrections, payload and ownership are in [the handoff](release1/prompt-01-handoff.md).
+
+Final production audio/rights/listening, natural sleeping curl, missing new cat
+meshes, independent-player discovery/pacing and physical supported-device gates
+remain open. Historical phase evidence below remains historical. No commit,
+push or publication was performed. Prompts 2/3/4/8 can proceed from this contract.
+
 ## Phase 10 — production review and local release candidate, 11 October 2026
 
 Prompt 10's polish, packaging and reproducible acceptance tooling are implemented.

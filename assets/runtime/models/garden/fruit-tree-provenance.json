@@ -1,0 +1,58 @@
+{
+  "apple": {
+    "output": "artifacts\\model-jobs\\fruit-trees\\2026-10-12-natural-v2\\apple\\model.glb",
+    "request": {
+      "model": "v3.1-20260211",
+      "geometry_quality": "detailed",
+      "face_limit": 50000,
+      "texture": true,
+      "pbr": true,
+      "quad": false,
+      "texture_quality": "detailed",
+      "texture_version": "v3.5-20260815",
+      "delight": false,
+      "enable_image_autofix": false,
+      "input": "file_a72ee94e-0035-489b-8680-11e518e5739b"
+    },
+    "submitted_at": "2026-10-12T07:44:21.408528+00:00",
+    "status": "success",
+    "image_sha256": "6fb585aa6a50a981c6533583391ab26cba8b785ad6dc275917147dbf257ba0a6",
+    "task_id": "dd9c1018-dd7a-4ddd-b881-009978f38cca",
+    "checked_at": "2026-10-12T07:47:08.110694+00:00",
+    "provider": "Tripo3D",
+    "api_base": "https://openapi.tripo3d.ai/v3",
+    "sha256": "b95c906eacd52c148ee1d91067fc4551062bea539b039c77260805671b669051",
+    "bytes": 11886556,
+    "credits_consumed": 60.0,
+    "completed_at": "2026-10-12T07:47:02.571005Z",
+    "license_status": "Unverified: record account entitlement and applicable rights before release"
+  },
+  "pear": {
+    "output": "artifacts\\model-jobs\\fruit-trees\\2026-10-12-natural-v2\\pear\\model.glb",
+    "request": {
+      "model": "v3.1-20260211",
+      "geometry_quality": "detailed",
+      "face_limit": 50000,
+      "texture": true,
+      "pbr": true,
+      "quad": false,
+      "texture_quality": "detailed",
+      "texture_version": "v3.5-20260815",
+      "delight": false,
+      "enable_image_autofix": false,
+      "input": "file_de6369a9-59c7-474d-9157-be308b30a5ed"
+    },
+    "submitted_at": "2026-10-12T07:44:24.763318+00:00",
+    "status": "success",
+    "image_sha256": "437198dcea96327fac75d12ac2327edbfc84fd65d7fb60f8eae93b609d99a280",
+    "task_id": "52aa248a-2151-402f-a738-012afca3c8a8",
+    "checked_at": "2026-10-12T07:46:30.016502+00:00",
+    "provider": "Tripo3D",
+    "api_base": "https://openapi.tripo3d.ai/v3",
+    "sha256": "cb0f6b91de9e7cbe5728bace47da3ca91a4ec614ea25444ce330f35d9ca4f6be",
+    "bytes": 10947892,
+    "credits_consumed": 60.0,
+    "completed_at": "2026-10-12T07:46:25.048796Z",
+    "license_status": "Unverified: record account entitlement and applicable rights before release"
+  }
+}

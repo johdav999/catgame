@@ -1,0 +1,26 @@
+{
+  "output": "artifacts\\model-jobs\\garden-details\\2026-10-12\\bench_cushion\\model.glb",
+  "request": {
+    "model": "v3.1-20260211",
+    "geometry_quality": "detailed",
+    "face_limit": 50000,
+    "texture": true,
+    "pbr": true,
+    "quad": false,
+    "texture_quality": "detailed",
+    "texture_version": "v3.5-20260815",
+    "delight": false,
+    "prompt": "One long narrow rectangular upholstered garden bench seat cushion, sage green and warm cream gingham check fabric, softly rounded plump corners, piped seam around edges, slight natural central compression. Length three times depth, low profile. No bench, no legs, no other objects. Standalone stylized 3D prop for Paws, a cosy miniature cat garden. Softly sculpted rounded silhouettes, warm cream/sage/muted terracotta palette, matte non-plastic materials, broad restrained detail, neutral diffuse lighting, no cast shadows painted into textures, no background scene, no cats. Match docs/design/paws-style-reference.png art direction."
+  },
+  "submitted_at": "2026-10-12T06:29:56.565155+00:00",
+  "status": "success",
+  "task_id": "d3dab044-c72b-4d3a-91d9-ae084ad90615",
+  "checked_at": "2026-10-12T06:33:32.698437+00:00",
+  "provider": "Tripo3D",
+  "api_base": "https://openapi.tripo3d.ai/v3",
+  "sha256": "bca2963840c91b14c7154d94a322a5867eb04a45afb7713d0d2297e06affe06b",
+  "bytes": 11119008,
+  "credits_consumed": 50.0,
+  "completed_at": "2026-10-12T06:32:36.199918Z",
+  "license_status": "Unverified: record account entitlement and applicable rights before release"
+}
