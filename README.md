@@ -74,8 +74,9 @@ select a particular built site when restarting.
 The default build is Debug; use `-Configuration Release` for release output in
 `build/web-pinned-release/site/`. Deploy the entire generated `site/` directory together,
 including `paws.js`, `paws.wasm`, assets and licenses. Serve over HTTPS in production.
-The pinned renderer requires a WebGPU-capable browser/device; localhost is suitable
-for development. Paws has not yet been accepted on physical mobile devices.
+The pinned renderer supports WebGPU and a reduced-feature WebGL 2 fallback;
+localhost is suitable for development. Paws has not yet been accepted on physical
+mobile devices.
 
 For a new clone, use `git clone --recurse-submodules <game-repository-url>`.
 No game remote has been chosen yet.
@@ -90,10 +91,10 @@ a second one:
 ./scripts/build.ps1 -WebEngineSourceDir C:/Users/Johan/source/repos/WebEngine -EmsdkPath C:/Users/Johan/source/repos/WebEngine/.tools/emsdk
 ```
 
-The daytime sky sphere currently requires the adjacent development engine's sky
-API. Build with the explicit local engine command above (add `-Configuration
-Release`), then serve `build/web-local-release/site` explicitly. The pinned engine
-does not yet include sky rendering and retains the previous background. The sky
+The pinned WebEngine revision is `0426d9319de715584a2e34ff9862cd6ba873ecd0`
+(18 October 2026). It supplies the daytime sky, garden terrain and quest water
+APIs. Build with `-Pinned -Configuration Release` and the installed SDK path
+above, then serve `build/web-pinned-release/site` explicitly. The sky
 keeps a fixed daytime atmosphere and soft static clouds without changing garden
 lighting or introducing a day/night cycle. Browser verification:
 `node scripts/daytime-sky-smoke.cjs` with `PAWS_URL` set to that site's server.
@@ -103,9 +104,9 @@ Drag down again or use Reset view to return to the garden. Arrow keys with the
 canvas focused also control the view. `node scripts/garden-sun-smoke.cjs` verifies
 the visible sun and zoom; set `WEBGL=1` to exercise the fallback renderer.
 
-The local engine also supplies [hilly garden terrain](docs/garden-terrain.md),
+The pinned engine also supplies [hilly garden terrain](docs/garden-terrain.md),
 with ImageGen meadow/earth textures and a flat house/garden apron. The same
-local Release build enables it; the current pin keeps its previous lawn slabs.
+pinned Release build enables it.
 Verify with `node scripts/garden-terrain-smoke.cjs` against the selected site's
 `PAWS_URL`. Texture provenance is bundled beside the runtime PNGs.
 

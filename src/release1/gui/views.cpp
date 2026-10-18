@@ -92,10 +92,11 @@ void Views::board(float x,float y,float width,float height){
             if(o.collected||o.held)continue;
             if(o.cell==c||std::find(o.footprint.begin(),o.footprint.end(),c)!=o.footprint.end()){mark=std::to_string(i+1);occupied=true;}
         }
-        auto& box=map.add<Panel>();box.setPosition({col*size+2,row*size+2});box.setSize({size-4,size-4});box.style.background=cream;box.style.border=ink;
+        const float inset=std::min(2.f,size/4);
+        auto& box=map.add<Panel>();box.setPosition({col*size+inset,row*size+inset});box.setSize({size-2*inset,size-2*inset});box.style.background=cream;box.style.border=ink;
         if(occupied)box.style.background={.91f,.80f,.58f,1};
         box.setAccessibleName("Cell "+cell(c)+(mark.empty()?" empty":" mark "+mark));
-        if(!mark.empty()){auto art=ui_.textArt(mark,*ui_.control_);auto& label=box.add<Image>(art);const float h=std::min(size-8,float(art->height));label.setSize({h*art->width/art->height,h});label.setPosition({4,4});label.setAccessibilityHidden(true);}
+        if(!mark.empty()&&size>8){auto art=ui_.textArt(mark,*ui_.control_);auto& label=box.add<Image>(art);const float h=std::min(size-8,float(art->height));label.setSize({h*art->width/art->height,h});label.setPosition({4,4});label.setAccessibilityHidden(true);}
     }
 }
 bool Views::compose(){

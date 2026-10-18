@@ -20,10 +20,11 @@ the existing save adapter. `web/saves.js` remains the only persistence coordinat
 The browser host owns DOM, pointer/keyboard/touch, lifecycle, file and storage
 callbacks. Rules never depend on transforms, physics, sound or animation.
 
-Reusable engine APIs are available in the clean pin
-`3fe7d1dc1dc610c703944803cbb717cd65024ec9`; local WebEngine has unrelated changes
-and is not a release dependency. The pin is unchanged. Existing retained GUI,
-typed commands, attempt/revision rejection, once-only rewards, shop transactions,
+The engine dependency was advanced on 18 October 2026 to the clean published pin
+`0426d9319de715584a2e34ff9862cd6ba873ecd0`. The dependency handoff and current
+integration evidence are in [WebEngine pin validation](../webengine-pin-validation.md).
+The production build and asset audit read this pin from `contract.json`.
+Existing retained GUI, typed commands, attempt/revision rejection, once-only rewards, shop transactions,
 free furnishing moves, IndexedDB snapshots, five backups, import confirmation,
 original-byte recovery, single-tab ownership, quality and pause policies remain.
 Scene bindings use checked handles; controller/renderer borrows end before scene

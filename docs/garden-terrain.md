@@ -36,13 +36,12 @@ desktop, portrait and short-landscape sizes, including orbit and pulled-back
 chapter views. Sky remains independently owned by the existing daytime policy.
 
 `PAWS_TERRAIN` is detected from the selected engine's `terrain.hpp`. The configured
-adjacent development engine supplies it; the existing pinned engine lacks it and
-retains its previous grass slabs. This work does not change the engine gitlink.
-Build the terrain version with the local engine selection described in README:
+adjacent development engine and the pinned `0426d93` revision both supply it.
+Build the terrain version with the pinned engine selection described in README:
 
 ```powershell
-./scripts/build.ps1 -Configuration Release
-./scripts/serve.ps1 -SiteDirectory build/web-local-release/site -Port 8115
+./scripts/build.ps1 -Pinned -Configuration Release -EmsdkPath C:/Users/Johan/source/repos/WebEngine/.tools/emsdk
+./scripts/serve.ps1 -SiteDirectory build/web-pinned-release/site -Port 8115
 ```
 
 `tests/enclosure_tests.cpp` checks the interpolated flat apron and complete house

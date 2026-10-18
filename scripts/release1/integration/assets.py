@@ -122,7 +122,7 @@ def merge(site=None):
         audioUrls={a['url'] for a in assets if a['id'].startswith('audio/')}
         for p in (site/'assets/audio').rglob('*'):
             if p.suffix.lower() in {'.wav','.mp3','.ogg','.flac','.m4a'}:assert p.relative_to(site).as_posix() in audioUrls,'Unaccepted sound staged: '+str(p)
-        assert read(site/'build-info.json')['enginePin']=='3fe7d1dc1dc610c703944803cbb717cd65024ec9'
+        assert read(site/'build-info.json')['enginePin']==read(ROOT/'docs/release1/contract.json')['enginePin']
     return dict(acceptedAssets=len(assets),acceptedGlbs=sum(a['url'].endswith('.glb') for a in assets),missingAcceptance=missing,site=str(site) if site else None)
 if __name__=='__main__':
     p=argparse.ArgumentParser();p.add_argument('--site',type=Path);p.add_argument('--report',type=Path);args=p.parse_args()

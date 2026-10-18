@@ -20,17 +20,15 @@ The browser supplies Application simulation seconds once per frame. Pause and
 host suspension freeze the clock; reduced motion sets it to zero. Shading never
 decides flow, completion, movement, collision, rewards or saved progression.
 
-The configured development WebEngine checkout supplies `water.hpp`,
+The pinned WebEngine revision and configured development checkout supply `water.hpp`,
 `MaterialShader::Water` and `Renderer::setWaterTime`. CMake enables
-`PAWS_WATER_SHADER` for that checkout. The pinned engine at
-`3fe7d1dc1dc610c703944803cbb717cd65024ec9` retains imported water materials;
-this change does not advance the gitlink.
+`PAWS_WATER_SHADER` for both. The engine pin is now
+`0426d9319de715584a2e34ff9862cd6ba873ecd0` (18 October 2026).
 
 ## Verification
 
-Build the browser with `./scripts/build.ps1 -Configuration Release`. The ignored
-developer settings select the development engine. Build the pinned fallback with
-`-Pinned` and the installed SDK path. Run the portable `paws_starter_scene`,
+Build the browser with `./scripts/build.ps1 -Pinned -Configuration Release` and
+the installed SDK path. Run the portable `paws_starter_scene`,
 `paws_phase6_scene`, `paws_release1_scene` and `paws_release1_final_garden` tests
 for scene and transition regressions.
 

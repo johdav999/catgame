@@ -47,7 +47,7 @@ target_link_libraries(paws_content PUBLIC paws_rules)
 add_library(paws_game src/starter_scene.cpp src/puzzle_scene.cpp src/garden_scene.cpp src/cat_collision.cpp src/quest_rewards.cpp)
 target_include_directories(paws_game PUBLIC src)
 target_link_libraries(paws_game PUBLIC WebEngine::Core paws_content)
-# Retain the pinned-engine material path until water support is deliberately pinned.
+# Keep compatibility with explicitly selected engines that lack water support.
 if(EXISTS "${WEBENGINE_SOURCE_DIR}/include/engine/water.hpp")
   target_compile_definitions(paws_game PUBLIC PAWS_WATER_SHADER=1)
   message(STATUS "Paws quest water shader: enabled")

@@ -1,6 +1,6 @@
 {
   "schema": "paws-release1/1",
-  "enginePin": "3fe7d1dc1dc610c703944803cbb717cd65024ec9",
+  "enginePin": "0426d9319de715584a2e34ff9862cd6ba873ecd0",
   "status": "frozen interfaces; later implementations pending",
   "cats": [
     {"id":"pip","milestones":[1,3,5],"maximumFriendship":5,"introducedBy":"start"},

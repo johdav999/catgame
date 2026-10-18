@@ -15,6 +15,7 @@ struct Backend final:engine::AudioBackend {
     void stop(unsigned id) noexcept override {voices.erase(id);}
     bool playing(unsigned id) const noexcept override{return voices.contains(id);}
     void gain(unsigned id,float gain) noexcept override {voices[id]=gain;}
+    bool playbackRate(unsigned id,float) noexcept override {return voices.contains(id);}
     void position(unsigned,engine::Vec3) noexcept override{}
     void listener(const engine::AudioListenerPose&) noexcept override{}
     bool active() const noexcept override{return running;}

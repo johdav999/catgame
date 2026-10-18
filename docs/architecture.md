@@ -33,7 +33,7 @@ chunked LODs when available. Paws owns hill heights, flat house/garden footprint
 ImageGen texture preparation and material weights in `garden_terrain.cpp`.
 Enclosure ownership includes terrain across chapter transitions and quests;
 terrain is decorative and introduces no gameplay, physics or save owner.
-The existing pin retains lawn slabs until terrain support is deliberately pinned.
+The pinned engine includes terrain support; pinned builds use this ground too.
 See [garden terrain](garden-terrain.md) for dimensions, API and verification.
 
 Cat movement composes WebEngine's Jolt shape queries through the game-owned
@@ -92,8 +92,7 @@ and scene projection. Small surfaces leave refraction, foam and planar capture
 disabled. The host supplies simulation seconds to `Renderer::setWaterTime` once
 per frame; pause and suspension freeze it, and reduced motion selects zero.
 `PAWS_WATER_SHADER` is enabled only when the selected engine provides `water.hpp`;
-the current pinned engine keeps its imported material fallback. This integration
-does not advance the engine gitlink. `paws_water_snapshot` exposes active shader
+the current pinned engine supplies it. `paws_water_snapshot` exposes active shader
 surfaces and the renderer clock for browser acceptance.
 See [quest water presentation and verification](quest-water.md).
 
@@ -267,8 +266,8 @@ Its manifest records remaining acceptance gates. See [phase 10](phase10-release.
 
 The temporary consumer packaging bridge includes optional backend water
 translation units when the selected engine checkout supplies them, alongside
-the existing renderer facades. This supports the configured development engine
-without changing the pinned revision or copying engine implementations.
+the existing renderer facades. Both the current pinned engine and the configured
+development engine use these upstream implementations.
 
 ### Daytime sky presentation
 
@@ -289,13 +288,11 @@ atmospheric sun disc can be viewed. The orbit position stays above the ground;
 horizontal orbit and zoom retain the upward gaze. Dragging back down resumes
 ordinary orbit. Reset view, scene transitions and viewport reframing clear this
 transient game-owned look offset. Puzzle orbit limits remain unchanged.
-Verify with `node scripts/garden-sun-smoke.cjs` against the local-engine site.
+Verify with `node scripts/garden-sun-smoke.cjs` against the selected generated site.
 
-This requires the development engine's `engine/sky.hpp`. CMake reports whether
-the selected checkout supplies the feature; the current pinned revision retains
-its clear-color background. The verified sky build uses the explicitly selected
-adjacent WebEngine checkout in `build/web-local-release`, separate from pinned
-builds. Advancing the gitlink awaits an upstream commit of the sky API.
+This uses the selected engine's `engine/sky.hpp`. CMake reports whether
+the selected checkout supplies the feature; the current pinned revision includes
+it. Pinned builds use `build/web-pinned-release`, separate from local builds.
 
 ### Paws audio ownership (phase 9)
 
@@ -346,9 +343,12 @@ The remaining 49 delivered sound effects, distinct bell pitches and real-game
 verification are recorded in [remaining sound effects](remaining-sound-effects.md).
 
 The default `WEBENGINE_SOURCE_DIR` is `external/WebEngine`, pinned through a Git
-gitlink. The local override is developer configuration only. Each mode has separate
-build directories so dependency switching cannot accidentally validate the wrong
-engine.
+gitlink at `0426d9319de715584a2e34ff9862cd6ba873ecd0` (18 October 2026).
+This revision includes the sky, terrain, water and split browser renderer APIs
+already consumed by Paws. The local override is developer configuration only.
+Each mode has separate build directories so dependency switching cannot
+accidentally validate the wrong engine. See [pin validation](webengine-pin-validation.md)
+for the current build identity and integration evidence.
 
 The published engine currently compiles the browser renderer into its playground,
 and its demo/test copy commands assume a top-level engine project. Paws includes
@@ -438,10 +438,9 @@ original detail thresholds remain unchanged; the default elevated view submits
 nearer opaque shrubs first within compatible batches. No simulation state is
 changed by detail selection. See [measured rendering work](foliage-performance.md).
 
-The current local Release build also uses the configured adjacent WebEngine's
-material-pipeline specialization. The reusable shader/cache implementation lives
-in that engine checkout. The pinned submodule is unchanged; pinned builds retain
-their existing shader implementation.
+Both pinned and local Release builds use WebEngine's material-pipeline
+specialization. The reusable shader/cache implementation lives in WebEngine;
+the current pinned revision includes it.
 
 ## Pip friendship story
 
