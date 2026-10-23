@@ -37,6 +37,8 @@ def merge(site=None):
     for a in read(runtime/'models/release1/props/thumbnails/manifest.json'):append(dict(a,id='shop/'+a['id'],rightsRecord='assets/models/release1/props/PROVENANCE.md'))
     for a in read(runtime/'fonts/manifest.json'):append(dict(a,id='fonts/'+a['id'],url='assets/fonts/'+a['file'],rightsRecord='assets/fonts/'+a['license']))
     for a in read(runtime/'textures/garden/manifest.json'):append(a)
+    for a in read(runtime/'textures/beach/manifest.json'):append(a)
+    for a in read(runtime/'models/beach/manifest.json')['assets']:append(a)
     missing=[]
     cats=ROOT/'docs/release1/fragments/cats.json'
     catNames=['pip','mabel','button','pepper'];catRecords=[dict(cat='pip',id='cats/pip@1',url='assets/models/pip/pip.glb',sha256=sha(runtime/'models/pip/pip.glb'))]+[dict(cat=c,id='',url='',sha256='') for c in catNames[1:]]
@@ -106,7 +108,7 @@ def merge(site=None):
     if pending:missing.append(f'{absent} clips have no playable delivery; final rights/listening pending for {pending} clips')
     write(runtime/'audio/catalog.json',base)
     manifest=dict(schemaVersion=3,contentId='paws-release1/1',quests=[q['contentId'] for q in read(ROOT/'docs/release1/contract.json')['quests']],
-        assetCatalogues=['models/pip/manifest.json','models/garden/asset-manifest.json','models/garden/quest-marker-manifest.json','models/release1/props/manifest.json','audio/catalog.json'],
+        assetCatalogues=['models/pip/manifest.json','models/garden/asset-manifest.json','models/garden/quest-marker-manifest.json','models/release1/props/manifest.json','models/beach/manifest.json','textures/beach/manifest.json','audio/catalog.json'],
         assets=assets,assemblies=props['assemblies'],catalog=props['catalog'],missingAcceptance=missing,
         notice='Accepted runtime content only; source masters and development previews are excluded.')
     write(runtime/'manifest.json',manifest)

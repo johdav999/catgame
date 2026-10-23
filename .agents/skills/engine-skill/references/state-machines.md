@@ -53,7 +53,7 @@ pending-removal motor may no longer resolve. Cancel persistent movement explicit
 where needed. One producer owns motor commands; do not reissue navigation every
 frame merely because a state remains active.
 
-### Execution and lifetime contract
+### Execution and lifetime contract for polled flat graphs
 
 - Instances start Idle. First `step(host, dt)` enters the initial state, advances
   its timer and calls update once. Eligible transitions are evaluated afterward.
@@ -145,7 +145,7 @@ history (default 128 edits; configurable 1–1024), undo/redo and a saved identi
 content is a no-op. `open(bytes)` parses before replacing document/history;
 `markSaved()` tracks export state independently of scene files.
 
-`StateMachineArchive::save/load` writes version-1 `.weai` text with header `WEAI 1`,
+`StateMachineArchive::save/load` writes version-5 `.weai` text with header `WEAI 5` (also reads v1-v4),
 stable IDs, graph/state names, bindings, layout, transition order and delays.
 Loads reject unsupported versions, invalid counts, orphan identities, malformed
 values, truncated/trailing input and files over 512 KiB. This format contains no
@@ -156,8 +156,22 @@ can load a file and pass the resulting shared definition to their instances.
 registered bindings to ordinary actors through scene history. Their optional custom
 codec preserves configuration in scene files and isolated Play clones; a live
 Play debugger displays selected controller state/time/history. Standalone graph
-files remain separate authoring assets. Hierarchical/concurrent states, behavior
+files remain separate authoring assets. Concurrent states, behavior
 trees, automatic game callback discovery, visual action scripting, runtime AI
 checkpoints and AI graph autosave remain extensions.
 
 See `docs/ai-state-machines-validation.md` in the selected engine checkout.
+
+Graph assets now retain field schemas/defaults; see [typed blackboards](ai-blackboards.md). Live values belong to controller instances and are not graph runtime state.
+
+These flat-graph rules extend to parent interrupts, nested entry, ancestor timers and complete-path cancellation; see [hierarchical AI](ai-hierarchy.md).
+
+[Typed event queues](ai-events.md) now add event triggers, activation-scoped cancellation and payload diagnostics to the same runtime.
+
+## AI task sequences
+
+AiState now carries <=16 ordered AiTaskSpec entries with registered keys, exact typed parameters, compatible blackboard sources, timeout (0,86400] default30, optional observation event and zero-payload succeededEvent/failedEvent names. AiBindingRegistry::create accepts an optional third vector of up to128 AiTaskBinding factories. Each controller owns fresh AiTask instances; start(controller,spec,activationScope) snapshots inputs, tick returns Running/Succeeded/Failed, and cancel noexcept releases work on every terminal/exit path. At most one task ticks per active state per fixed step; callbacks run only on the scene owner. Scoped terminal events defer through the existing cutoff, retry once per later update while the queue is full and cancel on exit. Retained ancestors retain tasks. Controller stop from callbacks defers teardown safely; configure/restart/source replacement cannot replace executing ownership.
+
+Built-ins: wait(seconds), wait-event(spec.event), move-to(target Vector/speed/distance) via existing Navigator and explicit transient setNavigationSource(source) followed by restart(), face-target(target Vector,+Z facing). Motor/pose tasks require an existing motor, and competing active AI writers reject. Source revision invalidation remains authoritative; no automatic bake/ground/animation subscription. Application animation factories use scoped component handles and own/cancel subscriptions. See [task contracts](ai-tasks.md).
+
+Graph task forms add/reorder/remove tasks, typed constants/source mapping, timeouts and result events with one Apply history edit. Actor Play live tasks show index/key, elapsed, result, reason and pending delivery, with <=32 history records. Standalone manual-guard preview explicitly leaves task execution to Actor Play/custom hosts. WEAI5 reads1..5 inside unchanged AIC2/outer codec1; objects, progress, providers/subscriptions and history stay transient. Run ai_tasks plus state_machine/ai_controller/ai/editor/editor_structure/application/scene_archive checks and scripts/editor-ai-tasks-smoke.cjs on WebGPU/WebGL2 at DPR1/2; preserve exact artifacts and report any concurrent-suite failures.

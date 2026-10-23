@@ -6,6 +6,10 @@ device. Music continues through garden, puzzle and ending transitions. Pause and
 page suspension freeze playback; returning from host suspension requires a gesture.
 The existing Music volume and Sound mute controls apply to the playlist.
 
+The beach adventure uses its own supplied **Beachside Puzzle** repeating track.
+Entering the beach replaces this playlist, and leaving restores it. The same
+Music volume, mute and pause controls apply; see [beach audio](beach-audio.md).
+
 The original stereo WAVs remain in `assets/music/`. The second supplied filename is
 `Golden Afternoon Garden2 .wav`. `python scripts/prepare-garden-music.py` prepares
 full-length 48 kHz stereo, 192 kbps MP3 copies with 100 ms entry/exit fades and

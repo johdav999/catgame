@@ -23,11 +23,12 @@ struct SpotPolicy {
     float width,depth;
     std::vector<std::string_view> roles;
 };
-inline constexpr std::size_t baseQuestCount=18, questCount=24;
+inline constexpr std::size_t baseQuestCount=18, originalBeachQuestCount=6, questCount=29;
 inline constexpr std::string_view beachPackId="beach_afternoon";
 inline constexpr std::string_view beachQuestId="beach_pip_ball";
-inline constexpr std::array<std::string_view,6> beachQuestIds{
-    beachQuestId,"beach_button_bridge","beach_mabel_shade","beach_pepper_basket","beach_shell_chimes","beach_picnic"};
+inline constexpr std::array<std::string_view,11> beachQuestIds{
+    beachQuestId,"beach_button_bridge","beach_mabel_shade","beach_pepper_basket","beach_shell_chimes","beach_picnic",
+    "beach_tidepool_crossing","beach_fresh_water","beach_windbreak","beach_shell_encore","beach_lantern_balance"};
 inline bool isBeachQuest(std::string_view id){return std::find(beachQuestIds.begin(),beachQuestIds.end(),id)!=beachQuestIds.end();}
 extern const std::array<QuestPolicy,questCount> quests;
 extern const std::array<ItemPolicy,8> items;

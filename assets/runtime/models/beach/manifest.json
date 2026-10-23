@@ -1,0 +1,1647 @@
+{
+  "schemaVersion": 1,
+  "assets": [
+    {
+      "id": "beach/basket@1",
+      "name": "beach_basket",
+      "url": "assets/models/beach/basket-v1.glb",
+      "sha256": "f028e2a6c30db22c802b7755263328a082812bcd4f75bef6d5335d5d96b43ca4",
+      "bytes": 7581904,
+      "rightsRecord": "assets/models/beach/NOTICE.md",
+      "minimum": [
+        -0.38999998569488525,
+        0.0,
+        -0.38999998569488525
+      ],
+      "maximum": [
+        0.38999998569488525,
+        0.47999998927116394,
+        0.38999998569488525
+      ],
+      "triangles": 9610,
+      "vertices": 6956,
+      "materials": 1,
+      "textures": [
+        {
+          "name": "basket_basecolor",
+          "dimensions": [
+            2048,
+            2048
+          ],
+          "packed": true
+        },
+        {
+          "name": "basket_normal",
+          "dimensions": [
+            2048,
+            2048
+          ],
+          "packed": true
+        }
+      ],
+      "pivot": "floor contact, centered XZ",
+      "units": "metres",
+      "axes": "right-handed Y up",
+      "source": {
+        "minimum": [
+          -0.4835968017578125,
+          -0.4905548095703125,
+          0.0
+        ],
+        "maximum": [
+          0.4835968017578125,
+          0.4905548095703125,
+          0.3708800971508026
+        ],
+        "dimensions": [
+          0.967193603515625,
+          0.981109619140625,
+          0.3708800971508026
+        ],
+        "triangles": 9610,
+        "vertices": 6956,
+        "materials": [
+          "tripo_material_491bee25-d314-4724-a201-a5f7b685c7fe"
+        ],
+        "textures": [
+          {
+            "name": "basket_basecolor.jpg",
+            "dimensions": [
+              4096,
+              4096
+            ],
+            "packed": true
+          },
+          {
+            "name": "basket_rm.jpg",
+            "dimensions": [
+              4096,
+              4096
+            ],
+            "packed": true
+          },
+          {
+            "name": "basket_normal.png",
+            "dimensions": [
+              4096,
+              4096
+            ],
+            "packed": true
+          }
+        ],
+        "missingUV": 0,
+        "nonfinite": 0,
+        "path": "artifacts/model-jobs/beach-coast-20261018/manual/basket/basket.glb",
+        "sha256": "1d203c7c0f843932eda60bc74cebf3275e7226d510fed8babaa18b8397963b24",
+        "bytes": 10141536
+      },
+      "master": "artifacts/model-jobs/beach-coast-20261018/review/basket-master.blend"
+    },
+    {
+      "id": "beach/rock@1",
+      "name": "beach_rock",
+      "url": "assets/models/beach/rock-v1.glb",
+      "sha256": "a45f88f9a166b20010e79e0a515a1d53db0eff31577e0d91b803cb7b8db358c1",
+      "bytes": 2428632,
+      "rightsRecord": "assets/models/beach/NOTICE.md",
+      "minimum": [
+        -0.698636531829834,
+        0.0,
+        -0.5246037244796753
+      ],
+      "maximum": [
+        0.698636531829834,
+        0.849402904510498,
+        0.5246037244796753
+      ],
+      "triangles": 3499,
+      "vertices": 2502,
+      "materials": 1,
+      "textures": [
+        {
+          "name": "rock_basecolor",
+          "dimensions": [
+            1024,
+            1024
+          ],
+          "packed": true
+        },
+        {
+          "name": "rock_normal",
+          "dimensions": [
+            1024,
+            1024
+          ],
+          "packed": true
+        }
+      ],
+      "pivot": "floor contact, centered XZ",
+      "units": "metres",
+      "axes": "right-handed Y up",
+      "source": {
+        "minimum": [
+          -0.4376983642578125,
+          -0.4903106689453125,
+          0.0
+        ],
+        "maximum": [
+          0.4376983642578125,
+          0.4903106689453125,
+          0.4922943115234375
+        ],
+        "dimensions": [
+          0.875396728515625,
+          0.980621337890625,
+          0.4922943115234375
+        ],
+        "triangles": 9744,
+        "vertices": 5655,
+        "materials": [
+          "tripo_material_64d6bdbe-dad0-455a-9b01-c0657b8a5dc4"
+        ],
+        "textures": [
+          {
+            "name": "rock_basecolor.jpg",
+            "dimensions": [
+              4096,
+              4096
+            ],
+            "packed": true
+          },
+          {
+            "name": "rock_rm.jpg",
+            "dimensions": [
+              4096,
+              4096
+            ],
+            "packed": true
+          },
+          {
+            "name": "rock_normal.png",
+            "dimensions": [
+              4096,
+              4096
+            ],
+            "packed": true
+          }
+        ],
+        "missingUV": 0,
+        "nonfinite": 0,
+        "path": "artifacts/model-jobs/beach-coast-20261018/manual/rock/rock.glb",
+        "sha256": "be68908af8e5c8ae5f39ec937fdee1548ff96244849b3a238874f557478a36d3",
+        "bytes": 10527892
+      },
+      "master": "artifacts/model-jobs/beach-coast-20261018/review/rock-master.blend"
+    },
+    {
+      "id": "beach/grass@1",
+      "name": "beach_grass",
+      "url": "assets/models/beach/grass-v1.glb",
+      "sha256": "fc8a12664ff486cc969a02b7ddd7c99df5626699604239a3982c1720d6017dc2",
+      "bytes": 1890096,
+      "rightsRecord": "assets/models/beach/NOTICE.md",
+      "minimum": [
+        -0.42485740780830383,
+        0.0,
+        -0.3743007183074951
+      ],
+      "maximum": [
+        0.42485740780830383,
+        0.6482841372489929,
+        0.3743007183074951
+      ],
+      "triangles": 6499,
+      "vertices": 6514,
+      "materials": 1,
+      "textures": [
+        {
+          "name": "grass_basecolor",
+          "dimensions": [
+            1024,
+            1024
+          ],
+          "packed": true
+        },
+        {
+          "name": "grass_normal",
+          "dimensions": [
+            1024,
+            1024
+          ],
+          "packed": true
+        }
+      ],
+      "pivot": "floor contact, centered XZ",
+      "units": "metres",
+      "axes": "right-handed Y up",
+      "source": {
+        "minimum": [
+          -0.4899749755859375,
+          -0.4376983344554901,
+          0.0
+        ],
+        "maximum": [
+          0.4899749755859375,
+          0.4376983344554901,
+          0.6832275390625
+        ],
+        "dimensions": [
+          0.979949951171875,
+          0.8753966689109802,
+          0.6832275390625
+        ],
+        "triangles": 9384,
+        "vertices": 8068,
+        "materials": [
+          "tripo_material_abc13907-3e53-4db1-b465-78bb87481b5c"
+        ],
+        "textures": [
+          {
+            "name": "grass_basecolor.jpg",
+            "dimensions": [
+              4096,
+              4096
+            ],
+            "packed": true
+          },
+          {
+            "name": "grass_rm.jpg",
+            "dimensions": [
+              4096,
+              4096
+            ],
+            "packed": true
+          },
+          {
+            "name": "grass_normal.png",
+            "dimensions": [
+              4096,
+              4096
+            ],
+            "packed": true
+          }
+        ],
+        "missingUV": 0,
+        "nonfinite": 0,
+        "path": "artifacts/model-jobs/beach-coast-20261018/manual/grass/grass.glb",
+        "sha256": "6570086fff5eeb38799bd65e543620fb23aa54f436077dbf692397fa8f5c8031",
+        "bytes": 6934832
+      },
+      "master": "artifacts/model-jobs/beach-coast-20261018/review/grass-master.blend"
+    },
+    {
+      "id": "beach/boardwalk@1",
+      "name": "beach_boardwalk",
+      "url": "assets/models/beach/boardwalk-v1.glb",
+      "sha256": "5eb1bff13c75b59546d3bd24a68264b993fc57dfa9a0d3b56341d2f03e3b5343",
+      "bytes": 2594624,
+      "rightsRecord": "assets/models/beach/NOTICE.md",
+      "minimum": [
+        -0.699999988079071,
+        0.0,
+        -1.1999999284744263
+      ],
+      "maximum": [
+        0.699999988079071,
+        0.8799999952316284,
+        1.1999999284744263
+      ],
+      "triangles": 7976,
+      "vertices": 8401,
+      "materials": 1,
+      "textures": [
+        {
+          "name": "boardwalk_basecolor",
+          "dimensions": [
+            1024,
+            1024
+          ],
+          "packed": true
+        },
+        {
+          "name": "boardwalk_normal",
+          "dimensions": [
+            1024,
+            1024
+          ],
+          "packed": true
+        }
+      ],
+      "pivot": "floor contact, centered XZ",
+      "units": "metres",
+      "axes": "right-handed Y up",
+      "source": {
+        "minimum": [
+          -0.3535308837890625,
+          -0.4911956787109375,
+          0.0
+        ],
+        "maximum": [
+          0.3535308837890625,
+          0.4911956787109375,
+          0.2885895371437073
+        ],
+        "dimensions": [
+          0.707061767578125,
+          0.982391357421875,
+          0.2885895371437073
+        ],
+        "triangles": 7976,
+        "vertices": 8401,
+        "materials": [
+          "tripo_material_a331c54e-4ed8-424f-aa4b-988dd8189023"
+        ],
+        "textures": [
+          {
+            "name": "boardwalk_basecolor.jpg",
+            "dimensions": [
+              4096,
+              4096
+            ],
+            "packed": true
+          },
+          {
+            "name": "boardwalk_rm.jpg",
+            "dimensions": [
+              4096,
+              4096
+            ],
+            "packed": true
+          },
+          {
+            "name": "boardwalk_normal.png",
+            "dimensions": [
+              4096,
+              4096
+            ],
+            "packed": true
+          }
+        ],
+        "missingUV": 0,
+        "nonfinite": 0,
+        "path": "artifacts/model-jobs/beach-coast-20261018/manual/boardwalk/boardwalk.glb",
+        "sha256": "996f6f381a6af0e97530e0833c61d030795e94276b331d6796accb7da4a201e4",
+        "bytes": 10098108
+      },
+      "master": "artifacts/model-jobs/beach-coast-20261018/review/boardwalk-master.blend"
+    },
+    {
+      "id": "beach/channel_straight@1",
+      "name": "beach_channel_straight",
+      "url": "assets/models/beach/channel-straight-v1.glb",
+      "sha256": "80e6d9a0b6448a1eb805f0c1a70d54b4675df1e78f1354c17f7b10405bc745db",
+      "bytes": 2745892,
+      "rightsRecord": "assets/models/beach/NOTICE.md",
+      "minimum": [
+        -0.5000143051147461,
+        -8.32942096167244e-05,
+        -0.19000132381916046
+      ],
+      "maximum": [
+        0.5001804828643799,
+        0.20002847909927368,
+        0.19009384512901306
+      ],
+      "triangles": 4000,
+      "vertices": 4717,
+      "materials": 2,
+      "textures": [
+        {
+          "name": "Color_21ed7566-d44f-494e-8ca4-f602356ae03c",
+          "size": [
+            1024,
+            1024
+          ],
+          "packed": true
+        },
+        {
+          "name": "NormalGL_21ed7566-d44f-494e-8ca4-f602356ae03c",
+          "size": [
+            1024,
+            1024
+          ],
+          "packed": true
+        }
+      ],
+      "units": "metres",
+      "axes": "right-handed Y up",
+      "pivot": "Existing puzzle cell rotation centre; floor contact Y=0",
+      "ports": [
+        [
+          -0.5,
+          0.06,
+          0
+        ],
+        [
+          0.5,
+          0.06,
+          0
+        ]
+      ],
+      "rollingFloorRange": [
+        0.059174299240112305,
+        0.06128084659576416
+      ],
+      "master": "artifacts/model-jobs/beach-channels-20261020/straight-master.blend",
+      "masterSha256": "3c57f93c232d3b5ecb9917e7c90e5577280a1b1aca999931b8bd0f0527acd304",
+      "source": {
+        "path": "artifacts/model-jobs/beach-channels-20261020/straight/model.glb",
+        "sha256": "dfb6e291e9de1c6ba596e9252204ce75886fa71604405c5117a2dfb4a391a199"
+      },
+      "referenceSha256": "3d8a7f5a57ce860dc485b83e9e901f6ae15e12d8f71a048de76192d62e1a77f4"
+    },
+    {
+      "id": "beach/channel_curve@1",
+      "name": "beach_channel_curve",
+      "url": "assets/models/beach/channel-curve-v1.glb",
+      "sha256": "af16c4b6d18b2bb88dc6a0e165e17d62a74eb00cb82ec20d90176f49bf0c1ca9",
+      "bytes": 2825564,
+      "rightsRecord": "assets/models/beach/NOTICE.md",
+      "minimum": [
+        -0.5000536441802979,
+        -2.717389361350797e-05,
+        -0.5000042915344238
+      ],
+      "maximum": [
+        0.18621478974819183,
+        0.20008382201194763,
+        0.17776978015899658
+      ],
+      "triangles": 4000,
+      "vertices": 3344,
+      "materials": 2,
+      "textures": [
+        {
+          "name": "NormalGL_9c778690-1198-4274-a916-020b04e5bdcd",
+          "size": [
+            1024,
+            1024
+          ],
+          "packed": true
+        },
+        {
+          "name": "Color_9c778690-1198-4274-a916-020b04e5bdcd",
+          "size": [
+            1024,
+            1024
+          ],
+          "packed": true
+        }
+      ],
+      "units": "metres",
+      "axes": "right-handed Y up",
+      "pivot": "Existing puzzle cell rotation centre; floor contact Y=0",
+      "ports": [
+        [
+          -0.5,
+          0.06,
+          0
+        ],
+        [
+          0,
+          0.06,
+          -0.5
+        ]
+      ],
+      "rollingFloorRange": [
+        0.05990612506866455,
+        0.06290721893310547
+      ],
+      "master": "artifacts/model-jobs/beach-channels-20261020/curve-master.blend",
+      "masterSha256": "243433ac189ef49148a07650308305c33f329d27c2c56dd2922e1f027f43a8cf",
+      "source": {
+        "path": "artifacts/model-jobs/beach-channels-20261020/curve/model.glb",
+        "sha256": "1c9cd967419232d21bc557fe5faa6af8b1cfd3b371634af410693bd4d2ec84ab"
+      },
+      "referenceSha256": "74ffbf499ba311d320a2b348e30d46101c123d79f6b2a8fa74489be0710a2110"
+    },
+    {
+      "id": "beach/shelter@1",
+      "name": "beach_shelter",
+      "url": "assets/models/beach/shelter-v1.glb",
+      "sha256": "003c3d5ad5d54e4352fa99b2ed525f93aae116eed33a08b14d0a17f8c29bc988",
+      "bytes": 7509136,
+      "rightsRecord": "assets/models/beach/NOTICE.md",
+      "minimum": [
+        -0.7496216297149658,
+        0.0,
+        -0.4499494135379791
+      ],
+      "maximum": [
+        0.7499434947967529,
+        1.2006412744522095,
+        0.45012134313583374
+      ],
+      "triangles": 8499,
+      "vertices": 7237,
+      "materials": 1,
+      "textures": [
+        {
+          "name": "Color_86f41ebb-8637-4a91-af5d-ead2cd4ea9e6",
+          "size": [
+            2048,
+            2048
+          ],
+          "packed": true
+        },
+        {
+          "name": "NormalGL_86f41ebb-8637-4a91-af5d-ead2cd4ea9e6",
+          "size": [
+            2048,
+            2048
+          ],
+          "packed": true
+        }
+      ],
+      "units": "metres",
+      "axes": "Right-handed Y up, front +Z",
+      "pivot": "XZ footprint centre, ground contact Y=0",
+      "quests": [
+        "beach_pepper_basket"
+      ],
+      "master": "artifacts/model-jobs/beach-trail-20261020/shelter-master.blend",
+      "masterSha256": "ebd90c6d22f2ef072aa2829a7a039fbb49f6a8418c81ec84e6fcb4286a5b19f2",
+      "source": {
+        "path": "artifacts/model-jobs/beach-trail-20261020/shelter/model.glb",
+        "sha256": "d814fdd4d08fe536af488df4bd57db796fdeed0f2826152e2becc0356d3caab0"
+      },
+      "referenceSha256": "6ad97324a21a3520a89b5b128683dd7980009a3f1dea934b98bdaa07103d248e"
+    },
+    {
+      "id": "beach/branch@1",
+      "name": "beach_branch",
+      "url": "assets/models/beach/branch-v1.glb",
+      "sha256": "71c077f2a5921eb3f73dec036c2fde69f6d8a57997882a4a87cb356915cdca7b",
+      "bytes": 3187700,
+      "rightsRecord": "assets/models/beach/NOTICE.md",
+      "minimum": [
+        -0.5252732038497925,
+        0.0,
+        -0.15087178349494934
+      ],
+      "maximum": [
+        0.524709939956665,
+        1.0495734214782715,
+        0.14983031153678894
+      ],
+      "triangles": 4000,
+      "vertices": 3024,
+      "materials": 1,
+      "textures": [
+        {
+          "name": "Color_6a3108f5-b7b1-4022-bf66-48ef3885a478",
+          "size": [
+            1024,
+            1024
+          ],
+          "packed": true
+        },
+        {
+          "name": "NormalGL_6a3108f5-b7b1-4022-bf66-48ef3885a478",
+          "size": [
+            1024,
+            1024
+          ],
+          "packed": true
+        }
+      ],
+      "units": "metres",
+      "axes": "Right-handed Y up, front +Z",
+      "pivot": "XZ footprint centre, ground contact Y=0",
+      "quests": [
+        "beach_pepper_basket"
+      ],
+      "master": "artifacts/model-jobs/beach-trail-20261020/branch-master.blend",
+      "masterSha256": "55d00edc4068debe339b528ae9f2f9d1c7daa0fd926b26e8a9f2465cbe7e6e24",
+      "source": {
+        "path": "artifacts/model-jobs/beach-trail-20261020/branch/model.glb",
+        "sha256": "7ad34ebcebfe420f69de8959c7f79d4b8b12aa7bf3a68faf6dc2d6e6b51a49c3"
+      },
+      "referenceSha256": "581400ab866208cd0612649e101ae8760993672fa09e506bac5a297cc59fd792"
+    },
+    {
+      "id": "beach/plank@1",
+      "name": "beach_plank_long",
+      "url": "assets/models/beach/plank-v1.glb",
+      "sha256": "64ece14c93ffc23d62d75f7c00a1e3fabba7a42c827ff00f4e1bb5750e2f8114",
+      "bytes": 3184420,
+      "rightsRecord": "assets/models/beach/NOTICE.md",
+      "minimum": [
+        -0.999916136264801,
+        0.05000000074505806,
+        -0.249698668718338
+      ],
+      "maximum": [
+        0.9999678730964661,
+        0.160014808177948,
+        0.25031694769859314
+      ],
+      "triangles": 2200,
+      "vertices": 2305,
+      "materials": 1,
+      "textures": [
+        {
+          "name": "Color_499e7e07-01af-4298-9465-143bcc72725c",
+          "size": [
+            1024,
+            1024
+          ],
+          "packed": true
+        },
+        {
+          "name": "NormalGL_499e7e07-01af-4298-9465-143bcc72725c",
+          "size": [
+            1024,
+            1024
+          ],
+          "packed": true
+        }
+      ],
+      "units": "metres",
+      "axes": "Right-handed Y up, front +Z",
+      "pivot": "XZ footprint centre, deck top Y=0.16; underside Y=0.05",
+      "quests": [
+        "beach_button_bridge"
+      ],
+      "master": "artifacts/model-jobs/beach-complete-20261020/plank-master.blend",
+      "masterSha256": "4fed408d33fe7dfae9341d66cfb41cbe27a50c7328b7261f274c6c033cdb881f",
+      "source": {
+        "path": "artifacts/model-jobs/beach-complete-20261020/plank/model.glb",
+        "sha256": "e66cf5567b7f3d5dc1abbf4cd0c6f7573e32b8b76d65a9b13d8c1a2c56b642d1"
+      },
+      "referenceSha256": "598b31b7787845491f5453f85e614adb98610afa0656561f66997626aa70d4af"
+    },
+    {
+      "id": "beach/support@1",
+      "name": "beach_support",
+      "url": "assets/models/beach/support-v1.glb",
+      "sha256": "772d5ef7c0f27aa580643b12744fdd9bf9ad477bf0d2c7b5231d727a3e0fd536",
+      "bytes": 3304356,
+      "rightsRecord": "assets/models/beach/NOTICE.md",
+      "minimum": [
+        -0.2899681329727173,
+        0.0,
+        -0.2885812222957611
+      ],
+      "maximum": [
+        0.29005444049835205,
+        0.1600063592195511,
+        0.28819647431373596
+      ],
+      "triangles": 1800,
+      "vertices": 1672,
+      "materials": 1,
+      "textures": [
+        {
+          "name": "Color_549b16c7-002a-4f07-a2d8-649225c15373",
+          "size": [
+            1024,
+            1024
+          ],
+          "packed": true
+        },
+        {
+          "name": "NormalGL_549b16c7-002a-4f07-a2d8-649225c15373",
+          "size": [
+            1024,
+            1024
+          ],
+          "packed": true
+        }
+      ],
+      "units": "metres",
+      "axes": "Right-handed Y up, front +Z",
+      "pivot": "XZ footprint centre, ground contact Y=0",
+      "quests": [
+        "beach_button_bridge"
+      ],
+      "master": "artifacts/model-jobs/beach-complete-20261020/support-master.blend",
+      "masterSha256": "7d055c03cdcd4fe1baf6a2d2c91a4bf994a2ffd93c7ed3a811a321a2d033a815",
+      "source": {
+        "path": "artifacts/model-jobs/beach-complete-20261020/support/model.glb",
+        "sha256": "c17487f38bbdc9809660a633e0ac3c558fa54397b2ed74ee065eafca91638404"
+      },
+      "referenceSha256": "1022e5111077df31905263edb87ac249716b04a7dc85bb3d33acbadea5f9d1cd"
+    },
+    {
+      "id": "beach/shade-panel@1",
+      "name": "beach_shade_panel",
+      "url": "assets/models/beach/shade-panel-v1.glb",
+      "sha256": "4a4848166e18ab92fd31709f818e12fc4c6679698ce6c5b38db205828185e89c",
+      "bytes": 2683360,
+      "rightsRecord": "assets/models/beach/NOTICE.md",
+      "minimum": [
+        -1.0002754926681519,
+        0.0,
+        -0.3006899356842041
+      ],
+      "maximum": [
+        1.0010180473327637,
+        0.07816130667924881,
+        0.30071255564689636
+      ],
+      "triangles": 2400,
+      "vertices": 2026,
+      "materials": 1,
+      "textures": [
+        {
+          "name": "Color_cf18d350-cf17-49a6-b792-6ec16ebb6200",
+          "size": [
+            1024,
+            1024
+          ],
+          "packed": true
+        },
+        {
+          "name": "NormalGL_cf18d350-cf17-49a6-b792-6ec16ebb6200",
+          "size": [
+            1024,
+            1024
+          ],
+          "packed": true
+        }
+      ],
+      "units": "metres",
+      "axes": "Right-handed Y up, front +Z",
+      "pivot": "XZ footprint centre, ground contact Y=0",
+      "quests": [
+        "beach_mabel_shade"
+      ],
+      "master": "artifacts/model-jobs/beach-complete-20261020/shade-panel-master.blend",
+      "masterSha256": "822d1a92b3289bc20b708c3c98b604b5c583975c25fe6661438969fecd17a123",
+      "source": {
+        "path": "artifacts/model-jobs/beach-complete-20261020/shade-panel/model.glb",
+        "sha256": "fbb127ed06888a8721289f4a97801c62e09671ceb157174df4a9418b078b606d"
+      },
+      "referenceSha256": "7048d638f771757b5c3b677c083afb845225c111a054e92ab180d6ef62610211"
+    },
+    {
+      "id": "beach/shade-post@1",
+      "name": "beach_shade_post",
+      "url": "assets/models/beach/shade-post-v1.glb",
+      "sha256": "16572ed4c89fbef7d3f025d27ba571f6327152b99b442973213d57674aad88cd",
+      "bytes": 890152,
+      "rightsRecord": "assets/models/beach/NOTICE.md",
+      "minimum": [
+        -0.0423840694129467,
+        0.0,
+        -0.04246947914361954
+      ],
+      "maximum": [
+        0.04198303073644638,
+        0.6397371888160706,
+        0.04261524975299835
+      ],
+      "triangles": 1200,
+      "vertices": 2741,
+      "materials": 1,
+      "textures": [
+        {
+          "name": "NormalGL_68e3f0cf-c464-4157-8441-277c21875c6c",
+          "size": [
+            512,
+            512
+          ],
+          "packed": true
+        },
+        {
+          "name": "Color_68e3f0cf-c464-4157-8441-277c21875c6c",
+          "size": [
+            512,
+            512
+          ],
+          "packed": true
+        }
+      ],
+      "units": "metres",
+      "axes": "Right-handed Y up, front +Z",
+      "pivot": "XZ footprint centre, ground contact Y=0",
+      "quests": [
+        "beach_mabel_shade"
+      ],
+      "master": "artifacts/model-jobs/beach-complete-20261020/shade-post-master.blend",
+      "masterSha256": "c48b97f4563320ee6353bd8a5aba92bc2ebe000e887dac0d68e225a8a8bd501c",
+      "source": {
+        "path": "artifacts/model-jobs/beach-complete-20261020/shade-post/model.glb",
+        "sha256": "473606a6318ed45b1f69d8fa1a51a9fdf0291a10acbdb736cd9357aef1c2972d"
+      },
+      "referenceSha256": "c8994b9da2c3ed7d954bf51b2f6e137cabc59b9bad22ce8a39f8c05c4203e906"
+    },
+    {
+      "id": "beach/rope-post@1",
+      "name": "beach_rope_post",
+      "url": "assets/models/beach/rope-post-v1.glb",
+      "sha256": "2e34bce069f850fa24383021dae7113ea5b154a965271d5f98dc4f0d5b05c15a",
+      "bytes": 3245312,
+      "rightsRecord": "assets/models/beach/NOTICE.md",
+      "minimum": [
+        -0.1501367688179016,
+        0.0,
+        -0.14027303457260132
+      ],
+      "maximum": [
+        0.14983566105365753,
+        0.8508991003036499,
+        0.1399478167295456
+      ],
+      "triangles": 3000,
+      "vertices": 2666,
+      "materials": 1,
+      "textures": [
+        {
+          "name": "NormalGL_06a01102-1958-4ab0-909e-93e502024907",
+          "size": [
+            1024,
+            1024
+          ],
+          "packed": true
+        },
+        {
+          "name": "Color_06a01102-1958-4ab0-909e-93e502024907",
+          "size": [
+            1024,
+            1024
+          ],
+          "packed": true
+        }
+      ],
+      "units": "metres",
+      "axes": "Right-handed Y up, front +Z",
+      "pivot": "XZ footprint centre, ground contact Y=0",
+      "quests": [
+        "beach_pepper_basket"
+      ],
+      "master": "artifacts/model-jobs/beach-complete-20261020/rope-post-master.blend",
+      "masterSha256": "439d28da768584635ce244d7164bdb9c9e90e43c7a966436f0fe6b7445bf1f7e",
+      "source": {
+        "path": "artifacts/model-jobs/beach-complete-20261020/rope-post/model.glb",
+        "sha256": "560aa4af6b58fb0520b9831287ccb5d4f29b4d4bb2704fd12a19f14c035153f6"
+      },
+      "referenceSha256": "00f88b3f0350b5b8bf32c76a7798368b7e8d1df3198de95f8f2dbf8839744602"
+    },
+    {
+      "id": "beach/shell-scallop@1",
+      "name": "beach_shell_scallop",
+      "url": "assets/models/beach/shell-scallop-v1.glb",
+      "sha256": "7921e944cbd83bcdf4a8c001ec509eb85820affec65532162f60ca219c6e6290",
+      "bytes": 702080,
+      "rightsRecord": "assets/models/beach/NOTICE.md",
+      "minimum": [
+        -0.1302567571401596,
+        0.0,
+        -0.12066460400819778
+      ],
+      "maximum": [
+        0.13046546280384064,
+        0.06533791124820709,
+        0.11969608813524246
+      ],
+      "triangles": 1800,
+      "vertices": 1686,
+      "materials": 1,
+      "textures": [
+        {
+          "name": "Color_4b0ef29c-12c8-4a4d-9d23-906f89a21342",
+          "size": [
+            512,
+            512
+          ],
+          "packed": true
+        },
+        {
+          "name": "NormalGL_4b0ef29c-12c8-4a4d-9d23-906f89a21342",
+          "size": [
+            512,
+            512
+          ],
+          "packed": true
+        }
+      ],
+      "units": "metres",
+      "axes": "Right-handed Y up, front +Z",
+      "pivot": "XZ footprint centre, ground contact Y=0",
+      "quests": null,
+      "master": "artifacts/model-jobs/beach-complete-20261020/shell-scallop-master.blend",
+      "masterSha256": "5ce513d5c90e7e24061b3e1a510ef1ab1e1f8d6aad5f6a82e318c16a275c04b9",
+      "source": {
+        "path": "artifacts/model-jobs/beach-complete-20261020/shell-scallop/model.glb",
+        "sha256": "e12c983da3c0b039370cb545b02173301171d60234b8a60e87c259c3801a223b"
+      },
+      "referenceSha256": "53a8f101aefc3cd5a3ccce5f1d1829b4c1cea8d451b6c383e061836848cb2605"
+    },
+    {
+      "id": "beach/shell-clam@1",
+      "name": "beach_shell_clam",
+      "url": "assets/models/beach/shell-clam-v1.glb",
+      "sha256": "1ffb30810123b488104128850fd6aa756eafa7eb1035f388aacf6c9d87c44675",
+      "bytes": 695208,
+      "rightsRecord": "assets/models/beach/NOTICE.md",
+      "minimum": [
+        -0.11482568085193634,
+        0.0,
+        -0.09539481997489929
+      ],
+      "maximum": [
+        0.11507375538349152,
+        0.09497345238924026,
+        0.09495869278907776
+      ],
+      "triangles": 1800,
+      "vertices": 1794,
+      "materials": 1,
+      "textures": [
+        {
+          "name": "Color_3b8b79ed-fa80-4ca2-82ae-207ef2ac4a92",
+          "size": [
+            512,
+            512
+          ],
+          "packed": true
+        },
+        {
+          "name": "NormalGL_3b8b79ed-fa80-4ca2-82ae-207ef2ac4a92",
+          "size": [
+            512,
+            512
+          ],
+          "packed": true
+        }
+      ],
+      "units": "metres",
+      "axes": "Right-handed Y up, front +Z",
+      "pivot": "XZ footprint centre, ground contact Y=0",
+      "quests": null,
+      "master": "artifacts/model-jobs/beach-complete-20261020/shell-clam-master.blend",
+      "masterSha256": "dfdde60a593764da7e8be1a8227d1776c1676627ad451609c9c5526607ade364",
+      "source": {
+        "path": "artifacts/model-jobs/beach-complete-20261020/shell-clam/model.glb",
+        "sha256": "8f34aa14c1420132d99e0c911d34f1b722eb0f76847fe84d70d1ce9da35e0ee0"
+      },
+      "referenceSha256": "3e9b37051e2fac1191666c8b156fea8a74aff3487a8b40c587fdc9aa0bf705c1"
+    },
+    {
+      "id": "beach/shell-spiral@1",
+      "name": "beach_shell_spiral",
+      "url": "assets/models/beach/shell-spiral-v1.glb",
+      "sha256": "964a0ee9c4585aeab9d7a30a9e3739420b4c1a0d38f66d4078a5bfb82f18c98d",
+      "bytes": 669968,
+      "rightsRecord": "assets/models/beach/NOTICE.md",
+      "minimum": [
+        -0.09065781533718109,
+        0.0,
+        -0.1353498101234436
+      ],
+      "maximum": [
+        0.09022772312164307,
+        0.15055853128433228,
+        0.13428717851638794
+      ],
+      "triangles": 2200,
+      "vertices": 1684,
+      "materials": 1,
+      "textures": [
+        {
+          "name": "Color_229de5a0-efeb-4c02-8685-2ab2aba3d33b",
+          "size": [
+            512,
+            512
+          ],
+          "packed": true
+        },
+        {
+          "name": "NormalGL_229de5a0-efeb-4c02-8685-2ab2aba3d33b",
+          "size": [
+            512,
+            512
+          ],
+          "packed": true
+        }
+      ],
+      "units": "metres",
+      "axes": "Right-handed Y up, front +Z",
+      "pivot": "XZ footprint centre, ground contact Y=0",
+      "quests": null,
+      "master": "artifacts/model-jobs/beach-complete-20261020/shell-spiral-master.blend",
+      "masterSha256": "7707b78204e8fa672cfab890e743be3be33a37ad932c9017df153a757acefb3d",
+      "source": {
+        "path": "artifacts/model-jobs/beach-complete-20261020/shell-spiral/model.glb",
+        "sha256": "297339aba719c1072b1bdc976fb4d24575a55cf85655a9bad86f5ba286f239fd"
+      },
+      "referenceSha256": "6c9960aa3d93e6e7b798c1edce1108ababa0c10994404f7ab9dec72d9174db4b"
+    },
+    {
+      "id": "beach/chime-frame@1",
+      "name": "beach_chime_frame",
+      "url": "assets/models/beach/chime-frame-v1.glb",
+      "sha256": "7c4dcad3d74d12e747f10f4b292ff053cf5993a26e625638de9c0f107a42f469",
+      "bytes": 2651340,
+      "rightsRecord": "assets/models/beach/NOTICE.md",
+      "minimum": [
+        -1.6497832536697388,
+        0.0,
+        -0.3104884624481201
+      ],
+      "maximum": [
+        1.6487903594970703,
+        1.6005198955535889,
+        0.3102077841758728
+      ],
+      "triangles": 2999,
+      "vertices": 3710,
+      "materials": 1,
+      "textures": [
+        {
+          "name": "Color_43c0440d-f3b3-4caf-a883-8bc5bd6229b9",
+          "size": [
+            1024,
+            1024
+          ],
+          "packed": true
+        },
+        {
+          "name": "NormalGL_43c0440d-f3b3-4caf-a883-8bc5bd6229b9",
+          "size": [
+            1024,
+            1024
+          ],
+          "packed": true
+        }
+      ],
+      "units": "metres",
+      "axes": "Right-handed Y up, front +Z",
+      "pivot": "XZ footprint centre, ground contact Y=0",
+      "quests": [
+        "beach_shell_chimes"
+      ],
+      "master": "artifacts/model-jobs/beach-complete-20261020/chime-frame-master.blend",
+      "masterSha256": "7286240f0e3b2559a0a2527623ab191cdc27772871fc51738800ec1518befee9",
+      "source": {
+        "path": "artifacts/model-jobs/beach-complete-20261020/chime-frame/model.glb",
+        "sha256": "49128b1ec59e74cd747aa03ad7009f40769d52f9d06cefc686ae6dc889683897"
+      },
+      "referenceSha256": "e595b5484936f780dda13ab52ec17d8c3033c0fe881321d1f724ca7632fdfdbe"
+    },
+    {
+      "id": "beach/rock-cluster@1",
+      "name": "beach_rock_cluster",
+      "url": "assets/models/beach/rock-cluster-v1.glb",
+      "sha256": "3057c6b196578a5c112f956152a201788b32c25c3cda73cb3f02cf7f5462649d",
+      "bytes": 2734160,
+      "rightsRecord": "assets/models/beach/NOTICE.md",
+      "minimum": [
+        -0.40075933933258057,
+        0.0,
+        -0.3251195251941681
+      ],
+      "maximum": [
+        0.40055885910987854,
+        0.40037092566490173,
+        0.32471877336502075
+      ],
+      "triangles": 2600,
+      "vertices": 1961,
+      "materials": 1,
+      "textures": [
+        {
+          "name": "NormalGL_e2ca3140-40e6-4f71-9779-ebfb045c1a67",
+          "size": [
+            1024,
+            1024
+          ],
+          "packed": true
+        },
+        {
+          "name": "Color_e2ca3140-40e6-4f71-9779-ebfb045c1a67",
+          "size": [
+            1024,
+            1024
+          ],
+          "packed": true
+        }
+      ],
+      "units": "metres",
+      "axes": "Right-handed Y up, front +Z",
+      "pivot": "XZ footprint centre, ground contact Y=0",
+      "quests": null,
+      "master": "artifacts/model-jobs/beach-complete-20261020/rock-cluster-master.blend",
+      "masterSha256": "3e14e2694cfc163bca471cc2ce2f934c378a7a56663fad729d049fe1449c8b10",
+      "source": {
+        "path": "artifacts/model-jobs/beach-complete-20261020/rock-cluster/model.glb",
+        "sha256": "090e30b2d30f6efc9f37ed64f660678bdf9fc879b11404cd6ec8bdb66c1cabf6"
+      },
+      "referenceSha256": "b90ca3abb76c65cfbfa8c7ccf74136c2ae4dc7af7d0178d7e807c53d30f272bc"
+    },
+    {
+      "id": "beach/rock-flat@1",
+      "name": "beach_rock_flat",
+      "url": "assets/models/beach/rock-flat-v1.glb",
+      "sha256": "bf2d05b54cd48926736ca36879e69ecbd19a63110c6ee35ed5f4ee6b515002db",
+      "bytes": 2861940,
+      "rightsRecord": "assets/models/beach/NOTICE.md",
+      "minimum": [
+        -0.3502499759197235,
+        0.0,
+        -0.2501985728740692
+      ],
+      "maximum": [
+        0.34990623593330383,
+        0.16166621446609497,
+        0.24920082092285156
+      ],
+      "triangles": 1800,
+      "vertices": 1508,
+      "materials": 1,
+      "textures": [
+        {
+          "name": "NormalGL_a714cc5c-0b86-4978-abdf-080ecef775ea",
+          "size": [
+            1024,
+            1024
+          ],
+          "packed": true
+        },
+        {
+          "name": "Color_a714cc5c-0b86-4978-abdf-080ecef775ea",
+          "size": [
+            1024,
+            1024
+          ],
+          "packed": true
+        }
+      ],
+      "units": "metres",
+      "axes": "Right-handed Y up, front +Z",
+      "pivot": "XZ footprint centre, ground contact Y=0",
+      "quests": null,
+      "master": "artifacts/model-jobs/beach-complete-20261020/rock-flat-master.blend",
+      "masterSha256": "490166ca16ea5a3796834184717b2933eaadd8e6a185f91f10b225da217255ad",
+      "source": {
+        "path": "artifacts/model-jobs/beach-complete-20261020/rock-flat/model.glb",
+        "sha256": "4b08e15a978178977642c658eee305ff9bed9803234c453a42acd8ad56d70470"
+      },
+      "referenceSha256": "00173d477556caa21026350d509f5ef96cd80203d2dbf187f7fb405e593ba123"
+    },
+    {
+      "id": "beach/grass-short@1",
+      "name": "beach_grass_short",
+      "url": "assets/models/beach/grass-short-v1.glb",
+      "sha256": "1d43952773f09cdd573cf2cf6161d78a12255ca3c9ebc0a5e93a6d6e76132a3f",
+      "bytes": 623992,
+      "rightsRecord": "assets/models/beach/NOTICE.md",
+      "minimum": [
+        -0.2100062519311905,
+        0.0,
+        -0.1900780349969864
+      ],
+      "maximum": [
+        0.21077336370944977,
+        0.24005566537380219,
+        0.19054220616817474
+      ],
+      "triangles": 2200,
+      "vertices": 2398,
+      "materials": 1,
+      "textures": [
+        {
+          "name": "NormalGL_adcfbe72-0a26-4021-959c-8147c6ea743d",
+          "size": [
+            512,
+            512
+          ],
+          "packed": true
+        },
+        {
+          "name": "Color_adcfbe72-0a26-4021-959c-8147c6ea743d",
+          "size": [
+            512,
+            512
+          ],
+          "packed": true
+        }
+      ],
+      "units": "metres",
+      "axes": "Right-handed Y up, front +Z",
+      "pivot": "XZ footprint centre, ground contact Y=0",
+      "quests": null,
+      "master": "artifacts/model-jobs/beach-complete-20261020/grass-short-master.blend",
+      "masterSha256": "bfe9e63c6c153d57293bb163e858ffff05e261891e3945d92ffeffdc8a3c80af",
+      "source": {
+        "path": "artifacts/model-jobs/beach-complete-20261020/grass-short/model.glb",
+        "sha256": "374d7d9326c8c10cbeecf2c826137fc0d1b85cb3f745a7308d9b6d578f5c36c8"
+      },
+      "referenceSha256": "2419fdeaad8759b547e8d466cf6bcc581181eea010d0d3628f0ae7eaae1c91f8"
+    },
+    {
+      "id": "beach/grass-tall@1",
+      "name": "beach_grass_tall",
+      "url": "assets/models/beach/grass-tall-v1.glb",
+      "sha256": "1cc7f59f0065edfd84bc2643309eb83a64a9b19f42aa3033ae5e95544f736c81",
+      "bytes": 694488,
+      "rightsRecord": "assets/models/beach/NOTICE.md",
+      "minimum": [
+        -0.2279123216867447,
+        0.0,
+        -0.19991374015808105
+      ],
+      "maximum": [
+        0.23045966029167175,
+        0.6491271257400513,
+        0.19956064224243164
+      ],
+      "triangles": 2600,
+      "vertices": 3171,
+      "materials": 1,
+      "textures": [
+        {
+          "name": "Color_c422e587-136d-41dc-a539-763c219390ac",
+          "size": [
+            512,
+            512
+          ],
+          "packed": true
+        },
+        {
+          "name": "NormalGL_c422e587-136d-41dc-a539-763c219390ac",
+          "size": [
+            512,
+            512
+          ],
+          "packed": true
+        }
+      ],
+      "units": "metres",
+      "axes": "Right-handed Y up, front +Z",
+      "pivot": "XZ footprint centre, ground contact Y=0",
+      "quests": null,
+      "master": "artifacts/model-jobs/beach-complete-20261020/grass-tall-master.blend",
+      "masterSha256": "689a2509a325966907acd18f93928dec81216e01a1335e23c73aa89d561432f4",
+      "source": {
+        "path": "artifacts/model-jobs/beach-complete-20261020/grass-tall/model.glb",
+        "sha256": "7416658abe002f62b8091a6202b3bcd705ec519adb3f4a550efacf5fb5f5a0d8"
+      },
+      "referenceSha256": "da5c3cba1b91215ebcfcb0287399c23a689799f86cf228c347e3129c2acaa362"
+    },
+    {
+      "id": "beach/grass-sparse@1",
+      "name": "beach_grass_sparse",
+      "url": "assets/models/beach/grass-sparse-v1.glb",
+      "sha256": "39a3c68f22130703f6dca7125cdb38a9f931e3d4bcd7e723ec3c5feb237c6e07",
+      "bytes": 617180,
+      "rightsRecord": "assets/models/beach/NOTICE.md",
+      "minimum": [
+        -0.17832286655902863,
+        0.0,
+        -0.15959258377552032
+      ],
+      "maximum": [
+        0.17909908294677734,
+        0.3398430347442627,
+        0.16069836914539337
+      ],
+      "triangles": 1600,
+      "vertices": 1749,
+      "materials": 1,
+      "textures": [
+        {
+          "name": "NormalGL_27e26d3d-b74e-47c0-bdd7-c6bf58492789",
+          "size": [
+            512,
+            512
+          ],
+          "packed": true
+        },
+        {
+          "name": "Color_27e26d3d-b74e-47c0-bdd7-c6bf58492789",
+          "size": [
+            512,
+            512
+          ],
+          "packed": true
+        }
+      ],
+      "units": "metres",
+      "axes": "Right-handed Y up, front +Z",
+      "pivot": "XZ footprint centre, ground contact Y=0",
+      "quests": null,
+      "master": "artifacts/model-jobs/beach-complete-20261020/grass-sparse-master.blend",
+      "masterSha256": "29ed19f5c08c6dda101ae031e547fe64428ee56cfda4eca1ff85963eac95f98d",
+      "source": {
+        "path": "artifacts/model-jobs/beach-complete-20261020/grass-sparse/model.glb",
+        "sha256": "f254787dcd69866c7666fad3aaa1e3744827c6a727e09a2a5fee4bf57eb0208b"
+      },
+      "referenceSha256": "7f2e110a4815c0d62f63a35f46a89eccc9ffa3c4a3b7f8a8e21cb752cec9b1fe"
+    },
+    {
+      "id": "beach/plank-short@1",
+      "name": "beach_plank_short",
+      "url": "assets/models/beach/plank-short-v1.glb",
+      "sha256": "91f64c2d88b3a8f917932b17296637956cc62f74e4d72b54012df1ba6493663e",
+      "bytes": 3184424,
+      "rightsRecord": "assets/models/beach/NOTICE.md",
+      "minimum": [
+        -0.4999580681324005,
+        0.05000000074505806,
+        -0.249698668718338
+      ],
+      "maximum": [
+        0.49998393654823303,
+        0.160014808177948,
+        0.25031694769859314
+      ],
+      "triangles": 2200,
+      "vertices": 2305,
+      "materials": 1,
+      "textures": [
+        {
+          "name": "Color_499e7e07-01af-4298-9465-143bcc72725c",
+          "size": [
+            1024,
+            1024
+          ],
+          "packed": true
+        },
+        {
+          "name": "NormalGL_499e7e07-01af-4298-9465-143bcc72725c",
+          "size": [
+            1024,
+            1024
+          ],
+          "packed": true
+        }
+      ],
+      "units": "metres",
+      "axes": "Right-handed Y up, front +Z",
+      "pivot": "XZ footprint centre, deck top Y=0.16; underside Y=0.05",
+      "quests": [
+        "beach_button_bridge"
+      ],
+      "master": "artifacts/model-jobs/beach-complete-20261020/plank-short-master.blend",
+      "masterSha256": "674a83747280220af42b79e681b025588b180d0bb6852f0c22362e088d693274",
+      "source": {
+        "path": "artifacts/model-jobs/beach-complete-20261020/plank/model.glb",
+        "sha256": "e66cf5567b7f3d5dc1abbf4cd0c6f7573e32b8b76d65a9b13d8c1a2c56b642d1"
+      },
+      "referenceSha256": "598b31b7787845491f5453f85e614adb98610afa0656561f66997626aa70d4af"
+    },
+    {
+      "id": "beach/mat-pip@1",
+      "name": "beach_mat_pip",
+      "url": "assets/models/beach/mat-pip-v1.glb",
+      "sha256": "a802284323c2401dcc0f11affdfde3d766695c9e5f4341a3ddf87319284af890",
+      "bytes": 3701684,
+      "rightsRecord": "assets/models/beach/NOTICE.md",
+      "minimum": [
+        -0.47471174597740173,
+        0.0,
+        -0.37476399540901184
+      ],
+      "maximum": [
+        0.47483518719673157,
+        0.018311604857444763,
+        0.374631404876709
+      ],
+      "triangles": 2000,
+      "vertices": 1868,
+      "materials": 1,
+      "textures": [
+        {
+          "name": "Color_36f22074-dbb4-4a1d-b3dc-c9806141963d",
+          "size": [
+            1024,
+            1024
+          ],
+          "packed": true
+        },
+        {
+          "name": "NormalGL_36f22074-dbb4-4a1d-b3dc-c9806141963d",
+          "size": [
+            1024,
+            1024
+          ],
+          "packed": true
+        }
+      ],
+      "units": "metres",
+      "axes": "Right-handed Y up, front +Z",
+      "pivot": "XZ footprint centre, ground contact Y=0",
+      "quests": [
+        "beach_picnic"
+      ],
+      "master": "artifacts/model-jobs/beach-complete-20261020/mat-pip-master.blend",
+      "masterSha256": "54367904ea5cb33d48d191fcc944b9f3f70c311d510ed63af8c8b9824b8f1576",
+      "source": {
+        "path": "artifacts/model-jobs/beach-complete-20261020/picnic-mat/model.glb",
+        "sha256": "f80d610c00f61d50a3c22771a200d04af00e7955a260c30b7125120288a07e1c"
+      },
+      "referenceSha256": "cf96f82c58504b1e2453ff7260dce444da84568643a1b1c13ecd4084ea82623e"
+    },
+    {
+      "id": "beach/mat-mabel@1",
+      "name": "beach_mat_mabel",
+      "url": "assets/models/beach/mat-mabel-v1.glb",
+      "sha256": "731c91e3bd4a4517423064ebd91f13ddaabc294596b961a256fa647357183dbc",
+      "bytes": 3701688,
+      "rightsRecord": "assets/models/beach/NOTICE.md",
+      "minimum": [
+        -0.47471174597740173,
+        0.0,
+        -0.37476399540901184
+      ],
+      "maximum": [
+        0.47483518719673157,
+        0.018311604857444763,
+        0.374631404876709
+      ],
+      "triangles": 2000,
+      "vertices": 1868,
+      "materials": 1,
+      "textures": [
+        {
+          "name": "Color_36f22074-dbb4-4a1d-b3dc-c9806141963d",
+          "size": [
+            1024,
+            1024
+          ],
+          "packed": true
+        },
+        {
+          "name": "NormalGL_36f22074-dbb4-4a1d-b3dc-c9806141963d",
+          "size": [
+            1024,
+            1024
+          ],
+          "packed": true
+        }
+      ],
+      "units": "metres",
+      "axes": "Right-handed Y up, front +Z",
+      "pivot": "XZ footprint centre, ground contact Y=0",
+      "quests": [
+        "beach_picnic"
+      ],
+      "master": "artifacts/model-jobs/beach-complete-20261020/mat-mabel-master.blend",
+      "masterSha256": "0dd069e6f01d36a48d2c3887b43217665cb974bba3fffbe7474536afaddc46db",
+      "source": {
+        "path": "artifacts/model-jobs/beach-complete-20261020/picnic-mat/model.glb",
+        "sha256": "f80d610c00f61d50a3c22771a200d04af00e7955a260c30b7125120288a07e1c"
+      },
+      "referenceSha256": "cf96f82c58504b1e2453ff7260dce444da84568643a1b1c13ecd4084ea82623e"
+    },
+    {
+      "id": "beach/mat-button@1",
+      "name": "beach_mat_button",
+      "url": "assets/models/beach/mat-button-v1.glb",
+      "sha256": "2c9ed8bfa54f9236148020762285c1006cea64eb982498f458a3c40f7ca184f7",
+      "bytes": 3701684,
+      "rightsRecord": "assets/models/beach/NOTICE.md",
+      "minimum": [
+        -0.47471174597740173,
+        0.0,
+        -0.37476399540901184
+      ],
+      "maximum": [
+        0.47483518719673157,
+        0.018311604857444763,
+        0.374631404876709
+      ],
+      "triangles": 2000,
+      "vertices": 1868,
+      "materials": 1,
+      "textures": [
+        {
+          "name": "NormalGL_36f22074-dbb4-4a1d-b3dc-c9806141963d",
+          "size": [
+            1024,
+            1024
+          ],
+          "packed": true
+        },
+        {
+          "name": "Color_36f22074-dbb4-4a1d-b3dc-c9806141963d",
+          "size": [
+            1024,
+            1024
+          ],
+          "packed": true
+        }
+      ],
+      "units": "metres",
+      "axes": "Right-handed Y up, front +Z",
+      "pivot": "XZ footprint centre, ground contact Y=0",
+      "quests": [
+        "beach_picnic"
+      ],
+      "master": "artifacts/model-jobs/beach-complete-20261020/mat-button-master.blend",
+      "masterSha256": "bab2fd53f20e5cf62b5bf231bace8cd332d3c3737499b927c6ce48c224a3de33",
+      "source": {
+        "path": "artifacts/model-jobs/beach-complete-20261020/picnic-mat/model.glb",
+        "sha256": "f80d610c00f61d50a3c22771a200d04af00e7955a260c30b7125120288a07e1c"
+      },
+      "referenceSha256": "cf96f82c58504b1e2453ff7260dce444da84568643a1b1c13ecd4084ea82623e"
+    },
+    {
+      "id": "beach/mat-pepper@1",
+      "name": "beach_mat_pepper",
+      "url": "assets/models/beach/mat-pepper-v1.glb",
+      "sha256": "1665ea95aa891a253cd81faaa032a9473b6860e2f66328c89b8991d7a7c7d343",
+      "bytes": 3701684,
+      "rightsRecord": "assets/models/beach/NOTICE.md",
+      "minimum": [
+        -0.47471174597740173,
+        0.0,
+        -0.37476399540901184
+      ],
+      "maximum": [
+        0.47483518719673157,
+        0.018311604857444763,
+        0.374631404876709
+      ],
+      "triangles": 2000,
+      "vertices": 1868,
+      "materials": 1,
+      "textures": [
+        {
+          "name": "NormalGL_36f22074-dbb4-4a1d-b3dc-c9806141963d",
+          "size": [
+            1024,
+            1024
+          ],
+          "packed": true
+        },
+        {
+          "name": "Color_36f22074-dbb4-4a1d-b3dc-c9806141963d",
+          "size": [
+            1024,
+            1024
+          ],
+          "packed": true
+        }
+      ],
+      "units": "metres",
+      "axes": "Right-handed Y up, front +Z",
+      "pivot": "XZ footprint centre, ground contact Y=0",
+      "quests": [
+        "beach_picnic"
+      ],
+      "master": "artifacts/model-jobs/beach-complete-20261020/mat-pepper-master.blend",
+      "masterSha256": "44f23ebd1b042bebd0e49506f25fafac37d67836426f5af86bd87492be549a7f",
+      "source": {
+        "path": "artifacts/model-jobs/beach-complete-20261020/picnic-mat/model.glb",
+        "sha256": "f80d610c00f61d50a3c22771a200d04af00e7955a260c30b7125120288a07e1c"
+      },
+      "referenceSha256": "cf96f82c58504b1e2453ff7260dce444da84568643a1b1c13ecd4084ea82623e"
+    },
+    {
+      "id": "beach/lantern@1",
+      "name": "beach_lantern",
+      "url": "assets/models/beach/lantern-v1.glb",
+      "sha256": "fdbf2d5ca79486050237cdc80ce851114a1a6b8843b067513d59857d892a1bf8",
+      "bytes": 2037948,
+      "rightsRecord": "assets/models/beach/lantern-NOTICE.md",
+      "minimum": [
+        -0.2396521419286728,
+        0.0,
+        -0.20990465581417084
+      ],
+      "maximum": [
+        0.23987258970737457,
+        0.6498034000396729,
+        0.20995432138442993
+      ],
+      "triangles": 7998,
+      "vertices": 6465,
+      "materials": 1,
+      "textures": [
+        {
+          "name": "Color_9c0a0ece-57b7-4bea-b5e7-41435d7e5e85",
+          "size": [
+            1024,
+            1024
+          ],
+          "packed": true
+        },
+        {
+          "name": "NormalGL_9c0a0ece-57b7-4bea-b5e7-41435d7e5e85",
+          "size": [
+            1024,
+            1024
+          ],
+          "packed": true
+        }
+      ],
+      "units": "metres",
+      "axes": "Right-handed Y up, front +Z",
+      "pivot": "XZ footprint centre, ground contact Y=0",
+      "quests": [
+        "beach_lantern_balance"
+      ],
+      "master": "artifacts/model-jobs/beach-lantern-20261021-network/lantern-master.blend",
+      "masterSha256": "43529ff6608bf76c296a4b2fb51b5c1ebbf0499951688c322bfbd9d73d3a9f6f",
+      "source": {
+        "path": "artifacts/model-jobs/beach-lantern-20261021-network/model.glb",
+        "sha256": "ecabe64857c9946d83c367bbe76beb522c347b247a0753c9839b061552933a3b"
+      },
+      "referenceSha256": "b042c869962b18c5c73a5a815d7103ad89251fedbab6b33755103cf943e7252b"
+    }
+  ]
+}

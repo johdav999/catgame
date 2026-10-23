@@ -117,9 +117,8 @@ bool playhouseOpen(const Definition& d,const State& s) {
 std::string picnicBlockage(const Definition& d,const State& s) {
     if(s.objects.size()!=d.objects.size())return "Invalid picnic state.";
     if(d.beachPicnic){
-        if(d.objects.size()!=4)return "Missing beach picnic mats.";
-        for(const auto& o:s.objects)if(o.location!=Location::Socket)return "Place all four named mats first.";
-        for(const auto& o:s.objects)if(has(d.walkable,o.cell))return "Leave the marked approach clear.";
+        for(std::size_t n=0;n<d.objects.size();++n)if(d.objects[n].kind==Piece::Placement&&s.objects[n].location!=Location::Socket)return "Place all four named mats first.";
+        for(const auto& o:s.objects)if(has(d.walkable,o.cell))return "Leave the marked approach clear. Park baskets beside the picnic.";
         const auto& b=s.objects[index(d.objects,"button_mat")];const auto& m=s.objects[index(d.objects,"mabel_mat")];
         const auto& p=s.objects[index(d.objects,"pip_mat")];const auto& e=s.objects[index(d.objects,"pepper_mat")];
         if(!has(d.shade,b.cell)||!has(d.quiet,b.cell))return "Button needs both shade and quiet.";
@@ -174,7 +173,9 @@ std::string validate(const Definition& d,bool replay) {
         std::set<std::pair<int,int>> socketCells;
         for(auto& t:d.sockets) {
             if(t.id.empty()||t.name.empty()||t.role.empty()||!ids.insert(t.id).second||!inside(d,t.cell))return "Invalid/duplicate socket.";
-            if(!socketCells.emplace(t.cell.x,t.cell.y).second&&d.family!=Family::Planks)return "Socket destinations overlap.";
+            // Crossings and shade pairs may share a post while pointing in
+            // different directions; the whole pair is the placement target.
+            if(!socketCells.emplace(t.cell.x,t.cell.y).second&&d.family!=Family::Planks&&d.family!=Family::Shade)return "Socket destinations overlap.";
             if((d.family==Family::Planks||d.family==Family::Shade)&&(!inside(d,t.end)||distance(t.cell,t.end)!=t.length||
                 (t.cell.x!=t.end.x&&t.cell.y!=t.end.y)||t.length<1||t.length>2||t.orientation<0||t.orientation>3||
                 (t.cell.y==t.end.y?0:1)!=t.orientation%2))return "Invalid plank connection endpoints.";
@@ -196,7 +197,7 @@ std::string validate(const Definition& d,bool replay) {
             if(roles!=std::set<std::string>{"cushion_square","cushion_bar","cushion_elbow"})return "Basket needs one cushion of each frozen shape.";
         }
         if(d.family==Family::Bells) {
-            if(count(Piece::Bell)<2||count(Piece::Bell)>8||d.sequence.empty()||d.sequence.size()>8||!std::isfinite(d.pictureSeconds)||d.pictureSeconds<.25||d.pictureSeconds>10)return "Sequence needs 1–8 pictures, 2–8 responses and a valid duration.";
+            if(count(Piece::Bell)<2||count(Piece::Bell)>8||d.sequence.empty()||d.sequence.size()>12||!std::isfinite(d.pictureSeconds)||d.pictureSeconds<.25||d.pictureSeconds>10)return "Sequence needs 1–12 pictures, 2–8 responses and a valid duration.";
             std::set<std::string> symbols;
             for(auto& o:d.objects)if(o.kind==Piece::Bell&&(!symbols.insert(o.symbol).second||o.symbol.empty()))return "Invalid/duplicate response picture.";
             for(auto& s:d.sequence)if(!symbols.contains(s))return "Unknown sequence picture.";
@@ -218,7 +219,7 @@ std::string validate(const Definition& d,bool replay) {
             for(auto id:{"button_mat","mabel_mat","pip_mat","pepper_mat"})if(index(d.objects,id)==d.objects.size())return "Missing named beach mat.";
         }
         if(d.family==Family::Shade){
-            if(count(Piece::Plank)!=2||d.objects.size()!=2||d.shade.size()!=4||d.sockets.empty())return "Shade needs two panels and four mat cells.";
+            if(count(Piece::Plank)<2||count(Piece::Plank)!=int(d.objects.size())||d.shade.size()!=d.objects.size()*2||d.sockets.empty())return "Shade needs two mat cells per panel.";
             for(const auto& o:d.objects)if(o.role!="shade_panel"||o.length!=2)return "Invalid shade panel.";
             for(const auto& t:d.sockets)if(t.role!="shade_socket")return "Invalid shade supports.";
         }
@@ -282,6 +283,16 @@ CommandResult Attempt::apply(const Intent& c,bool record) {
     if(paused_)return {false,"Resume the puzzle first."};
     if(revision_==std::numeric_limits<Revision>::max()||attempt_==std::numeric_limits<AttemptId>::max())return {false,"Attempt identity limit reached. Start a new session."};
     auto accept=[&](std::string message) {if(record){++revision_;feedback_=message;}return CommandResult{true,std::move(message)};};
+    if(c.verb==Verb::Restart&&!c.target.empty()&&definition_.quest.starts_with("beach_")){
+        const auto latest=quest(definition_.quest);
+        if(!definition_.content.ends_with("-v1")||c.target!=latest.content)return {false,"Unsupported restart layout."};
+        if(record){
+            auto replacement=latest.legacy?std::make_unique<PawsSession>(*latest.legacy):nullptr;
+            definition_=latest;legacy_=std::move(replacement);state_=initial(definition_);
+            ++attempt_;undo_.clear();hints_=0;selected_.clear();
+        }
+        return accept("Fresh attempt. The updated beach puzzle is ready.");
+    }
     if(legacy_) {
         const auto v=definition_.family==Family::Water&&c.verb==Verb::Connect?Verb::Roll:c.verb;
         auto action=legacyAction(v);if(!action)return {false,"Unsupported action for this puzzle."};
@@ -341,7 +352,7 @@ CommandResult Attempt::apply(const Intent& c,bool record) {
             if(!c.object.starts_with("trail_")||c.object.size()!=7||c.object[6]<'0'||c.object[6]>'2')return {false,"Choose a marked trail."};
             if(unsigned(c.object[6]-'0')!=stage.answer)return {false,"That place does not fit all three clues. Your discoveries are kept; compare them again."};
             ++next.stage;next.inspected=0;next.completed=next.stage==d.trail.size();
-            message=next.completed?(d.quest=="beach_pepper_basket"?"Pepper found the picnic basket beside the shell. All four dune stops solved!":"Pepper found her catnip pouch in the leaf cushion. All six trail stops solved!"):"A fresh trail! Inspect the new evidence before choosing again.";
+            message=next.completed?(d.quest=="beach_pepper_basket"?"Pepper found the picnic basket beside the shell. All "+std::to_string(d.trail.size())+" dune stops solved!":"Pepper found her catnip pouch in the leaf cushion. All six trail stops solved!"):"A fresh trail! Inspect the new evidence before choosing again.";
         }
     } else if(c.verb==Verb::TestBalance) {
         if(d.family!=Family::Balance)return {false,"There is no balance to test here."};
@@ -351,16 +362,16 @@ CommandResult Attempt::apply(const Intent& c,bool record) {
         if(torque)return {false,torque<0?"The left side pulls harder. Move weight closer to the support on the left, or farther out on the right.":"The right side pulls harder. Move weight closer to the support on the right, or farther out on the left."};
         ++next.stage;next.completed=next.stage==d.balances.size();
         if(!next.completed){auto fresh=initial(d);next.objects=std::move(fresh.objects);}
-        message=d.sharedLookout?(next.completed?"This one is yours. I saved it.":"Steady! Now balance the flowerpots with Pip aboard, and place both cushions."):(next.completed?"All four setups balance. Pip's perch is steady!":"Steady! The next setup changes the support or Pip's load. Cushions returned to storage.");
+        message=d.quest=="beach_lantern_balance"?(next.completed?"All four lantern landings balance!":"Steady! Move the lanterns for the next support and Pip load. Lanterns returned to storage."):d.sharedLookout?(next.completed?"This one is yours. I saved it.":"Steady! Now balance the flowerpots with Pip aboard, and place both cushions."):(next.completed?"All four setups balance. Pip's perch is steady!":"Steady! The next setup changes the support or Pip's load. Cushions returned to storage.");
     } else if(c.verb==Verb::Connect) {
         if(d.family==Family::Shade){
-            for(const auto& o:next.objects)if(o.location!=Location::Socket)return {false,"Fit both shade panels between firm supports first."};
+            for(const auto& o:next.objects)if(o.location!=Location::Socket)return {false,"Fit every shade panel between firm supports first."};
             for(auto cell:d.shade){bool covered=false;for(const auto& o:next.objects){
                 const auto t=index(d.sockets,o.socket);if(t==d.sockets.size())continue;const auto& support=d.sockets[t];
                 const int dx=(support.end.x>support.cell.x)-(support.end.x<support.cell.x),dy=(support.end.y>support.cell.y)-(support.end.y<support.cell.y);
                 for(int n=0;n<support.length;++n)covered=covered||cell==Cell{support.cell.x+n*dx,support.cell.y+n*dy};
             }if(!covered)return {false,"Part of Mabel's marked mat is still in the sun."};}
-            message="Both panels are supported. Mabel's whole mat is shaded.";
+            message="Every panel is supported. Mabel's whole mat is shaded.";
         }
         else if(d.family==Family::Planks) {auto r=plankRoute(d,next);if(!r.reached)return {false,r.message};message=r.message;}
         else if(d.family==Family::Switches) {
@@ -386,6 +397,7 @@ CommandResult Attempt::apply(const Intent& c,bool record) {
                 for(std::size_t j=0;j<d.objects.size();++j)if(j!=i&&next.objects[j].cell==p)return {false,d.objects[j].name+" occupies that spot. Move them clear first."};
             }
             for(std::size_t j=0;j<d.objects.size();++j)if(j!=i&&d.objects[j].kind==Piece::Crate&&next.objects[j].cell==p)return {false,d.objects[j].name+" occupies that slot. Move it first."};
+            if(d.beachPicnic)for(std::size_t j=0;j<d.objects.size();++j)if(j!=i&&d.objects[j].kind==Piece::Placement&&next.objects[j].location==Location::Socket&&next.objects[j].cell==p)return {false,"A picnic mat occupies that spot. Move it before sliding the basket."};
             st.cell=p;message=o.name+" slid one slot.";
         } else if(c.verb==Verb::Retrieve) {
             if(d.family!=Family::Bench||c.object!=d.requested)return {false,"Choose Button's requested mouse."};
@@ -446,12 +458,12 @@ CommandResult Attempt::apply(const Intent& c,bool record) {
                 if(socket.role!=(d.family==Family::Shade?"shade_socket":"plank_socket")||o.length!=socket.length)return {false,"The plank length does not match this crossing."};
                 if(!socket.supported)return {false,"This gap has no supported landing. Choose a supported crossing."};
                 if(st.orientation%2!=socket.orientation%2)return {false,"Rotate the plank so both endpoints face the crossing supports."};
-                for(std::size_t j=0;j<d.objects.size();++j)if(d.objects[j].kind==Piece::Crate&&(next.objects[j].cell==socket.cell||next.objects[j].cell==socket.end))return {false,"The planter blocks this landing. Slide it clear of both route platforms."};
+                for(std::size_t j=0;j<d.objects.size();++j)if(d.objects[j].kind==Piece::Crate&&(next.objects[j].cell==socket.cell||next.objects[j].cell==socket.end))return {false,d.objects[j].name+" blocks this landing. Slide it clear before placing the plank."};
                 for(auto& s:next.objects)if(s.location==Location::Socket&&s.socket==c.target)return {false,"That crossing already has a plank."};
                 st.cell=socket.cell;st.socket=socket.id;st.location=Location::Socket;message=o.name+" connected to both supports.";
             } else if(d.family==Family::Picnic) {
                 if(o.kind!=Piece::Placement||socket.role!="picnic_spot")return {false,"Choose a supplied picnic prop and garden spot."};
-                for(std::size_t j=0;j<next.objects.size();++j)if(j!=i&&next.objects[j].location==Location::Socket&&next.objects[j].cell==socket.cell)return {false,"The other picnic prop occupies that spot."};
+                for(std::size_t j=0;j<next.objects.size();++j)if(j!=i&&next.objects[j].cell==socket.cell&&(next.objects[j].location==Location::Socket||d.objects[j].kind==Piece::Crate))return {false,"Another mat or basket occupies that spot. Move it clear first."};
                 if((d.sunnyNook||d.beachPicnic)&&has(d.walkable,socket.cell))return {false,"Leave the marked middle path clear between the cushions."};
                 st.cell=socket.cell;st.socket=socket.id;st.location=Location::Socket;message=o.name+" placed. Check all clues together.";
             } else return {false,"This puzzle does not fit objects into sockets."};
@@ -523,6 +535,15 @@ std::vector<Step> Attempt::candidates() const {
     }
     if(d.family==Family::Planks||d.family==Family::Shade||d.family==Family::Switches||d.family==Family::Picnic)actions.push_back({Verb::Connect});return actions;
 }
+std::vector<Cell> shadedCells(const Definition& d,const PuzzleView& view) {
+    std::vector<Cell> covered;
+    for(const auto& o:view.objects)if(o.role=="shade_panel"&&!o.socket.empty()&&!o.held)
+        for(std::size_t n=0;n+1<o.footprint.size();++n){
+            const auto cell=o.footprint[n];
+            if(has(d.shade,cell)&&!has(covered,cell))covered.push_back(cell);
+        }
+    return covered;
+}
 PuzzleView Attempt::view() const {
     PuzzleView v;const auto& d=definition_;v.quest=d.quest;v.content=d.content;v.title=d.title;v.objective=d.objective;
     v.generation=generation_;v.attempt=attempt_;v.revision=revision_;v.feedback=feedback_;v.hints=d.hints;v.revealedHints=hints_;
@@ -577,9 +598,12 @@ PuzzleView Attempt::view() const {
             }
         }
         if(d.family==Family::Balance){
+            v.balanceSetups=unsigned(d.balances.size());
+            v.balanceSetup=std::min(state_.stage+1,v.balanceSetups);
             const auto& round=d.balances[std::min<std::size_t>(state_.stage,d.balances.size()-1)];
             const auto torque=balanceTorque(d,state_);
             v.objective=v.completed?"Four steady setups! Pip can settle on his perch.":"Setup "+std::to_string(state_.stage+1)+" / "+std::to_string(d.balances.size())+". Support: "+std::to_string(round.pivot)+". Pip: "+std::to_string(round.catWeight)+" weight x "+std::to_string(std::abs(round.catArm))+" steps "+(round.catArm<0?"left":"right")+". Pull: "+(torque==0?"even":torque<0?"left +":"right +")+(torque==0?"":std::to_string(std::abs(torque)))+". Beam positions: 1,2,3,5,6,7. Cushions start 1,2,3,4 from the left. Place all four, then test.";
+            if(d.quest=="beach_lantern_balance"){auto at=v.objective.find("Cushions");if(at!=std::string::npos)v.objective.replace(at,8,"Lanterns");if(v.completed)v.objective="Four steady lantern landings! The cove is ready."; }
             if(d.sharedLookout)v.objective=v.completed?"Two places, one steady lookout. Pip saved you a seat.":state_.stage==0?"Balance the four numbered flowerpots on the empty lookout, then test.":"Pip adds 3 weights at position 7. Balance the pots, then put both cushions on their marked seats. Keep the approach clear.";
             for(auto& t:v.objects)if(t.role=="balance_socket")t.name="Position "+std::to_string(t.cell.x)+" ("+std::to_string(std::abs(t.cell.x-round.pivot))+" steps "+(t.cell.x<round.pivot?"left":"right")+")";
             v.objects.push_back({"balance_support","Support","balance_support",{round.pivot,2}});

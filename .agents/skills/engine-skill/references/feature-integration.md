@@ -144,7 +144,7 @@ Demo View controls offer above water, underwater and deep underwater; white subm
 
 ## Animated underwater caustics
 
-Both backends implement `WaterSettings::causticsStrength` (default 0, range [0,4]), `causticsScale` (2, [.01,100]), `causticsSpeed` (1, [0,10]) and `causticsDepth` (8 world units, [.01,10000]); all must be finite. Strength also scales by `underwaterStrength`. Fog and absorption can be zero for caustics-only rendering. Full instance overrides validate atomically and material identity includes every setting. Format 13 adds these fields; older water defaults caustics off. Current writer v14 also retains terrain extensions. Renderer time remains application state.
+Both backends implement `WaterSettings::causticsStrength` (default 0, range [0,4]), `causticsScale` (2, [.01,100]), `causticsSpeed` (1, [0,10]) and `causticsDepth` (8 world units, [.01,10000]); all must be finite. Strength also scales by `underwaterStrength`. Fog and absorption can be zero for caustics-only rendering. Full instance overrides validate atomically and material identity includes every setting. Format 13 adds these fields; older water defaults caustics off. Current writer v31 also retains terrain extensions; readers accept v1..31. Renderer time remains application state.
 
 The existing post-World underwater composite projects smooth animated cellular ridges in water-plane coordinates onto depth-reconstructed receivers. Inverse-transform axis lengths compensate projection scale approximately in world units; general shear remains approximate. It rejects clear depth, dry/outside-footprint endpoints and a local surface band of `2*amplitude+.02`, weights geometric depth-normal orientation toward surfaces parallel to the plane, and fades to zero at `causticsDepth` below the mean plane. It multiplies decoded receiver color before RGB absorption/fog. No new targets, passes or timestamp queries are added; the private view uniform is 256 bytes. Enabled caustics use the caller water clock times caustics speed; speed zero freezes just this pattern, pause freezes the caller clock, and WebGPU caches unchanged payloads. Recovery retains appearance/time.
 
@@ -181,7 +181,7 @@ Set `msaaSamples=1` to disable it. The playground exposes **Rendering quality ->
 
 - Automatic mode prefers WebGPU, then selects WebGL 2 if API/secure-context availability or initial adapter/device acquisition fails, including its bounded acquisition timeout. The host calls `serviceRecovery()` at frame boundaries even before readiness. Explicit `WebGpu` preference disables automatic fallback.
 - After a canvas acquires a context, backend selection stays fixed. Later WebGPU loss uses bounded WebGPU reacquisition/retry; WebGL loss waits for context restoration and rebuilds resources. Do not replace the canvas or reload the page to simulate automatic fallback. Scenes, CPU assets, GUI and explicit pause state survive recovery.
-- WebGL 2 supports RGBA textured meshes, basic ambient/directional/point/unlit/emissive lighting, CPU skeletal/morph deformation, alpha/additive particles, ordered views/layers, camera LOD/culling and canvas GUI. Full PBR/environment lighting, shadows, instancing, compressed uploads and GPU timing are unavailable. Check whether that visual target meets the game request; do not claim backend parity. WebGL 1 is unsupported.
+- WebGL 2 supports RGBA textured meshes, basic ambient/directional/point/unlit/emissive lighting, CPU skeletal/morph deformation, alpha/additive particles, ordered views/layers, camera LOD/culling and canvas GUI. Full PBR/environment lighting, instancing, compressed uploads and GPU timing are unavailable. Directional shadows require the development extension below. Check whether that visual target meets the game request; do not claim backend parity. WebGL 1 is unsupported.
 - Ordered `RenderView`s compose Background, World and Overlay per view; GUI draws once afterward. Pick with the actual active camera/viewport and distinguish CSS coordinates from backing pixels. Shared camera depth conventions are converted by the fallback backend, not game code.
 
 Quality profiles/resolution/DPR/shadow budgets expose capabilities without choosing game policy. Keep authored shared static LOD chains separate from collision/original picking geometry. Restore/regenerate derived data deliberately; archives omit LOD caches and compressed texture variants. See `docs/rendering-quality.md` and `docs/mesh-detail-validation.md`.
@@ -203,7 +203,7 @@ The playground starts with `SkyGeometry::Sphere`, `SkyMode::Atmosphere`, clouds 
 Read `docs/mobile-assets.md` and `docs/assets.md` before selecting a pipeline.
 
 - `browserAssetLoader` performs asynchronous HTTP but invokes custom decoders synchronously on the browser owner thread. `browserDecodedAssetLoader` supports FBX, GLB, images and texture bundles with at most two active isolated workers per main Wasm module. Workers own HTTP/decode/timeout/cancellation; they do not own scenes or GPU state. Owner hydration still validates/copies resources; main-thread work and temporary memory remain.
-- Ship `asset-worker.js`, `asset_decode.js` and `asset_decode.wasm` together and respect CSP/CORS and relative worker URLs. No shared Wasm memory, pthreads or cross-origin isolation is required. This loader does not implicitly discover companion files or transport arbitrary decoder callbacks. Native hosts supply their own executors.
+- Ship `asset-worker.js`, `asset_decode.js` and `asset_decode.wasm` together and respect CSP/CORS and relative worker URLs. No shared Wasm memory, pthreads or cross-origin isolation is required. This loader does not implicitly discover companion files or transport arbitrary decoder callbacks. Windows supplies the optional explicitly owned DesktopAssetExecutor; see [background assets](windows-background-assets.md) for bounds, timeout/cancellation and joined teardown. Other native hosts supply their own executors.
 - `Renderer::setAssetUploadBudget(UploadBudget)` applies optional per-frame new-asset admission. Zero limits are unlimited. Resources are indivisible; the first oversized unit may exceed the budget to make progress. Deferred draws retry on later frames without affecting simulation. Dynamic writes, GUI, framebuffer/shadow allocation and pipeline creation are outside admission; a time budget is not a hard frame-latency cap.
 - `AssetPreparation` gates CPU dependency readiness, not GPU prewarming/full visual readiness. Choose loading-screen/reveal policy accordingly. Explicit cache eviction can release manager ownership while live shared resources remain valid; there is no automatic total-memory/LRU policy.
 - Native `texture_tool` exports semantic mips and packs pre-encoded KTX2 variants with a valid RGBA fallback into `.wetex` delivery bundles. Color filters in linear light, data channels remain raw, and normal mips renormalize. Outputs reject overwrite. Read `texture_bundle.hpp`/the mobile asset contract for restricted complete 2D BC7/ETC2-RGBA/ASTC-4x4 chains. Encoding is external; no bundled block encoder, Basis/UASTC runtime transcoder, supercompression inflater or compressed GLB extension is implied. WebGPU selects supported variants; WebGL 2 retains RGBA.
@@ -214,7 +214,7 @@ CatGame integration: the current pinned `external/WebEngine` revision `3fe7d1dc1
 
 Read `docs/terrain.md` before composing terrain. `TerrainData` is a row-major source-local XZ float grid (`heights[z*samplesX+x]`), spacing, 1–128 chunk cells, texture metres and shared material. Dimensions are 2–4097 per axis, at most 1,048,576 samples and 4,096 chunks. `create(data)` eagerly builds immutable chains; `create(data,false)` retains source only (`chunks()` empty, `chunkCount()` metadata, `buildChunk(index)` explicit caller ownership). `fromHeightmap` maps decoded RGBA8 red linearly to a chosen height range without gamma conversion or flipping.
 
-New data defaults to three LOD candidates, steps 2/4/8 and `lodPixels={240,120,60}`. Only triangle-reducing levels survive. Every LOD retains every source perimeter segment with matching normals/UVs and coarse-interior fans; arbitrary neighboring levels need no skirts/negotiation. Selection remains discrete with existing 10% hysteresis. `MeshComponent::lodPolicy` has camera/shadow scales (>0 through 64, default 1) and fixed levels (-1 automatic, 0 full, positive clamped). RenderFrame owns camera-pixel and independent per-light shadow-texel history; global quality flags still gate LOD. Presentation choices never change source ground/collision. GL supports camera LOD but no shadow maps.
+New data defaults to three LOD candidates, steps 2/4/8 and `lodPixels={240,120,60}`. Only triangle-reducing levels survive. Every LOD retains every source perimeter segment with matching normals/UVs and coarse-interior fans; arbitrary neighboring levels need no skirts/negotiation. Selection remains discrete with existing 10% hysteresis. `MeshComponent::lodPolicy` has camera/shadow scales (>0 through 64, default 1) and fixed levels (-1 automatic, 0 full, positive clamped). RenderFrame owns camera-pixel and independent per-light shadow-texel history; global quality flags still gate LOD. Presentation choices never change source ground/collision. GL supports camera LOD; directional shadows and caster LOD require the development extension below.
 
 `Material::layers` optionally blends four albedo/color/roughness/UV layers through normalized linear Data RGBA weights (zero/absent weights select layer zero; absent albedos are white). Use Clamp weights and `weightScale={textureMeters/terrainWidth,textureMeters/terrainDepth}`. Layer `uvScale=textureMeters/repeatMetres`. Global material UVs apply first. Both backends blend color/alpha; only WebGPU supplies PBR roughness lighting. Four Color plus one Data and four packed Normal/height maps use nine map slots, excluding conventional metallic/occlusion/emissive textures; scalar metallic/emissive/tint remain. Water rejects layering. MaterialInstance can override the full layer block; all parameters/semantic roles participate in backend identity/recovery.
 
@@ -232,7 +232,7 @@ Each resident has ordinary geometry/LOD and optionally one full-resolution chunk
 
 Format 15 stores optional patch interior/global-offset/page metadata and edited source/material/layer sharing, LOD settings/policies, eager/source-only mode and resident components/optional collision. Eager chains regenerate once per shared asset; source-only loads generate only saved resident components with conservative per-chunk allocation charges. Asset-library source-only resources generate nothing. Resident paged snapshots retain only bounded source halos and rebuild without IO; provider revision/URLs/configuration are not archived. Runtime stream owners/focus/budgets, pending admissions, undo history and GPU/hysteresis state are not archived: replace restored resident actors when explicitly creating a new streaming owner. Formats 10–13 terrain remain eager; 10/11 also disable LOD/layers and use neutral policies. Other generic mesh LOD cache regeneration and solver/controller restoration contracts remain unchanged.
 
-Demo `?scene=terrain` uses 97x97 samples, 0.5 m spacing, 24-cell chunks and grass/sand/rock/soil. Navigate uses shared orbit/query input; brush mode exclusively owns pointer gestures. Stamps require radius/4 travel and cap at eight per input frame. Release/cancel stops further work but keeps committed stamps. Coordinate Apply, 16-stamp undo/redo, explicit stream radius/count/build/focus controls and affected/resident readouts share engine APIs. New admissions inherit selected camera/shadow detail and surface inspection mode. Settings changes clear demo balls/history; reset restores full original terrain/detail/perspective. Save/open preserves edited source and current resident snapshot. GL shadow controls remain disabled. See `docs/terrain-edit-validation.md` for evidence; geomorphing and holes/overhangs remain extensions.
+Demo `?scene=terrain` uses 97x97 samples, 0.5 m spacing, 24-cell chunks and grass/sand/rock/soil. Navigate uses shared orbit/query input; brush mode exclusively owns pointer gestures. Stamps require radius/4 travel and cap at eight per input frame. Release/cancel stops further work but keeps committed stamps. Coordinate Apply, 16-stamp undo/redo, explicit stream radius/count/build/focus controls and affected/resident readouts share engine APIs. New admissions inherit selected camera/shadow detail and surface inspection mode. Settings changes clear demo balls/history; reset restores full original terrain/detail/perspective. Save/open preserves edited source and current resident snapshot. GL shadow controls remain disabled. See `docs/terrain-edit-validation.md` for evidence; geomorphing remains an extension; authored holes/overhangs, interactive cutting and bounded buildTerrainSeam transitions, constrained hole-aware LOD and automatic archive-v36 LOD regeneration are described in [hybrid terrain](hybrid-terrain.md).
 
 
 `terrain_paging.hpp` adds bounded source paging separately from full-source edits. `TerrainPageLayout` describes 2–65,537 samples per axis and up to 1,048,576 pages without allocating the world. Each `TerrainPage` contains one chunk with a clipped two-sample height/optional sample-sized RGBA halo and immutable nonzero 64-bit revision. `region`/`dimensions` define its payload; WETP v2 encode/decode (also reading v1 base pages with generation zero) checks counts, finite heights, CRC32, trailing bytes and a 256 KiB response cap. Global positions/UVs/perimeter normals match the full-source generator. Page materials share four tiles, retain no global weights, and map local Clamp masks at sample centers including positive global UV scale/offset.
@@ -268,7 +268,7 @@ Read `docs/movement.md`, `docs/physics.md`, `docs/physics-joints.md` and `docs/s
 Read `docs/animation-control.md`, `docs/prefabs.md`, `docs/gui.md`, `docs/ui-input-integration.md`, `docs/audio.md`, `docs/scene-archives.md` and `docs/persistence.md` for the systems used.
 
 - Shared animation controller definitions supply typed parameters, ordered transitions and two-clip blends; clip marker lists are authored explicitly (FBX/GLB import produces empty lists). Consume events/root-motion output regularly. Both blend contributors can emit markers; gameplay chooses weight filtering/merging and collision-aware movement. Controller transitions preserve pending output. Scene archives retain definitions, instance state, markers and pending output; executable marker responses are rebuilt.
-- Prefabs are in-memory definitions with stable definition-local keys, independent instance state, shared assets and versioned application factories. Instantiation validates a detached candidate before publication; trusted factory external side effects are not rolled back. Definition keys, runtime handles and stable saved identities are different. Prefab factory registration does not register a persistence codec; register custom `ComponentCodecs` separately. There is no general prefab definition-file format or serialization of arbitrary executable factories.
+- Prefabs are in-memory definitions with stable definition-local keys, independent instance state, shared assets and versioned application factories. Instantiation validates a detached candidate before publication; trusted factory external side effects are not rolled back. Definition keys, runtime handles and stable saved identities are different. Prefab factory registration does not register a persistence codec; register custom `ComponentCodecs` separately. The separate [PrefabAsset authoring path](prefab-assets.md) now saves built-in definitions/variants and propagates instance updates. Arbitrary executable factories are not serialized.
 - Input context changes release owned sources; bind through `Application::submitInput` rather than mutating its read-only snapshot. GUI has first refusal. Dispose virtual controls before removing DOM elements. GUI logical scale differs from DPR. Canvas text uses trusted font assets and single-line input; shaping/bidi/grapheme selection/font fallback/multiline editing are not delivered. Native semantic DOM/text adapters must be disposed before GUI destruction.
 - Runtime audio owns independent voices/buses/fades and scene-scoped emitter/listener handles. Choose its time domain and synchronize after simulation. It has no built-in scene archive codec; the older browser waveform/MP3/WAV archive workflow is separate. Browser activation/audible device evidence is explicit.
 - Built-in archives save scene/resources and application payloads; custom subclasses need versioned `ComponentCodecs`, with unknown types rejected. Decode/migration/validation stages ownership before publication. Runtime handles are recreated, while saved identities resolve persisted references. Rebuild action executors/subscriptions, input contexts, GUI, camera behaviours, audio and joints. Physics restoration preserves supported data, not exact solver history/undo.
@@ -432,3 +432,453 @@ profile transport/banking/UVs, bounded synchronous publication, protected static
 collision children, grouped editor/terrain-point baking and v27 source-only archives.
 Do not reference generated cache meshes as persistent route identities or infer
 lane/junction logic. Scene ownership and physics invalidation contracts still apply.
+
+## Surface-following contact strips
+
+Use explicit World-only SurfaceTrail and submitSurfaceContact before the normal
+scene variable update. Games own contact/slip and receiver changes; missing input
+breaks. World marks never retain/move with receivers. Reuse FX history/preview,
+textures/curves, depth/fog and bounded live archive normals. See [contracts and
+validation](surface-trails.md); verify the selected game pin.
+
+## Typed AI blackboard integration
+
+Declare immutable graph fields with defaults and numeric/vector bounds, then map AiBinding::sources parameter keys to compatible field keys. Controller callbacks receive current resolved parameters; supply patches on the scene owner in actor fixed ticks before child AI/motors. Live actor references are saved IDs resolved per scene and may disappear safely. setBlackboard validates complete patches atomically and preserves timers/history; restart preserves inputs, configure resets defaults. Source configuration and live Play edits have separate ownership. See [blackboard contracts](ai-blackboards.md).
+
+## Custom GUI widget integration (2026-10-19)
+
+Compose Checkbox and Slider in optional engine_gui. Widget painting, portable
+pointer/key/activation and semantic hooks can define application controls without
+modifying a renderer. GuiSystem still owns clipping, scale, capture and focus.
+Use Capture on pointer Down for slider-like drags; Handled allows ancestor scroll
+takeover with Cancel. Values are application presentation/input state; callbacks
+choose game/audio policy. Keep callbacks alive and adapters detached before GUI
+destruction; do not retain hook contexts or reenter traversal. See
+[custom widget APIs and defaults](gui-widgets.md), selected-engine docs/gui-widgets.md
+and its validation document. A game pin may lack these development APIs.
+
+## Hierarchical AI integration
+
+Declare optional parent/initialChild IDs with root entry and depth <=16. Register a binding for every group/leaf; enter/update run outer-to-inner and exit runs inner-to-outer. Parent interrupts precede child transitions; per-source vector order remains deterministic. Retained ancestors retain timers/resources; external source/target ancestor or self-transitions reenter that subtree. Stop and failures unwind the entire active path. Keep command ownership explicit across active callbacks and cancel navigation in exit. The blackboard stays one per agent; activePath spans are borrowed until the next operation/destruction. See [hierarchy contracts](ai-hierarchy.md).
+
+
+## GUI theme integration (2026-10-19)
+
+GuiSystem::setTheme owns a validated GuiTheme value. Configure defaults and
+forKind(GuiStyleKind), then optional widget.style/stateStyles partial patches.
+GuiPainter::style supplies resolved colors; primitives multiply opacity once.
+Use the resolved style in custom painters rather than raw inline color reads.
+Normal layers precede checked/hovered/focused/pressed/disabled layers. Local
+normal colors can be superseded by state defaults; supply matching local state
+patches to retain them. Existing color assignment is supported, reset restores
+inheritance, and GuiStyle full assignment pins every normal field. See
+[theme API, migration and limits](gui-themes.md). Keep theme choice/persistence,
+font selection and layout policy in applications; verify consumer engine pins.
+
+## Water depth capture boundary (2026-10-19)
+
+Water refraction and depth foam fade to surface shading between 75% and 98%
+of the reconstructed near-to-far view-distance range on both backends. This
+prevents a visible colour band when an opaque receiver leaves the depth
+capture. Clear/background and foreground samples remain rejected; no material
+or archive API changes. See `docs/water.md` and
+`docs/water-depth-transition-validation.md` in the selected engine revision.
+Verify the consumer pin includes the fix; no application shader fork is needed.
+
+
+## Measured GUI layout integration (2026-10-19)
+
+Compose optional content sizing/finite minimum and maximum limits with existing
+explicit sizes, stretch, anchors, clipping and themes. Content-height panels
+propagate nested visible extents into ScrollPanel; grid uses equal columns and
+measured row heights. Start/Center/End align groups and cells; child cross/cell
+overrides use setAlignment, while clearAlignment restores defaults/anchors.
+Constraints beat stretch; group packing does not distribute flex weights.
+Layout stages complete geometry before publication and preserves identity,
+callbacks and input ownership. Custom leaves retain preferred intrinsic sizes.
+Use [API/defaults and cycle rules](gui-layout.md). Demo callbacks should retain
+persistent toggle state in widget/application values or shared captured state:
+the engine copies callbacks before invocation to preserve safe lifetimes.
+Verify consumer engine pins before using these development APIs.
+
+## Typed AI event integration
+
+Declare immutable typed event schemas and optional transition event keys. Post exact payload maps on the scene owner; capture eventScope when starting asynchronous work, retain scene-scoped controller handles in adapters and resolve before posting completion. Matched callbacks borrow currentEvent payloads; deliberately copy durable data into compatible blackboard fields. Scope exit/reentry/restart/other instances reject late completions, while producers still cancel subscriptions. FIFO events and polled guards share ancestor/source priority; examined false/ineligible events discard. Keep default queue/dispatch/transition/condition budgets explicit across agents. Stop/failure cancels pending input, configure replaces it; queues/tokens/traces never enter scenes/Play clones. See [event contracts](ai-events.md).
+
+## WebGL 2 directional shadows (2026-10-19)
+
+The isolated development engine in CatGame `build/engine-water-depth-transition`
+now supports one directional shadow map per view on WebGL 2. This is not yet in
+the game's pinned dependency. Existing LightComponent shadow settings and
+Renderer casting/receiving/culling/LOD controls apply; maxShadowMaps is capped
+at one (zero disables), with device-bounded resolution and 1/9 PCF taps. The
+DEPTH_COMPONENT24 target is consumed per view and recreated after context loss.
+Opaque/masked World casters retain off-camera selection, CPU skin/morph poses,
+mirrored winding and layered alpha cutouts. Ambient/emission remain unshadowed.
+The existing sun-shadow demo controls exercise it; Paws beach acceptance uses
+`scripts/beach-shadows-smoke.cjs` on both backends, including visible pixel
+comparisons, MSAA, resize, scene return and WebGL context recovery. Basic lighting,
+no PBR/IBL, individual draws and no GPU timing remain WebGL limits. See the
+selected engine's `docs/rendering-fallback.md`. Verify checkout/pin availability.
+
+## Spotlights
+
+Use ordinary LightComponent with LightType::Spot, local emitted direction and
+validated world-unit range/radian half angles. Both renderers share eight slots;
+spot shadows are unavailable. Editor/Play/clone/archive ownership is unchanged.
+See [spotlight contracts](spotlights.md) and verify the consuming engine pin.
+
+Animation libraries and graphical controller authoring are described in [animation authoring](animation-authoring.md). Same-rig imports preserve target skin bindings; gameplay parameters and per-instance playback reuse AnimationComponent. Save .weanim organization/layout separately from scene runtime state.
+
+Shadowed lights, sun cascades, HDR bloom/color grading and both-backend validation: [current lighting contracts](lighting-post-processing.md).
+
+## AI task sequences
+
+AiState now carries <=16 ordered AiTaskSpec entries with registered keys, exact typed parameters, compatible blackboard sources, timeout (0,86400] default30, optional observation event and zero-payload succeededEvent/failedEvent names. AiBindingRegistry::create accepts an optional third vector of up to128 AiTaskBinding factories. Each controller owns fresh AiTask instances; start(controller,spec,activationScope) snapshots inputs, tick returns Running/Succeeded/Failed, and cancel noexcept releases work on every terminal/exit path. At most one task ticks per active state per fixed step; callbacks run only on the scene owner. Scoped terminal events defer through the existing cutoff, retry once per later update while the queue is full and cancel on exit. Retained ancestors retain tasks. Controller stop from callbacks defers teardown safely; configure/restart/source replacement cannot replace executing ownership.
+
+Built-ins: wait(seconds), wait-event(spec.event), move-to(target Vector/speed/distance) via existing Navigator and explicit transient setNavigationSource(source) followed by restart(), face-target(target Vector,+Z facing). Motor/pose tasks require an existing motor, and competing active AI writers reject. Source revision invalidation remains authoritative; no automatic bake/ground/animation subscription. Application animation factories use scoped component handles and own/cancel subscriptions. See [task contracts](ai-tasks.md).
+
+Graph task forms add/reorder/remove tasks, typed constants/source mapping, timeouts and result events with one Apply history edit. Actor Play live tasks show index/key, elapsed, result, reason and pending delivery, with <=32 history records. Standalone manual-guard preview explicitly leaves task execution to Actor Play/custom hosts. WEAI5 reads1..5 inside unchanged AIC2/outer codec1; objects, progress, providers/subscriptions and history stay transient. Run ai_tasks plus state_machine/ai_controller/ai/editor/editor_structure/application/scene_archive checks and scripts/editor-ai-tasks-smoke.cjs on WebGPU/WebGL2 at DPR1/2; preserve exact artifacts and report any concurrent-suite failures.
+
+Animation composition adds masked layers and 1D/2D trees; follow
+[composition integration and current validation commands](animation-layers.md).
+
+Detailed frame/task diagnosis uses the optional [CPU profiling timeline](profiling-timeline.md); keep CPU work, callback intervals and GPU execution boundaries distinct.
+
+Optional [adaptive quality](adaptive-quality.md) owns only value/interval state. Applications sample completed eligible frame intervals, reset evidence on lifecycle/content boundaries and publish effective quality at an idle render boundary. Preserve simulation clocks, authored quality ceilings and renderer recovery lifetimes.
+
+## Native Windows presentation
+
+DesktopHost owns Application/GUI and private SDL/Dawn integration; shared runtime,
+WebGPU/shaders and one Application scheduler remain authoritative. Follow
+[host contracts](windows-desktop.md), [platform services](windows-platform-services.md)
+and [build/scope](windows-native.md). Text focus owns input; honor guiConsumed and
+cancel old-focus/preedit work. Preserve handle validation and idle shutdown.
+Optional WebEngine::Platform supplies bounded rooted file IO/loaders and lazy SDL
+AudioBackend, retaining existing AssetManager/SoundAsset/AudioSystem/archive
+contracts. IO/decode and native host dialogs are synchronous; dialogs only at
+idle/GUI events with suspension/timing restoration. Native output is PCM/float WAV,
+with separate bounded local encoded streams and filter/room DSP; HRTF remains
+an extension. Games own AudioSystem update/suspension, committed
+settings/checkpoint payloads, schema migration and archive publication. Device
+callbacks own PCM/state, never scene/GUI/user callbacks. Settings/checkpoints in
+the vehicle example survive launches; IME preedit stays transient. Native scene workbench and distribution now have
+separate contracts/evidence; native accessibility and physical output acceptance
+remain separate. Verify
+selected consumer pins; this does not provide a Paws Windows app.
+
+## Environmental audio composition
+
+Use the existing application-owned AudioSystem after synchronized simulation. Optional bounded occlusion borrows current physics; room choice and URI/bus assignment remain application policy. No renderer, new scene owner, automatic acoustic volumes or archive codec is added. See [environmental audio](environmental-audio.md).
+
+
+## Cinematic composition
+
+Compose existing nodes, cameras, animation clips, sound URIs and EffectComponents through CinematicSequence. Optional CinematicPreview owns a cloned scene/audio; release renderer borrows before destruction. Keep source simulation paused and gameplay completion application-owned. See [cinematic integration](cinematic-sequencer.md).
+
+
+## Recorded presentation and ghosts
+
+Capture chosen authoritative channels after simulation; ReplayRecording/ReplayPlayer never own scene simulation. ReplayGhost owns no scene borrow and has no physics components; remove through handles on handoff. Review temporarily owns source visibility/camera and pauses live physics; Race explicitly resets only the live car and advances a1x presentation proxy. Keep course tags, scoring and marker interpretation application-owned. See [replay integration](replay-recording.md).
+
+
+## Native scene and audio parity
+
+Read [Windows workbench](windows-editor.md) and [Windows audio](windows-audio-environment.md).
+Keep GUI commands at idle boundaries, source/Play owners distinct, camera handles
+scoped and borrows released before shutdown. Native streams use local file URIs,
+owned codec workers and bounded seek buffers; browser media-element/network policy
+stays independent. Neither adapter adds acoustic zones or audio persistence.
+
+## Selectable Windows graphics backends (2026-10-22)
+
+DesktopSettings::backend defaults to Automatic (Dawn D3D12 → Vulkan → D3D11).
+Explicit choices stay strict; backend() reports the current candidate. Milestones 1-8 deliver shared vehicle/native GUI,
+resize/borderless fullscreen/captures, static conventional PBR/IBL, five material
+maps with semantic mips/wrapping, first eight directional/point/spot lights, four
+directional/cascade/spot shadow maps, cutouts, sorted transparency, winding and
+checked 4x MSAA. Reuse Material/Texture/Environment, RenderFrame/FxFrame/planShadows.
+
+Milestone 3 reuses Scene::setSky/setFog, SkyBackground/FogSettings, prepareSky/
+prepareFog and skySphereMesh. Gradient/panorama/atmosphere/clouds/day-night payloads
+render as fullscreen or inward sphere. Only applications call advanceSky; the
+renderer never advances clocks. Fog affects static World meshes and sky, respects
+per-view flags and additive extinction; Background/Overlay and GUI stay outside.
+RenderQuality::post is off by default. Supported FP16 render/blend/sample/load
+enables HDR scene rendering, optional quarter-size bloom, exposure/Reinhard/
+saturation/contrast/sRGB composition, then GUI. Bloom may cross view boundaries.
+Zero bloom skips extraction. This is SDR presentation, not HDR10 monitor output.
+hdrPostProcessing reflects queried support; HDR 4x/resolve is checked separately.
+Requested quality stays intact; diagnostics effectivePost/effectiveMsaaSamples
+report the result. Attachment changes fence old resources and preserve captures.
+
+Milestone 4 consumes existing SkeletalMeshComponent/AnimationComponent,
+SkinPose/BoneUniform, SkinVertex and MorphPose without another scheduler or public
+renderer API. Four-influence GPU skinning reads up to 1024 structured palette
+entries (including identity slot zero); inverse-transpose normals and both tangent
+axes retain handedness. Cached CPU morph vertices precede skinning in color and
+shadow passes, including alpha modes, normal maps, mirrored placement, fog/HDR/MSAA.
+Camera/shadow bounds match deformation; static LODs do not simplify these draws.
+Independent players/weights remain per component; clips/layers/trees/IK/retargeting
+continue to produce ordinary shared palettes. Applications still apply root motion.
+Changed pose revisions copy once to reusable GPU buffers; unchanged poses upload
+nothing. Pose caches weakly reference CPU sources and retire buffers behind fences.
+Changing view lists clears collected references/LOD history; unbinding releases
+collected CPU resources. Each pose cache caps at 4096; staging shares the 64 MiB
+frame upload arena with object/view/GUI data. Invalid sizes/indices/nonfinite data
+reject before recording, including when culling is disabled. No GPU clip sampling,
+dual-quaternion skinning, cloth or new import format is added.
+
+Milestone 5 uses existing MaterialLayers, materialTextures/TextureSemantics,
+materialLayerParameters and TerrainComponent meshes without new portable APIs.
+Four sRGB albedos, linear RGBA weights and four packed RGB-normal/alpha-height
+maps support semantic mips, individual wrapping, global/per-layer UVs, weighted
+color/alpha/roughness, active-layer height blending and signed world triplanar
+projection. Missing/zero weights select layer zero; missing color is white and
+missing relief is flat/zero. Conventional maps are inactive while layered;
+scalar metallic/emissive, tint, alpha modes, PBR/IBL, shadows, fog/HDR/MSAA remain.
+Static and skin/morph draws share matching layered cutout shadows. Nine-descriptor
+tables include layered semantic roles in cache keys; object constants use 448
+bytes in 512-byte aligned slots within the existing 64 MiB frame upload bound.
+Shared camera/shadow LOD stays independent, including automatic projected-size
+selection. Rendering never changes terrain ground/collision, paging or simulation.
+Direct counters add layeredDrawCalls, colorTriangles, shadowTriangles and camera/
+shadow LOD parts; these are collector/submission counters, not GPU timings.
+
+Direct mesh instancing and semantic BC7 uploads are now supported. Direct device loss queues bounded reacquisition. See [Automatic Dawn API
+fallback](windows-graphics-fallback.md). Full renderer parity and speed comparisons are not established.
+Keep GPU types private and simulation independent. Verify consumer pins; this
+does not advance CatGame's pin or create a Paws Windows host.
+
+Build scripts/build-windows.ps1 -Backend Both|Dawn|D3D12 (Both default); direct-only
+excludes Dawn lookup/linkage. Launch webengine_windows or webengine_lighting_windows
+with --backend dawn|d3d12. The latter adds material/lighting/environment/post GUI
+controls and --capture image.ppm (parent must exist); F11 fullscreen, Escape exits.
+Run windows-animation-smoke.ps1, windows-environment-smoke.ps1, windows-lighting-smoke.ps1 and
+windows-backend-smoke.ps1 plus native desktop_api/desktop_api_d3d12/render_quality/
+adaptive_quality. WEBENGINE_D3D12_VALIDATION=1 requires Windows Graphics Tools.
+Also launch webengine_animation_windows --backend dawn|d3d12 for playback/blend/
+pose/morph controls and deterministic --capture image.ppm; F11 fullscreen, Esc exits.
+Run browser morph-smoke with BACKEND=webgpu|webgl2, skeletal-animation-smoke
+(WebGPU palette uploads) and animation-layers-smoke (both). WebGL2 CPU deformation
+still uploads vertices per draw. Rerun sky-smoke/sky-weather-smoke/fog-smoke/lighting-post-smoke on forced
+WebGPU/WebGL2 against the pinned local Emscripten build. WebGL2 retains basic
+lighting, not PBR/IBL. Use fresh pixel/counter evidence and separate native/browser
+results; neither establishes physical mobile or unsupported-adapter acceptance.
+
+Read [backend contracts](windows-d3d12.md), [sky](sky.md),
+[fog](fog.md) and [milestone 3 evidence](windows-d3d12-milestone3-validation.md).
+Earlier milestone evidence remains historical.
+
+Read [animated rendering](windows-animation-rendering.md) and
+[milestone 4 evidence](windows-d3d12-milestone4-validation.md).
+
+Launch webengine_terrain_windows --backend dawn|d3d12 for retained layer/relief/
+projection and independent camera/shadow LOD controls. --capture image.ppm makes a
+paused GUI capture; F11 toggles fullscreen, Esc exits. Run windows-terrain-smoke.ps1
+for paired 46-case native pixels and counters, plus terrain/material/render_frame
+and desktop_api tests. Run browser terrain-surface-smoke.cjs on fresh explicit
+WebGPU/WebGL2 artifacts for layered surfaces, LOD, collision invariance, archive
+round trips and recovery. WebGL2 supports shadows with basic lighting, no PBR/IBL.
+Read [terrain](terrain.md) and [milestone 5 evidence](windows-d3d12-milestone5-validation.md).
+
+Milestone 6 reuses MaterialShader::Water/WaterSettings, waterParameters,
+waterReflection, underwaterView, WaterInteractionParameters and prepareUnderwater.
+Direct water supports Gerstner displacement after morph/skin, moving normals,
+Fresnel/IBL, depth refraction/foam, mirrored opaque/cutout World captures, reflected
+height fog, underwater absorption/scattering/caustics and transient rings/wakes.
+Mirrored double-sided PSOs preserve front-face normals independently of culling.
+Viewport-clamped/scissored snapshots isolate cameras. At 4x, color averages and
+depth takes the nearest sample; 1x loads directly. Underwater runs after completed
+World and before Overlay/GUI. HDR inputs stay linear; non-HDR 1x accumulation copies
+to the swapchain before GUI. Fence-safe targets shrink to 1x1 when effects are off.
+Object constants are now 560 bytes in 768-byte slots aligned to 256 bytes; frame
+payloads are 2352 bytes, sharing the existing bounded 64 MiB upload arena.
+
+DesktopHost::setWaterInteractions(span) validates/copies up to 16 existing portable
+WaterInteraction values after scene activation or from frame callbacks. Native
+water uses Application simulation seconds, independent of GUI presentation; use
+that same clock for startTime. Pause/suspension freeze waves, caustics and contact
+ages. View edits/recovery retain snapshots; successful scene handoff clears them.
+Invalid snapshots preserve previous values. Inputs borrow no nodes/callbacks and
+are not archived. Applications own contact detection/emission and reconstitution.
+Browser Renderer clocks remain caller-owned. Water surface defaults remain .12 m
+amplitude, 3 m wavelength, speed 1; refraction/foam/planar/underwater/caustics are off
+by default. Geometry must be sufficiently subdivided; height/displacement never
+changes simulation or collision. Rectangular underwater and one reflection plane
+per view remain approximations; transparent reflection sources are excluded.
+
+Launch webengine_water_windows --backend dawn|d3d12 for retained water controls,
+moving wake/contact emission, pause, HDR/MSAA and --capture image.ppm. F11 toggles
+fullscreen; Esc exits; capture parent must exist. The example enables water scene
+effects and HDR only as application policy. Run windows-water-smoke.ps1 for paired
+63-case native pixels/counters, plus water/material/render_frame/desktop_api tests.
+Run water-smoke, water-depth-smoke, water-planar-smoke, water-underwater-smoke,
+water-caustics-smoke and water-interactions-smoke against fresh pinned local SDK
+artifacts on explicit WebGPU/WebGL2. Report native/browser separately. No physical
+mobile, other-GPU, sustained-performance or direct device-recovery claim follows.
+Milestone 8 delivers mesh instancing and semantic BC7 uploads.
+No fluid simulation, buoyancy, automatic emission or new archive version is added.
+
+Read [water](water.md) and [milestone 6 evidence](windows-d3d12-milestone6-validation.md).
+
+## Shared authoring frontend (2026-10-22)
+
+Read [native/browser authoring APIs and limits](editor-authoring.md),
+[content iteration](content-iteration.md) and [validation commands/evidence](editor-authoring-validation.md).
+Link optional engine_editor_gui; keep platform file IO in host adapters.
+Run native and Wasm widget contracts, real Windows SDL/Dawn and both forced
+browser renderer acceptance, including file exchange and stale-upload rejection.
+Do not claim advanced browser graph/curve/cinematic playback parity from these forms.
+
+
+## Native graphics API fallback (2026-10-22)
+
+See [Automatic D3D12/Vulkan/D3D11 APIs and ownership](windows-graphics-fallback.md)
+and [native/browser validation and commands](windows-graphics-fallback-validation.md).
+Strict selections do not switch. Keep renderer replacement, diagnostics, runtime
+lookup and readback cancellation in the native host, with source/GUI/clocks shared.
+
+## Direct D3D12 FX milestone 7 (2026-10-22)
+
+Milestone 7 adds direct D3D12 billboard/velocity/plane FX, flipbooks,
+ribbons/supplied-contact surface trails, mesh particles and soft opaque-depth fading.
+Use existing ParticleEmitterComponent/EffectComponent definitions and FxFrame;
+simulation, seeds, transforms, contact policy and archives remain portable. Alpha
+meshes/quads/segments share center sorting before additive draws. FX depth-tests
+without writes, uses premultiplied blending, alpha fog haze/additive extinction,
+HDR/MSAA, masks and ordered views. Mesh particles follow ordinary materials/LOD
+and individual direct mesh submissions; they do not cast shadows and require zero
+softDistance. General mesh instancing now accompanies the dedicated particle path.
+
+Soft FX shares one opaque World color/depth snapshot with water, taking minimum
+4x depth; per-camera perspective/orthographic reconstruction and viewport clamps
+isolate views. Underwater runs after World FX, before Overlay/GUI. Positive soft
+distance defaults off (zero); active masked soft emitters conservatively allocate
+scratch even when empty/paused. Disabled subtrees/absent masks do not. Transparent
+surfaces never become soft-depth receivers. Approximate sorting remains.
+
+Direct per-view streams retain numeric/GPU data without scene borrows. Unchanged
+paused streams upload nothing; barriers and submission fences protect copies and
+retired buffers. Identical host view snapshots retain streams/LOD history; changed
+camera identities invalidate them. Preflight FX staging is at most 32 MiB within
+the combined 64 MiB arena; meshes/FX share the 40960 draw and 65536 descriptor limits.
+Counters expose particles, meshParticles, particleDrawCalls, trailDrawCalls,
+trailSegments and changed particleUploadBytes/trailUploadBytes per view. Mesh instancing, BC7 uploads and bounded direct recovery are now delivered.
+
+Launch webengine_fx_windows --backend dawn|d3d12 for deterministic paused presets,
+restart, simulation playback, fog/HDR/MSAA; F11 fullscreen, Esc exits. --capture
+image.ppm includes retained controls (create parent directory first). Build with
+scripts/build-windows.ps1 -Backend Both|Dawn|D3D12; Both remains default. Run
+windows-fx-smoke.ps1 for 102 paired captures, then fx/trail/plane_particle/
+mesh_particle/material/water/render_frame and desktop_api/desktop_api_d3d12 CTest.
+Validate a separate Dawn-free build. Browser suites fx-milestone-smoke,
+trail-depth-smoke, plane-particle-smoke, mesh-particle-smoke and surface-trail-smoke
+force WebGPU/WebGL2 against fresh pinned local Emscripten outputs. Record native
+and browser separately; no other-GPU/mobile/throughput acceptance follows. No
+consumer pin, Paws host, public renderer API or archive version changes here.
+
+Read [native FX](windows-fx-rendering.md) and [milestone 7 evidence](windows-d3d12-milestone7-validation.md).
+
+## Direct D3D12 recovery and performance milestone 8 (2026-10-22)
+
+Direct milestone 8 adds bounded device recovery, general mesh instancing and
+semantic BC7 uploads through existing portable resources. Typed removed/reset/hung/
+driver errors queue owner-thread same-backend reacquisition; ordinary invalid data,
+budget failures and user exceptions do not trigger it. Release old GPU/swapchain/
+readback resources before replacement. Keep scene-scoped camera handles, GUI/font
+state, quality/shadows, simulation clock and water snapshots. Resolve handles again;
+skip removed cameras. Cancel pending direct captures with captureError. New devices
+recheck capabilities and lazily upload all assets/poses/FX. Host unavailability
+cancels held input, freezes advancement and preserves Running/Paused without catch-up.
+
+There are three automatic attempts per unstable cycle, bounded backoff starting at
+50 ms, and a budget reset after 120 successful presentations. Exhaustion reports an
+error; retryGraphics starts a new cycle. Do not reacquire after unbinding/shutdown.
+Diagnostics expose generation/deviceRecovery/recoveryAttempts/lastDeviceLoss and
+monotonic presentation counts; ready gates use. Opted-in idle simulateGraphicsLoss
+can call real ID3D12Device5::RemoveDevice when available. It is not an OS reset.
+Dawn retains its existing recovery/capture behavior; strict direct never switches API.
+
+Direct RenderFrame camera/shadow/reflection batches now instance compatible opaque/
+masked parts, including material maps/layers/water and shared skin/morph poses.
+Different poses/bindings/winding/ranges split batches; sorted transparent meshes
+stay individual. allowInstanceReordering defaults false; opt in only when opaque
+equal-depth precedence may change. Existing ObjectUniform fields use 256-byte slots
+and dirty-range GPU copies, with zero paused object uploads. Per-view streams retain
+no nodes and retire behind fences. Instance staging caps at 32 MiB within the
+combined 64 MiB arena; draw/descriptor/resource limits still apply. Direct counters
+submittedInstances/instancedDrawCalls/maxInstancesPerDraw count mesh submissions
+across color/shadow/reflection; FX has separate counters. Do not infer speedup from
+draw counts or assume cross-backend clear/pass counters have identical scopes.
+
+RenderQuality.compressedTextures defaults true. Direct queries BC7 linear/sRGB
+support and chooses the first supported Texture::compressed variant matching its
+TextureSemantic. Validate all variants before publication: 4-aligned base <=4096,
+complete halved logical mips through 1x1 and exact 16-byte 4x4 blocks. Device copy
+footprints handle block rows/padding/tail mips. Color is BC7 sRGB; data/normal linear.
+Keep RGBA pixels for disabled/unsupported compression, archives and other backends.
+ETC2/ASTC use RGBA fallback on D3D12. GUI forces a separate RGBA cache identity.
+Compression changes fence invalidated texture/material bindings. No runtime encoder,
+transcoder, compressed archive payload or new public renderer/texture API is added.
+
+Build scripts/build-windows.ps1 and a separate -Backend D3D12 tree. Run
+windows-performance-smoke.ps1 for paired 22-case native pixels, real device removal,
+257-to-3 direct color draws, BC7/RGBA selection and retained scenes/clocks/resources.
+Run native desktop_recovery/desktop_fallback/desktop_api/desktop_api_d3d12/
+instancing/render_quality/material/render_frame; repeat recovery/API in the Dawn-free
+build. Regress FX/water/terrain/animation/lighting/vehicle. Browser Release uses
+the pinned repository-local SDK; run render-quality-smoke, instancing-smoke and
+render-fallback-smoke on fresh frozen outputs, with explicit WebGPU/WebGL2 coverage.
+Record platforms separately. Other-GPU, physical mobile, sustained performance and
+cross-device timing comparisons remain separate. Consumer pins/Paws hosts do
+not change with this skill documentation.
+
+Read [recovery/performance contracts](windows-d3d12-recovery-performance.md) and [milestone 8 evidence](windows-d3d12-milestone8-validation.md).
+
+
+## Direct D3D12 GPU profiling
+
+Use [GPU profiling](windows-gpu-profiling.md) for the current direct
+timestamp/query contract and on-demand DesktopHost::gpuProfileTrace export.
+diagnostics().performance includes shared gpu summaries plus gpuProfile nested
+frame/view/pass events, inclusive/self times, sampled metadata and rolling 120-sample
+statistics. Three fenced readback slots sample at 10 Hz without profiling waits;
+scene/view/quality/attachment epochs and device recovery reject stale results.
+WEBENGINE_GPU_TIMING=0 disables native queries/readbacks at device creation on
+direct and Dawn. Browser WebGPU keeps ?gpuTiming=off; WebGL2 remains unavailable.
+GPU clocks are not CPU-correlated. Keep GPU types private and simulation unchanged.
+Run scripts/windows-gpu-profile-smoke.ps1 for both native backends plus a Dawn-free
+build, and browser performance-smoke, performance-timeline-smoke and
+render-fallback-smoke on fresh pinned output. Check actual timing hierarchy, trace
+eviction, loss/recovery and exact profiling-on/off captures. No throughput or
+other-GPU acceptance follows. Verify the consumer pin before using new APIs.
+
+
+## Multiplayer authoring (M6)
+
+Optional header-only network_authoring.hpp stores inert versioned configuration using existing Component tags. Keep engine core independent of protocol/transport and game rules. NetworkScene validates the catalogue; map kinds to detached prototypes, retain generation-checked handles and apply complete records on the idle scene owner. Authoritative state, relevance, prediction and presentation remain independent. See [contracts](multiplayer-authoring.md).
+
+
+## Gameplay-component replication (M7)
+
+Keep game classes, intents, state validation and replica behavior in consumer code. Optional NetworkScene registrations combine trusted archive factories with bounded versioned state and staged no-throw commits. Keep network core scene-independent, topology fixed, generation-checked handles per instance and presentation separate. OwnerOnly updates do not make authored bootstrap secret. See [contracts](multiplayer-components.md).
+
+## Mesh-derived heightfield cuts and grotto content
+
+Use buildTerrainMeshHoleMask with clean authored contact rims before seam and
+sculpt refinement. Its footprint is separate from the union mask so callers can
+replace entrance ownership without losing painted holes. Publish TerrainEdit and
+mesh/collider at idle boundaries; LOD is presentation only. Source patches and
+arbitrary buried closed-volume intersection are unsupported. The demo's enlarged
+Lower Grotto and dry bowl remain example policy composed from existing lake mesh
+preparation. See [contracts](terrain-mesh-holes.md), [demo](hybrid-terrain.md) and
+[evidence](hybrid-terrain-grotto-validation.md).
+
+## Open-path terrain cliffs
+
+For heightfield-to-mesh cliff replacement, paired hole/mesh publication, exact
+perimeter seams, material transitions, LOD/collision and browser/Windows acceptance,
+read [cliff contracts](terrain-cliffs.md) and [validation](terrain-cliffs-validation.md).
+Verify availability in the selected engine checkout; documentation does not
+advance a consumer dependency.

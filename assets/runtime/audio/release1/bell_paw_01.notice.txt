@@ -1,1 +1,2 @@
 ElevenLabs-generated Paws sound effect. Account distribution rights and attribution remain to be verified.
+Derived paw note from bell_leaf_01; see catalog.json for source and processing hashes.

@@ -59,6 +59,7 @@ At runtime a missing/disabled target resolves to null, so `near` returns false.
 | `move` | Behavior | `velocity`: world-space Vector, default `(1,0,0)`, each component -100..100. Requires a motor; collision-aware velocity must have Y=0. |
 | `always` | Condition | Returns true; combine with graph minimum-state time for timed transitions. |
 | `flag` | Condition | Boolean `value`, default false. |
+| `not-flag` | Condition | Negates Boolean `value`, default false. |
 | `near` | Condition | Actor `target`, default none; Number `distance`, default 2 m, range 0..10000. Tests authoritative world positions. |
 
 Graphs retain their own state behavior/condition labels. Controller configuration
@@ -137,10 +138,23 @@ payloads are reconstructed by value; other reference-cloned immutable scene asse
 retain their existing sharing contracts.
 
 This is configuration persistence, not an AI runtime checkpoint or visual action
-scripting system. Navigation bindings, game perception, dynamic parameter feeds
-and additional behaviors remain application integrations. Generic actor duplication
+scripting system. Navigation bindings, game perception and additional behaviors remain application integrations. Generic actor duplication
 still uses the built-in subtree codec path and rejects custom AI components rather
-than dropping them. No automatic binding discovery, hierarchical states, remote
+than dropping them. No automatic binding discovery, remote
 debugger or physical-mobile acceptance is implied.
 
 See `docs/ai-controllers-validation.md` in the selected engine checkout.
+
+Dynamic parameter sources, typed schema/default authoring, live Play inputs, guard labels and WEAI2/AIC2 compatibility are described in [typed blackboards](ai-blackboards.md).
+
+Controllers now execute nested groups/leaf bindings, report complete active paths and record one accepted edge with leaf and declared endpoints. See [hierarchical AI](ai-hierarchy.md).
+
+Controllers now forward postEvent/currentEvent/eventScope and bounded event diagnostics. Inputs validate saved actor references; configuration reentry from a running callback rejects. See [typed event queues](ai-events.md).
+
+## AI task sequences
+
+AiState now carries <=16 ordered AiTaskSpec entries with registered keys, exact typed parameters, compatible blackboard sources, timeout (0,86400] default30, optional observation event and zero-payload succeededEvent/failedEvent names. AiBindingRegistry::create accepts an optional third vector of up to128 AiTaskBinding factories. Each controller owns fresh AiTask instances; start(controller,spec,activationScope) snapshots inputs, tick returns Running/Succeeded/Failed, and cancel noexcept releases work on every terminal/exit path. At most one task ticks per active state per fixed step; callbacks run only on the scene owner. Scoped terminal events defer through the existing cutoff, retry once per later update while the queue is full and cancel on exit. Retained ancestors retain tasks. Controller stop from callbacks defers teardown safely; configure/restart/source replacement cannot replace executing ownership.
+
+Built-ins: wait(seconds), wait-event(spec.event), move-to(target Vector/speed/distance) via existing Navigator and explicit transient setNavigationSource(source) followed by restart(), face-target(target Vector,+Z facing). Motor/pose tasks require an existing motor, and competing active AI writers reject. Source revision invalidation remains authoritative; no automatic bake/ground/animation subscription. Application animation factories use scoped component handles and own/cancel subscriptions. See [task contracts](ai-tasks.md).
+
+Graph task forms add/reorder/remove tasks, typed constants/source mapping, timeouts and result events with one Apply history edit. Actor Play live tasks show index/key, elapsed, result, reason and pending delivery, with <=32 history records. Standalone manual-guard preview explicitly leaves task execution to Actor Play/custom hosts. WEAI5 reads1..5 inside unchanged AIC2/outer codec1; objects, progress, providers/subscriptions and history stay transient. Run ai_tasks plus state_machine/ai_controller/ai/editor/editor_structure/application/scene_archive checks and scripts/editor-ai-tasks-smoke.cjs on WebGPU/WebGL2 at DPR1/2; preserve exact artifacts and report any concurrent-suite failures.

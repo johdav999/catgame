@@ -1,0 +1,786 @@
+PAWS_AFTERNOON 12
+LEGACY "PAWS_AFTERNOON 5 2 0 0 0 70 60 80 51 60 3 1 1 1
+0 \"legacy\" 0
+0
+0 0 \"\" \"\" 0
+\"missing-ball-v2\" 32 2 33
+1 \"pot_a\" 0 \"\"
+1 \"pot_a\" 0 \"\"
+1 \"pot_b\" 3 \"\"
+1 \"pot_a\" 3 \"\"
+1 \"pot_b\" 0 \"\"
+2 \"channel_a\" 0 \"\"
+2 \"channel_a\" 0 \"\"
+2 \"channel_a\" 0 \"\"
+2 \"channel_b\" 0 \"\"
+2 \"channel_c\" 0 \"\"
+2 \"channel_d\" 0 \"\"
+2 \"channel_d\" 0 \"\"
+2 \"channel_d\" 0 \"\"
+2 \"channel_e\" 0 \"\"
+3 \"\" 0 \"\"
+4 \"\" 0 \"\"
+5 \"\" 0 \"\"
+1 \"pot_a\" 0 \"\"
+1 \"pot_a\" 0 \"\"
+1 \"pot_b\" 3 \"\"
+1 \"pot_a\" 3 \"\"
+1 \"pot_b\" 0 \"\"
+2 \"channel_a\" 0 \"\"
+2 \"channel_a\" 0 \"\"
+2 \"channel_a\" 0 \"\"
+2 \"channel_b\" 0 \"\"
+2 \"channel_c\" 0 \"\"
+2 \"channel_d\" 0 \"\"
+2 \"channel_d\" 0 \"\"
+2 \"channel_d\" 0 \"\"
+2 \"channel_e\" 0 \"\"
+3 \"\" 0 \"\"
+\"tidy-toys-v2\" 20 4 21
+1 \"cushion\" 0 \"\"
+10 \"fish\" 0 \"\"
+11 \"fish\" 0 \"fish_recess\"
+1 \"cushion\" 2 \"\"
+1 \"cushion\" 2 \"\"
+10 \"mouse\" 0 \"\"
+11 \"mouse\" 0 \"mouse_recess\"
+10 \"ball\" 0 \"\"
+11 \"ball\" 0 \"ball_recess\"
+4 \"\" 0 \"\"
+5 \"\" 0 \"\"
+1 \"cushion\" 0 \"\"
+10 \"fish\" 0 \"\"
+11 \"fish\" 0 \"fish_recess\"
+1 \"cushion\" 2 \"\"
+1 \"cushion\" 2 \"\"
+10 \"mouse\" 0 \"\"
+11 \"mouse\" 0 \"mouse_recess\"
+10 \"ball\" 0 \"\"
+11 \"ball\" 0 \"ball_recess\"
+\"stuck-gate-v2\" 24 6 25
+1 \"pot\" 0 \"\"
+2 \"channel_a\" 0 \"\"
+2 \"channel_b\" 0 \"\"
+2 \"channel_b\" 0 \"\"
+2 \"channel_b\" 0 \"\"
+2 \"channel_c\" 0 \"\"
+3 \"\" 0 \"\"
+1 \"pot\" 3 \"\"
+1 \"gate_crate\" 3 \"\"
+1 \"gate_crate\" 2 \"\"
+10 \"mouse\" 0 \"\"
+4 \"\" 0 \"\"
+5 \"\" 0 \"\"
+1 \"pot\" 0 \"\"
+2 \"channel_a\" 0 \"\"
+2 \"channel_b\" 0 \"\"
+2 \"channel_b\" 0 \"\"
+2 \"channel_b\" 0 \"\"
+2 \"channel_c\" 0 \"\"
+3 \"\" 0 \"\"
+1 \"pot\" 3 \"\"
+1 \"gate_crate\" 3 \"\"
+1 \"gate_crate\" 2 \"\"
+10 \"mouse\" 0 \"\"
+"
+R1 "paws-release1/1" "beach_fresh_water" 755 0 0 360
+HOME "mabel_friend_share"
+BEACH_END 0
+CATS 4
+"pip" 10 1
+"mabel" 6 0
+"button" 3 0
+"pepper" 4 0
+ITEMS 8
+"garden_cushion" 0 ""
+"drinking_bowl" 0 ""
+"scratching_post" 0 ""
+"sunny_perch" 0 ""
+"hammock" 0 ""
+"playhouse" 0 ""
+"low_picnic_table" 0 ""
+"picnic_mat" 0 ""
+QUESTS 29
+"pip_missing_ball" "missing-ball-v2" 1 2 0
+"pip_tidy_toys" "tidy-toys-v2" 1 4 0
+"pip_stuck_gate" "stuck-gate-v2" 1 6 0
+"button_mouse_bench" "button-mouse-bench-v2" 1 8 14
+"slide" "crate_b" "" 1 0 0
+"slide" "crate_a" "" 0 0 0
+"slide" "crate_a" "" 3 0 0
+"slide" "crate_b" "" 3 0 0
+"slide" "crate_c" "" 0 0 0
+"retrieve" "mouse" "near_reach" 0 0 0
+"undo" "" "" 0 0 0
+"restart" "" "" 0 0 0
+"slide" "crate_b" "" 1 0 0
+"slide" "crate_a" "" 0 0 0
+"slide" "crate_a" "" 3 0 0
+"slide" "crate_b" "" 3 0 0
+"slide" "crate_c" "" 0 0 0
+"retrieve" "mouse" "near_reach" 0 0 0
+"mabel_sunny_spot" "mabel-sunny-spot-v2" 1 10 38
+"slide" "planter" "" 3 0 0
+"slide" "planter" "" 0 0 0
+"rotate" "long_plank" "" 0 0 0
+"pick_up" "long_plank" "" 0 0 0
+"fit" "long_plank" "long_socket" 0 0 0
+"rotate" "step_plank" "" 0 0 0
+"pick_up" "step_plank" "" 0 0 0
+"fit" "step_plank" "step_socket" 0 0 0
+"rotate" "finish_plank" "" 0 0 0
+"pick_up" "finish_plank" "" 0 0 0
+"fit" "finish_plank" "finish_socket" 0 0 0
+"rotate" "approach_plank" "" 0 0 0
+"pick_up" "approach_plank" "" 0 0 0
+"fit" "approach_plank" "approach_socket" 0 0 0
+"rotate" "perch_plank" "" 0 0 0
+"pick_up" "perch_plank" "" 0 0 0
+"fit" "perch_plank" "perch_socket" 0 0 0
+"connect" "" "" 0 0 0
+"undo" "" "" 0 0 0
+"restart" "" "" 0 0 0
+"slide" "planter" "" 3 0 0
+"slide" "planter" "" 0 0 0
+"rotate" "long_plank" "" 0 0 0
+"pick_up" "long_plank" "" 0 0 0
+"fit" "long_plank" "long_socket" 0 0 0
+"rotate" "step_plank" "" 0 0 0
+"pick_up" "step_plank" "" 0 0 0
+"fit" "step_plank" "step_socket" 0 0 0
+"rotate" "finish_plank" "" 0 0 0
+"pick_up" "finish_plank" "" 0 0 0
+"fit" "finish_plank" "finish_socket" 0 0 0
+"rotate" "approach_plank" "" 0 0 0
+"pick_up" "approach_plank" "" 0 0 0
+"fit" "approach_plank" "approach_socket" 0 0 0
+"rotate" "perch_plank" "" 0 0 0
+"pick_up" "perch_plank" "" 0 0 0
+"fit" "perch_plank" "perch_socket" 0 0 0
+"connect" "" "" 0 0 0
+"button_cushion_bed" "button-cushion-bed-v1" 1 12 18
+"pick_up" "square" "" 0 0 0
+"fit" "square" "basket" 0 0 0
+"pick_up" "bar" "" 0 0 0
+"rotate" "bar" "" 0 0 0
+"fit" "bar" "basket" 0 2 0
+"pick_up" "elbow" "" 0 0 0
+"rotate" "elbow" "" 0 0 0
+"fit" "elbow" "basket" 0 3 1
+"undo" "" "" 0 0 0
+"restart" "" "" 0 0 0
+"pick_up" "square" "" 0 0 0
+"fit" "square" "basket" 0 0 0
+"pick_up" "bar" "" 0 0 0
+"rotate" "bar" "" 0 0 0
+"fit" "bar" "basket" 0 2 0
+"pick_up" "elbow" "" 0 0 0
+"rotate" "elbow" "" 0 0 0
+"fit" "elbow" "basket" 0 3 1
+"mabel_drinking_route" "mabel-drinking-route-v1" 1 14 18
+"rotate" "channel_a" "" 0 0 0
+"rotate" "channel_b" "" 0 0 0
+"rotate" "channel_b" "" 0 0 0
+"rotate" "channel_b" "" 0 0 0
+"rotate" "channel_c" "" 0 0 0
+"rotate" "channel_d" "" 0 0 0
+"rotate" "channel_e" "" 0 0 0
+"roll" "" "" 0 0 0
+"undo" "" "" 0 0 0
+"restart" "" "" 0 0 0
+"rotate" "channel_a" "" 0 0 0
+"rotate" "channel_b" "" 0 0 0
+"rotate" "channel_b" "" 0 0 0
+"rotate" "channel_b" "" 0 0 0
+"rotate" "channel_c" "" 0 0 0
+"rotate" "channel_d" "" 0 0 0
+"rotate" "channel_e" "" 0 0 0
+"roll" "" "" 0 0 0
+"pepper_garden_bells" "pepper-garden-bells-v1" 1 16 12
+"tap_symbol" "leaf" "" 0 0 0
+"tap_symbol" "star" "" 0 0 0
+"tap_symbol" "leaf" "" 0 0 0
+"tap_symbol" "paw" "" 0 0 0
+"tap_symbol" "star" "" 0 0 0
+"undo" "" "" 0 0 0
+"restart" "" "" 0 0 0
+"tap_symbol" "leaf" "" 0 0 0
+"tap_symbol" "star" "" 0 0 0
+"tap_symbol" "leaf" "" 0 0 0
+"tap_symbol" "paw" "" 0 0 0
+"tap_symbol" "star" "" 0 0 0
+"pip_pepper_playhouse" "pip-pepper-playhouse-v2" 1 18 28
+"assign_cat" "pip" "pip_switch" 0 0 0
+"assign_cat" "pepper" "storage" 0 0 0
+"slide" "crate" "" 2 0 0
+"assign_cat" "pip" "waiting" 0 0 0
+"slide" "crate" "" 3 0 0
+"slide" "crate" "" 2 0 0
+"slide" "crate" "" 3 0 0
+"slide" "crate" "" 3 0 0
+"slide" "crate" "" 3 0 0
+"assign_cat" "pepper" "pepper_switch" 0 0 0
+"assign_cat" "pip" "inside_entry" 0 0 0
+"assign_cat" "pip" "inside_latch" 0 0 0
+"assign_cat" "pepper" "pepper_inside" 0 0 0
+"undo" "" "" 0 0 0
+"restart" "" "" 0 0 0
+"assign_cat" "pip" "pip_switch" 0 0 0
+"assign_cat" "pepper" "storage" 0 0 0
+"slide" "crate" "" 2 0 0
+"assign_cat" "pip" "waiting" 0 0 0
+"slide" "crate" "" 3 0 0
+"slide" "crate" "" 2 0 0
+"slide" "crate" "" 3 0 0
+"slide" "crate" "" 3 0 0
+"slide" "crate" "" 3 0 0
+"assign_cat" "pepper" "pepper_switch" 0 0 0
+"assign_cat" "pip" "inside_entry" 0 0 0
+"assign_cat" "pip" "inside_latch" 0 0 0
+"assign_cat" "pepper" "pepper_inside" 0 0 0
+"garden_picnic" "garden-picnic-v1" 1 20 8
+"fit" "bed" "spot_1_1" 0 0 0
+"fit" "bowl" "spot_2_1" 0 0 0
+"connect" "" "" 0 0 0
+"undo" "" "" 0 0 0
+"restart" "" "" 0 0 0
+"fit" "bed" "spot_1_1" 0 0 0
+"fit" "bowl" "spot_2_1" 0 0 0
+"connect" "" "" 0 0 0
+"pepper_scent_trail" "pepper-scent-trail-v1" 1 22 50
+"inspect" "clue_0" "" 0 0 0
+"inspect" "clue_1" "" 0 0 0
+"inspect" "clue_2" "" 0 0 0
+"follow_trail" "trail_0" "" 0 0 0
+"inspect" "clue_0" "" 0 0 0
+"inspect" "clue_1" "" 0 0 0
+"inspect" "clue_2" "" 0 0 0
+"follow_trail" "trail_1" "" 0 0 0
+"inspect" "clue_0" "" 0 0 0
+"inspect" "clue_1" "" 0 0 0
+"inspect" "clue_2" "" 0 0 0
+"follow_trail" "trail_2" "" 0 0 0
+"inspect" "clue_0" "" 0 0 0
+"inspect" "clue_1" "" 0 0 0
+"inspect" "clue_2" "" 0 0 0
+"follow_trail" "trail_1" "" 0 0 0
+"inspect" "clue_0" "" 0 0 0
+"inspect" "clue_1" "" 0 0 0
+"inspect" "clue_2" "" 0 0 0
+"follow_trail" "trail_0" "" 0 0 0
+"inspect" "clue_0" "" 0 0 0
+"inspect" "clue_1" "" 0 0 0
+"inspect" "clue_2" "" 0 0 0
+"follow_trail" "trail_2" "" 0 0 0
+"undo" "" "" 0 0 0
+"restart" "" "" 0 0 0
+"inspect" "clue_0" "" 0 0 0
+"inspect" "clue_1" "" 0 0 0
+"inspect" "clue_2" "" 0 0 0
+"follow_trail" "trail_0" "" 0 0 0
+"inspect" "clue_0" "" 0 0 0
+"inspect" "clue_1" "" 0 0 0
+"inspect" "clue_2" "" 0 0 0
+"follow_trail" "trail_1" "" 0 0 0
+"inspect" "clue_0" "" 0 0 0
+"inspect" "clue_1" "" 0 0 0
+"inspect" "clue_2" "" 0 0 0
+"follow_trail" "trail_2" "" 0 0 0
+"inspect" "clue_0" "" 0 0 0
+"inspect" "clue_1" "" 0 0 0
+"inspect" "clue_2" "" 0 0 0
+"follow_trail" "trail_1" "" 0 0 0
+"inspect" "clue_0" "" 0 0 0
+"inspect" "clue_1" "" 0 0 0
+"inspect" "clue_2" "" 0 0 0
+"follow_trail" "trail_0" "" 0 0 0
+"inspect" "clue_0" "" 0 0 0
+"inspect" "clue_1" "" 0 0 0
+"inspect" "clue_2" "" 0 0 0
+"follow_trail" "trail_2" "" 0 0 0
+"pip_wobbly_perch" "pip-wobbly-perch-v1" 1 24 42
+"fit" "weight_1" "beam_1" 0 0 0
+"fit" "weight_2" "beam_5" 0 0 0
+"fit" "weight_3" "beam_7" 0 0 0
+"fit" "weight_4" "beam_2" 0 0 0
+"test_balance" "" "" 0 0 0
+"fit" "weight_1" "beam_3" 0 0 0
+"fit" "weight_2" "beam_2" 0 0 0
+"fit" "weight_3" "beam_5" 0 0 0
+"fit" "weight_4" "beam_1" 0 0 0
+"test_balance" "" "" 0 0 0
+"fit" "weight_1" "beam_1" 0 0 0
+"fit" "weight_2" "beam_5" 0 0 0
+"fit" "weight_3" "beam_7" 0 0 0
+"fit" "weight_4" "beam_6" 0 0 0
+"test_balance" "" "" 0 0 0
+"fit" "weight_1" "beam_1" 0 0 0
+"fit" "weight_2" "beam_6" 0 0 0
+"fit" "weight_3" "beam_2" 0 0 0
+"fit" "weight_4" "beam_3" 0 0 0
+"test_balance" "" "" 0 0 0
+"undo" "" "" 0 0 0
+"restart" "" "" 0 0 0
+"fit" "weight_1" "beam_1" 0 0 0
+"fit" "weight_2" "beam_5" 0 0 0
+"fit" "weight_3" "beam_7" 0 0 0
+"fit" "weight_4" "beam_2" 0 0 0
+"test_balance" "" "" 0 0 0
+"fit" "weight_1" "beam_3" 0 0 0
+"fit" "weight_2" "beam_2" 0 0 0
+"fit" "weight_3" "beam_5" 0 0 0
+"fit" "weight_4" "beam_1" 0 0 0
+"test_balance" "" "" 0 0 0
+"fit" "weight_1" "beam_1" 0 0 0
+"fit" "weight_2" "beam_5" 0 0 0
+"fit" "weight_3" "beam_7" 0 0 0
+"fit" "weight_4" "beam_6" 0 0 0
+"test_balance" "" "" 0 0 0
+"fit" "weight_1" "beam_1" 0 0 0
+"fit" "weight_2" "beam_6" 0 0 0
+"fit" "weight_3" "beam_2" 0 0 0
+"fit" "weight_4" "beam_3" 0 0 0
+"test_balance" "" "" 0 0 0
+"pip_friend_ball" "pip-friend-ball-v1" 1 26 28
+"slide" "pot_a" "" 0 0 0
+"slide" "pot_a" "" 0 0 0
+"slide" "pot_b" "" 3 0 0
+"rotate" "channel_a" "" 0 0 0
+"rotate" "channel_b" "" 0 0 0
+"rotate" "channel_c" "" 0 0 0
+"rotate" "channel_d" "" 0 0 0
+"roll" "" "" 0 0 0
+"rotate" "channel_e" "" 0 0 0
+"rotate" "channel_f" "" 0 0 0
+"rotate" "channel_g" "" 0 0 0
+"rotate" "channel_h" "" 0 0 0
+"roll" "" "" 0 0 0
+"undo" "" "" 0 0 0
+"restart" "" "" 0 0 0
+"slide" "pot_a" "" 0 0 0
+"slide" "pot_a" "" 0 0 0
+"slide" "pot_b" "" 3 0 0
+"rotate" "channel_a" "" 0 0 0
+"rotate" "channel_b" "" 0 0 0
+"rotate" "channel_c" "" 0 0 0
+"rotate" "channel_d" "" 0 0 0
+"roll" "" "" 0 0 0
+"rotate" "channel_e" "" 0 0 0
+"rotate" "channel_f" "" 0 0 0
+"rotate" "channel_g" "" 0 0 0
+"rotate" "channel_h" "" 0 0 0
+"roll" "" "" 0 0 0
+"pip_friend_view" "pip-friend-view-v1" 1 28 38
+"slide" "planter" "" 1 0 0
+"slide" "planter" "" 0 0 0
+"rotate" "long_plank" "" 0 0 0
+"pick_up" "long_plank" "" 0 0 0
+"fit" "long_plank" "long_socket" 0 0 0
+"rotate" "step_plank" "" 0 0 0
+"pick_up" "step_plank" "" 0 0 0
+"fit" "step_plank" "step_socket" 0 0 0
+"rotate" "finish_plank" "" 0 0 0
+"pick_up" "finish_plank" "" 0 0 0
+"fit" "finish_plank" "finish_socket" 0 0 0
+"rotate" "approach_plank" "" 0 0 0
+"pick_up" "approach_plank" "" 0 0 0
+"fit" "approach_plank" "approach_socket" 0 0 0
+"rotate" "perch_plank" "" 0 0 0
+"pick_up" "perch_plank" "" 0 0 0
+"fit" "perch_plank" "perch_socket" 0 0 0
+"connect" "" "" 0 0 0
+"undo" "" "" 0 0 0
+"restart" "" "" 0 0 0
+"slide" "planter" "" 1 0 0
+"slide" "planter" "" 0 0 0
+"rotate" "long_plank" "" 0 0 0
+"pick_up" "long_plank" "" 0 0 0
+"fit" "long_plank" "long_socket" 0 0 0
+"rotate" "step_plank" "" 0 0 0
+"pick_up" "step_plank" "" 0 0 0
+"fit" "step_plank" "step_socket" 0 0 0
+"rotate" "finish_plank" "" 0 0 0
+"pick_up" "finish_plank" "" 0 0 0
+"fit" "finish_plank" "finish_socket" 0 0 0
+"rotate" "approach_plank" "" 0 0 0
+"pick_up" "approach_plank" "" 0 0 0
+"fit" "approach_plank" "approach_socket" 0 0 0
+"rotate" "perch_plank" "" 0 0 0
+"pick_up" "perch_plank" "" 0 0 0
+"fit" "perch_plank" "perch_socket" 0 0 0
+"connect" "" "" 0 0 0
+"pip_friend_room" "pip-friend-room-v1" 1 30 26
+"fit" "weight_1" "beam_1" 0 0 0
+"fit" "weight_2" "beam_5" 0 0 0
+"fit" "weight_3" "beam_7" 0 0 0
+"fit" "weight_4" "beam_2" 0 0 0
+"test_balance" "" "" 0 0 0
+"fit" "weight_1" "beam_1" 0 0 0
+"fit" "weight_2" "beam_6" 0 0 0
+"fit" "weight_3" "beam_2" 0 0 0
+"fit" "weight_4" "beam_3" 0 0 0
+"fit" "pip_cushion" "pip_seat" 0 0 0
+"fit" "your_cushion" "your_seat" 0 0 0
+"test_balance" "" "" 0 0 0
+"undo" "" "" 0 0 0
+"restart" "" "" 0 0 0
+"fit" "weight_1" "beam_1" 0 0 0
+"fit" "weight_2" "beam_5" 0 0 0
+"fit" "weight_3" "beam_7" 0 0 0
+"fit" "weight_4" "beam_2" 0 0 0
+"test_balance" "" "" 0 0 0
+"fit" "weight_1" "beam_1" 0 0 0
+"fit" "weight_2" "beam_6" 0 0 0
+"fit" "weight_3" "beam_2" 0 0 0
+"fit" "weight_4" "beam_3" 0 0 0
+"fit" "pip_cushion" "pip_seat" 0 0 0
+"fit" "your_cushion" "your_seat" 0 0 0
+"test_balance" "" "" 0 0 0
+"mabel_friend_sun" "mabel-friend-sun-v1" 1 32 42
+"slide" "planter_small" "" 3 0 0
+"slide" "planter_small" "" 3 0 0
+"slide" "planter" "" 3 0 0
+"slide" "planter" "" 0 0 0
+"rotate" "long_plank" "" 0 0 0
+"pick_up" "long_plank" "" 0 0 0
+"fit" "long_plank" "long_socket" 0 0 0
+"rotate" "step_plank" "" 0 0 0
+"pick_up" "step_plank" "" 0 0 0
+"fit" "step_plank" "step_socket" 0 0 0
+"rotate" "finish_plank" "" 0 0 0
+"pick_up" "finish_plank" "" 0 0 0
+"fit" "finish_plank" "finish_socket" 0 0 0
+"rotate" "approach_plank" "" 0 0 0
+"pick_up" "approach_plank" "" 0 0 0
+"fit" "approach_plank" "approach_socket" 0 0 0
+"rotate" "perch_plank" "" 0 0 0
+"pick_up" "perch_plank" "" 0 0 0
+"fit" "perch_plank" "perch_socket" 0 0 0
+"connect" "" "" 0 0 0
+"undo" "" "" 0 0 0
+"restart" "" "" 0 0 0
+"slide" "planter_small" "" 3 0 0
+"slide" "planter_small" "" 3 0 0
+"slide" "planter" "" 3 0 0
+"slide" "planter" "" 0 0 0
+"rotate" "long_plank" "" 0 0 0
+"pick_up" "long_plank" "" 0 0 0
+"fit" "long_plank" "long_socket" 0 0 0
+"rotate" "step_plank" "" 0 0 0
+"pick_up" "step_plank" "" 0 0 0
+"fit" "step_plank" "step_socket" 0 0 0
+"rotate" "finish_plank" "" 0 0 0
+"pick_up" "finish_plank" "" 0 0 0
+"fit" "finish_plank" "finish_socket" 0 0 0
+"rotate" "approach_plank" "" 0 0 0
+"pick_up" "approach_plank" "" 0 0 0
+"fit" "approach_plank" "approach_socket" 0 0 0
+"rotate" "perch_plank" "" 0 0 0
+"pick_up" "perch_plank" "" 0 0 0
+"fit" "perch_plank" "perch_socket" 0 0 0
+"connect" "" "" 0 0 0
+"mabel_friend_water" "mabel-friend-water-v1" 1 34 28
+"slide" "pot_a" "" 0 0 0
+"slide" "pot_a" "" 0 0 0
+"slide" "pot_b" "" 3 0 0
+"rotate" "channel_a" "" 0 0 0
+"rotate" "channel_b" "" 0 0 0
+"rotate" "channel_c" "" 0 0 0
+"rotate" "channel_d" "" 0 0 0
+"roll" "" "" 0 0 0
+"rotate" "channel_e" "" 0 0 0
+"rotate" "channel_f" "" 0 0 0
+"rotate" "channel_g" "" 0 0 0
+"rotate" "channel_h" "" 0 0 0
+"roll" "" "" 0 0 0
+"undo" "" "" 0 0 0
+"restart" "" "" 0 0 0
+"slide" "pot_a" "" 0 0 0
+"slide" "pot_a" "" 0 0 0
+"slide" "pot_b" "" 3 0 0
+"rotate" "channel_a" "" 0 0 0
+"rotate" "channel_b" "" 0 0 0
+"rotate" "channel_c" "" 0 0 0
+"rotate" "channel_d" "" 0 0 0
+"roll" "" "" 0 0 0
+"rotate" "channel_e" "" 0 0 0
+"rotate" "channel_f" "" 0 0 0
+"rotate" "channel_g" "" 0 0 0
+"rotate" "channel_h" "" 0 0 0
+"roll" "" "" 0 0 0
+"mabel_friend_share" "mabel-friend-share-v1" 1 36 8
+"fit" "bed" "spot_1_0" 0 0 0
+"fit" "bowl" "spot_3_0" 0 0 0
+"connect" "" "" 0 0 0
+"undo" "" "" 0 0 0
+"restart" "" "" 0 0 0
+"fit" "bed" "spot_1_0" 0 0 0
+"fit" "bowl" "spot_3_0" 0 0 0
+"connect" "" "" 0 0 0
+"beach_pip_ball" "beach-pip-ball-v2" 1 38 30
+"slide" "basket_b" "" 0 0 0
+"slide" "basket_c" "" 1 0 0
+"slide" "basket_b" "" 1 0 0
+"slide" "basket_a" "" 0 0 0
+"slide" "basket_a" "" 0 0 0
+"slide" "basket_d" "" 0 0 0
+"rotate" "channel_a" "" 0 0 0
+"rotate" "channel_b" "" 0 0 0
+"rotate" "channel_b" "" 0 0 0
+"rotate" "channel_b" "" 0 0 0
+"rotate" "channel_c" "" 0 0 0
+"rotate" "channel_d" "" 0 0 0
+"rotate" "channel_e" "" 0 0 0
+"roll" "" "" 0 0 0
+"undo" "" "" 0 0 0
+"restart" "" "" 0 0 0
+"slide" "basket_b" "" 0 0 0
+"slide" "basket_c" "" 1 0 0
+"slide" "basket_b" "" 1 0 0
+"slide" "basket_a" "" 0 0 0
+"slide" "basket_a" "" 0 0 0
+"slide" "basket_d" "" 0 0 0
+"rotate" "channel_a" "" 0 0 0
+"rotate" "channel_b" "" 0 0 0
+"rotate" "channel_b" "" 0 0 0
+"rotate" "channel_b" "" 0 0 0
+"rotate" "channel_c" "" 0 0 0
+"rotate" "channel_d" "" 0 0 0
+"rotate" "channel_e" "" 0 0 0
+"roll" "" "" 0 0 0
+"beach_button_bridge" "beach-button-bridge-v2" 1 40 38
+"slide" "parking_basket" "" 1 0 0
+"slide" "landing_basket" "" 2 0 0
+"pick_up" "long_plank" "" 0 0 0
+"rotate" "long_plank" "" 0 0 0
+"fit" "long_plank" "long_socket" 0 0 0
+"pick_up" "step_plank" "" 0 0 0
+"rotate" "step_plank" "" 0 0 0
+"fit" "step_plank" "step_socket" 0 0 0
+"pick_up" "finish_plank" "" 0 0 0
+"rotate" "finish_plank" "" 0 0 0
+"fit" "finish_plank" "finish_socket" 0 0 0
+"pick_up" "dune_plank" "" 0 0 0
+"rotate" "dune_plank" "" 0 0 0
+"fit" "dune_plank" "dune_socket" 0 0 0
+"pick_up" "shelter_plank" "" 0 0 0
+"rotate" "shelter_plank" "" 0 0 0
+"fit" "shelter_plank" "shelter_socket" 0 0 0
+"connect" "" "" 0 0 0
+"undo" "" "" 0 0 0
+"restart" "" "" 0 0 0
+"slide" "parking_basket" "" 1 0 0
+"slide" "landing_basket" "" 2 0 0
+"pick_up" "long_plank" "" 0 0 0
+"rotate" "long_plank" "" 0 0 0
+"fit" "long_plank" "long_socket" 0 0 0
+"pick_up" "step_plank" "" 0 0 0
+"rotate" "step_plank" "" 0 0 0
+"fit" "step_plank" "step_socket" 0 0 0
+"pick_up" "finish_plank" "" 0 0 0
+"rotate" "finish_plank" "" 0 0 0
+"fit" "finish_plank" "finish_socket" 0 0 0
+"pick_up" "dune_plank" "" 0 0 0
+"rotate" "dune_plank" "" 0 0 0
+"fit" "dune_plank" "dune_socket" 0 0 0
+"pick_up" "shelter_plank" "" 0 0 0
+"rotate" "shelter_plank" "" 0 0 0
+"fit" "shelter_plank" "shelter_socket" 0 0 0
+"connect" "" "" 0 0 0
+"beach_mabel_shade" "beach-mabel-shade-v2" 1 42 28
+"pick_up" "front_panel" "" 0 0 0
+"rotate" "front_panel" "" 0 0 0
+"fit" "front_panel" "front_support" 0 0 0
+"pick_up" "rear_panel" "" 0 0 0
+"rotate" "rear_panel" "" 0 0 0
+"fit" "rear_panel" "rear_support" 0 0 0
+"pick_up" "side_panel" "" 0 0 0
+"rotate" "side_panel" "" 0 0 0
+"fit" "side_panel" "side_support" 0 0 0
+"pick_up" "corner_panel" "" 0 0 0
+"rotate" "corner_panel" "" 0 0 0
+"fit" "corner_panel" "corner_support" 0 0 0
+"connect" "" "" 0 0 0
+"undo" "" "" 0 0 0
+"restart" "" "" 0 0 0
+"pick_up" "front_panel" "" 0 0 0
+"rotate" "front_panel" "" 0 0 0
+"fit" "front_panel" "front_support" 0 0 0
+"pick_up" "rear_panel" "" 0 0 0
+"rotate" "rear_panel" "" 0 0 0
+"fit" "rear_panel" "rear_support" 0 0 0
+"pick_up" "side_panel" "" 0 0 0
+"rotate" "side_panel" "" 0 0 0
+"fit" "side_panel" "side_support" 0 0 0
+"pick_up" "corner_panel" "" 0 0 0
+"rotate" "corner_panel" "" 0 0 0
+"fit" "corner_panel" "corner_support" 0 0 0
+"connect" "" "" 0 0 0
+"beach_pepper_basket" "beach-pepper-basket-v2" 1 44 50
+"inspect" "clue_0" "" 0 0 0
+"inspect" "clue_1" "" 0 0 0
+"inspect" "clue_2" "" 0 0 0
+"follow_trail" "trail_1" "" 0 0 0
+"inspect" "clue_0" "" 0 0 0
+"inspect" "clue_1" "" 0 0 0
+"inspect" "clue_2" "" 0 0 0
+"follow_trail" "trail_0" "" 0 0 0
+"inspect" "clue_0" "" 0 0 0
+"inspect" "clue_1" "" 0 0 0
+"inspect" "clue_2" "" 0 0 0
+"follow_trail" "trail_2" "" 0 0 0
+"inspect" "clue_0" "" 0 0 0
+"inspect" "clue_1" "" 0 0 0
+"inspect" "clue_2" "" 0 0 0
+"follow_trail" "trail_1" "" 0 0 0
+"inspect" "clue_0" "" 0 0 0
+"inspect" "clue_1" "" 0 0 0
+"inspect" "clue_2" "" 0 0 0
+"follow_trail" "trail_2" "" 0 0 0
+"inspect" "clue_0" "" 0 0 0
+"inspect" "clue_1" "" 0 0 0
+"inspect" "clue_2" "" 0 0 0
+"follow_trail" "trail_0" "" 0 0 0
+"undo" "" "" 0 0 0
+"restart" "" "" 0 0 0
+"inspect" "clue_0" "" 0 0 0
+"inspect" "clue_1" "" 0 0 0
+"inspect" "clue_2" "" 0 0 0
+"follow_trail" "trail_1" "" 0 0 0
+"inspect" "clue_0" "" 0 0 0
+"inspect" "clue_1" "" 0 0 0
+"inspect" "clue_2" "" 0 0 0
+"follow_trail" "trail_0" "" 0 0 0
+"inspect" "clue_0" "" 0 0 0
+"inspect" "clue_1" "" 0 0 0
+"inspect" "clue_2" "" 0 0 0
+"follow_trail" "trail_2" "" 0 0 0
+"inspect" "clue_0" "" 0 0 0
+"inspect" "clue_1" "" 0 0 0
+"inspect" "clue_2" "" 0 0 0
+"follow_trail" "trail_1" "" 0 0 0
+"inspect" "clue_0" "" 0 0 0
+"inspect" "clue_1" "" 0 0 0
+"inspect" "clue_2" "" 0 0 0
+"follow_trail" "trail_2" "" 0 0 0
+"inspect" "clue_0" "" 0 0 0
+"inspect" "clue_1" "" 0 0 0
+"inspect" "clue_2" "" 0 0 0
+"follow_trail" "trail_0" "" 0 0 0
+"beach_shell_chimes" "beach-shell-chimes-v2" 1 46 18
+"tap_symbol" "star" "" 0 0 0
+"tap_symbol" "paw" "" 0 0 0
+"tap_symbol" "leaf" "" 0 0 0
+"tap_symbol" "paw" "" 0 0 0
+"tap_symbol" "star" "" 0 0 0
+"tap_symbol" "leaf" "" 0 0 0
+"tap_symbol" "leaf" "" 0 0 0
+"tap_symbol" "star" "" 0 0 0
+"undo" "" "" 0 0 0
+"restart" "" "" 0 0 0
+"tap_symbol" "star" "" 0 0 0
+"tap_symbol" "paw" "" 0 0 0
+"tap_symbol" "leaf" "" 0 0 0
+"tap_symbol" "paw" "" 0 0 0
+"tap_symbol" "star" "" 0 0 0
+"tap_symbol" "leaf" "" 0 0 0
+"tap_symbol" "leaf" "" 0 0 0
+"tap_symbol" "star" "" 0 0 0
+"beach_picnic" "beach-picnic-v2" 1 48 28
+"slide" "path_basket" "" 2 0 0
+"slide" "path_basket" "" 3 0 0
+"slide" "path_basket" "" 0 0 0
+"slide" "mat_basket" "" 2 0 0
+"slide" "mat_basket" "" 2 0 0
+"slide" "mat_basket" "" 3 0 0
+"slide" "picnic_basket" "" 1 0 0
+"slide" "picnic_basket" "" 1 0 0
+"fit" "button_mat" "spot_1_0" 0 0 0
+"fit" "mabel_mat" "spot_2_0" 0 0 0
+"fit" "pip_mat" "spot_3_0" 0 0 0
+"fit" "pepper_mat" "spot_3_1" 0 0 0
+"connect" "" "" 0 0 0
+"undo" "" "" 0 0 0
+"restart" "" "" 0 0 0
+"slide" "path_basket" "" 2 0 0
+"slide" "path_basket" "" 3 0 0
+"slide" "path_basket" "" 0 0 0
+"slide" "mat_basket" "" 2 0 0
+"slide" "mat_basket" "" 2 0 0
+"slide" "mat_basket" "" 3 0 0
+"slide" "picnic_basket" "" 1 0 0
+"slide" "picnic_basket" "" 1 0 0
+"fit" "button_mat" "spot_1_0" 0 0 0
+"fit" "mabel_mat" "spot_2_0" 0 0 0
+"fit" "pip_mat" "spot_3_0" 0 0 0
+"fit" "pepper_mat" "spot_3_1" 0 0 0
+"connect" "" "" 0 0 0
+"beach_tidepool_crossing" "beach-tidepool-crossing-v1" 1 50 48
+"slide" "supply" "" 1 0 0
+"slide" "supply" "" 1 0 0
+"slide" "parking" "" 1 0 0
+"slide" "landing" "" 2 0 0
+"pick_up" "entry" "" 0 0 0
+"rotate" "entry" "" 0 0 0
+"fit" "entry" "entry_socket" 0 0 0
+"pick_up" "west" "" 0 0 0
+"rotate" "west" "" 0 0 0
+"fit" "west" "west_socket" 0 0 0
+"pick_up" "turn" "" 0 0 0
+"rotate" "turn" "" 0 0 0
+"fit" "turn" "turn_socket" 0 0 0
+"pick_up" "middle" "" 0 0 0
+"rotate" "middle" "" 0 0 0
+"fit" "middle" "middle_socket" 0 0 0
+"pick_up" "step" "" 0 0 0
+"rotate" "step" "" 0 0 0
+"fit" "step" "step_socket" 0 0 0
+"pick_up" "finish" "" 0 0 0
+"rotate" "finish" "" 0 0 0
+"fit" "finish" "finish_socket" 0 0 0
+"connect" "" "" 0 0 0
+"undo" "" "" 0 0 0
+"restart" "" "" 0 0 0
+"slide" "supply" "" 1 0 0
+"slide" "supply" "" 1 0 0
+"slide" "parking" "" 1 0 0
+"slide" "landing" "" 2 0 0
+"pick_up" "entry" "" 0 0 0
+"rotate" "entry" "" 0 0 0
+"fit" "entry" "entry_socket" 0 0 0
+"pick_up" "west" "" 0 0 0
+"rotate" "west" "" 0 0 0
+"fit" "west" "west_socket" 0 0 0
+"pick_up" "turn" "" 0 0 0
+"rotate" "turn" "" 0 0 0
+"fit" "turn" "turn_socket" 0 0 0
+"pick_up" "middle" "" 0 0 0
+"rotate" "middle" "" 0 0 0
+"fit" "middle" "middle_socket" 0 0 0
+"pick_up" "step" "" 0 0 0
+"rotate" "step" "" 0 0 0
+"fit" "step" "step_socket" 0 0 0
+"pick_up" "finish" "" 0 0 0
+"rotate" "finish" "" 0 0 0
+"fit" "finish" "finish_socket" 0 0 0
+"connect" "" "" 0 0 0
+"beach_fresh_water" "beach-fresh-water-v1" 1 51 15
+"slide" "supply_basket" "" 3 0 0
+"slide" "supply_basket" "" 0 0 0
+"slide" "pot_a" "" 0 0 0
+"slide" "pot_a" "" 0 0 0
+"slide" "pot_b" "" 3 0 0
+"rotate" "channel_a" "" 0 0 0
+"rotate" "channel_b" "" 0 0 0
+"rotate" "channel_c" "" 0 0 0
+"rotate" "channel_d" "" 0 0 0
+"roll" "" "" 0 0 0
+"rotate" "channel_e" "" 0 0 0
+"rotate" "channel_f" "" 0 0 0
+"rotate" "channel_g" "" 0 0 0
+"rotate" "channel_h" "" 0 0 0
+"roll" "" "" 0 0 0
+"beach_windbreak" "beach-windbreak-v1" 0 1 0
+"beach_shell_encore" "beach-shell-encore-v1" 0 1 0
+"beach_lantern_balance" "beach-lantern-balance-v1" 0 1 0
+END

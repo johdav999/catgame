@@ -33,6 +33,7 @@ const report={checks:[],screenshots:[],errors:[]};
   await page.mouse.move(a.x,a.y);await page.mouse.down();
   await page.mouse.move(a.x+b.x-start.x,a.y+b.y-start.y,{steps:12});await page.mouse.up();await settle();
  }
+ async function rotate(id){const before=(await state()).objects.find(o=>o.id===id).orientation;await click(id);if((await state()).objects.find(o=>o.id===id).orientation===before&&(await points()).selectedPlank===id)await click(id);}
  async function click(id){const p=(await points()).objects[id];assert(p);await page.mouse.click(p.x,p.y);await settle();}
  async function shot(name){
   await settle();const terrain=await page.evaluate(()=>{Module._paws_terrain_snapshot();return pawsTerrain;});assert(terrain.enabled&&terrain.chunks===64&&terrain.slabs===0&&terrain.frustumCovered&&terrain.layered,JSON.stringify(terrain));assert(terrain.height.max-terrain.height.min>8);report.checks.push({name,terrain});await page.screenshot({path:path.join(out,name+'.png')});
@@ -57,7 +58,7 @@ const report={checks:[],screenshots:[],errors:[]};
   const solution=(await state()).solution,delta=[[0,-1],[1,0],[0,1],[-1,0]];
   for(const step of solution){
    if(step.verb===1){const o=(await state()).objects.find(o=>o.id===step.object),d=delta[step.direction];await drag(step.object,`${o.x+d[0]},${o.y+d[1]}`);const moved=(await state()).objects.find(o=>o.id===step.object);assert.equal(moved.x,o.x+d[0]);assert.equal(moved.y,o.y+d[1]);}
-   else if(step.verb===2)await click(step.object);
+   else if(step.verb===2)await rotate(step.object);
    else if(step.verb===3)await click('source_ball');
   }
   await page.waitForFunction(()=>pawsState.completed&&pawsUi.screen===9);await action('Back to garden');await shot('garden-return');

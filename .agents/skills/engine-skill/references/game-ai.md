@@ -24,7 +24,7 @@ requests per tick; this is a per-request work bound, not a frame-time guarantee.
 Graphs are authored navigation data, independent of camera visibility, mesh LOD,
 render interpolation or terrain residency. Authors must ensure ground support,
 slopes, permitted areas and access. For collision-baked static navigation use
-`docs/navmesh.md` in the selected engine checkout. Dynamic graph rebuild and jump-link execution are absent. Optional clearance-aware search and automatic
+`docs/navmesh.md` in the selected engine checkout. Optional [crowd/dynamic navigation](crowd-navigation.md) supplies coordinated steering and tracked footprint rebakes; general dynamic waypoint generation and jump links remain extensions. Optional clearance-aware search and automatic
 replanning below reuse immutable graphs and authoritative physics geometry.
 
 ### Clearance-aware search
@@ -219,9 +219,7 @@ demo rejects explicitly under existing archive rules. Return to scene removes
 the custom actor, restoring ordinary scene saves. Applications must register
 custom codecs and reconstruct logic, stable target references, routes and clocks
 if AI instance persistence is needed. The `docs/ai-state-machines.md` in the selected engine checkout
-saves definitions separately as `.weai` assets. No crowd avoidance/character-to-character
-collision, navigation workers or physical-device acceptance is
-implied.
+saves definitions separately as `.weai` assets. Optional crowd avoidance is described in [its own contracts](crowd-navigation.md); it adds no general character solver contacts, navigation workers or physical-device acceptance.
 
 Build `ai_tests`, then run `ctest --test-dir build/native -R '^ai$'
 --output-on-failure`. `scripts/ai-smoke.cjs` exercises both forced renderers on

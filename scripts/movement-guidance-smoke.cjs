@@ -23,6 +23,7 @@ const report={checks:[],quests:[],errors:[]};
   throw Error('Could not scroll to '+name);
  }
  async function points(){return page.evaluate(()=>{Module._paws_interaction_snapshot();return pawsInteraction;});}
+ async function rotate(id){const before=(await state()).objects.find(o=>o.id===id).orientation;await click(id);if((await state()).objects.find(o=>o.id===id).orientation===before&&(await points()).selectedPlank===id)await click(id);}
  async function click(id){const p=(await points()).objects[id];assert(p,'Clickable '+id);await page.mouse.click(p.x,p.y);await settle();assert.notEqual(await page.evaluate(()=>pawsUi.screen),7,'Click opened object action menu');}
  async function drag(id,target,cancel=false){
   const p=await points(),a=p.objects[id],to=p.slots[target];assert(a&&to,JSON.stringify({id,target,p}));
@@ -65,7 +66,7 @@ const report={checks:[],quests:[],errors:[]};
   }
   if(q===4){
    await click('approach_plank');const before=await state();await drag('approach_plank','approach_socket');assert.equal((await state()).revision,before.revision);assert.match((await state()).message,/planter/);
-   await click('long_plank');await drag('long_plank','direct_first');await click('step_plank');const direct=await state();await drag('step_plank','direct_second');assert.equal((await state()).revision,direct.revision);assert.match((await state()).message,/length/);assert(!(await state()).completed);
+   await rotate('long_plank');await drag('long_plank','direct_first');await rotate('step_plank');const direct=await state();await drag('step_plank','direct_second');assert.equal((await state()).revision,direct.revision);assert.match((await state()).message,/length/);assert(!(await state()).completed);
    report.checks.push('Planter blocks landing and direct bridge route cannot be completed with the available plank lengths');await fresh();
   }
   if(q===3){const before=await state();await click('mouse');assert.equal((await state()).revision,before.revision,'Blocked mouse retrieval changed state');assert.match((await state()).message,/crates/);report.checks.push('Bench retrieval rejects a blocked lane');}
@@ -80,7 +81,7 @@ const report={checks:[],quests:[],errors:[]};
    if(step.verb===4)continue; // Pick-up is part of the drag transaction.
    const before=await state();
    if(step.verb===1){const o=before.objects.find(o=>o.id===step.object),d=delta[step.direction];await drag(step.object,`${o.x+d[0]},${o.y+d[1]}`);const moved=(await state()).objects.find(o=>o.id===step.object);assert.equal(moved.x,o.x+d[0]);assert.equal(moved.y,o.y+d[1]);events.push('drag '+step.object);}
-   else if(step.verb===2){await click(step.object);events.push('rotate '+step.object);}
+   else if(step.verb===2){await rotate(step.object);events.push('rotate '+step.object);}
    else if(step.verb===3){await click(q===6?'rain_barrel':'source_ball');events.push('release source');if(q<3)await page.waitForFunction(()=>pawsState.completed||!pawsBall.rolling);}
    else if(step.verb===5){await drag(step.object,q===5?`${step.object}@${step.x},${step.y}`:step.target);events.push('fit '+step.object);}
    else if(step.verb===7){await click(step.object);events.push('retrieve '+step.object);}

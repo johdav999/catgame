@@ -71,6 +71,8 @@ bool pawSwitchHeld(const Definition&,const State&);
 bool playhouseOpen(const Definition&,const State&);
 std::string picnicBlockage(const Definition&,const State&);
 int balanceTorque(const Definition&,const State&);
+// Distinct target cells shaded by committed, fitted panels (not drag previews).
+std::vector<Cell> shadedCells(const Definition&,const PuzzleView&);
 std::string validate(const Definition&,bool replay=true);
 class Attempt {
 public:

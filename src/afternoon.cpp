@@ -36,6 +36,12 @@ CommandResult Afternoon::dispatchGarden(const GardenCommand& command) {
 }
 
 CommandResult Afternoon::dispatch(const Command& command) {
+    if(replayingSave_)return dispatchLegacyImpl(command);
+    Afternoon candidate(*this);auto result=candidate.dispatchLegacyImpl(command);
+    if(result.accepted){candidate.reconcileQuests();publishQuestCandidate(std::move(candidate));}
+    return result;
+}
+CommandResult Afternoon::dispatchLegacyImpl(const Command& command) {
     if(activeQuest_>=3||!canAdvance())return {false,"Use the current release-one command view."};
     // Resource limits protect both hostile import and pathological sessions.
     if(records_[active_].size()>=100000) return {false,"This afternoon's save is full."};
@@ -50,7 +56,9 @@ CommandResult Afternoon::dispatch(const Command& command) {
     epoch_=std::max(epoch_,session().state().attempt);
     records.push_back(std::move(record));
     lastReward_=false;
-    if(session().state().puzzle.completed&&!rewarded_[active_]) {
+    // Compatibility replay reconstructs the historical ledger. Live grants are
+    // exclusively published by reconcileQuests from kernel receipts.
+    if(replayingSave_&&session().state().puzzle.completed&&!rewarded_[active_]) {
         rewarded_[active_]=true;lastReward_=true;
     }
     ++ownerRevision_;garden_=session().state().inGarden;return result;
@@ -74,6 +82,7 @@ Afternoon Afternoon::decodeLegacy(std::string_view bytes) {
     if(bytes.size()>16*1024*1024) throw std::invalid_argument("Save is too large.");
     std::istringstream in{std::string(bytes)};std::string magic;int version=0,active=0;
     Afternoon candidate;
+    candidate.replayingSave_=true;
     auto& s=candidate.settings;
     if(!(in>>magic>>version>>active>>s.largerText>>s.reducedMotion>>s.muted>>s.music>>s.ambience>>s.effects)||
        magic!="PAWS_AFTERNOON"||(version<1||version>5)||active<0||active>=3||
@@ -134,6 +143,7 @@ Afternoon Afternoon::decodeLegacy(std::string_view bytes) {
     if(version>=2&&(savedCoins!=candidate.coins()||savedFriendship!=candidate.friendship()||ledger!=candidate.rewarded_))
         throw std::invalid_argument("Reward ledger does not match committed puzzle history.");
     candidate.active_=std::size_t(active);candidate.activeQuest_=active;candidate.garden_=candidate.session().state().inGarden;candidate.epoch_=savedEpoch;candidate.lastReward_=false;
+    candidate.replayingSave_=false;candidate.questAdapter_.reset();candidate.reconcileQuests(true);
     return candidate;
 }
 

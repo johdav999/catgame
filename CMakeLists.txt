@@ -1,17 +1,13 @@
 cmake_minimum_required(VERSION 3.22)
 project(Paws VERSION 0.1.0 LANGUAGES C CXX)
 find_package(Python3 COMPONENTS Interpreter REQUIRED)
-execute_process(COMMAND ${Python3_EXECUTABLE} "${CMAKE_CURRENT_SOURCE_DIR}/scripts/release1/integration/assets.py"
+# Asset promotion is an offline authoring step. Consumer builds verify the
+# checked-in accepted bytes and generated bindings without mutating source.
+execute_process(COMMAND ${Python3_EXECUTABLE} "${CMAKE_CURRENT_SOURCE_DIR}/scripts/verify-runtime-assets.py"
   COMMAND_ERROR_IS_FATAL ANY OUTPUT_QUIET)
-set(PAWS_ACCEPTED_INPUTS "${CMAKE_CURRENT_SOURCE_DIR}/src/release1/integration/accepted.inc")
-add_custom_command(OUTPUT "${PAWS_ACCEPTED_INPUTS}"
-  COMMAND ${Python3_EXECUTABLE} "${CMAKE_CURRENT_SOURCE_DIR}/scripts/release1/integration/assets.py"
-  DEPENDS scripts/release1/integration/assets.py scripts/release1/integration/contacts.py
-    scripts/release1/integration/contact-measurements.json docs/release1/fragments/cats.json
-    docs/release1/fragments/props.json scripts/release1/garden/contacts.json
-    assets/runtime/audio/catalog.json
+add_custom_target(paws_accepted_assets
+  COMMAND ${Python3_EXECUTABLE} "${CMAKE_CURRENT_SOURCE_DIR}/scripts/verify-runtime-assets.py"
   WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}" VERBATIM)
-add_custom_target(paws_accepted_assets DEPENDS "${PAWS_ACCEPTED_INPUTS}")
 option(PAWS_GUI_GALLERY "Include development-only component gallery" OFF)
 option(PAWS_ASSET_PREVIEWS "Build separate asset inspection executables" OFF)
 
@@ -41,9 +37,9 @@ add_library(paws_rules src/puzzle.cpp)
 target_include_directories(paws_rules PUBLIC src)
 add_library(paws_content src/content.cpp src/afternoon.cpp
   src/release1/rules/puzzles.cpp src/release1/rules/content.cpp src/release1/rules/beach_content.cpp
-  src/release1/progression/policy.cpp src/release1/progression/codec.cpp)
+  src/release1/progression/policy.cpp src/release1/progression/codec.cpp src/release1/progression/quest_adapter.cpp)
 target_compile_definitions(paws_content PUBLIC PAWS_RELEASE1_PROGRESSION_PRODUCTION=1)
-target_link_libraries(paws_content PUBLIC paws_rules)
+target_link_libraries(paws_content PUBLIC paws_rules WebEngine::Quests)
 add_library(paws_game src/starter_scene.cpp src/puzzle_scene.cpp src/garden_scene.cpp src/cat_collision.cpp src/quest_rewards.cpp)
 target_include_directories(paws_game PUBLIC src)
 target_link_libraries(paws_game PUBLIC WebEngine::Core paws_content)
@@ -70,6 +66,11 @@ else()
   target_compile_options(paws_game PRIVATE -Wall -Wextra -Wpedantic)
 endif()
 
+# One portable orchestration implementation shared by both executable adapters.
+add_library(paws_session INTERFACE)
+target_link_libraries(paws_session INTERFACE paws_game paws_ui paws_audio)
+target_include_directories(paws_session INTERFACE src)
+
 if(EMSCRIPTEN)
   target_compile_options(paws_rules PRIVATE -fexceptions)
   target_compile_options(paws_content PRIVATE -fexceptions)
@@ -84,7 +85,7 @@ if(EMSCRIPTEN)
     target_compile_definitions(paws PRIVATE PAWS_DAYTIME_SKY=0)
     message(STATUS "Paws daytime sky sphere: unavailable in this engine revision; retaining clear-color background")
   endif()
-  target_link_libraries(paws PRIVATE paws_game paws_ui paws_audio WebEngine::Browser engine_gui_browser engine_audio_browser)
+  target_link_libraries(paws PRIVATE paws_session WebEngine::Browser engine_gui_browser engine_audio_browser)
   target_compile_definitions(paws PRIVATE PAWS_GUI_GALLERY=$<BOOL:${PAWS_GUI_GALLERY}>)
   target_link_options(paws PRIVATE
     -sALLOW_MEMORY_GROWTH=1 -sSTACK_SIZE=1048576 -sENVIRONMENT=web
@@ -96,7 +97,7 @@ if(EMSCRIPTEN)
     RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/site")
   # Each configuration gets its own deployable site; no writes into the engine.
   add_custom_target(paws_site ALL
-    COMMAND ${Python3_EXECUTABLE} "${PROJECT_SOURCE_DIR}/scripts/release1/integration/assets.py"
+    COMMAND ${Python3_EXECUTABLE} "${PROJECT_SOURCE_DIR}/scripts/verify-runtime-assets.py"
     COMMAND ${CMAKE_COMMAND} -DSOURCE_DIR=${PROJECT_SOURCE_DIR}
       -DSITE_DIR=${CMAKE_BINARY_DIR}/site -P "${PROJECT_SOURCE_DIR}/cmake/StageWeb.cmake"
     COMMAND ${CMAKE_COMMAND} -E copy_if_different "${WEBENGINE_SOURCE_DIR}/web/gui.js" "${CMAKE_BINARY_DIR}/site/engine-gui.js"
@@ -108,7 +109,7 @@ if(EMSCRIPTEN)
       -DJOLT_SOURCE_DIR=${PAWS_JOLT_SOURCE_DIR} -DSOURCE_DIR=${PROJECT_SOURCE_DIR} -DSITE_DIR=${CMAKE_BINARY_DIR}/site
       -P "${PROJECT_SOURCE_DIR}/cmake/CopyLicenses.cmake"
     COMMAND ${CMAKE_COMMAND} -DENGINE_SOURCE_DIR=${WEBENGINE_SOURCE_DIR}
-      -DSITE_DIR=${CMAKE_BINARY_DIR}/site -DVERSION=${PROJECT_VERSION}
+      -DSOURCE_DIR=${PROJECT_SOURCE_DIR} -DSITE_DIR=${CMAKE_BINARY_DIR}/site -DVERSION=${PROJECT_VERSION}
       -DCONFIGURATION=$<CONFIG> -DGALLERY=$<IF:$<BOOL:${PAWS_GUI_GALLERY}>,true,false>
       -P "${PROJECT_SOURCE_DIR}/cmake/BuildInfo.cmake"
     DEPENDS paws
@@ -117,6 +118,14 @@ if(EMSCRIPTEN)
 else()
   include(CTest)
   if(BUILD_TESTING)
+    add_executable(paws_quest_pilots_tests tests/quest_pilots_tests.cpp)
+    target_link_libraries(paws_quest_pilots_tests PRIVATE paws_content)
+    target_compile_definitions(paws_quest_pilots_tests PRIVATE PAWS_ROOT="${PROJECT_SOURCE_DIR}")
+    add_test(NAME paws_quest_pilots COMMAND paws_quest_pilots_tests)
+    add_executable(paws_quest_catalogue_tests tests/quest_catalogue_tests.cpp)
+    target_link_libraries(paws_quest_catalogue_tests PRIVATE paws_content)
+    target_compile_definitions(paws_quest_catalogue_tests PRIVATE PAWS_ROOT="${PROJECT_SOURCE_DIR}")
+    add_test(NAME paws_quest_catalogue COMMAND paws_quest_catalogue_tests)
     add_executable(paws_audio_tests tests/audio_tests.cpp)
     target_link_libraries(paws_audio_tests PRIVATE paws_audio)
     add_test(NAME paws_audio COMMAND paws_audio_tests)
@@ -188,12 +197,15 @@ include(cmake/GardenPreview.cmake)
 target_link_libraries(paws_game PUBLIC paws_garden)
 target_sources(paws_game PRIVATE src/release1/props/prop_assets.cpp
   src/release1/cats/cat_assets.cpp src/release1/garden/presentation.cpp
-  src/release1/garden/contact_plans.cpp src/release1/integration/puzzle_scene.cpp)
+  src/release1/garden/contact_plans.cpp src/release1/integration/puzzle_scene.cpp src/beach_environment.cpp)
 add_dependencies(paws_game paws_accepted_assets)
 if(EMSCRIPTEN)
   target_link_libraries(paws PRIVATE engine_assets_browser)
 endif()
 if(NOT EMSCRIPTEN AND BUILD_TESTING)
+  add_executable(paws_beach_environment_tests tests/beach_environment_tests.cpp)
+  target_link_libraries(paws_beach_environment_tests PRIVATE paws_game)
+  add_test(NAME paws_beach_environment COMMAND paws_beach_environment_tests)
   add_executable(paws_basket_contact_tests tests/basket_contact_tests.cpp)
   target_link_libraries(paws_basket_contact_tests PRIVATE paws_game)
   target_compile_definitions(paws_basket_contact_tests PRIVATE PAWS_SOURCE_DIR="${PROJECT_SOURCE_DIR}")
@@ -228,3 +240,5 @@ if(NOT EMSCRIPTEN AND BUILD_TESTING)
   target_link_libraries(paws_release1_audio_tests PRIVATE paws_audio)
   add_test(NAME paws_release1_audio COMMAND paws_release1_audio_tests)
 endif()
+
+include(cmake/Windows.cmake)

@@ -80,8 +80,52 @@ human handling approval. See recorded validation for checks actually run.
 
 ## Stage 2 extension
 
-Compound chassis, physical surfaces and combined wheel grip are now available in the development engine. See [physical-surface integration](physical-surfaces.md); verify consumer pin availability. Current writer v26 retains v25 physical-surface and v24 vehicle fields. Damage/traffic/game rules remain application work.
+Compound chassis, physical surfaces and combined wheel grip are now available in the development engine. See [physical-surface integration](physical-surfaces.md); verify consumer pin availability. Current writer v31 retains v25 physical-surface and v24 vehicle fields. Damage/traffic/game rules remain application work.
 
 ## Stage 3 extension
 
 [Gamepad and camera integration](driving-controls.md) supplies shared action mapping, isolated live preview controls and inspectable device status. Camera follow settings live on CameraComponent; CameraFollowRig is an explicit presentation writer with bounded velocity look-ahead and final collision, independent of vehicle simulation. Defaults and persistence are v26; devices/bindings/held state remain transient.
+
+## Closed-circuit application example
+
+Use the selected engine's ?scene=formula and docs/formula-demo.md as a composition
+example for closed spline asphalt/kerbs, source-collidable terrain, barriers,
+vehicle tuning and a single chase-camera writer. src/formula_laps.hpp owns ordered
+checkpoints, forward finish crossing, transient best/current lap timing and invalid
+shortcut detection. These are game rules outside engine_core. Browser formula.js
+adapts existing input actions and provides the HUD/minimap, reset/pause and touch
+buttons; it owns no second vehicle simulation. The 2.69 MB red driving GLB retains the
+supplied source model, with baked visual wheels; do not imply separate wheel art
+animation or race-state persistence. Validate native formula_demo_tests and
+scripts/formula-smoke.cjs on both backends; verify selected consumer pin availability.
+
+The portable VehicleCommand steering contract is positive-right (+X when facing
++Z). The private Jolt adapter now negates that command at SetDriverInput; Jolt's
+native positive angle turns left. Preserve this adapter conversion, do not invert
+individual keyboard/gamepad bindings. Directional vehicle/formula tests assert
+actual chassis travel. Wheel steerAngle telemetry remains the solver's angle.
+
+Formula circuit mouse steering is inverted and on by default in ?scene=formula. Click the
+canvas, then move horizontally relative to its centre; a 4% dead zone straightens
+and full steering is reached at 35% of canvas width. The HUD toggle disables it.
+web/formula.js owns one allocated BrowserInput Move source; throttle/brake keep
+independent sources. Held A/D/arrows override mouse steering until fresh movement.
+Focus/context/lifecycle gates, pointer exit, reset/pause and resize neutralize it;
+touch/pen events cannot write this source. No core API or native build changes
+are required. Validate scripts/formula-mouse-smoke.cjs on both renderer backends.
+
+Formula easy handling is application-owned in src/formula_handling.hpp. The
+FormulaDrivingAssist chassis component shapes desired commands on fixed ticks
+before vehicle physics; no second solver, render clock or core API is added.
+FormulaHandlingSettings defaults: 450 N m torque, 2.1 tyre friction, .30 rad front
+steering, .12 s steering half-life, half steering at 18 m/s with .25 minimum,
+33.3333 m/s forward and 8 m/s reverse throttle limits with 5 m/s taper, and .25
+front torque share. Neutral/cancel, pause/reset and component disable/detach clear
+filter/commands immediately; body/solver control stays with VehicleComponent.
+Other vehicle defaults are unchanged. Limits fade engine input, not velocities
+or coasting/impulses. Desired/filter state is transient with no Play/archive codec.
+Browser formulaInputState reports requested input; vehicleState reports the
+shaped command. Preserve the user-selected inverted mouse mapping. Verify
+native formula_demo and formula_handling, and both Formula browser smoke scripts
+on both renderers. Read selected-engine docs/formula-demo.md for the parameter
+table and docs/formula-demo-validation.md for recorded evidence/limitations.

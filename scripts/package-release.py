@@ -42,6 +42,7 @@ def validate(site):
     if hashlib.sha256(notice_content.encode()).hexdigest() != info["noticesSha256"]:
         raise ValueError("Notices changed after build metadata generation")
     payload = f'{info["wasmSha256"]}:{info["contentSha256"]}:{info["enginePin"]}:{info["configuration"]}:{info["noticesSha256"]}'
+    if "gameRevision" in info: payload += ":" + info["gameRevision"]
     for name in ("index.html", "host.js", "saves.js", "game-platform.js", "cloud.js", "paws-audio.js", "style.css", "engine-gui.js", "engine-storage.js", "engine-audio.js", "paws.js"):
         payload += ":" + digest(site / name)
     expected = f'paws-{info["version"]}-{hashlib.sha256(payload.encode()).hexdigest()[:16]}'

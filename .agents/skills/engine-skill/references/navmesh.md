@@ -93,8 +93,7 @@ stairs/slopes the motor could climb; this increment validates baked step/slope
 connectivity and actual motor movement on flat ground, not general stair walking.
 
 Meshes are immutable snapshots. Moving/removing baked static geometry requires
-invalidation and an explicit rebake/replacement as described below. There is no dynamic carving, tiled streaming,
-off-mesh action/jump link, crowd avoidance, editor authoring or archive codec.
+invalidation and an explicit rebake/replacement as described below. Optional [crowd/dynamic navigation](crowd-navigation.md) coordinates motor commands and carves tracked obstacle footprints through bounded full-resource rebakes. Incremental tiled/worker building, off-mesh links, editor authoring and archive codecs remain extensions.
 Runtime sweeps do not prove support or detect a removed floor in stale topology.
 
 ## Navigation revisions and replacement

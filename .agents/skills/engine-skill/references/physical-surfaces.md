@@ -56,7 +56,7 @@ existing library shapes. Edited copies affect a chosen binding; shared resources
 are immutable. Complete editable terrain only; page children remain protected.
 Play disables authoring and isolates source. Vehicle panel reports surface/grip.
 
-Current scene/application/effect envelope writer v26 deduplicates compounds,
+Current scene/application/effect envelope writer v31 deduplicates compounds,
 physical resources/maps and catalogs. v24 introduced vehicle fields. Old1..24 files
 retain neutral surfaces; old readers reject25. Keep host/main/worker artifacts
 matched. Contact observations, commands, callbacks and solver caches are transient;

@@ -45,7 +45,7 @@ int main(){try{
     go(a,{Verb::Restart});check(!a.puzzleView().completed,"Explicit restart resets board");
     for(const auto& step:definition.solution)go(a,step);
     home(a);a=reload(a);travel(a);check(a.puzzleView().completed,"Completed visit preserves board");
-    auto bad=a.encode();auto at=bad.rfind("beach-pip-ball-v1");bad.replace(at,17,"beach-pip-ball-v9");
+    auto bad=a.encode();auto at=bad.rfind("beach-pip-ball-v2");bad.replace(at,17,"beach-pip-ball-v9");
     bool rejected=false;try{Afternoon::decode(bad);}catch(...){rejected=true;}check(rejected,"Unknown content rejected");
     // A v9 file has no HOME row and no beach record. It opens with a fresh,
     // locked adventure while retaining all base progress.

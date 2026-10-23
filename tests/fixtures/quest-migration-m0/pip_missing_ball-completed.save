@@ -1,0 +1,72 @@
+PAWS_AFTERNOON 12
+LEGACY "PAWS_AFTERNOON 5 0 0 0 0 70 60 80 1 20 1 1 0 0
+0 \"legacy\" 0
+0
+0 0 \"\" \"\" 0
+\"missing-ball-v2\" 15 1 16
+1 \"pot_a\" 0 \"\"
+1 \"pot_a\" 0 \"\"
+1 \"pot_b\" 3 \"\"
+1 \"pot_a\" 3 \"\"
+1 \"pot_b\" 0 \"\"
+2 \"channel_a\" 0 \"\"
+2 \"channel_a\" 0 \"\"
+2 \"channel_a\" 0 \"\"
+2 \"channel_b\" 0 \"\"
+2 \"channel_c\" 0 \"\"
+2 \"channel_d\" 0 \"\"
+2 \"channel_d\" 0 \"\"
+2 \"channel_d\" 0 \"\"
+2 \"channel_e\" 0 \"\"
+3 \"\" 0 \"\"
+\"tidy-toys-v2\" 0 1 0
+\"stuck-gate-v2\" 0 1 0
+"
+R1 "paws-release1/1" "pip_missing_ball" 16 0 0 20
+HOME "pip_missing_ball"
+BEACH_END 0
+CATS 4
+"pip" 1 1
+"mabel" 0 0
+"button" 0 0
+"pepper" 0 0
+ITEMS 8
+"garden_cushion" 0 ""
+"drinking_bowl" 0 ""
+"scratching_post" 0 ""
+"sunny_perch" 0 ""
+"hammock" 0 ""
+"playhouse" 0 ""
+"low_picnic_table" 0 ""
+"picnic_mat" 0 ""
+QUESTS 29
+"pip_missing_ball" "missing-ball-v2" 1 1 0
+"pip_tidy_toys" "tidy-toys-v2" 0 1 0
+"pip_stuck_gate" "stuck-gate-v2" 0 1 0
+"button_mouse_bench" "button-mouse-bench-v2" 0 1 0
+"mabel_sunny_spot" "mabel-sunny-spot-v2" 0 1 0
+"button_cushion_bed" "button-cushion-bed-v1" 0 1 0
+"mabel_drinking_route" "mabel-drinking-route-v1" 0 1 0
+"pepper_garden_bells" "pepper-garden-bells-v1" 0 1 0
+"pip_pepper_playhouse" "pip-pepper-playhouse-v2" 0 1 0
+"garden_picnic" "garden-picnic-v1" 0 1 0
+"pepper_scent_trail" "pepper-scent-trail-v1" 0 1 0
+"pip_wobbly_perch" "pip-wobbly-perch-v1" 0 1 0
+"pip_friend_ball" "pip-friend-ball-v1" 0 1 0
+"pip_friend_view" "pip-friend-view-v1" 0 1 0
+"pip_friend_room" "pip-friend-room-v1" 0 1 0
+"mabel_friend_sun" "mabel-friend-sun-v1" 0 1 0
+"mabel_friend_water" "mabel-friend-water-v1" 0 1 0
+"mabel_friend_share" "mabel-friend-share-v1" 0 1 0
+"beach_pip_ball" "beach-pip-ball-v2" 0 1 0
+"beach_button_bridge" "beach-button-bridge-v2" 0 1 0
+"beach_mabel_shade" "beach-mabel-shade-v2" 0 1 0
+"beach_pepper_basket" "beach-pepper-basket-v2" 0 1 0
+"beach_shell_chimes" "beach-shell-chimes-v2" 0 1 0
+"beach_picnic" "beach-picnic-v2" 0 1 0
+"beach_tidepool_crossing" "beach-tidepool-crossing-v1" 0 1 0
+"beach_fresh_water" "beach-fresh-water-v1" 0 1 0
+"beach_windbreak" "beach-windbreak-v1" 0 1 0
+"beach_shell_encore" "beach-shell-encore-v1" 0 1 0
+"beach_lantern_balance" "beach-lantern-balance-v1" 0 1 0
+END

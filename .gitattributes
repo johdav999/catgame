@@ -5,3 +5,9 @@
 *.hpp text eol=lf
 *.cmake text eol=lf
 CMakeLists.txt text eol=lf
+
+# Runtime provenance and historical-save manifests hash exact delivered bytes.
+# Checkout newline conversion must never alter those compatibility inputs.
+assets/runtime/** -text
+tests/fixtures/quest-migration-m0/** -text
+tests/fixtures/quest-migration-m5/** -text

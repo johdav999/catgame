@@ -7,4 +7,7 @@ namespace paws {
 inline constexpr std::array<std::string_view,2> gardenMusicPlaylist{
     "music_garden_afternoon_01", "music_garden_puzzles_01"
 };
+inline constexpr std::array<std::string_view,1> beachMusicPlaylist{
+    "music_beachside_puzzle_01"
+};
 }

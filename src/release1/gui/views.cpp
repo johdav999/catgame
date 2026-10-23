@@ -24,6 +24,23 @@ void Views::selectObject(std::string_view id){
     selected_=id;
 }
 void Views::project(Model m){
+    const auto& before=model_.puzzle;const auto& after=m.puzzle;
+    const bool nextSetup=ui_.screen_==UiScreen::Puzzle&&!m.services.inGarden&&
+        before.quest==after.quest&&before.content==after.content&&before.generation==after.generation&&before.attempt==after.attempt&&
+        after.revision>before.revision&&before.balanceSetup>0&&after.balanceSetup==before.balanceSetup+1&&!after.completed;
+    if(nextSetup){
+        const auto d=rules::quest(after.quest,after.content);
+        const auto& old=d.balances.at(before.balanceSetup-1);const auto& next=d.balances.at(after.balanceSetup-1);
+        completedSetup_=before.balanceSetup;
+        balanceSupportChange_=old.pivot==next.pivot?"Support stays at position "+std::to_string(next.pivot)+".":
+            "Support moves from position "+std::to_string(old.pivot)+" to "+std::to_string(next.pivot)+".";
+        const auto load=[](const auto& r){return r.catWeight==0?std::string("off the beam"):
+            std::to_string(r.catWeight)+" weight, "+std::to_string(std::abs(r.catArm))+" steps "+(r.catArm<0?"left":"right")+" of the support";};
+        balancePipBefore_="Pip was: "+load(old)+".";
+        balancePipAfter_="Pip now: "+load(next)+".";
+        balanceStorage_=std::string(d.quest=="beach_lantern_balance"?"All four lanterns":d.sharedLookout?"The four flowerpots":"All four cushions")+
+            " returned to their storage mats for the new setup.";
+    }
     if(m.puzzle.quest!=model_.puzzle.quest||m.puzzle.attempt!=model_.puzzle.attempt)selected_.clear();
     model_=std::move(m);
     auto base=model_.services;base.attempt=model_.progress.attempt;base.revision=model_.progress.revision;
@@ -32,6 +49,7 @@ void Views::project(Model m){
     base.inGarden=model_.services.inGarden;base.endingSeen=model_.progress.picnicEndingSeen;
     base.revealedHints=model_.puzzle.revealedHints;base.hints=model_.puzzle.hints;
     ui_.project(std::move(base));
+    if(nextSetup)ui_.show(UiScreen::BalanceSetup);
 }
 Intent Views::command(Verb v,std::string object,std::string target) const {
     return {model_.progress.generation,model_.progress.attempt,model_.progress.revision,
@@ -108,14 +126,16 @@ bool Views::compose(){
     const auto save=model_.services.save==SaveState::Saved?"Saved":model_.services.save==SaveState::Saving?"Saving…":model_.services.save==SaveState::Failed?"Save failed · Menu":model_.services.save==SaveState::Loading?"Loading save":model_.services.save==SaveState::SecondTab?"Temporary tab":"Temporary";
     if(hud){
         const auto q=progression::questIndex(model_.puzzle.quest);
-        static const char* titles[]={"Pip's ball","Tidy toys","The little gate","Button's mouse","Sunny spot","Button's bed","Mabel's drink","Pepper's bells","Two kittens","Garden picnic","Follow the scent","Pip's wobbly perch","Pip's ball adventure","Come and see!","Room for two","A little higher","A cool drink","Stay a while?","Beach ball","Button's bridge","Mabel's shade","Picnic trail","Shell chimes","Beach picnic"};
+        static const char* titles[]={"Pip's ball","Tidy toys","The little gate","Button's mouse","Sunny spot","Button's bed","Mabel's drink","Pepper's bells","Two kittens","Garden picnic","Follow the scent","Pip's wobbly perch","Pip's ball adventure","Come and see!","Room for two","A little higher","A cool drink","Stay a while?","Beach ball","Button's bridge","Mabel's shade","Picnic trail","Shell chimes","Beach picnic","Tidepool crossing","Fresh water","Shell workshop","Answering song","Lantern landing"};
+        const bool workshop=screen==UiScreen::Puzzle&&model_.puzzle.quest=="beach_windbreak";
         const bool narrow=w<560;
-        const bool bridge=screen==UiScreen::Puzzle&&(q==4||q==13||q==15||q==19);
+        const bool bridge=screen==UiScreen::Puzzle&&(q==4||q==13||q==15||q==19||q==24);
         const bool sequence=screen==UiScreen::Puzzle&&model_.puzzle.pictureSequence;
-        const bool scent=screen==UiScreen::Puzzle&&(q==10||q==21), balance=screen==UiScreen::Puzzle&&(q==11||q==14);
+        const bool scent=screen==UiScreen::Puzzle&&(q==10||q==21), balance=screen==UiScreen::Puzzle&&(q==11||q==14||q==28);
+        const bool pepper=screen==UiScreen::Puzzle&&model_.puzzle.quest=="beach_pepper_basket";
         const bool bridgeSide=screen==UiScreen::Puzzle&&w>h*1.45f&&h<500;
         const bool compactHeader=w<900;
-        const float titleY=compactHeader?76.f:12.f;
+        const float titleY=bridgeSide?12.f:compactHeader?76.f:12.f;
         const float menuWidth=112.f,titleWidth=bridgeSide?270.f:narrow?w-24:std::min(w-menuWidth-260,480.f),textWidth=titleWidth-32;
         // Replay wraps to two lines at this width. Reserve its row so the
         // narrow objective never runs beneath the menu controls.
@@ -127,8 +147,15 @@ bool Views::compose(){
         const std::string name=screen==UiScreen::Puzzle?(!narrow&&!bridgeSide?model_.puzzle.title:q<paws::release1::progression::quests.size()?titles[q]:"Our request"):"Our garden";
         const auto fitted=std::count_if(model_.puzzle.objects.begin(),model_.puzzle.objects.end(),[](const auto& o){return o.role=="plank"&&!o.socket.empty();});
         const auto supplied=std::count_if(model_.puzzle.objects.begin(),model_.puzzle.objects.end(),[](const auto& o){return o.role=="plank";});
-        const std::string status=bridge?std::to_string(fitted)+" / "+std::to_string(supplied)+" bridges · "+save:"Chapter "+std::to_string(model_.progress.chapter)+" · "+save;
+        const auto workshopDefinition=workshop?rules::quest(model_.puzzle.quest,model_.puzzle.content):rules::Definition{};
+        const std::string status=workshop?std::to_string(rules::shadedCells(workshopDefinition,model_.puzzle).size())+" of "+std::to_string(workshopDefinition.shade.size())+" cells shaded"+(model_.services.save==SaveState::Failed?" · Save failed":""):bridge?std::to_string(fitted)+" / "+std::to_string(supplied)+" bridges · "+save:"Chapter "+std::to_string(model_.progress.chapter)+" · "+save;
         std::string objective=screen==UiScreen::Puzzle?model_.puzzle.objective:"Tap a cat with ! to start its request.";
+        if(workshop)objective="Cover every sand patch. Select a shade to see white fits. Double-click or use Rotate to turn it. Drag to preview a place.";
+        if(pepper&&!model_.puzzle.completed){
+            const auto stop=objective.find('.');objective=objective.substr(0,stop+1);
+            const auto inspected=std::count_if(model_.puzzle.objects.begin(),model_.puzzle.objects.end(),[](const auto& o){return o.role=="trail_clue"&&o.active;});
+            objective+=inspected==3?" Step 2: compare your clues. Tap path A, B or C that fits all three.":" Step 1: tap clues 1, 2 and 3 on the sand. "+std::to_string(inspected)+" / 3 examined.";
+        }
         if(screen==UiScreen::Garden&&model_.lookoutQuiet)objective="Pip saved you a seat. Stay as long as you like.";
         if(screen==UiScreen::Garden&&model_.nookQuiet)objective="Mabel and Pip are sharing the sunshine. There is no hurry.";
         if(screen==UiScreen::Puzzle&&q==0)objective="Bring the ball back to Pip.";
@@ -147,17 +174,25 @@ bool Views::compose(){
             else if(extended&&reach->cell==Cell{2,1})objective="Drag the reach crate toward the house to the white rectangle to clear Button's path.";
             else objective="The path is clear. Click the toy mouse beside the bench so Button can collect it.";
         }
-        if(screen==UiScreen::Puzzle&&q!=0&&q!=3&&!sequence&&!model_.puzzle.completed&&std::any_of(model_.puzzle.actions.begin(),model_.puzzle.actions.end(),[](const auto& a){return a.intent.verb==Verb::Slide||a.intent.verb==Verb::Fit||a.intent.verb==Verb::AssignCat;}))
+        if(screen==UiScreen::Puzzle&&q!=0&&q!=3&&!sequence&&!workshop&&!model_.puzzle.completed&&std::any_of(model_.puzzle.actions.begin(),model_.puzzle.actions.end(),[](const auto& a){return a.intent.verb==Verb::Slide||a.intent.verb==Verb::Fit||a.intent.verb==Verb::AssignCat;}))
             objective+=" White rectangles show available drop spaces. Hold a piece to see its spaces.";
         const auto& message=model_.services.feedback;
         const bool repeatSequenceStatus=sequence&&(message=="Watch the blackboard again. Your answer starts fresh."||message.starts_with("Your turn.")||message.starts_with("Picture matched."));
-        const std::string feedback=screen==UiScreen::Puzzle&&!repeatSequenceStatus&&message!="A little request is ready."&&message!=objective&&message!=model_.puzzle.objective?message:std::string{};
+        std::string feedback=screen==UiScreen::Puzzle&&!repeatSequenceStatus&&message!="A little request is ready."&&message!=objective&&message!=model_.puzzle.objective?message:std::string{};
+        if(pepper){
+            // Evidence belongs to the current stop, not the transient feedback
+            // slot. Inspecting another clue or choosing wrongly must not erase it.
+            for(const auto& clue:model_.puzzle.objects)if(clue.role=="trail_clue"&&feedback==clue.name)feedback.clear();
+            if(feedback.starts_with("That place does not fit all three clues"))feedback="Not all clues match. Compare the evidence above.";
+        }
         // Size the unified card for wrapped objective/status text, including
         // larger text and portrait. The sole Menu button occupies its own corner.
         const auto lines=[&](const std::string& text){
             std::istringstream words(text);std::string word,line;unsigned count=1;
             while(words>>word){auto next=line.empty()?word:line+" "+word;
-                if(!line.empty()&&ui_.gui_->font()->measure(next)>textWidth){++count;line=word;}else line=next;}
+                // The renderer also consumes the trailing space before a word.
+                // Reserve it so a boundary-space wrap cannot clip the final line.
+                if(!line.empty()&&ui_.gui_->font()->measure(next+" ")>textWidth){++count;line=word;}else line=next;}
             return count;
         };
         const bool headingWraps=ui_.heading_->measure(name)>headingWidth;
@@ -167,17 +202,43 @@ bool Views::compose(){
         // error feedback. Changing this card's height makes the host refit its
         // camera, moving the next bell out from under the player's pointer.
         const bool sequenceFrame=sequence&&!model_.puzzle.completed;
-        const bool showStatus=screen==UiScreen::Garden||model_.services.save==SaveState::Failed;
+        const bool showStatus=workshop||screen==UiScreen::Garden||model_.services.save==SaveState::Failed;
         const auto statusLines=showStatus?lines(status):0;
-        const auto objectiveLines=sequenceFrame?std::max(lines(sequenceWatch),lines(sequenceTurn)):lines(objective);
-        const auto feedbackLines=sequenceFrame?std::max(lines("Different picture. Your answer is cleared. Try again or replay the blackboard."),lines("Watch all the pictures first. Your turn starts when the blackboard goes blank.")):(feedback.empty()?0:lines(feedback));
-        const float top=24+headingRow+8+(statusLines+objectiveLines+feedbackLines)*ui_.gui_->font()->lineHeight()+(showStatus?8:0)+((sequenceFrame||!feedback.empty())?8:0);
-        auto& title=ui_.surface(12,titleY,titleWidth,top,false);
+        const auto objectiveLines=pepper?std::max(lines("Trail stop 6 / 6. Step 1: tap clues 1, 2 and 3 on the sand. 0 / 3 examined."),lines("Trail stop 6 / 6. Step 2: compare your clues. Tap path A, B or C that fits all three.")):sequenceFrame?std::max(lines(sequenceWatch),lines(sequenceTurn)):lines(objective);
+        std::array<unsigned,3> clueLines{1,1,1};
+        unsigned pepperLines=2;
+        if(pepper){
+            for(const auto& stop:rules::quest(model_.puzzle.quest,model_.puzzle.content).trail)for(unsigned n=0;n<3;++n)
+                clueLines[n]=std::max(clueLines[n],lines(std::to_string(n+1)+". "+stop.clues[n]));
+            for(unsigned n=0;n<3;++n)clueLines[n]=std::max(clueLines[n],lines(std::to_string(n+1)+". "+std::array{"Prints","Threads","Scraps"}[n]+": tap to examine."));
+            pepperLines=std::max(pepperLines,lines("Not all clues match. Compare the evidence above."));
+        }
+        const auto feedbackLines=workshop?std::max(2u,lines(feedback)):pepper?pepperLines:sequenceFrame?std::max(lines("Different picture. Your answer is cleared. Try again or replay the blackboard."),lines("Watch all the pictures first. Your turn starts when the blackboard goes blank.")):(feedback.empty()?0:lines(feedback));
+        const float checklistHeight=pepper?(clueLines[0]+clueLines[1]+clueLines[2])*ui_.gui_->font()->lineHeight()+20:0;
+        const float top=24+headingRow+8+(statusLines+objectiveLines+feedbackLines)*ui_.gui_->font()->lineHeight()+(showStatus?8:0)+((workshop||sequenceFrame||pepper||!feedback.empty())?8:0)+checklistHeight;
+        const float visibleTop=pepper&&bridgeSide?std::min(top,h-titleY-12):top;
+        auto& title=ui_.surface(12,titleY,titleWidth,visibleTop,pepper&&bridgeSide&&top>visibleTop);
         title.setLayout(VerticalLayout{8});
         auto& heading=title.add<Panel>();transparent(heading);heading.setSize({textWidth,headingRow});heading.setLayout(VerticalLayout{12});
         ui_.contentWidth_=headingWidth;ui_.heading(heading,name);ui_.contentWidth_=textWidth;
         if(showStatus){auto& state=ui_.copy(title,status,model_.services.save==SaveState::Failed);state.setLiveRegion(true);}
         auto& description=ui_.copy(title,objective);description.style.foreground={89.f/255,104.f/255,91.f/255,1};
+        if(pepper){
+            auto& checklist=title.add<Panel>();transparent(checklist);checklist.setSize({textWidth,checklistHeight-8});
+            float clueY=0;
+            for(unsigned n=0;n<3;++n){
+                const auto clue=std::find_if(model_.puzzle.objects.begin(),model_.puzzle.objects.end(),[&](const auto& o){return o.id=="clue_"+std::to_string(n);});
+                const bool examined=clue!=model_.puzzle.objects.end()&&clue->active;
+                const float rowHeight=clueLines[n]*ui_.gui_->font()->lineHeight();
+                auto& group=checklist.add<Panel>();transparent(group);group.setPosition({0,clueY});group.setSize({textWidth,rowHeight});
+                ui_.contentWidth_=textWidth;
+                const std::string evidence=examined?clue->name:std::string(std::array{"Prints","Threads","Scraps"}[n])+": tap to examine.";
+                auto& status=ui_.copy(group,std::to_string(n+1)+". "+evidence);
+                status.setAccessibleName("Clue "+std::to_string(n+1)+" "+std::array{"Paw prints","Blue threads","Picnic scraps"}[n]+(examined?": examined. "+clue->name:": not examined"));
+                status.setLiveRegion(true);
+                clueY+=rowHeight+6;
+            }ui_.contentWidth_=textWidth;
+        }
         if(!feedback.empty()){auto& notice=ui_.copy(title,feedback);notice.setLiveRegion(true);}
         int hearts=0;for(const auto& cat:model_.progress.cats)hearts+=cat.friendship;
         const std::string coinValue=std::to_string(model_.progress.coins),heartValue=std::to_string(hearts);
@@ -199,21 +260,30 @@ bool Views::compose(){
         if(nook)ui_.button(menu,model_.nookQuiet?"Leave nook":"Sunny nook",[this]{ui_.emit(UiAction::UseFurnishing,model_.nookQuiet?"leave_mabel_nook":"mabel_nook");});
         if(sequence)ui_.button(menu,"Replay pictures",[this,c=command(Verb::ReplaySequence)]{send(c);},false,!model_.puzzle.completed);
         if(balance){auto& test=ui_.surface((w-200)/2,h-88,200,76,false);ui_.button(test,"Test balance",[this,c=command(Verb::TestBalance)]{send(c);},false,!model_.puzzle.completed);}
+        if(pepper){
+            const float notebookY=h-88-(narrow&&!bridgeSide?56/scale:0);
+            auto& notebook=ui_.surface((w-240)/2,notebookY,240,76,false);ui_.contentWidth_=208;
+            ui_.button(notebook,"Clues & paths",[this]{ui_.show(UiScreen::Objects);});
+        }
         // Quiet, direct puzzle controls. Specialized choice trays retain their
         // space; their Undo/Hint actions remain available in the pause menu.
         const bool actionTray=screen==UiScreen::Puzzle&&!scent&&!balance;
         if(actionTray){
-            const float trayWidth=std::min(w-24,360.f),column=(trayWidth-44)/2;
+            const float trayWidth=std::min(w-24,workshop?480.f:360.f),column=(trayWidth-(workshop?56:44))/(workshop?3:2);
             auto& tray=ui_.surface((w-trayWidth)/2,h-88,trayWidth,76,false);
             tray.setLayout(HorizontalLayout{12});ui_.contentWidth_=column;
             auto& undo=tray.add<Panel>();transparent(undo);undo.setSize({column,52});
             ui_.button(undo,"Undo",[this,c=command(Verb::Undo)]{send(c);},false,model_.puzzle.canUndo,"undo");
+            if(workshop){
+                auto& rotate=tray.add<Panel>();transparent(rotate);rotate.setSize({column,52});
+                ui_.button(rotate,"Rotate",[this,c=command(Verb::Rotate,model_.workshopSelection)]{send(c);},false,!model_.workshopSelection.empty());
+            }
             auto& hint=tray.add<Panel>();transparent(hint);hint.setSize({column,52});
             ui_.button(hint,"Hint",[this]{if(!model_.puzzle.revealedHints)send(command(Verb::Hint));ui_.show(UiScreen::Hints);},true,true,"hint");
         }
         if(screen==UiScreen::Puzzle){
-            const float choiceHeight=scent?(narrow?280.f:164.f):balance||actionTray?88.f:0.f;
-            if(scent){
+            const float choiceHeight=scent&&!pepper?(narrow?280.f:164.f):balance||actionTray||pepper?88.f:0.f;
+            if(scent&&!pepper){
                 auto& choices=ui_.surface(12,h-choiceHeight-12,w-24,choiceHeight,true);
                 if(!narrow)choices.setLayout(HorizontalLayout{12});
                 const float column=narrow?w-56:(w-80)/3;
@@ -238,7 +308,8 @@ bool Views::compose(){
         // Rewards are presented above the cats; keep the world unobscured.
         const bool story=model_.puzzle.quest.starts_with("pip_friend_")||model_.puzzle.quest.starts_with("mabel_friend_")||progression::isBeachQuest(model_.puzzle.quest);
         const bool beach=progression::isBeachQuest(model_.puzzle.quest);
-        const float width=std::min(w-24,420.f),height=beach?300.f:story?228.f:128.f;
+        const bool workshop=model_.puzzle.quest=="beach_windbreak";
+        const float width=std::min(w-24,420.f),height=beach?((model_.puzzle.quest=="beach_picnic"||workshop)?364.f:300.f):story?228.f:128.f;
         auto& bar=ui_.surface((w-width)/2,h-height-12,width,height,false);
         if(story)ui_.copy(bar,std::string(dialogue()[progression::questIndex(model_.puzzle.quest)].speaker)+": "+std::string(dialogue()[progression::questIndex(model_.puzzle.quest)].completion));
         auto& status=ui_.copy(bar,beach?"Beach quest complete":model_.rewardGranted?"20 coins · Friendship +1":"A lovely practice round");
@@ -246,7 +317,9 @@ bool Views::compose(){
         if(beach){
             const auto q=progression::questIndex(model_.puzzle.quest);
             if(q+1<progression::quests.size())ui_.button(bar,"Continue beach story",[this,c=command(Verb::SelectQuest,{},std::string(progression::quests[q+1].id))]{send(c);},true);
-            else ui_.button(bar,model_.progress.beachEndingSeen?"Replay beach ending":"Watch beach ending",[this,c=command(Verb::RecordBeachEnding)]{send(c);},true);
+            else ui_.button(bar,"Return to the beach picnic",[this,c=command(Verb::SelectQuest,{},"beach_picnic")]{send(c);},true);
+            if(model_.puzzle.quest=="beach_picnic")ui_.button(bar,model_.progress.beachEndingSeen?"Replay beach ending":"Watch beach ending",[this,c=command(Verb::RecordBeachEnding)]{send(c);},true);
+            if(workshop)ui_.button(bar,model_.puzzle.content=="beach-windbreak-v1"?"Try revised workshop":"Replay workshop",[this]{ui_.show(UiScreen::Restart);});
         }
         ui_.button(bar,"Back to garden",[this]{ui_.emit(UiAction::BackToGarden);},true);
         board_={12*scale,12*scale,(w-24)*scale,(h-height-36)*scale};
@@ -254,18 +327,28 @@ bool Views::compose(){
     }
     const bool ending=screen==UiScreen::Ending||screen==UiScreen::BeachEnding,side=ending&&w>700;
     if(!ending){auto& dim=ui_.gui_->root().add<Panel>();dim.setSize({w,h});dim.style.background={ink.r,ink.g,ink.b,.42f};dim.style.border=clear;}
-    const float cw=ending?(side?450.f:w-24):std::min(w-24,520.f),ch=ending?(side?h-24:std::min(h*.48f,360.f)):std::min(h-24,680.f);
+    const float cw=ending?(side?450.f:w-24):std::min(w-24,520.f),ch=ending?(side?h-24:std::min(h*.48f,360.f)):std::min(h-24,screen==UiScreen::BalanceSetup?520.f:680.f);
     const float cx=ending?(side?w-cw-12:12):(w-cw)/2,cy=ending?(side?12:h-ch-12):(h-ch)/2;
     if(ending)board_=side?GuiRect{12*scale,12*scale,(w-cw-36)*scale,(h-24)*scale}:GuiRect{12*scale,12*scale,(w-24)*scale,(h-ch-36)*scale};
     auto& p=ui_.surface(cx,cy,cw,ch,true);p.setSize({cw-32,ch-88});
     const auto q=progression::questIndex(model_.puzzle.quest);
     const auto& copy=dialogue()[std::min(q,dialogue().size()-1)];
     switch(screen){
+    case UiScreen::BalanceSetup:
+        ui_.heading(p,"Setup "+std::to_string(completedSetup_)+" complete!");
+        ui_.copy(p,std::to_string(completedSetup_)+" of "+std::to_string(model_.puzzle.balanceSetups)+" setups balanced.").setLiveRegion(true);
+        ui_.heading(p,"Next: setup "+std::to_string(model_.puzzle.balanceSetup)+" of "+std::to_string(model_.puzzle.balanceSetups));
+        ui_.copy(p,balanceSupportChange_);
+        ui_.copy(p,balancePipBefore_);
+        ui_.copy(p,balancePipAfter_);
+        ui_.copy(p,balanceStorage_);
+        ui_.copy(p,std::string("Progress: ")+save);
+        break;
     case UiScreen::Adventures: {
         ui_.heading(p,"A Seaside Afternoon");
         ui_.copy(p,"Pip found a postcard of a sheltered beach cove. His ball has already gone exploring.");
-        ui_.copy(p,"Development preview: six quests in a greybox cove. No payment or purchased ownership is enabled.");
-        ui_.copy(p,std::to_string(std::count_if(model_.progress.quests.begin(),model_.progress.quests.end(),[](const auto& q){return progression::isBeachQuest(q.id)&&q.rewarded;}))+" / 6 beach requests complete");
+        ui_.copy(p,"Development preview: eleven seaside quests. No payment or purchased ownership is enabled.");
+        ui_.copy(p,std::to_string(std::count_if(model_.progress.quests.begin(),model_.progress.quests.end(),[](const auto& q){return progression::isBeachQuest(q.id)&&q.rewarded;}))+" / "+std::to_string(progression::beachQuestIds.size())+" beach requests complete");
         const auto next=std::find_if(model_.progress.quests.begin(),model_.progress.quests.end(),[](const auto& q){return progression::isBeachQuest(q.id)&&!q.rewarded;});
         const std::string nextId=next==model_.progress.quests.end()?"beach_picnic":next->id;
         ui_.button(p,model_.progress.beachComplete?"Visit beach picnic":"Start / Continue beach",[this,c=command(Verb::SelectQuest,{},nextId)]{send(c);},true,model_.progress.beachDevelopmentAccess);
@@ -285,7 +368,7 @@ bool Views::compose(){
     case UiScreen::Dialogue:
         ui_.heading(p,model_.services.inGarden?"Requests & friends":model_.puzzle.title);
         if(model_.services.inGarden)ui_.copy(p,"Choose a friend to hear their request. Completed requests can be practised.");
-        else if(progression::isBeachQuest(model_.puzzle.quest))ui_.copy(p,"Seaside Afternoon · request "+std::to_string(q-progression::baseQuestCount+1)+" of 6");
+        else if(progression::isBeachQuest(model_.puzzle.quest))ui_.copy(p,"Seaside Afternoon · request "+std::to_string(q-progression::baseQuestCount+1)+" of "+std::to_string(progression::beachQuestIds.size()));
         else if(model_.puzzle.quest.starts_with("pip_friend_"))ui_.copy(p,"Pip's friendship story · "+std::to_string(q-11)+" of 3");
         else if(model_.puzzle.quest.starts_with("mabel_friend_"))ui_.copy(p,"A little patch of sunshine · "+std::to_string(q-14)+" of 3");
         {
@@ -303,7 +386,29 @@ bool Views::compose(){
             ui_.copy(p,cat.name+" · "+std::to_string(cat.friendship)+"/"+std::to_string(max)+" friendship · "+(cat.introduced?labels[std::clamp(cat.milestone,0,3)]:"On the way"));}
         break;
     case UiScreen::Objects:
-        ui_.heading(p,model_.puzzle.title);ui_.copy(p,model_.puzzle.objective);break;
+        ui_.heading(p,model_.puzzle.title);
+        if(model_.puzzle.quest=="beach_pepper_basket"){
+            const bool ready=std::count_if(model_.puzzle.objects.begin(),model_.puzzle.objects.end(),[](const auto& o){return o.role=="trail_clue"&&o.active;})==3;
+            ui_.copy(p,"Help Pepper find her missing picnic basket. At each stop, examine three clues, then choose the path that matches all three.");
+            ui_.heading(p,"1. Examine the clues");
+            for(unsigned n=0;n<3;++n){
+                const std::string id="clue_"+std::to_string(n);
+                const auto clue=std::find_if(model_.puzzle.objects.begin(),model_.puzzle.objects.end(),[&](const auto& o){return o.id==id;});
+                if(clue==model_.puzzle.objects.end())continue;
+                const std::string name=std::array{"Paw prints","Blue threads","Picnic scraps"}[n];
+                ui_.copy(p,std::to_string(n+1)+". "+name+(clue->active?" · Examined":" · Not examined"));
+                if(clue->active)ui_.copy(p,clue->name);
+                ui_.button(p,(clue->active?"Examine again: ":"Examine: ")+name,[this,id]{ui_.enter(UiScreen::Puzzle);send(command(Verb::Inspect,id));},false,!model_.puzzle.completed);
+            }
+            ui_.heading(p,"2. Choose a path");
+            ui_.copy(p,ready?"Compare all three clues above. Only one path fits them all. A wrong choice keeps your discoveries.":"Examine all three clues to unlock every path. The letters match the signs on the sand.");
+            for(unsigned n=0;n<3;++n){
+                const std::string id="trail_"+std::to_string(n);
+                const auto choice=std::find_if(model_.puzzle.objects.begin(),model_.puzzle.objects.end(),[&](const auto& o){return o.id==id;});
+                if(choice!=model_.puzzle.objects.end())ui_.button(p,"Path "+std::string(1,char('A'+n))+": "+choice->name,[this,id]{ui_.enter(UiScreen::Puzzle);send(command(Verb::FollowTrail,id));},false,!model_.puzzle.completed&&ready);
+            }
+        }else ui_.copy(p,model_.puzzle.objective);
+        break;
     case UiScreen::Hints:
         ui_.heading(p,"A little nudge");ui_.copy(p,"Hints are free. Take as much time as you like.");
         ui_.copy(p,model_.puzzle.objective);
@@ -321,6 +426,7 @@ bool Views::compose(){
         if(model_.services.inGarden)ui_.button(p,"Requests & friends",[this]{ui_.show(UiScreen::Dialogue);});
         else {
             ui_.button(p,"Undo",[this,c=command(Verb::Undo)]{send(c);},false,model_.puzzle.canUndo);
+            if(model_.puzzle.quest=="beach_pepper_basket")ui_.button(p,"Clues & paths",[this]{ui_.show(UiScreen::Objects);});
             ui_.button(p,"Hint",[this]{if(!model_.puzzle.revealedHints)send(command(Verb::Hint));ui_.show(UiScreen::Hints);});
         }
         ui_.button(p,"Settings",[this]{ui_.show(UiScreen::Settings);});
@@ -395,7 +501,8 @@ bool Views::compose(){
         const auto at=std::find_if(model_.placement.begin(),model_.placement.end(),[this](const auto& s){return s.id==spot_;});
         ui_.button(a,"Place",[this,c=command(Verb::PlaceFurnishing,item_,spot_)]{send(c);},true,at!=model_.placement.end()&&at->compatible);
         auto& b=footer.add<Panel>();transparent(b);b.setSize({ui_.contentWidth_,52});ui_.button(b,"Cancel",[this]{spot_.clear();ui_.emit(UiAction::CancelPlacement);ui_.close();});
-    }else if(screen==UiScreen::Ending||screen==UiScreen::BeachEnding||screen==UiScreen::Completion)ui_.button(footer,screen==UiScreen::Ending?"Continue in garden":"Back to garden",[this]{ui_.emit(UiAction::BackToGarden);},true);
+    }else if(screen==UiScreen::BalanceSetup)ui_.button(footer,"Start setup "+std::to_string(model_.puzzle.balanceSetup),[this]{ui_.enter(UiScreen::Puzzle);},true);
+    else if(screen==UiScreen::Ending||screen==UiScreen::BeachEnding||screen==UiScreen::Completion)ui_.button(footer,screen==UiScreen::Ending?"Continue in garden":"Back to garden",[this]{ui_.emit(UiAction::BackToGarden);},true);
     else ui_.button(footer,"Back",[this]{ui_.close();});
     return true;
 }

@@ -23,13 +23,13 @@ const report={checks:[],errors:[]};
  await key('The sunny spot · Available');await key('Help Mabel');await page.waitForFunction(()=>pawsState.quest==='mabel_sunny_spot'&&pawsUi.screen===2);await settle();
  let before=await state();await drag('long_plank','long_socket',true);assert.equal((await state()).revision,before.revision);report.checks.push('Blur cancels drag without changing the attempt');
  await drag('long_plank','long_socket');assert.equal((await state()).revision,before.revision);assert.match((await state()).message,/Rotate/);report.checks.push('Misaligned drop is rejected without picking up or changing state');
- await click('long_plank');assert.equal(await page.evaluate(()=>pawsUi.screen),2);assert.match((await state()).message,/turned clockwise/);report.checks.push('First mouse-up click rotates without opening a menu');
+ await click('long_plank');assert.equal(await page.evaluate(()=>pawsUi.screen),2);assert.equal((await state()).objects.find(o=>o.id==='long_plank').orientation,(before.objects.find(o=>o.id==='long_plank').orientation+1)%4);report.checks.push('Tap on the selected plank rotates without opening a menu');
  before=await state();await drag('long_plank','unsupported_socket');assert.equal((await state()).revision,before.revision);report.checks.push('Invalid crossing preserves plank and revision');
  await drag('long_plank','long_socket');assert.match((await state()).message,/connected to both supports/);
  // Dragging away and returning still counts as a drag, never a click.
  const a=(await points()).objects.long_plank;before=await state();await page.mouse.move(a.x,a.y);await page.mouse.down();await page.mouse.move(a.x+35,a.y,{steps:4});await page.mouse.move(a.x,a.y,{steps:4});await page.mouse.up();await settle();assert.doesNotMatch((await state()).message,/turned clockwise/);report.checks.push('A drag returning to its origin does not rotate');
- await click('step_plank');await drag('step_plank','step_socket');assert.match((await state()).message,/connected to both supports/);
- await click('finish_plank');await drag('finish_plank','finish_socket');assert((await state()).completed);
+ await click('step_plank');await click('step_plank');await drag('step_plank','step_socket');assert.match((await state()).message,/connected to both supports/);
+ await click('finish_plank');await click('finish_plank');await drag('finish_plank','finish_socket');assert((await state()).completed);
  await page.screenshot({path:path.join(out,'route.png')});
  report.checks.push('All three planks placed with mouse; route completes automatically');
  assert.deepEqual(report.errors,[]);report.build=await page.evaluate(()=>pawsBuild);report.passed=true;

@@ -23,6 +23,42 @@ struct Backend final:engine::AudioBackend {
     void suspend(bool on) noexcept override{++suspensionChanges;if(on)running=false;}
 };
 int main(){try{
+    for(const auto& clip:audioClips)if(clip.family=="beach_wave")check(std::abs(clip.gain-.12f)<.0001f,"Every beach wave uses the quieter default gain");
+    auto waveBackend=std::make_unique<Backend>();auto* waveDevice=waveBackend.get();GameAudio waves(std::move(waveBackend));
+    std::vector<std::pair<std::size_t,unsigned>> waveLoads;std::vector<std::string> waveEvents;
+    waves.request=[&](auto i,auto g){waveLoads.emplace_back(i,g);};waves.event=[&](auto event){waveEvents.emplace_back(event);};
+    waves.activate();
+    check(std::none_of(waveLoads.begin(),waveLoads.end(),[](auto load){return audioClips[load.first].family=="beach_wave";}),"Garden activation does not load beach waves");
+    const auto waveSound=engine::SoundAsset::create(48000,2,std::vector<float>(480,.1f));
+    waves.beachWaves(true);waves.update(.1);
+    for(auto [i,g]:waveLoads)waves.publish(i,g,waveSound);waveLoads.clear();waves.update(.1);
+    check(waveEvents.size()==1&&waveEvents.front().starts_with("beach_wave_")&&waveDevice->voices.size()==1,"Beach begins a random wave after decode");
+    waves.update(100);check(waveEvents.size()==1&&waveDevice->voices.size()==1,"Next wave waits for actual backend completion");
+    std::set<int> observedGaps;
+    for(int n=2;n<=17;++n){
+        const auto previous=waveEvents.back();waveDevice->voices.clear();int ticks=0;
+        while(waveEvents.size()==std::size_t(n-1)&&ticks<90){waves.update(.05);++ticks;}
+        check(ticks>=71&&ticks<=88,"Random wave gap stays between 3.55 and 4.35 seconds plus one frame");observedGaps.insert(ticks);
+        check(waveEvents.size()==std::size_t(n)&&waveEvents.back()!=previous&&waveDevice->voices.size()==1,"Random wave selection never repeats consecutively or overlaps");
+    }
+    check(observedGaps.size()>1,"Wave pauses vary across playback");
+    waves.suspend(true);waves.update(100);check(waveEvents.size()==17,"Pause does not advance wave sequence");
+    waves.suspend(false);waves.activate();
+    AfternoonSettings waveSettings;waveSettings.effects=0;waves.settings(waveSettings);
+    for(auto [id,gain]:waveDevice->voices)check(gain==0,"Effects volume controls live wave gain");
+    waveDevice->voices.clear();for(int n=0;n<24;++n)waves.update(.25);check(waveEvents.size()==17,"Zero Effects volume queues no waves");
+    waveSettings.effects=80;waveSettings.muted=true;waves.settings(waveSettings);
+    for(int n=0;n<24;++n)waves.update(.25);check(waveEvents.size()==17,"Mute queues no waves");
+    waveSettings.muted=false;waves.settings(waveSettings);for(int n=0;n<18;++n)waves.update(.25);
+    check(waveEvents.size()==18&&waveDevice->voices.size()==1,"Unmute resumes one next wave without catch-up");
+    const auto lastWave=waveEvents.back();waveDevice->voices.clear();
+    for(std::size_t i=0;i<audioClips.size();++i)if(audioClips[i].family=="beach_wave"&&audioClips[i].id!=lastWave)waves.failed(i,waves.generation());
+    for(int n=0;n<20;++n)waves.update(.25);
+    check(waveEvents.size()==18,"Failed alternatives cannot force an immediate repeat of the last variant");
+    waves.retry();waves.update(.1);check(waveEvents.size()==19&&waveEvents.back()!=lastWave,"Retry restores alternate variants without repeating the previous wave");
+    waves.beachWaves(false);check(waveDevice->voices.empty(),"Leaving beach cancels active waves immediately");
+    waves.beachWaves(true);waves.update(.1);waves.sceneChanged();waves.update(.25);
+    check(waveDevice->voices.empty(),"Scene replacement clears wave playback policy");
     auto worldBackend=std::make_unique<Backend>();auto* worldDevice=worldBackend.get();
     auto menuBackend=std::make_unique<Backend>();auto* menuDevice=menuBackend.get();
     GameAudio menus(std::move(worldBackend),std::move(menuBackend));
@@ -103,7 +139,7 @@ int main(){try{
     check(loads.empty(),"Already decoded ambience remains cached across scene changes");
     GameAudio warm(std::make_unique<Backend>());std::vector<std::size_t> warmLoads;
     warm.request=[&](auto i,auto){warmLoads.push_back(i);};warm.activate();warm.sceneChanged();warmLoads.clear();warm.update(.1);
-    check(warmLoads.size()==std::count_if(audioClips.begin(),audioClips.end(),[](const auto& c){return c.bus!=0;}),"Cancelled small-effect decodes preload again after scene replacement");
+    check(warmLoads.size()==std::count_if(audioClips.begin(),audioClips.end(),[](const auto& c){return c.bus!=0&&c.family!="beach_wave";}),"Cancelled garden-effect decodes preload again; beach-only waves stay lazy");
     audio.loop("pip_purr",true);audio.update(.1);check(device->voices.size()==1,"Purr starts once");
     for(int i=0;i<60;++i){audio.loop("pip_purr",true);audio.update(.1);}check(device->voices.empty(),"Purr bounded even if caller retains request");
     audio.loop("pip_purr",false);audio.loop("pip_purr",true);audio.update(.1);check(device->voices.size()==1,"New use can purr");
@@ -159,6 +195,17 @@ int main(){try{
     playlist.update(.1);auto failedMusic=musicLoads.back();musicLoads.clear();playlist.failed(failedMusic.first,failedMusic.second);
     playlist.update(.1);musicDeliver();playlist.update(.1);
     check(musicEvents.back()==gardenMusicPlaylist[1],"Failed first track skips to playable second track");
+    playlist.retry();playlist.playlist(beachMusicPlaylist);
+    check(playlistDevice->voices.empty()&&playlist.pcmBytes()==0,"Entering beach stops garden music and releases its PCM");
+    playlist.update(.1);musicDeliver();playlist.update(.3);
+    check(musicEvents.back()==beachMusicPlaylist[0]&&playlistDevice->voices.size()==1,"Beachside Puzzle plays on beach playlist");
+    const auto beachVoice=playlistDevice->voices.begin()->first;
+    playlist.sceneChanged();playlist.playlist(beachMusicPlaylist);playlist.update(.3);
+    check(playlistDevice->voices.contains(beachVoice),"Beach quest changes preserve the same music voice");
+    playlistDevice->voices.clear();const auto beforeRepeat=musicEvents.size();playlist.update(.3);
+    check(musicEvents.size()==beforeRepeat+1&&musicEvents.back()==beachMusicPlaylist[0],"Beach music repeats after natural completion");
+    playlist.playlist(gardenMusicPlaylist);playlist.update(.1);musicDeliver();playlist.update(.3);
+    check(musicEvents.back()==gardenMusicPlaylist[0]&&playlistDevice->voices.size()==1,"Leaving beach restores garden music without overlap");
     std::cout<<"Audio activation, buses, cooldown, 12-effect budget, loops, music, stale scene generation passed\n";
     return 0;
 }catch(const std::exception& e){std::cerr<<e.what()<<'\n';return 1;}}

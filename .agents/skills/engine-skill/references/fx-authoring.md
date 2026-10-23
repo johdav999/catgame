@@ -65,3 +65,5 @@ Static mesh particles and current archive v21: see [mesh particles](mesh-particl
 Soft-distance fading remains supported on quad/ribbon particles, not Mesh mode.
 
 Particle contacts and projected decals: [integration](fx-contacts-decals.md). Collision is optional; applications own queued-impact consumption and decal lifetime.
+
+Event-driven child effects and managed fading decals: [composition contracts](fx-composition.md) and [validation](fx-composition-validation.md). Use native fx_composition plus FX/persistence/lifecycle regressions, and scripts/fx-composition-smoke.cjs on WebGPU/WebGL2 at DPR 1 and 2. Archive v29 retains nested dependencies and live continuation; events/counters remain transient.

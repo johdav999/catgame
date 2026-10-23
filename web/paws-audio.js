@@ -5,11 +5,11 @@ window.PawsAudioHost = (() => {
   let epoch=0, controller=new AbortController();
   const playable=clip=>clip?.accepted===true||
     (clip?.playable===true&&clip.review?.technicalVerified===true);
-  const stats={imported:0,playable:0,missing:67,failed:[],decoded:0,peakDecodePcmBytes:0,events:[]};
+  const stats={imported:0,playable:0,missing:72,failed:[],decoded:0,peakDecodePcmBytes:0,events:[]};
   const manifest=()=>catalogPromise||(catalogPromise=fetch('assets/audio/catalog.json').then(r=>{
     if(!r.ok)throw Error('Audio catalog unavailable');return r.json();
   }).then(m=>{
-    if(m.schema!==1||m.clips.length!==67)throw Error('Audio catalog version mismatch');
+    if(m.schema!==1||m.clips.length!==72)throw Error('Audio catalog version mismatch');
     catalog=m;stats.imported=m.clips.filter(c=>c.accepted).length;stats.playable=m.clips.filter(playable).length;stats.missing=m.clips.length-stats.playable;return m;
   }).catch(e=>{catalogPromise=null;throw e;}));
   const failed=(index,generation,error)=>{
@@ -35,7 +35,7 @@ window.PawsAudioHost = (() => {
           (clip.accepted===true&&!clip.review?.sourceAuditioned))
           throw Error('Final audio missing');
         const music=clip.id.startsWith('music_'),pcmBudget=(music?96:24)*1024*1024;
-        if(!/^(?:release1\/)?[a-z0-9_]+\.(?:wav|mp3)$/.test(clip.file)||!clip.pcm||clip.pcm.duration>(music?300:90)||clip.pcm.channels>2)
+        if(!/^(?:(?:release1|beach)\/)?[a-z0-9_]+\.(?:wav|mp3)$/.test(clip.file)||!clip.pcm||clip.pcm.duration>(music?300:90)||clip.pcm.channels>2)
           throw Error('Invalid audio delivery');
         const response=await fetch('assets/audio/'+clip.file,{signal});
         if(!response.ok)throw Error('Audio file unavailable');

@@ -66,7 +66,7 @@ offsets, look-ahead, half-lives, collision/mask). The viewport camera's follow d
 is editable while navigation still owns transform/lens/structure. Play clones
 settings and has a separate rig; Stop preserves source bytes/history. Runtime
 smoothing/transition state, callbacks, devices, held input and bindings are transient.
-Current archive writer v26 retains settings; old cameras default follow off.
+Current archive writer v31 retains settings; old cameras default follow off.
 Duplicate internal target IDs remap; external saved references stay external in
 the same scene. Reconstruct rig/bindings in applications; no automatic camera tick.
 Deploy matched host/main/worker artifacts. v25 introduced physical surface fields;
@@ -88,3 +88,8 @@ telemetry, errors and inspected screenshots. Synthetic desktop tests do not prov
 physical controllers/mobile devices, latency, sustained performance or handling.
 
 `OrbitController::adoptCamera(pivotDistance)` validates/captures the current local eye/yaw/pitch without camera writes; roll is not an orbit degree of freedom. Use at a real composed-to-orbit/editor handoff to avoid stale cached orientation. Preserve restored orbit metadata when orbit already owns the view. Native/Wasm and both-backend browser tests cover chase-to-editor handoff.
+
+
+## Session review and ghosts
+
+The shared driving example can now record authoritative chassis/wheel poses, telemetry and command/gear/reset/bug events afterSimulation. Review cancels commands and pauses live physics; Close restores camera/visibility/pause. Race resets to recorded start and advances a non-colliding1x proxy with simulation time. Browser and Windows GUI/files share policy. Do not feed sampled poses back into the solver or call this deterministic replay. Read [replay integration](replay-recording.md).

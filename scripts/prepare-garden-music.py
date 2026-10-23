@@ -63,8 +63,8 @@ def main():
         (RUNTIME / (clip_id + '.notice.txt')).write_text(source['licenseNotice']+'\n', encoding='utf-8')
         report.append(dict(id=clip_id, title=clip['title'], source=source, review=review, pcm=metrics,
                            sha256=clip['sha256'], bytes=clip['bytes']))
-    catalog['playlists'] = [dict(id='golden-afternoon-garden', repeat=True,
-                                tracks=[clip_id for _, clip_id in TRACKS])]
+    catalog['playlists'] = [p for p in catalog.get('playlists', []) if p['id'] != 'golden-afternoon-garden'] + [
+        dict(id='golden-afternoon-garden', repeat=True, tracks=[clip_id for _, clip_id in TRACKS])]
     catalog_path.write_text(json.dumps(catalog, indent=2, ensure_ascii=False)+'\n', encoding='utf-8')
     (records/'preparation.json').write_text(json.dumps(report, indent=2)+'\n', encoding='utf-8')
     print(json.dumps([dict(title=r['title'], bytes=r['bytes'], pcm=r['pcm']) for r in report], indent=2))

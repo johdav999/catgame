@@ -1,5 +1,12 @@
 # Durable afternoon saves and browser lifecycle
 
+M6 now writes `PAWS_AFTERNOON 14`, including full-catalogue quest-kernel records
+validated against the existing journals and ledger. Versions 1–13 remain readable.
+Browser `pre-quest-m6` and Windows `saves/pre-quest-m6.save` preserve the exact old
+save outside rotating history before replacement; backup failures prevent a
+migrated write. M5 backups remain intact. See [the M6 migration contract](quest-module-m6.md). The phase
+descriptions below retain the historical format milestones.
+
 Release-one Prompt 9 now writes `PAWS_AFTERNOON 6` through this same coordinator.
 The ten attempts, per-cat friendship, eight purchases/placements and separate
 picnic ending use the validated release-one codec. Supported versions 1–5 retain
@@ -60,6 +67,35 @@ wallet or reward writes.
 Saving becomes Saved only after the latest request's receipt. Failed transactions
 show Failed/Retry; receipts for older requests cannot change the newest status.
 Manual Retry captures the latest model. No unbounded background retry runs.
+
+Retry first drains queued writes, disposes the cached byte adapter and opens a
+fresh connection in the same namespace. This recovers a browser-closed IndexedDB
+connection without deleting records, releasing writer ownership or reloading the
+game. Queued operations acquire their adapter when they execute, so writes made
+during recovery cannot use the disposed connection. Only the latest save receipt
+can set or clear the displayed error. The recovery panel explains quota and
+storage-permission failures; `pawsSaveDiagnostics().lastWriteError` retains the
+bounded browser error details until a successful latest write.
+
+`scripts/save-recovery-smoke.cjs` exercises the generated site in isolated browser
+contexts: closed connections, persistent quota errors, debounce/retry overlap,
+reload and second-tab ownership. `SAVE_FIXTURE` optionally supplies a local export
+for validating preservation of actual quest progress, without using the player's
+browser profile. `QUEST_BACKEND=webgl2` selects fallback-renderer acceptance.
+
+2026-10-22 recovery acceptance: build `paws-0.1.0-7c98762033396405`
+passed this suite on WebGPU and WebGL2. Reports are under
+`build/evidence/save-recovery/{webgpu,webgl2}/report.json`. The actual port-8080
+tab was exported before reload, its validated export restored through Import,
+and saved progress verified after another reload: 240 coins, 13 total friendship,
+9/11 beach requests including the completed shell workshop. Screenshots are
+`build/evidence/save-recovery/live-saved.png` and `live-beach-progress.png`.
+The old live tab still failed Retry with disk space available; its original
+exception was discarded by the previous catch handler. A previously full disk
+is the suspected trigger, not a proven browser exception. The reproduced defect
+is deterministic: a closed cached database raises `InvalidStateError`, and the
+old Retry reused it indefinitely. The new retry reopens storage without clearing
+records. This is browser save-adapter acceptance; native persistence is unchanged.
 
 If any stored candidate is malformed or from a newer format, its original data
 stays in its original database. A valid backup can be recovered, or a fresh game

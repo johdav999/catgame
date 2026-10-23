@@ -13,6 +13,7 @@ const report={checks:[],quests:[],errors:[]};
  const names=()=>page.locator('button[data-widget-id]').evaluateAll(es=>es.map(e=>e.getAttribute('aria-label')));
  async function key(name){for(let n=0;n<600;n++){if(await page.evaluate(()=>document.activeElement?.getAttribute('aria-label'))===name){await page.keyboard.press('Enter');await settle();return;}await page.keyboard.press('Tab');}throw Error('Unreachable '+name+' '+JSON.stringify(await names()));}
  async function points(){return page.evaluate(()=>{Module._paws_interaction_snapshot();return pawsInteraction;});}
+ async function rotate(id){const before=(await state()).objects.find(o=>o.id===id).orientation;await click(id);if((await state()).objects.find(o=>o.id===id).orientation===before&&(await points()).selectedPlank===id)await click(id);}
  async function click(id){const p=(await points()).objects[id];assert(p,'Clickable '+id);await page.mouse.click(p.x,p.y);await settle();assert.notEqual(await page.evaluate(()=>pawsUi.screen),7,'Click opened object action menu');}
  async function drag(id,target,cancel=false){
   const p=await points(),a=p.objects[id],to=p.slots[target];assert(a&&to,JSON.stringify({id,target,p}));
@@ -42,7 +43,7 @@ const report={checks:[],quests:[],errors:[]};
    if(step.verb===4)continue; // Pick-up is part of the drag transaction.
    const before=await state();
    if(step.verb===1){const o=before.objects.find(o=>o.id===step.object),d=delta[step.direction];await drag(step.object,`${o.x+d[0]},${o.y+d[1]}`);const moved=(await state()).objects.find(o=>o.id===step.object);assert.equal(moved.x,o.x+d[0]);assert.equal(moved.y,o.y+d[1]);events.push('drag '+step.object);}
-   else if(step.verb===2){await click(step.object);events.push('rotate '+step.object);}
+   else if(step.verb===2){await rotate(step.object);events.push('rotate '+step.object);}
    else if(step.verb===3){await click(q===6?'rain_barrel':'source_ball');events.push('release source');if(q<3)await page.waitForFunction(()=>pawsState.completed||!pawsBall.rolling);}
    else if(step.verb===5){await drag(step.object,q===5?`${step.object}@${step.x},${step.y}`:step.target);events.push('fit '+step.object);}
    else if(step.verb===7){await click(step.object);events.push('retrieve '+step.object);}

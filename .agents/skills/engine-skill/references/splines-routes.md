@@ -50,7 +50,7 @@ all point positions +.02m over a20km vertical span or rejects the whole operatio
 No retained terrain dependency/version subscription; resample deliberately after
 terrain changes. This does not conform every profile vertex between knots.
 
-Archive writer v27/readers1..27 store shared RouteAsset->SplineAsset/SweepProfile
+Archive v27 introduced shared RouteAsset->SplineAsset/SweepProfile
 and material/surface refs, not derived geometry payloads. Source counts are bounded
 before allocation; derived CPU/cooking estimates charge ArchiveLimits before each
 unique route rebuild. Required child IDs/settings persist and validate. Duplicates
@@ -72,3 +72,5 @@ regressions. Inspect solid/collision/closed-route screenshots and record exact
 artifacts/results. Desktop/emulation does not establish physical mobile or
 sustained long-route performance. Generic editor history is count bounded; choose
 smaller history/rebuild limits for large resources. No game pin is advanced.
+
+Current scene/application/effect writer v31 reads v1..31 and retains v27 route resources.

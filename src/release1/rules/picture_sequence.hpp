@@ -10,7 +10,7 @@ namespace paws::release1::rules {
 class PictureSequencePlayback {
 public:
     void start(std::vector<std::string> pictures,double seconds) {
-        if(pictures.empty()||pictures.size()>8||!std::isfinite(seconds)||seconds<.25||seconds>10)
+        if(pictures.empty()||pictures.size()>12||!std::isfinite(seconds)||seconds<.25||seconds>10)
             throw std::invalid_argument("Invalid picture sequence playback");
         pictures_=std::move(pictures);seconds_=seconds;elapsed_=0;
     }
