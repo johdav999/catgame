@@ -1,4 +1,5 @@
 #include "afternoon.hpp"
+#include "historical_save.hpp"
 #include "release1/rules/content.hpp"
 #include <algorithm>
 #include <iostream>
@@ -51,7 +52,7 @@ int main(int argc,char** argv){try{
  for(std::size_t q=0;q<7;++q){select(owner,q);for(auto s:quest(progression::quests[q].id).solution)go(owner,s);}
  select(owner,8);check(owner.coins()==140,"Prerequisites earned");
  if(argc==3&&std::string_view(argv[1])=="--fixtures") {std::filesystem::create_directories(argv[2]);std::ofstream(std::filesystem::path(argv[2])/"playhouse.save")<<owner.encode();}
- auto oldBytes=owner.encode();auto pos=oldBytes.find("pip-pepper-playhouse-v2");check(pos!=std::string::npos,"Old fixture content found");oldBytes.replace(pos,23,"pip-pepper-playhouse-v1");
+ auto oldBytes=paws::tests::version12Envelope(owner.encode());auto pos=oldBytes.find("pip-pepper-playhouse-v2");check(pos!=std::string::npos,"Old fixture content found");oldBytes.replace(pos,23,"pip-pepper-playhouse-v1");
  auto old=Afternoon::decode(oldBytes);check(old.puzzleView().content=="pip-pepper-playhouse-v1","Old unplayed save retains content");
  for(auto s:quest("pip_pepper_playhouse","pip-pepper-playhouse-v1").solution)go(old,s);
  check(old.coins()==160,"Old completion earns once");

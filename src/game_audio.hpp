@@ -4,6 +4,7 @@
 #include "engine/audio.hpp"
 #include <functional>
 #include <map>
+#include <random>
 
 namespace paws {
 // Paws policy over the engine backend. No scene pointers or browser types.
@@ -34,6 +35,7 @@ public:
     void cancel(std::string_view family);
     void music(std::string_view);
     void playlist(std::span<const std::string_view>); // Ordered, repeating background music; survives scene changes.
+    void beachWaves(bool); // Four non-overlapping Effects accents, only while at the beach.
     void update(double);
 private:
     struct Slot { std::shared_ptr<const engine::SoundAsset> sound; bool pending=false,failed=false; };
@@ -54,6 +56,10 @@ private:
     std::string music_,nextMusic_;
     std::vector<std::size_t> playlist_;
     std::size_t playlistPosition_=0;
+    std::mt19937 waveRandom_{std::random_device{}()};
+    std::size_t lastWave_=audioClips.size(),nextWave_=audioClips.size();
+    double waveDelay_=0;
+    bool waves_=false,effectsAudible_=true;
     unsigned generation_=1;
     double clock_=0,uiClock_=0,musicFade_=0;
     bool enabled_=false,suspended_=false,muted_=false;

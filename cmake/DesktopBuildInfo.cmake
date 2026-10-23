@@ -1,0 +1,12 @@
+execute_process(COMMAND git -C "${ENGINE_SOURCE_DIR}" rev-parse HEAD OUTPUT_VARIABLE ENGINE_PIN OUTPUT_STRIP_TRAILING_WHITESPACE COMMAND_ERROR_IS_FATAL ANY)
+execute_process(COMMAND git -C "${SOURCE_DIR}" rev-parse HEAD OUTPUT_VARIABLE GAME_REVISION OUTPUT_STRIP_TRAILING_WHITESPACE COMMAND_ERROR_IS_FATAL ANY)
+execute_process(COMMAND git -C "${SOURCE_DIR}" status --porcelain --untracked-files=no OUTPUT_VARIABLE GAME_CHANGES OUTPUT_STRIP_TRAILING_WHITESPACE COMMAND_ERROR_IS_FATAL ANY)
+execute_process(COMMAND git -C "${ENGINE_SOURCE_DIR}" status --porcelain --untracked-files=no OUTPUT_VARIABLE ENGINE_CHANGES OUTPUT_STRIP_TRAILING_WHITESPACE COMMAND_ERROR_IS_FATAL ANY)
+set(SOURCE_DIRTY false)
+if(GAME_CHANGES OR ENGINE_CHANGES)
+  set(SOURCE_DIRTY true)
+endif()
+file(SHA256 "${EXECUTABLE}" EXECUTABLE_SHA)
+file(SHA256 "${SOURCE_DIR}/assets/runtime/manifest.json" CONTENT_SHA)
+file(WRITE "${PACKAGE_DIR}/build-info.json"
+  "{\"platform\":\"windows-x64\",\"renderer\":\"dawn\",\"configuration\":\"${CONFIGURATION}\",\"enginePin\":\"${ENGINE_PIN}\",\"gameRevision\":\"${GAME_REVISION}\",\"sourceDirty\":${SOURCE_DIRTY},\"executableSha256\":\"${EXECUTABLE_SHA}\",\"manifestSha256\":\"${CONTENT_SHA}\",\"saveFormat\":14}\n")

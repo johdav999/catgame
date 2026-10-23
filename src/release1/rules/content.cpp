@@ -38,7 +38,7 @@ Definition benchV1() {
 }
 Definition planksV1() {
     auto d=base(Family::Planks,"mabel_sunny_spot","mabel-sunny-spot-v1","The sunny spot",
-        "Click planks to rotate. Drag them between supports to connect Mabel's route to the sunny perch.",5,4);
+        "Tap a plank to see its fitting gaps; tap it again to rotate. Drag it to a white gap to connect Mabel's route to the sunny perch.",5,4);
     d.source={0,2};d.destination={3,1};
     d.objects={{"long_plank","Long plank (2 m)","plank",P::Plank,{0,0},1,2},
         {"step_plank","Step plank (1 m)","plank",P::Plank,{1,0},0,1},
@@ -52,7 +52,7 @@ Definition planksV1() {
         {V::PickUp,"finish_plank"},{V::Rotate,"finish_plank"},{V::Fit,"finish_plank","finish_socket"},{V::Connect}};
     d.hints={"Length, alignment and support all matter. A gap without support cannot carry Mabel.",
         "The long plank crosses first. Turn upward on the step plank, then cross right to the perch.",
-        "Click each plank once. Drag Long to Long crossing, Step to Turn toward perch, and Finish to Perch crossing."};return d;
+        "Select each plank, then tap it again to turn once. Drag Long to Long crossing, Step to Turn toward perch, and Finish to Perch crossing."};return d;
 }
 Definition bench() {
     auto d=benchV1();d.content="button-mouse-bench-v2";
@@ -235,7 +235,7 @@ Definition wobblyPerch() {
         "Positions for cushions 1,2,3,4: setup 1 = 1,5,7,2; setup 2 = 3,2,5,1; setup 3 = 1,5,7,6; setup 4 = 1,6,2,3. Test each setup."};
     return d;
 }
-std::vector<Definition> catalogue() {
+std::vector<Definition> catalogue(bool expandedBeach) {
     auto ball=[] {
         PuzzleDefinition p;p.schemaVersion=2;p.questId="pip_friend_ball";p.contentId="pip-friend-ball-v1";
         p.title="Can you get my ball?";p.objective="Clear the planters and roll Pip's ball to the catch tray. Then find its way home.";
@@ -328,14 +328,18 @@ std::vector<Definition> catalogue() {
       "Rear basket toward the dunes, then right. Front basket toward the dunes twice. Connect the ball east, north, then east to the mat.",
       "Rear north, east; Front north twice. Turn Beach straight once, Shore bend three times and Picnic bend once. Roll the ball."};
     auto all=std::vector<Definition>{old(missingBall()),old(tidyToys()),old(stuckGate()),bench(),planks(),shapes(),water(),bells(),switches(),picnic(),scentHunt(),wobblyPerch(),std::move(ball),std::move(bridge),std::move(shared),std::move(sun),std::move(drinkQuest),std::move(together),old(std::move(beach))};
-    appendBeachQuests(all);return all;
+    appendBeachQuests(all);if(expandedBeach)expandBeachQuests(all);appendBeachOutings(all,expandedBeach);return all;
 }
 Definition quest(std::string_view id,std::string_view content) {
     // Authored definitions are immutable. Input/read-model queries must not
     // rebuild every quest just to copy one requested definition.
     static const auto current=catalogue();
     for(const auto& d:current)if(d.quest==id&&(content.empty()||content==d.content))return d;
-    static const std::vector<Definition> previous{old(missingBall(1)),old(tidyToys(1)),old(stuckGate(1)),benchV1(),planksV1(),switchesV1()};
+    static const auto previous=[]{
+        std::vector<Definition> definitions{old(missingBall(1)),old(tidyToys(1)),old(stuckGate(1)),benchV1(),planksV1(),switchesV1()};
+        for(auto& d:catalogue(false))if(d.quest.starts_with("beach_"))definitions.push_back(std::move(d));
+        return definitions;
+    }();
     for(auto& d:previous)if(d.quest==id&&content==d.content)return d;
     throw std::invalid_argument("Unknown release-one quest.");
 }

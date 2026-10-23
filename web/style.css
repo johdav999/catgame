@@ -25,7 +25,9 @@ p {max-width:32em;margin:8px 0} [data-error=true] {color:#A94335}
 button {font:600 18px 'Nunito Sans',sans-serif;min-height:48px;min-width:120px;margin-top:16px;border:2px solid #28665D;border-radius:12px;padding:10px 24px;color:#FFF8E9;background:#28665D}
 button:focus-visible {outline:3px solid #28665D;outline-offset:3px}
 #cloud-open {position:fixed;right:max(12px,env(safe-area-inset-right));bottom:max(12px,env(safe-area-inset-bottom));z-index:20;font-size:14px;min-height:44px;padding:8px 14px}
+@media(max-width:600px){#cloud-open{bottom:calc(100px + env(safe-area-inset-bottom))}}
 body:has(#startup:not([hidden])) #cloud-open,body:has([aria-label="A moment of calm"]) #cloud-open {display:none}
+body:has([aria-label^="Make yourself"]) #cloud-open {display:none}
 #cloud-panel {color:#253E37;background:#FFF8E9;border:2px solid #28665D;border-radius:20px;padding:24px;width:min(560px,calc(100vw - 24px));max-height:calc(100dvh - 24px);overflow:auto;font-size:16px}
 #cloud-panel::backdrop {background:rgb(37 62 55 / 55%)}
 #cloud-panel h2,#cloud-panel h3 {font-family:Fraunces,Georgia,serif}

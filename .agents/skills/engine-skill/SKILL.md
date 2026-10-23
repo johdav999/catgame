@@ -11,7 +11,7 @@ Turn game requests into playable WebEngine applications that compose existing sy
 
 For Paws, resolve WebEngine through the pinned `external/WebEngine` submodule by default, or an explicitly configured local checkout in ignored `developer-settings.json` / `CMakeUserPresets.json`. Follow the game repository's `AGENTS.md`, `README.md` and `docs/architecture.md` for dependency selection, consumer builds and runtime ownership. Engine contract paths below are relative to that selected engine checkout; game builds and acceptance run from Paws using its own scripts and generated site.
 
-This repository-local copy was refreshed on 2026-10-15 from the installed `engine-skill` maintained by WebEngine at `C:/Users/Johan/.codex/skills/engine-skill`. On other machines, resolve that installed skill through the skill catalog. When refreshing, compare the complete skill folder, including supporting references, and retain this Paws dependency guidance. CatGame now pins published WebEngine `0426d9319de715584a2e34ff9862cd6ba873ecd0` (2026-10-18), including sky, terrain, water and split rendering backends. The source skill may describe later development features; verify availability in the selected checkout before using an API. Refreshing skill documentation does not advance the engine gitlink.
+This repository-local copy was refreshed on 2026-10-15 from the installed `engine-skill` maintained by WebEngine at `C:/Users/Johan/.codex/skills/engine-skill`. On other machines, resolve that installed skill through the skill catalog. When refreshing, compare the complete skill folder, including supporting references, and retain this Paws dependency guidance. CatGame now pins published WebEngine `461ab6dd1769171955254473c2b3623ad3dc615a` (2026-10-23), including portable modules/quests, consumer hosts and the M7 SDK handoff. Read docs/quest-module-m7.md for Paws release commands and scope. The source skill may describe later development features; verify availability in the selected checkout before using an API. Refreshing skill documentation does not advance the engine gitlink.
 
 Read applicable `AGENTS.md`, then `architecture.md` before planning or changing engine APIs, platform/build boundaries or game/demo behaviour. Inspect `git status --short` and preserve unrelated work. Read relevant README sections and feature documents, then verify exact signatures and implementations in `include/engine/`, `src/` and `web/`. Select documents through [the contract map](references/contract-map.md).
 
@@ -187,3 +187,14 @@ Immutable splines and procedural route sweeps, protected static collision, group
 editor authoring and v27 source-only persistence are documented in
 [spline/route integration](references/splines-routes.md). Keep lane/junction policy
 in games and choose explicit rebuild/query budgets. Verify availability at game pins.
+
+
+## Module SDK release handoff (M7, 2026-10-23)
+
+The published quest-module SDK at 461ab6dd1769171955254473c2b3623ad3dc615a adds
+independent generic and custom quest-binding consumers, native/Node-Wasm CTest,
+feature-omission coverage and docs/module-sdk.md. Runtime ownership and module
+API 1.0.0 remain unchanged. Paws M7 pins that revision and supplies clean-source
+web/Windows package validation and a full release matrix. Build consumers from
+checked-in accepted assets; offline authoring must not run during consumer builds.
+Read references/modules.md and references/consumer-hosts.md for the handoff.

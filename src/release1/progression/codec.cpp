@@ -19,11 +19,14 @@ void tag(std::istream& in,std::string_view expected){std::string s;require(bool(
 }
 namespace paws {
 namespace p=release1::progression;
+// Version 13 persisted only these two projections. This table is a compatibility
+// reader contract, never a live migration/authority selector.
+static constexpr std::array<std::string_view,2> version13Quests{"pip_missing_ball","beach_fresh_water"};
 std::string Afternoon::encode() const {
     std::ostringstream out;
     // Reuse the exact supported legacy section and validator. It still owns the
     // three original sessions, journals, settings, recovery data and old ending.
-    out<<"PAWS_AFTERNOON 11\nLEGACY "<<std::quoted(encodeLegacy())<<'\n';
+    out<<"PAWS_AFTERNOON 14\nLEGACY "<<std::quoted(encodeLegacy())<<'\n';
     out<<"R1 "<<std::quoted(std::string(release1::contractId))<<' '<<std::quoted(std::string(p::quests[activeQuest_].id))
        <<' '<<ownerRevision_<<' '<<garden_<<' '<<picnicSeen_<<' '<<coins()<<'\n';
     out<<"HOME "<<std::quoted(std::string(p::quests[homeQuest_].id))<<'\n';
@@ -38,6 +41,7 @@ std::string Afternoon::encode() const {
            <<(q<3?sessions_[q].state().attempt:extraIds_[q-3])<<' '<<(q<3?0:extraRecords_[q-3].size())<<'\n';
         if(q>=3)for(const auto& s:extraRecords_[q-3])out<<std::quoted(std::string(code(s.verb)))<<' '<<std::quoted(s.object)<<' '<<std::quoted(s.target)<<' '<<int(s.direction)<<' '<<s.destination.x<<' '<<s.destination.y<<'\n';
     }
+    out<<questAdapter_->saveSection(questFacts());
     out<<"END\n";auto bytes=out.str();if(bytes.size()>16*1024*1024)throw std::invalid_argument("Save is too large.");return bytes;
 }
 Afternoon Afternoon::decode(std::string_view bytes) {
@@ -45,14 +49,15 @@ Afternoon Afternoon::decode(std::string_view bytes) {
     std::istringstream in{std::string(bytes)};std::string magic;int version=0;
     require(bool(in>>magic>>version)&&magic=="PAWS_AFTERNOON","Unsupported save header");
     if(version>=1&&version<=5)return decodeLegacy(bytes);
-    require(version>=6&&version<=11,"Unsupported future save version");
+    require(version>=6&&version<=14,"Unsupported future save version");
     tag(in,"LEGACY");std::string legacy;require(bool(in>>std::quoted(legacy)),"Missing legacy section");
     // Prevent recursive v6 nesting: only the old, independently validated codec.
     Afternoon candidate=decodeLegacy(legacy);
+    candidate.replayingSave_=true;
     // Replay validates content history independently of current access. This is
     // discarded before returning: importing a save can never grant ownership.
     candidate.beachDevelopmentAccess_=true;
-    const unsigned savedQuestCount=version==6?10u:version==7?12u:version==8?15u:version==9?18u:version==10?19u:unsigned(p::questCount);
+    const unsigned savedQuestCount=version==6?10u:version==7?12u:version==8?15u:version==9?18u:version==10?19u:version==11?24u:unsigned(p::questCount);
     tag(in,"R1");std::string schema,active;Revision revision=0;bool garden=false,picnic=false;int balance=0;
     require(bool(in>>std::quoted(schema)>>std::quoted(active)>>revision>>garden>>picnic>>balance)&&schema==release1::contractId&&revision<std::numeric_limits<Revision>::max()-16&&balance>=0&&balance<=360,"Invalid release-one metadata");
     const auto activeIndex=p::questIndex(active);require(activeIndex<savedQuestCount,"Unknown selected quest");
@@ -87,6 +92,24 @@ Afternoon Afternoon::decode(std::string_view bytes) {
             journal.push_back({parseVerb(verb),std::move(object),std::move(target),Direction(direction),{x,y}});
         }
     }
+    std::string kernelSection;
+    if(version>=13) {
+        tag(in,"QUEST_KERNEL");unsigned schema=0,entries=0;
+        require(bool(in>>schema>>entries)&&schema==(version==13?1u:2u)&&entries==(version==13?version13Quests.size():p::quests.size()),"Unsupported quest kernel section");
+        std::map<std::string,std::string> records;
+        for(unsigned n=0;n<entries;++n) {
+            std::string id,content,stage,receipt;AttemptId attempt=0;bool earned=false,complete=false,checkpoint=false;
+            require(bool(in>>std::quoted(id)>>std::quoted(content)>>attempt>>earned>>complete>>checkpoint>>std::quoted(stage)>>std::quoted(receipt))&&
+                id.size()<=128&&content.size()<=128&&stage.size()<=128&&receipt.size()<=128,"Invalid quest kernel record");
+            require(version==13?std::find(version13Quests.begin(),version13Quests.end(),id)!=version13Quests.end():p::questIndex(id)<p::quests.size(),"Unknown quest kernel entry");
+            require(!records.contains(id),"Duplicate quest kernel entry");
+            std::ostringstream record;record<<std::quoted(id)<<' '<<std::quoted(content)<<' '<<attempt<<' '<<earned<<' '<<complete<<' '<<checkpoint<<' '<<std::quoted(stage)<<' '<<std::quoted(receipt)<<'\n';records[id]=record.str();
+        }
+        std::ostringstream section;section<<"QUEST_KERNEL "<<schema<<' '<<entries<<'\n';
+        if(version==13)for(auto id:version13Quests)section<<records.at(std::string(id));
+        else for(const auto& quest:p::quests)section<<records.at(std::string(quest.id));
+        kernelSection=section.str();
+    }
     tag(in,"END");in>>std::ws;require(in.eof(),"Trailing save data");
     std::size_t commands=0;for(auto& journal:candidate.records_)commands+=journal.size();
     // Frozen graph is topologically ordered; all journal sections were ID-keyed
@@ -117,8 +140,14 @@ Afternoon Afternoon::decode(std::string_view bytes) {
     require(activeIndex>=3||garden==candidate.sessions_[activeIndex].state().inGarden,"Legacy garden state mismatch");
     if(activeIndex<3)require(candidate.active_==activeIndex,"Legacy active quest mismatch");
     candidate.activeQuest_=activeIndex;candidate.ownerRevision_=revision;candidate.garden_=garden;candidate.picnicSeen_=picnic;candidate.introduced_=introductions;candidate.lastReward_=false;
-    require(!candidate.beachEndingSeen_||candidate.beachComplete(),"Beach ending predates completed adventure");
+    require(!candidate.beachEndingSeen_||candidate.beachPicnicComplete(),"Beach ending predates completed picnic");
     candidate.beachDevelopmentAccess_=false;
+    candidate.replayingSave_=false;candidate.questAdapter_.reset();candidate.reconcileQuests(true);
+    if(version>=13) {
+        auto expected=candidate.questAdapter_->saveSection(candidate.questFacts());
+        if(version==13){expected="QUEST_KERNEL 1 2\n";const auto facts=candidate.questFacts();for(auto id:version13Quests)expected+=candidate.questAdapter_->projectionRecord(facts[p::questIndex(id)]);}
+        require(expected==kernelSection,"Quest kernel state disagrees with validated puzzle history");
+    }
     return candidate;
 }
 }

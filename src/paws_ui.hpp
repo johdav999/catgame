@@ -7,7 +7,7 @@
 namespace paws {
 namespace release1::gui { class Views; }
 enum class UiScreen { Title, Garden, Puzzle, Dialogue, Hints, Pause, Settings, Objects,
-    Restart, Completion, Shop, Details, Placement, Ending, Recovery, Gallery, Loading, LoadFailure, ImportConfirm, RestartAdventure, Adventures, BeachEnding };
+    Restart, Completion, Shop, Details, Placement, Ending, Recovery, Gallery, Loading, LoadFailure, ImportConfirm, RestartAdventure, Adventures, BeachEnding, BalanceSetup };
 enum class UiAction { Play, Continue, AcceptQuest, SelectObject, Move, Rotate, Roll,
     PickUp, Place, Undo, Restart, BackToGarden, Buy, CancelPlacement,
     RetrySave, ExportSave, ImportSave, ReplayEnding, ResetView, ZoomIn, ZoomOut, Settings, SelectQuest, ReturnBall, RevealHint, RetryLoad,
@@ -58,7 +58,7 @@ struct UiSettings { bool largerText=false, reducedMotion=false, muted=false; int
 class PawsUi {
 public:
     PawsUi(std::array<std::vector<std::byte>,3> fonts, bool gallery,
-        std::function<void(const UiIntent&)> dispatch);
+        std::function<void(const UiIntent&)> dispatch, engine::GuiSystem* sharedGui=nullptr);
     engine::GuiSystem& gui() { return *gui_; }
     void project(UiModel model);
     void show(UiScreen screen);
@@ -67,6 +67,8 @@ public:
     void recordFrame(double timestamp, bool rendering);
     bool willRebuild(float width,float height) const { return dirty_||width!=width_||height!=height_; }
     void pointer(engine::Vec2 position, bool down);
+    bool volumePointer(engine::GuiPointer action, engine::Vec2 position);
+    bool volumeKey(int key);
     void escape();
     void setReducedMotion(bool value) { settings_.reducedMotion=value;dirty_=true; }
     void restoreSettings(UiSettings settings) { settings_=settings;dirty_=true; }
@@ -78,8 +80,14 @@ private:
     friend class release1::gui::Views;
     std::function<bool()> composition_;
     struct Skin { engine::Button* button; engine::Image* image; engine::Image* text;
-        std::string label, icon; bool primary; int state=-1; float width=0, height=52; };
-    std::unique_ptr<engine::GuiSystem> gui_;
+        std::string label, icon; bool primary; int state=-1; float width=0, height=52;
+        int UiSettings::*volume=nullptr; int paintedValue=-1; };
+    int UiSettings::*volumeDrag_=nullptr;
+    float volumeStartY_=0;
+    int volumeStartValue_=0;
+    std::string volumeName_;
+    std::unique_ptr<engine::GuiSystem> ownedGui_;
+    engine::GuiSystem* gui_=nullptr;
     std::array<std::vector<std::byte>,3> fontBytes_;
     std::shared_ptr<engine::GuiFont> heading_, wordmark_, control_;
     std::function<void(const UiIntent&)> dispatch_;

@@ -1,4 +1,5 @@
 #include "afternoon.hpp"
+#include "historical_save.hpp"
 #include "release1/rules/content.hpp"
 #include <algorithm>
 #include <filesystem>
@@ -91,7 +92,7 @@ int main(int argc,char** argv){try{
             auto historical=campaign;check(historical.selectQuest(3),"Historical extra quest unlock");
             auto first=historical.intent(Verb::Slide,"crate_b");first.direction=Direction::East;
             check(historical.dispatchIntent(first).accepted,"Shared original first move");
-            auto bytes=historical.encode();const std::string identity="\"button-mouse-bench-v2\"";auto at=bytes.find(identity);
+            auto bytes=paws::tests::version12Envelope(historical.encode());const std::string identity="\"button-mouse-bench-v2\"";auto at=bytes.find(identity);
             check(at!=std::string::npos,"Saved typed content ID");bytes.replace(at,identity.size(),"\"button-mouse-bench-v1\"");
             auto restored=Afternoon::decode(bytes);check(restored.puzzleView().content=="button-mouse-bench-v1","Old typed save keeps original layout");
             for(std::size_t n=1;n<quest("button_mouse_bench","button-mouse-bench-v1").solution.size();++n){

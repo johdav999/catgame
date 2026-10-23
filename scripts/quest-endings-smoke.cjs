@@ -1,92 +1,33 @@
-// Runs the actual generated game. Quest commands use mouse events only.
+// Replay the original garden picnic and later beach ending from separate validated saves.
 const {chromium}=require('playwright');
 const fs=require('node:fs/promises'),path=require('node:path'),assert=require('node:assert/strict');
-const out=process.env.EVIDENCE_DIR||'build/evidence/quest-endings';
-const report={checks:[],quests:[],errors:[]};
 (async()=>{
- await fs.mkdir(out,{recursive:true});
- const browser=await chromium.launch({headless:true,executablePath:process.env.BROWSER_EXECUTABLE||'C:/Program Files/Google/Chrome/Application/chrome.exe'});
- let page;
- try{
- page=await browser.newPage({viewport:{width:1600,height:1000}});page.on('pageerror',e=>report.errors.push(e.message));page.on('console',m=>{if(m.type()==='error')report.errors.push(m.text());});
- if(process.env.WEBGL==='1')await page.addInitScript(()=>Object.defineProperty(navigator.gpu,'requestAdapter',{value:async()=>null}));
- const state=()=>page.evaluate(()=>pawsState),settle=()=>page.waitForTimeout(300);
- const names=()=>page.locator('button[data-widget-id]').evaluateAll(es=>es.map(e=>e.getAttribute('aria-label')));
- async function key(name){for(let n=0;n<600;n++){if(await page.evaluate(()=>document.activeElement?.getAttribute('aria-label'))===name){await page.keyboard.press('Enter');await settle();return;}await page.keyboard.press('Tab');}throw Error('Unreachable '+name+' '+JSON.stringify(await names()));}
- async function points(){return page.evaluate(()=>{Module._paws_interaction_snapshot();return pawsInteraction;});}
- async function click(id){const p=(await points()).objects[id];assert(p,'Clickable '+id);await page.mouse.click(p.x,p.y);await settle();assert.notEqual(await page.evaluate(()=>pawsUi.screen),7,'Click opened object action menu');}
- async function drag(id,target,cancel=false){
-  const p=await points(),a=p.objects[id],to=p.slots[target];assert(a&&to,JSON.stringify({id,target,p}));
-  const o=(await state()).objects.find(o=>o.id===id),from=o&&p.slots[`${o.x},${o.y}`];
-  // Sliding props keep the original grab offset, matching the visible preview.
-  const b=/^\d+,\d+$/.test(target)&&from?{x:a.x+to.x-from.x,y:a.y+to.y-from.y}:to;
-  await page.mouse.move(a.x,a.y);await page.mouse.down();await page.mouse.move(b.x,b.y,{steps:12});if(cancel)await page.evaluate(()=>window.dispatchEvent(new Event('blur')));await page.mouse.up();await settle();assert.notEqual(await page.evaluate(()=>pawsUi.screen),7,'Drag opened action menu');
- }
- await page.goto(process.env.PAWS_URL||'http://127.0.0.1:8138/');await page.waitForFunction(()=>window.pawsStorageReady&&window.pawsGuiReady&&window.pawsRenderState?.state==='ready');if(process.env.START_QUEST){await key('Save and recovery');const choosing=page.waitForEvent('filechooser');await key('Import save');await (await choosing).setFiles(path.resolve(process.env.SAVE_FIXTURE||'tests/fixtures/phase7-completed.save'));await settle();await key('Use imported afternoon');}await key('Play');await page.waitForFunction(()=>pawsState.garden);if(process.env.START_QUEST){await key('Menu');await key('Settings');if((await names()).includes('Motion: Reduced'))await key('Motion: Reduced');if((await names()).includes('Sound: On'))await key('Sound: On');await key('Back');await key('Continue');}
- const quests=[["Pip's missing ball",'Pip'],['Tidy the toy basket','Pip'],['The stuck little gate','Pip'],['Mouse under the bench','Button'],['The sunny spot','Mabel'],['A bed for Button','Button'],['A drink after playing','Mabel'],['The garden bells','Pepper'],['Two kittens, one doorway','Pip'],['The garden picnic','Mabel']];
- const start=Number(process.env.START_QUEST||0);const startingCoins=(await state()).coins;
- const delta=[[0,-1],[1,0],[0,1],[-1,0]];
- const end=Number(process.env.END_QUEST||8);
- for(let q=start;q<end;q++){
-  await key('Menu');await key('Requests & friends');let opts=await names();while(opts.some(n=>n.startsWith('Welcome '))){await key(opts.find(n=>n.startsWith('Welcome ')));opts=await names();}
-  await key(quests[q][0]+(process.env.PRACTICE?' · Practice':' · Available'));await key((await names()).find(n=>n.startsWith('Help ')));await page.waitForFunction(()=>pawsUi.screen===2&&!pawsState.garden);await settle();
-  await key('Menu');assert(!(await names()).some(n=>/Puzzle controls|Objects & actions|Choose an object/.test(n)));await key('Continue');
-  const initial=await state(),solution=initial.solution,events=[];
-  if(q===3){const before=await state();await click('mouse');assert.equal((await state()).revision,before.revision,'Blocked mouse retrieval changed state');assert.match((await state()).message,/crates/);report.checks.push('Bench retrieval rejects a blocked lane');}
-  if(q===3){
-   const before=await state(),p=await points(),a=p.objects.crate_a;
-   await page.mouse.move(a.x,a.y);await page.mouse.down();await page.mouse.move(a.x+250,a.y+150,{steps:12});await page.mouse.up();await settle();
-   assert.equal((await state()).revision,before.revision,'Off-track crate drop changed state');
-   report.checks.push('Off-track crate drop preserves state');
-   await page.screenshot({path:path.join(out,'bench-tracks.png')});
-  }
-  if(q===3){await key('Menu');await key('Hint');await key('Next hint');assert((await state()).paused);await key('Back');await key('Continue');report.checks.push('Hints remain available from Menu without resuming the scene');}
-  if(q===4){const before=await state();await drag('long_plank','long_socket',true);assert.equal((await state()).revision,before.revision);await drag('long_plank','long_socket');assert.equal((await state()).revision,before.revision);report.checks.push('Plank drag cancellation and misalignment preserve the attempt');}
-  if(q===5){const before=await state();await drag('square','square@4,2');assert.equal((await state()).revision,before.revision);assert.match((await state()).message,/outside/);report.checks.push('Cushion outside the basket is rejected without a partial pickup');}
-  if(q===7){await page.waitForFunction(()=>!window.pawsSequence?.watching);await click('paw');assert(!(await state()).completed);report.checks.push('Wrong bell clears the sequence for retry');}
-  if(q===8){const before=await state();await drag('pip','pepper_switch');assert.equal((await state()).revision,before.revision);report.checks.push('Wrong kitten switch is rejected');}
-  for(let n=0;n<solution.length;n++){
-   const step=solution[n];if((await state()).completed)break;
-   if(step.verb===4)continue; // Pick-up is part of the drag transaction.
-   const before=await state();
-   if(step.verb===1){const o=before.objects.find(o=>o.id===step.object),d=delta[step.direction];
-    if(q===3){
-     const p=await points(),a=p.objects[step.object],from=p.slots[`${o.x},${o.y}`],to=p.slots[`${o.x+d[0]},${o.y+d[1]}`];
-     // Grab visibly off-centre and retain that offset at release. Destination
-     // is an actor translation, rather than a pointer-to-ground coincidence.
-     const x=a.x+30,y=a.y-12;
-     await page.mouse.move(x,y);await page.mouse.down();await page.mouse.move(x+to.x-from.x,y+to.y-from.y,{steps:14});await page.mouse.up();await settle();
-     report.checks.push('Off-centre grab snaps '+step.object+' to its legal slot');
-    }else await drag(step.object,`${o.x+d[0]},${o.y+d[1]}`);
-    const moved=(await state()).objects.find(o=>o.id===step.object);assert.equal(moved.x,o.x+d[0]);assert.equal(moved.y,o.y+d[1]);events.push('drag '+step.object);}
-   else if(step.verb===2){await click(step.object);events.push('rotate '+step.object);}
-   else if(step.verb===3){await click(q===6?'rain_barrel':'source_ball');events.push('release source');if(q<3)await page.waitForFunction(()=>pawsState.completed||!pawsBall.rolling);}
-   else if(step.verb===5){await drag(step.object,q===5?`${step.object}@${step.x},${step.y}`:step.target);events.push('fit '+step.object);}
-   else if(step.verb===7){await click(step.object);events.push('retrieve '+step.object);}
-   else if(step.verb===8){await click(step.object);events.push('tap '+step.object);}
-   else if(step.verb===9){await drag(step.object,step.target);events.push('assign '+step.object);}
-   else if(step.verb===6)assert((await state()).completed,'Arrangement did not automatically complete');
-   else throw Error('Unmapped mouse action '+JSON.stringify(step));
-   const after=await state();assert(after.revision>before.revision||after.completed,JSON.stringify({q,step,message:after.message}));
-   if(q===0&&n===0){await key('Menu');await key('Undo');assert((await state()).paused);assert.equal((await state()).objects.find(o=>o.id==='pot_a').y,2);await key('Continue');await drag('pot_a','1,1');report.checks.push('Menu Undo restores a drag while retaining pause');}
-  }
-  await page.waitForFunction(()=>pawsState.completed);
-  await page.waitForFunction(()=>window.pawsEnding?.active||window.pawsEnding?.finished);
-  if((await page.evaluate(()=>pawsEnding)).active){
-   const pausedAt=await page.evaluate(()=>pawsEnding.time);await key('Menu');await page.waitForTimeout(350);const held=await page.evaluate(()=>pawsEnding.time);await page.waitForTimeout(350);assert.equal(await page.evaluate(()=>pawsEnding.time),held,'Ending advances under Pause');await key('Continue');report.checks.push('Pause freezes ending '+q);
-   await page.waitForFunction(()=>pawsEnding.time>=pawsEnding.walkSeconds+.7||pawsEnding.finished);await page.screenshot({path:path.join(out,`quest-${q}-contact.png`)});
-   await page.waitForFunction(()=>pawsEnding.time>=pawsEnding.walkSeconds+2.3||pawsEnding.finished);await page.screenshot({path:path.join(out,`quest-${q}-reaction.png`)});
-  }
-  await page.waitForFunction(t=>pawsEnding.time>=pawsEnding.walkSeconds+t||pawsEnding.finished,[2.85,5.05,3.25,3.7,4.7,7.7,4.6,4.2][q]);await page.screenshot({path:path.join(out,`quest-${q}-settled.png`)});
-  await page.waitForFunction(()=>pawsState.completed&&pawsUi.screen===9,undefined,{timeout:60000});
-  assert((await page.evaluate(()=>pawsEnding)).finished);report.checks.push('Reaction finishes before reward card '+q);await page.screenshot({path:path.join(out,`quest-${q}-complete.png`)});report.quests.push({quest:initial.quest,events,completed:true});console.log('Passed '+initial.quest);
-  await key('Back to garden');await page.waitForFunction(()=>pawsState.garden&&pawsUi.screen===1);await settle();
- }
- assert.equal((await state()).coins,startingCoins+(process.env.PRACTICE?0:20*(end-start)));assert.deepEqual(report.errors,[]);report.build=await page.evaluate(()=>pawsBuild);report.passed=true;
- }catch(e){report.failure=e.stack;report.diagnostics=await page?.evaluate(()=>({text:document.body.innerText,state:window.pawsState,render:window.pawsRenderState,screen:window.pawsUi?.screen}));await page?.screenshot({path:path.join(out,'failure.png')});process.exitCode=1;}
- finally{await browser.close();await fs.writeFile(path.join(out,'report.json'),JSON.stringify(report,null,2));console.log(JSON.stringify({passed:report.passed,checks:report.checks,quests:report.quests.length,failure:report.failure},null,2));}
-})();
-
-
-
-
+ const out=process.env.EVIDENCE_DIR||'build/evidence/m6/endings';await fs.mkdir(out,{recursive:true});
+ const fixtures=process.env.PAWS_QUEST_FIXTURES||'build/evidence/m6/native-rules';
+ const original=await fs.readFile(path.join(fixtures,'garden-ending.save'),'utf8'),beach=await fs.readFile(path.join(fixtures,'ending.save'),'utf8'),report={runs:[]};
+ const browser=await chromium.launch({headless:true,executablePath:'C:/Program Files/Google/Chrome/Application/chrome.exe',args:['--disk-cache-size=1048576']});let activePage;
+ try{for(const backend of ['webgpu','webgl2']){
+  const context=await browser.newContext({viewport:{width:1440,height:1000}});
+  if(backend==='webgl2')await context.addInitScript(()=>{navigator.gpu.requestAdapter=async()=>null;});
+  const page=await context.newPage(),errors=[];activePage=page;page.on('pageerror',e=>errors.push(e.message));
+  const ready=()=>page.waitForFunction(()=>window.pawsStorageReady&&window.pawsGuiReady&&window.pawsRenderState?.state==='ready',null,{timeout:90000});
+  const key=async name=>{await page.getByRole('button',{name,exact:true}).focus();await page.keyboard.press('Enter');await page.waitForTimeout(250);};
+  await page.goto((process.env.PAWS_URL||'http://127.0.0.1:8151/')+'?devBeach=1');await ready();
+  assert(await page.evaluate(text=>{Module._paws_cloud_stamp();return pawsStageCloudSave(new TextEncoder().encode(text),pawsCloudStamp);},original));
+  await key('Use imported afternoon');await key('Continue');await page.waitForFunction(()=>pawsState.garden&&pawsState.production,null,{timeout:90000});
+  await page.waitForFunction(()=>pawsState.cats.every(c=>c.introduced),null,{timeout:90000});
+  const gardenBefore=await page.evaluate(()=>pawsState);assert.equal(gardenBefore.coins,170);assert.equal(gardenBefore.items.filter(i=>i.owned&&i.spot).length,1);
+  await key('Menu');await page.waitForFunction(()=>pawsUi.screen===5);await key('Replay picnic celebration');await page.waitForFunction(()=>pawsUi.screen===13,null,{timeout:90000});
+  await page.screenshot({path:path.join(out,backend+'-garden-picnic.png')});await key('Continue in garden');
+  const gardenAfter=await page.evaluate(()=>pawsState);assert.equal(gardenAfter.coins,gardenBefore.coins);assert.deepEqual(gardenAfter.items,gardenBefore.items);assert.equal(gardenAfter.picnicSeen,1);
+  assert(await page.evaluate(text=>{Module._paws_cloud_stamp();return pawsStageCloudSave(new TextEncoder().encode(text),pawsCloudStamp);},beach));await key('Use imported afternoon');await key('Continue');await page.waitForFunction(()=>pawsState.garden&&pawsState.production,null,{timeout:90000});const before=await page.evaluate(()=>pawsState);
+  await key('Adventures');await key('Visit beach picnic');await page.waitForFunction(()=>pawsUi.screen===9,null,{timeout:90000});
+  await key('Replay beach ending');await page.waitForFunction(()=>pawsUi.screen===21,null,{timeout:90000});
+  await page.screenshot({path:path.join(out,backend+'-beach-ending.png')});await key('Back to garden');
+  await page.evaluate(()=>pawsFlushSave());await page.waitForFunction(()=>pawsState.save===2);
+  await page.reload();await ready();await key('Continue');await page.waitForFunction(()=>pawsState.garden&&pawsState.production,null,{timeout:90000});
+  const after=await page.evaluate(()=>pawsState);assert.equal(after.coins,before.coins);assert.deepEqual(after.items,before.items);assert.deepEqual(after.cats,before.cats);assert.equal(after.picnicSeen,1);assert.equal(after.beachEndingSeen,1);assert.equal(after.sceneCount,1);assert.deepEqual(errors,[]);
+  report.runs.push({backend,build:await page.evaluate(()=>pawsBuild),gardenReplay:true,beachReplay:true,gardenAfter,after,errors});await context.close();
+ }}catch(error){report.failure=error.stack;report.diagnostics=await activePage?.evaluate(()=>({state:pawsState,ui:pawsUi,garden:window.pawsGarden,render:pawsRenderState,text:document.body.innerText}));await activePage?.screenshot({path:path.join(out,'failure.png')});throw error;}finally{await browser.close();await fs.writeFile(path.join(out,'report.json'),JSON.stringify(report,null,2));}
+ console.log('M6 garden and beach ending replay, retained furnishings and reload passed on both renderers');
+})().catch(e=>{console.error(e);process.exitCode=1;});

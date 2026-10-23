@@ -1,0 +1,249 @@
+PAWS_AFTERNOON 13
+LEGACY "PAWS_AFTERNOON 5 2 0 0 0 70 60 80 17 60 3 1 1 1
+0 \"legacy\" 0
+0
+0 0 \"\" \"\" 0
+\"missing-ball-v2\" 32 2 33
+1 \"pot_a\" 0 \"\"
+1 \"pot_a\" 0 \"\"
+1 \"pot_b\" 3 \"\"
+1 \"pot_a\" 3 \"\"
+1 \"pot_b\" 0 \"\"
+2 \"channel_a\" 0 \"\"
+2 \"channel_a\" 0 \"\"
+2 \"channel_a\" 0 \"\"
+2 \"channel_b\" 0 \"\"
+2 \"channel_c\" 0 \"\"
+2 \"channel_d\" 0 \"\"
+2 \"channel_d\" 0 \"\"
+2 \"channel_d\" 0 \"\"
+2 \"channel_e\" 0 \"\"
+3 \"\" 0 \"\"
+4 \"\" 0 \"\"
+5 \"\" 0 \"\"
+1 \"pot_a\" 0 \"\"
+1 \"pot_a\" 0 \"\"
+1 \"pot_b\" 3 \"\"
+1 \"pot_a\" 3 \"\"
+1 \"pot_b\" 0 \"\"
+2 \"channel_a\" 0 \"\"
+2 \"channel_a\" 0 \"\"
+2 \"channel_a\" 0 \"\"
+2 \"channel_b\" 0 \"\"
+2 \"channel_c\" 0 \"\"
+2 \"channel_d\" 0 \"\"
+2 \"channel_d\" 0 \"\"
+2 \"channel_d\" 0 \"\"
+2 \"channel_e\" 0 \"\"
+3 \"\" 0 \"\"
+\"tidy-toys-v2\" 20 4 21
+1 \"cushion\" 0 \"\"
+10 \"fish\" 0 \"\"
+11 \"fish\" 0 \"fish_recess\"
+1 \"cushion\" 2 \"\"
+1 \"cushion\" 2 \"\"
+10 \"mouse\" 0 \"\"
+11 \"mouse\" 0 \"mouse_recess\"
+10 \"ball\" 0 \"\"
+11 \"ball\" 0 \"ball_recess\"
+4 \"\" 0 \"\"
+5 \"\" 0 \"\"
+1 \"cushion\" 0 \"\"
+10 \"fish\" 0 \"\"
+11 \"fish\" 0 \"fish_recess\"
+1 \"cushion\" 2 \"\"
+1 \"cushion\" 2 \"\"
+10 \"mouse\" 0 \"\"
+11 \"mouse\" 0 \"mouse_recess\"
+10 \"ball\" 0 \"\"
+11 \"ball\" 0 \"ball_recess\"
+\"stuck-gate-v2\" 24 6 25
+1 \"pot\" 0 \"\"
+2 \"channel_a\" 0 \"\"
+2 \"channel_b\" 0 \"\"
+2 \"channel_b\" 0 \"\"
+2 \"channel_b\" 0 \"\"
+2 \"channel_c\" 0 \"\"
+3 \"\" 0 \"\"
+1 \"pot\" 3 \"\"
+1 \"gate_crate\" 3 \"\"
+1 \"gate_crate\" 2 \"\"
+10 \"mouse\" 0 \"\"
+4 \"\" 0 \"\"
+5 \"\" 0 \"\"
+1 \"pot\" 0 \"\"
+2 \"channel_a\" 0 \"\"
+2 \"channel_b\" 0 \"\"
+2 \"channel_b\" 0 \"\"
+2 \"channel_b\" 0 \"\"
+2 \"channel_c\" 0 \"\"
+3 \"\" 0 \"\"
+1 \"pot\" 3 \"\"
+1 \"gate_crate\" 3 \"\"
+1 \"gate_crate\" 2 \"\"
+10 \"mouse\" 0 \"\"
+"
+R1 "paws-release1/1" "pip_pepper_playhouse" 198 0 0 180
+HOME "pip_pepper_playhouse"
+BEACH_END 0
+CATS 4
+"pip" 4 1
+"mabel" 2 0
+"button" 2 0
+"pepper" 2 0
+ITEMS 8
+"garden_cushion" 0 ""
+"drinking_bowl" 0 ""
+"scratching_post" 0 ""
+"sunny_perch" 0 ""
+"hammock" 0 ""
+"playhouse" 0 ""
+"low_picnic_table" 0 ""
+"picnic_mat" 0 ""
+QUESTS 29
+"pip_missing_ball" "missing-ball-v2" 1 2 0
+"pip_tidy_toys" "tidy-toys-v2" 1 4 0
+"pip_stuck_gate" "stuck-gate-v2" 1 6 0
+"button_mouse_bench" "button-mouse-bench-v2" 1 8 14
+"slide" "crate_b" "" 1 0 0
+"slide" "crate_a" "" 0 0 0
+"slide" "crate_a" "" 3 0 0
+"slide" "crate_b" "" 3 0 0
+"slide" "crate_c" "" 0 0 0
+"retrieve" "mouse" "near_reach" 0 0 0
+"undo" "" "" 0 0 0
+"restart" "" "" 0 0 0
+"slide" "crate_b" "" 1 0 0
+"slide" "crate_a" "" 0 0 0
+"slide" "crate_a" "" 3 0 0
+"slide" "crate_b" "" 3 0 0
+"slide" "crate_c" "" 0 0 0
+"retrieve" "mouse" "near_reach" 0 0 0
+"mabel_sunny_spot" "mabel-sunny-spot-v2" 1 10 38
+"slide" "planter" "" 3 0 0
+"slide" "planter" "" 0 0 0
+"rotate" "long_plank" "" 0 0 0
+"pick_up" "long_plank" "" 0 0 0
+"fit" "long_plank" "long_socket" 0 0 0
+"rotate" "step_plank" "" 0 0 0
+"pick_up" "step_plank" "" 0 0 0
+"fit" "step_plank" "step_socket" 0 0 0
+"rotate" "finish_plank" "" 0 0 0
+"pick_up" "finish_plank" "" 0 0 0
+"fit" "finish_plank" "finish_socket" 0 0 0
+"rotate" "approach_plank" "" 0 0 0
+"pick_up" "approach_plank" "" 0 0 0
+"fit" "approach_plank" "approach_socket" 0 0 0
+"rotate" "perch_plank" "" 0 0 0
+"pick_up" "perch_plank" "" 0 0 0
+"fit" "perch_plank" "perch_socket" 0 0 0
+"connect" "" "" 0 0 0
+"undo" "" "" 0 0 0
+"restart" "" "" 0 0 0
+"slide" "planter" "" 3 0 0
+"slide" "planter" "" 0 0 0
+"rotate" "long_plank" "" 0 0 0
+"pick_up" "long_plank" "" 0 0 0
+"fit" "long_plank" "long_socket" 0 0 0
+"rotate" "step_plank" "" 0 0 0
+"pick_up" "step_plank" "" 0 0 0
+"fit" "step_plank" "step_socket" 0 0 0
+"rotate" "finish_plank" "" 0 0 0
+"pick_up" "finish_plank" "" 0 0 0
+"fit" "finish_plank" "finish_socket" 0 0 0
+"rotate" "approach_plank" "" 0 0 0
+"pick_up" "approach_plank" "" 0 0 0
+"fit" "approach_plank" "approach_socket" 0 0 0
+"rotate" "perch_plank" "" 0 0 0
+"pick_up" "perch_plank" "" 0 0 0
+"fit" "perch_plank" "perch_socket" 0 0 0
+"connect" "" "" 0 0 0
+"button_cushion_bed" "button-cushion-bed-v1" 1 12 18
+"pick_up" "square" "" 0 0 0
+"fit" "square" "basket" 0 0 0
+"pick_up" "bar" "" 0 0 0
+"rotate" "bar" "" 0 0 0
+"fit" "bar" "basket" 0 2 0
+"pick_up" "elbow" "" 0 0 0
+"rotate" "elbow" "" 0 0 0
+"fit" "elbow" "basket" 0 3 1
+"undo" "" "" 0 0 0
+"restart" "" "" 0 0 0
+"pick_up" "square" "" 0 0 0
+"fit" "square" "basket" 0 0 0
+"pick_up" "bar" "" 0 0 0
+"rotate" "bar" "" 0 0 0
+"fit" "bar" "basket" 0 2 0
+"pick_up" "elbow" "" 0 0 0
+"rotate" "elbow" "" 0 0 0
+"fit" "elbow" "basket" 0 3 1
+"mabel_drinking_route" "mabel-drinking-route-v1" 1 14 18
+"rotate" "channel_a" "" 0 0 0
+"rotate" "channel_b" "" 0 0 0
+"rotate" "channel_b" "" 0 0 0
+"rotate" "channel_b" "" 0 0 0
+"rotate" "channel_c" "" 0 0 0
+"rotate" "channel_d" "" 0 0 0
+"rotate" "channel_e" "" 0 0 0
+"roll" "" "" 0 0 0
+"undo" "" "" 0 0 0
+"restart" "" "" 0 0 0
+"rotate" "channel_a" "" 0 0 0
+"rotate" "channel_b" "" 0 0 0
+"rotate" "channel_b" "" 0 0 0
+"rotate" "channel_b" "" 0 0 0
+"rotate" "channel_c" "" 0 0 0
+"rotate" "channel_d" "" 0 0 0
+"rotate" "channel_e" "" 0 0 0
+"roll" "" "" 0 0 0
+"pepper_garden_bells" "pepper-garden-bells-v1" 1 16 12
+"tap_symbol" "leaf" "" 0 0 0
+"tap_symbol" "star" "" 0 0 0
+"tap_symbol" "leaf" "" 0 0 0
+"tap_symbol" "paw" "" 0 0 0
+"tap_symbol" "star" "" 0 0 0
+"undo" "" "" 0 0 0
+"restart" "" "" 0 0 0
+"tap_symbol" "leaf" "" 0 0 0
+"tap_symbol" "star" "" 0 0 0
+"tap_symbol" "leaf" "" 0 0 0
+"tap_symbol" "paw" "" 0 0 0
+"tap_symbol" "star" "" 0 0 0
+"pip_pepper_playhouse" "pip-pepper-playhouse-v2" 1 17 13
+"assign_cat" "pip" "pip_switch" 0 0 0
+"assign_cat" "pepper" "storage" 0 0 0
+"slide" "crate" "" 2 0 0
+"assign_cat" "pip" "waiting" 0 0 0
+"slide" "crate" "" 3 0 0
+"slide" "crate" "" 2 0 0
+"slide" "crate" "" 3 0 0
+"slide" "crate" "" 3 0 0
+"slide" "crate" "" 3 0 0
+"assign_cat" "pepper" "pepper_switch" 0 0 0
+"assign_cat" "pip" "inside_entry" 0 0 0
+"assign_cat" "pip" "inside_latch" 0 0 0
+"assign_cat" "pepper" "pepper_inside" 0 0 0
+"garden_picnic" "garden-picnic-v1" 0 1 0
+"pepper_scent_trail" "pepper-scent-trail-v1" 0 1 0
+"pip_wobbly_perch" "pip-wobbly-perch-v1" 0 1 0
+"pip_friend_ball" "pip-friend-ball-v1" 0 1 0
+"pip_friend_view" "pip-friend-view-v1" 0 1 0
+"pip_friend_room" "pip-friend-room-v1" 0 1 0
+"mabel_friend_sun" "mabel-friend-sun-v1" 0 1 0
+"mabel_friend_water" "mabel-friend-water-v1" 0 1 0
+"mabel_friend_share" "mabel-friend-share-v1" 0 1 0
+"beach_pip_ball" "beach-pip-ball-v2" 0 1 0
+"beach_button_bridge" "beach-button-bridge-v2" 0 1 0
+"beach_mabel_shade" "beach-mabel-shade-v2" 0 1 0
+"beach_pepper_basket" "beach-pepper-basket-v2" 0 1 0
+"beach_shell_chimes" "beach-shell-chimes-v2" 0 1 0
+"beach_picnic" "beach-picnic-v2" 0 1 0
+"beach_tidepool_crossing" "beach-tidepool-crossing-v1" 0 1 0
+"beach_fresh_water" "beach-fresh-water-v1" 0 1 0
+"beach_windbreak" "beach-windbreak-v2" 0 1 0
+"beach_shell_encore" "beach-shell-encore-v2" 0 1 0
+"beach_lantern_balance" "beach-lantern-balance-v1" 0 1 0
+QUEST_KERNEL 1 2
+"pip_missing_ball" "missing-ball-v2" 2 1 1 0 "puzzle" "pip_missing_ball/first-completion"
+"beach_fresh_water" "beach-fresh-water-v1" 1 0 0 0 "" ""
+END

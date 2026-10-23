@@ -3,6 +3,7 @@
 #include "furnishings.hpp"
 #include "release1/rules/content.hpp"
 #include "release1/progression/policy.hpp"
+#include "release1/progression/quest_adapter.hpp"
 #include <array>
 #include <string_view>
 
@@ -42,6 +43,7 @@ public:
     void setBeachDevelopmentAccess(bool value) { beachDevelopmentAccess_=value; }
     bool beachDevelopmentAccess() const { return beachDevelopmentAccess_; }
     bool beachComplete() const { return std::all_of(rewarded_.begin()+release1::progression::baseQuestCount,rewarded_.end(),[](bool b){return b;}); }
+    bool beachPicnicComplete() const { return std::all_of(rewarded_.begin()+release1::progression::baseQuestCount,rewarded_.begin()+release1::progression::baseQuestCount+release1::progression::originalBeachQuestCount,[](bool b){return b;}); }
     bool beachEndingSeen() const { return beachEndingSeen_; }
     int chapter() const;
     int friendship(std::string_view cat) const;
@@ -72,6 +74,7 @@ public:
     CommandResult dispatch(const Command&);
     std::string encode() const;
     static Afternoon decode(std::string_view);
+    const release1::progression::QuestMigrationView& questMigrationView() const {return questAdapter_->diagnostics();}
     AfternoonSettings settings;
     // Snapshot metadata is portable; browser locks and runtime handles are not.
     unsigned saveRevision=0;
@@ -101,6 +104,13 @@ private:
     bool garden_=false,picnicSeen_=false,suspended_=false;
     bool beachDevelopmentAccess_=false;
     bool beachEndingSeen_=false;
+    std::shared_ptr<const release1::progression::QuestAdapter> questAdapter_;
+    bool replayingSave_=false;
+    release1::progression::QuestFacts questFacts() const;
+    void reconcileQuests(bool replay=false);
+    void publishQuestCandidate(Afternoon&&) noexcept;
+    CommandResult dispatchLegacyImpl(const Command&);
+    CommandResult dispatchIntentImpl(const release1::Intent&);
     void initializeRelease();
     bool current(const release1::Intent&) const;
     bool canAdvance() const;

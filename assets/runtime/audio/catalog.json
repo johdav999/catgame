@@ -3404,30 +3404,36 @@
       "accepted": false,
       "source": {
         "provider": "ElevenLabs",
-        "assetId": "sha256:ed4094800ed5c87a89301b6c99455d29cbf0d144da39080c3e918f438e332e34",
+        "assetId": "sha256:cee6987b5c7d5afea0f7894ccfd8d4aa1fc3bea646e4e9ee717599abcf894724",
         "url": "https://api.elevenlabs.io/v1/sound-generation?output_format=mp3_44100_128",
-        "generatedAt": "2026-10-11T17:34:49.545531+00:00",
-        "prompt": "One tiny paw-shaped garden bell struck once, clear highest C6 pitch approximately 1047 Hz, bright gentle rounded metallic ring and short decay, isolated single strike. No human speech, no music or background ambience; natural restrained sound for a cosy garden game.",
+        "generatedAt": "2026-10-11T17:34:45.889814+00:00",
+        "prompt": "One delicate small leaf-shaped garden bell struck once, clear lower high E5 pitch approximately 659 Hz, soft warm resonant brass tone with a clean short decay, isolated single strike. No human speech, no music or background ambience; natural restrained sound for a cosy garden game.",
         "settings": {
-          "text": "One tiny paw-shaped garden bell struck once, clear highest C6 pitch approximately 1047 Hz, bright gentle rounded metallic ring and short decay, isolated single strike. No human speech, no music or background ambience; natural restrained sound for a cosy garden game.",
+          "text": "One delicate small leaf-shaped garden bell struck once, clear lower high E5 pitch approximately 659 Hz, soft warm resonant brass tone with a clean short decay, isolated single strike. No human speech, no music or background ambience; natural restrained sound for a cosy garden game.",
           "loop": false,
           "model_id": "eleven_text_to_sound_v2",
           "prompt_influence": 0.3,
           "duration_seconds": 1.4
         },
-        "original": "artifacts/audio-production/sources/remaining-effects/bell_paw_01.mp3",
-        "originalSha256": "ed4094800ed5c87a89301b6c99455d29cbf0d144da39080c3e918f438e332e34",
+        "original": "artifacts/audio-production/sources/remaining-effects/bell_leaf_01.mp3",
+        "originalSha256": "cee6987b5c7d5afea0f7894ccfd8d4aa1fc3bea646e4e9ee717599abcf894724",
         "rightsRecord": "artifacts/audio-production/sources/remaining-effects/rights-status.txt",
         "rightsSha256": "94d2f3b29fa7fe515a1d892176998cbfd8b01874b69c3417e295997f795fb33f",
         "processing": [
           "Decoded to mono 44100 Hz PCM; removed DC offset",
-          "Bell timbre pitch-aligned by resampling 400.74 Hz to 1046.502 Hz",
+          "Bell timbre pitch-aligned by resampling 2222.06 Hz to 659.255 Hz",
           "Fourth-order 0.7-note high-pass EQ; capped bell tail to authored duration",
           "15 ms entry/exit fades",
           "Gentle final bell-tail fade",
-          "Peak -6 dBFS; PCM16 WAV"
+          "Peak -6 dBFS; PCM16 WAV",
+          "Derived paw note from processed leaf bell: 659.255 Hz to 1046.502 Hz by resampling",
+          "15 ms boundary fades; peak -6 dBFS; PCM16 WAV; verified sustained 150-450 ms ring"
         ],
-        "licenseNotice": "ElevenLabs-generated Paws sound effect. Account distribution rights and attribution remain to be verified."
+        "licenseNotice": "ElevenLabs-generated Paws sound effect. Account distribution rights and attribution remain to be verified.",
+        "derivedFrom": {
+          "file": "assets/runtime/audio/release1/bell_leaf_01.wav",
+          "sha256": "f69f60b247ac8fafd344d3c61fe23de3855d65db763e5d6231ac473e05d641f2"
+        }
       },
       "review": {
         "technicalVerified": true,
@@ -3438,24 +3444,24 @@
         "gameLoopRepeats": 0,
         "journeyAuditioned": false,
         "reviewer": "Codex technical validation",
-        "notes": "Provider original hash, non-silent PCM, duration, headroom, DC and seam checked. No human or physical-device listening claimed."
+        "notes": "Derived from existing provider bell. Hash, distinct pitch, 0.88 s duration and sustained audible PCM verified; no human or physical-device listening claimed."
       },
       "playable": true,
       "pcm": {
         "sampleRate": 44100,
         "channels": 1,
-        "frames": 22966,
-        "duration": 0.5207709750566893,
+        "frames": 38893,
+        "duration": 0.8819274376417233,
         "peakDbfs": -6.000477743319013,
-        "rmsDbfs": -27.213045971680504,
+        "rmsDbfs": -19.747820229255638,
         "dc": [
-          1.0630524470957067e-08
+          -5.7279798501658396e-08
         ],
-        "pcmBytesAtDeviceRate": 99992,
+        "pcmBytesAtDeviceRate": 169332,
         "seamStep": 0.0
       },
-      "sha256": "6015170953793324c5f40958df53bcd847ab9e5e471a162e2381eeca9e261fcd",
-      "bytes": 45976,
+      "sha256": "71c50e9c342c788479a5808ca1435119d9143e53e0c0a0d5535cc1865b9acd20",
+      "bytes": 77830,
       "loopFrames": null
     },
     {
@@ -4287,6 +4293,203 @@
       "sha256": "7a86c71a7b29abf1866bfb6c2e797f5e007b3c4c3f4b3669bf96cc2c496673d5",
       "bytes": 194084,
       "loopFrames": null
+    },
+    {
+      "id": "music_beachside_puzzle_01",
+      "title": "Beachside Puzzle",
+      "family": "music_beachside_puzzle",
+      "file": "beach/music_beachside_puzzle_01.mp3",
+      "provider": "User supplied",
+      "bus": 0,
+      "gain": 0.18,
+      "cooldown": 0,
+      "loop": true,
+      "accepted": false,
+      "playable": true,
+      "source": {
+        "original": "assets/runtime/audio/beach/Beachside Puzzle.wav",
+        "originalSha256": "5bd702bc39bb103f5824429932fe260b18431ce3ee293efe1ad18137e17a6e3b",
+        "rightsRecord": "artifacts/audio-production/sources/beachside-puzzle/rights-status.txt",
+        "rightsSha256": "4decca7663c30a93ba49741530a34ba7ca5a68976a124cc7f7996fd3fb4abb2b",
+        "processing": [
+          "Full-length stereo 192 kbps MP3",
+          "volume=0.994562720,afade=t=in:d=0.1,afade=t=out:st=172.260000000:d=0.1"
+        ]
+      },
+      "review": {
+        "technicalVerified": true,
+        "sourceAuditioned": false,
+        "journeyAuditioned": false,
+        "approved": false,
+        "notes": "Length, stereo, finite PCM, headroom and hashes verified; no human listening claim."
+      },
+      "pcm": {
+        "sampleRate": 48000,
+        "channels": 2,
+        "frames": 8273280,
+        "duration": 172.36,
+        "peakDbfs": -2.7482809919950633,
+        "pcmBytesAtDeviceRate": 66186240
+      },
+      "sha256": "f213364f995c9b6b4b90b4c07a67e91f2c76ca27d6afa30b59771f095b61d584",
+      "bytes": 4138028,
+      "loopFrames": null
+    },
+    {
+      "id": "beach_wave_01",
+      "family": "beach_wave",
+      "file": "beach/waves1.wav",
+      "provider": "User supplied",
+      "bus": 2,
+      "gain": 0.12,
+      "cooldown": 0,
+      "loop": false,
+      "accepted": false,
+      "playable": true,
+      "source": {
+        "original": "artifacts/audio-production/sources/beach-waves-original/waves1.wav",
+        "originalSha256": "1c1c6014628fcfdc76761bd53ff5d066c0328e2521254dce68a1279d2b8b58b7",
+        "rightsRecord": "assets/runtime/audio/beach/PROVENANCE.md",
+        "rightsSha256": "cc2edb80e43bdfdb239d0621474545dc41d20322201cd1c22c836dd73272a623",
+        "processing": [
+          "Opening 300 ms impact removed; 200 ms raised-cosine fade into surf; samples after 500 ms unchanged; original duration retained; runtime gain 0.12; no looping"
+        ]
+      },
+      "review": {
+        "technicalVerified": true,
+        "sourceAuditioned": false,
+        "journeyAuditioned": false,
+        "notes": "Opening transient removed, fade continuity and unchanged remaining samples checked. Original source retained. Human listening and independent rights review not asserted."
+      },
+      "pcm": {
+        "sampleRate": 48000,
+        "channels": 2,
+        "frames": 122400,
+        "duration": 2.55,
+        "peakDbfs": 0.0,
+        "rmsDbfs": -17.554018549313017,
+        "pcmBytesAtDeviceRate": 979200
+      },
+      "sha256": "8fa4a0e9eb7ad4151b320e7cff4b30b57bc3b9577871acbf657847d3084f3651",
+      "bytes": 489644,
+      "loopFrames": null
+    },
+    {
+      "id": "beach_wave_02",
+      "family": "beach_wave",
+      "file": "beach/waves2.wav",
+      "provider": "User supplied",
+      "bus": 2,
+      "gain": 0.12,
+      "cooldown": 0,
+      "loop": false,
+      "accepted": false,
+      "playable": true,
+      "source": {
+        "original": "artifacts/audio-production/sources/beach-waves-original/waves2.wav",
+        "originalSha256": "cfadb27284938f1083010fbcbaa1afd7bbc6a8b9a30e813480f155bc0fdef32b",
+        "rightsRecord": "assets/runtime/audio/beach/PROVENANCE.md",
+        "rightsSha256": "cc2edb80e43bdfdb239d0621474545dc41d20322201cd1c22c836dd73272a623",
+        "processing": [
+          "Opening 300 ms impact removed; 200 ms raised-cosine fade into surf; samples after 500 ms unchanged; original duration retained; runtime gain 0.12; no looping"
+        ]
+      },
+      "review": {
+        "technicalVerified": true,
+        "sourceAuditioned": false,
+        "journeyAuditioned": false,
+        "notes": "Opening transient removed, fade continuity and unchanged remaining samples checked. Original source retained. Human listening and independent rights review not asserted."
+      },
+      "pcm": {
+        "sampleRate": 48000,
+        "channels": 2,
+        "frames": 122400,
+        "duration": 2.55,
+        "peakDbfs": -3.994628548467982,
+        "rmsDbfs": -22.13602745314409,
+        "pcmBytesAtDeviceRate": 979200
+      },
+      "sha256": "915afa3d693f4b93cc498dcc72b58e90497bc3d9adea6aab0a58a4b7725e246a",
+      "bytes": 489644,
+      "loopFrames": null
+    },
+    {
+      "id": "beach_wave_03",
+      "family": "beach_wave",
+      "file": "beach/waves3.wav",
+      "provider": "User supplied",
+      "bus": 2,
+      "gain": 0.12,
+      "cooldown": 0,
+      "loop": false,
+      "accepted": false,
+      "playable": true,
+      "source": {
+        "original": "artifacts/audio-production/sources/beach-waves-original/waves3.wav",
+        "originalSha256": "57946484dd22f0fb592a10d8f9f34581e8c81f95acc3bd79e7cdcfb0e7151692",
+        "rightsRecord": "assets/runtime/audio/beach/PROVENANCE.md",
+        "rightsSha256": "cc2edb80e43bdfdb239d0621474545dc41d20322201cd1c22c836dd73272a623",
+        "processing": [
+          "Opening 300 ms impact removed; 200 ms raised-cosine fade into surf; samples after 500 ms unchanged; original duration retained; runtime gain 0.12; no looping"
+        ]
+      },
+      "review": {
+        "technicalVerified": true,
+        "sourceAuditioned": false,
+        "journeyAuditioned": false,
+        "notes": "Opening transient removed, fade continuity and unchanged remaining samples checked. Original source retained. Human listening and independent rights review not asserted."
+      },
+      "pcm": {
+        "sampleRate": 48000,
+        "channels": 2,
+        "frames": 122400,
+        "duration": 2.55,
+        "peakDbfs": -0.00026507636037961915,
+        "rmsDbfs": -18.893850566168872,
+        "pcmBytesAtDeviceRate": 979200
+      },
+      "sha256": "6ba42bbb672a4f507516844d71b26a27eaa02e3826248daa0d9115a48bb3dcc6",
+      "bytes": 489644,
+      "loopFrames": null
+    },
+    {
+      "id": "beach_wave_04",
+      "family": "beach_wave",
+      "file": "beach/waves4.wav",
+      "provider": "User supplied",
+      "bus": 2,
+      "gain": 0.12,
+      "cooldown": 0,
+      "loop": false,
+      "accepted": false,
+      "playable": true,
+      "source": {
+        "original": "artifacts/audio-production/sources/beach-waves-original/waves4.wav",
+        "originalSha256": "ebc947382c95668d1a9aebe557409b8ecdc11d41bc4f743ebe0882965501c748",
+        "rightsRecord": "assets/runtime/audio/beach/PROVENANCE.md",
+        "rightsSha256": "cc2edb80e43bdfdb239d0621474545dc41d20322201cd1c22c836dd73272a623",
+        "processing": [
+          "Opening 300 ms impact removed; 200 ms raised-cosine fade into surf; samples after 500 ms unchanged; original duration retained; runtime gain 0.12; no looping"
+        ]
+      },
+      "review": {
+        "technicalVerified": true,
+        "sourceAuditioned": false,
+        "journeyAuditioned": false,
+        "notes": "Opening transient removed, fade continuity and unchanged remaining samples checked. Original source retained. Human listening and independent rights review not asserted."
+      },
+      "pcm": {
+        "sampleRate": 48000,
+        "channels": 2,
+        "frames": 122400,
+        "duration": 2.55,
+        "peakDbfs": -0.17889805109691703,
+        "rmsDbfs": -17.816706628714478,
+        "pcmBytesAtDeviceRate": 979200
+      },
+      "sha256": "e2b1781759f654ef74fb8a4021bf1445cfe3d8507c74daa5d5c6e66b3ca69f53",
+      "bytes": 489644,
+      "loopFrames": null
     }
   ],
   "playlists": [
@@ -4296,6 +4499,13 @@
       "tracks": [
         "music_garden_afternoon_01",
         "music_garden_puzzles_01"
+      ]
+    },
+    {
+      "id": "beachside-puzzle",
+      "repeat": true,
+      "tracks": [
+        "music_beachside_puzzle_01"
       ]
     }
   ]
