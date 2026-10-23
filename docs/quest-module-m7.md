@@ -1,7 +1,7 @@
 # M7 — pinned release and module SDK handoff
 
 The engine SDK handoff is published at
-`c819dbf07ee4f6a0810f8dbd017a441d856f326a` on
+`461ab6dd1769171955254473c2b3623ad3dc615a` on
 `codex/quest-module-sdk-release`. Paws pins that exact revision. The engine
 changes add standalone consumer coverage and documentation; the portable kernel
 and all 29 Paws quest definitions retain the M6 behavior and version-14 codec.

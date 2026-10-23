@@ -82,7 +82,7 @@ for commands; the M2 sample's old explicit-timer UI has been superseded. Paws
 session extraction, native host, migration and pin publication remain M4 onward.
 
 
-M7 SDK handoff: the published c819dbf07ee4f6a0810f8dbd017a441d856f326a revision
+M7 SDK handoff: the published 461ab6dd1769171955254473c2b3623ad3dc615a revision
 provides docs/module-sdk.md and independent consumers in examples/modules and
 examples/quests. The latter builds Example::QuestBindings with pure typed
 inventory-fact evaluation and stages the game wallet before kernel commit.

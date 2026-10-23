@@ -95,7 +95,7 @@ a second one:
 ./scripts/build.ps1 -WebEngineSourceDir C:/Users/Johan/source/repos/WebEngine -EmsdkPath C:/Users/Johan/source/repos/WebEngine/.tools/emsdk
 ```
 
-The pinned WebEngine revision is `c819dbf07ee4f6a0810f8dbd017a441d856f326a`
+The pinned WebEngine revision is `461ab6dd1769171955254473c2b3623ad3dc615a`
 (23 October 2026), published on `codex/quest-module-sdk-release`. It adds the
 portable module/quest SDK and shared host integration to the existing sky, terrain
 and water APIs. See [M4 delivery and Windows builds](docs/quest-module-m4.md). Build with `-Pinned -Configuration Release` and the installed SDK path

@@ -28,7 +28,7 @@ WebGPU/WebGL2 and Windows evidence. No engine API, direct-D3D12 or physical
 mobile acceptance is added by this consumer migration.
 
 
-M7 SDK handoff: the published c819dbf07ee4f6a0810f8dbd017a441d856f326a revision
+M7 SDK handoff: the published 461ab6dd1769171955254473c2b3623ad3dc615a revision
 provides docs/module-sdk.md and independent consumers in examples/modules and
 examples/quests. The latter builds Example::QuestBindings with pure typed
 inventory-fact evaluation and stages the game wallet before kernel commit.
