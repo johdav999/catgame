@@ -35,9 +35,10 @@ float roundDistance(float x,float y,float w,float h,float r) {
     return std::sqrt(std::max(qx,0.f)*std::max(qx,0.f)+std::max(qy,0.f)*std::max(qy,0.f))+std::min(std::max(qx,qy),0.f)-r;
 }
 }
-PawsUi::PawsUi(std::array<std::vector<std::byte>,3> fonts,bool gallery,std::function<void(const UiIntent&)> dispatch)
+PawsUi::PawsUi(std::array<std::vector<std::byte>,3> fonts,bool gallery,std::function<void(const UiIntent&)> dispatch, GuiSystem* sharedGui)
     :fontBytes_(std::move(fonts)),dispatch_(std::move(dispatch)),gallery_(gallery) {
-    gui_=std::make_unique<GuiSystem>();setFonts();
+    if(!sharedGui)ownedGui_=std::make_unique<GuiSystem>();
+    gui_=sharedGui?sharedGui:ownedGui_.get();setFonts();
     if(gallery_) {
         screen_=UiScreen::Gallery;model_.puzzleReady=model_.canUndo=model_.canContinue=model_.shopOpen=true;
         model_.canRestart=model_.storageAvailable=model_.canExport=model_.inGarden=true;
@@ -61,7 +62,7 @@ void PawsUi::show(UiScreen screen) {
     screen_=screen;pendingFocus_=(screen==UiScreen::Restart||screen==UiScreen::RestartAdventure)?"Keep playing":"__first_control__";dirty_=true;down_=false;
 }
 void PawsUi::close() {
-    if(history_.empty()) { show(UiScreen::Garden);return; }
+    if(history_.empty()) { enter(model_.inGarden?UiScreen::Garden:UiScreen::Puzzle);return; }
     if(!gallery_)emit(UiAction::ConfirmSound,"ui_panel");
     screen_=history_.back().first;pendingFocus_=history_.back().second;history_.pop_back();
     if(screen_==UiScreen::Gallery) preview_=false;
@@ -87,6 +88,37 @@ void PawsUi::emit(UiAction action,std::string target) {
     if(dispatch_) dispatch_({action,std::move(target),model_.attempt,model_.revision});
 }
 void PawsUi::pointer(Vec2 point,bool down) { pointer_=point;down_=down; }
+bool PawsUi::volumePointer(GuiPointer action,Vec2 point) {
+    if(action==GuiPointer::Down&&screen_==UiScreen::Settings){
+        for(const auto& s:skins_)if(s.volume&&s.button->active()&&intersect(s.button->bounds(),s.button->clip()).contains(point)){
+            volumeDrag_=s.volume;volumeStartY_=point.y;volumeStartValue_=settings_.*volumeDrag_;
+            volumeName_=s.label.substr(0,s.label.find(':'));gui_->focusWidget(s.button->id());return true;
+        }
+    }
+    if(!volumeDrag_)return false;
+    if(screen_!=UiScreen::Settings){volumeDrag_=nullptr;return false;}
+    if(action==GuiPointer::Move||action==GuiPointer::Up){
+        const float distance=(volumeStartY_-point.y)/gui_->scale();
+        if(std::abs(distance)>=4)settings_.*volumeDrag_=std::clamp(volumeStartValue_+int(std::round(distance/2)),0,100);
+    }
+    if(action==GuiPointer::Up||action==GuiPointer::Cancel){
+        const auto field=volumeDrag_;volumeDrag_=nullptr;
+        if(settings_.*field!=volumeStartValue_){pendingFocus_=volumeName_+": "+std::to_string(settings_.*field)+"%";emit(UiAction::Settings,volumeName_);}
+    }
+    return true;
+}
+bool PawsUi::volumeKey(int key) {
+    if(screen_!=UiScreen::Settings||key<0||key>5)return false;
+    for(const auto& s:skins_)if(s.volume&&gui_->focused()==s.button){
+        const int value=settings_.*s.volume;
+        settings_.*s.volume=key==2?0:key==3?100:std::clamp(value+(key==0?1:key==1?-1:key==4?10:-10),0,100);
+        const auto name=s.label.substr(0,s.label.find(':'));
+        pendingFocus_=name+": "+std::to_string(settings_.*s.volume)+"%";
+        if(value!=settings_.*s.volume)emit(UiAction::Settings,name);
+        return true;
+    }
+    return false;
+}
 
 std::shared_ptr<const Texture> PawsUi::textArt(const std::string& text,GuiFont& font,bool light) {
     std::string key="text:"+text+":"+std::to_string(font.lineHeight())+":"+std::to_string(light);
@@ -366,9 +398,9 @@ void PawsUi::build() {
         button(p,settings_.largerText?"Text size: Larger":"Text size: Standard",[this]{settings_.largerText=!settings_.largerText;pendingFocus_=settings_.largerText?"Text size: Larger":"Text size: Standard";emit(UiAction::Settings,"text");dirty_=true;});
         button(p,settings_.reducedMotion?"Motion: Reduced":"Motion: Full",[this]{settings_.reducedMotion=!settings_.reducedMotion;pendingFocus_=settings_.reducedMotion?"Motion: Reduced":"Motion: Full";emit(UiAction::Settings,"motion");dirty_=true;});
         button(p,settings_.muted?"Sound: Muted":"Sound: On",[this]{settings_.muted=!settings_.muted;pendingFocus_=settings_.muted?"Sound: Muted":"Sound: On";emit(UiAction::Settings,"mute");dirty_=true;});
-        const auto volume=[&](const std::string& name,int UiSettings::*field){button(p,name+": "+std::to_string(settings_.*field)+"%",[this,field,name]{settings_.*field=(settings_.*field+10)%110;pendingFocus_=name+": "+std::to_string(settings_.*field)+"%";emit(UiAction::Settings,name);dirty_=true;});};
+        const auto volume=[&](const std::string& name,int UiSettings::*field){auto& b=button(p,name+": "+std::to_string(settings_.*field)+"%",[this,field,name]{settings_.*field=std::min(100,settings_.*field+10);pendingFocus_=name+": "+std::to_string(settings_.*field)+"%";emit(UiAction::Settings,name);});skins_.back().volume=field;b.setAccessibleDescription("Drag up to increase or down to decrease. Arrow keys adjust 1%; Page keys 10%; Home and End select 0% and 100%.");};
         volume("Music",&UiSettings::music);volume("Ambience",&UiSettings::ambience);volume("Effects",&UiSettings::effects);
-        copy(p,"Volume buttons increase by 10%, then return to 0%. Sound never carries the only clue.");
+        copy(p,"Drag a volume up or down. Arrow keys fine-tune; Home and End choose 0% and 100%. Sound never carries the only clue.");
         const auto qualityLabel=[](int value){return value==1?"Quality: Mobile":value==2?"Quality: High (2×)":"Quality: Automatic";};
         copy(p,"Automatic renders at 1× with shadows. High renders at 2× for smoother edges. Mobile uses fewer pixels without shadows.");
         button(p,qualityLabel(settings_.quality),[this,qualityLabel]{settings_.quality=(settings_.quality+1)%3;pendingFocus_=qualityLabel(settings_.quality);emit(UiAction::Settings,"quality");dirty_=true;});
@@ -475,6 +507,8 @@ void PawsUi::build() {
         copy(p,"The garden models could not load. Your progress and previous view are safe.");
         button(p,"Retry loading",[this]{emit(UiAction::RetryLoad);},true);
         button(p,"Back to garden",[this]{emit(UiAction::BackToGarden);});break;
+    case UiScreen::BalanceSetup: // Composed by release-one Views.
+        break;
     }
     if(!model_.feedback.empty()&&!hud&&screen_!=UiScreen::Objects&&screen_!=UiScreen::Loading) {auto& feedback=copy(p,model_.feedback);feedback.setLiveRegion(true);}
     if(footer) {
@@ -495,7 +529,7 @@ void PawsUi::build() {
 }
 void PawsUi::recordFrame(double timestamp,bool rendering) {
     if(screen_==UiScreen::Loading&&std::isfinite(timestamp))for(unsigned i=0;i<loadingDots_.size();++i)
-        if(auto* dot=loadingDots_[i])dot->style.foreground.a=settings_.reducedMotion?1.f:(unsigned(timestamp*2.5)%3==i?1.f:.25f);
+        if(auto* dot=loadingDots_[i]){auto color=engine::GuiColor(dot->style.foreground);color.a=settings_.reducedMotion?1.f:(unsigned(timestamp*2.5)%3==i?1.f:.25f);dot->style.foreground=color;}
     // Wall-clock frame cadence, averaged over a second. Hidden/recovery gaps
     // restart the sample; pause menus still render and therefore still count.
     if(!rendering||fpsPrevious_==0||timestamp<=fpsPrevious_||timestamp-fpsPrevious_>2) {
@@ -514,17 +548,37 @@ void PawsUi::recordFrame(double timestamp,bool rendering) {
 void PawsUi::update(float width,float height) {
     if(willRebuild(width,height)) {
         const auto focus=pendingFocus_.empty()?focusedName(*gui_):pendingFocus_;
+        float settingsScroll=0;
+        const auto scroll=[&](auto&& self,Widget& w,bool restore)->void {if(auto* panel=dynamic_cast<ScrollPanel*>(&w)){if(restore)panel->setScrollOffset(settingsScroll);else settingsScroll=panel->scrollOffset();}for(const auto& child:w.children())self(self,*child,restore);};
+        if(screen_==UiScreen::Settings)scroll(scroll,gui_->root(),false);
         width_=width;height_=height;skins_.clear();fpsLabel_=nullptr;loadingDots_={};
-        auto body=gui_->font();gui_=std::make_unique<GuiSystem>();gui_->setFont(body);
+        // Borrowed host GUI keeps its identity; older owned-GUI consumers can
+        // still rebuild with their published engine before advancing the pin.
+        []<class Gui>(Gui*& gui,std::unique_ptr<Gui>& owner){
+            if constexpr(requires(Gui& value){value.clear();})gui->clear();
+            else {if(!owner)throw std::logic_error("Shared GUI requires clear()");auto body=gui->font();owner=std::make_unique<Gui>();gui=owner.get();gui->setFont(body);}
+        }(gui_,ownedGui_);
         // Bound resize/state texture cache; fonts and the current draw keep their own snapshots.
         art_.clear();if(!composition_||!composition_())build();gui_->layout({width,height});focusNamed(*gui_,focus);pendingFocus_.clear();dirty_=false;
+        if(screen_==UiScreen::Settings){scroll(scroll,gui_->root(),true);gui_->layout({width,height});}
     }
     gui_->layout({width,height});
     for(auto& s:skins_) {
         const auto b=s.button->bounds();float logicalWidth=b.width/gui_->scale();
         int state=!s.button->enabled()?4:b.contains(pointer_)&&down_?2:gui_->focused()==s.button?3:b.contains(pointer_)?1:0;
-        if(state!=s.state||logicalWidth!=s.width) {
-            s.image->setTexture(tile(int(logicalWidth),int(s.height),state,s.primary&&s.button->enabled(),s.icon));s.state=state;s.width=logicalWidth;
+        const int value=s.volume?settings_.*s.volume:-1;
+        if(state!=s.state||logicalWidth!=s.width||value!=s.paintedValue) {
+            auto background=tile(int(logicalWidth),int(s.height),state,s.primary&&s.button->enabled(),s.icon);
+            if(s.volume){
+                auto fill=std::make_shared<Texture>(*background);fill->name="volume:"+std::to_string(s.button->id())+":"+std::to_string(value);
+                for(int y=3;y<int(fill->height)-3;++y)for(int x=3;x<3+int((logicalWidth-6)*value/100);++x)
+                    if(roundDistance(x+.5f,y+.5f,logicalWidth,s.height,12)<-5)pixel(*fill,x,y,{.72f,.84f,.76f,1});
+                background=fill;
+                s.label=s.label.substr(0,s.label.find(':'))+": "+std::to_string(value)+"%";
+                s.button->setAccessibleName(s.label);s.text->setTexture(textArt(s.label,*control_));
+                s.text->setSize({float(s.text->texture()->width),float(s.text->texture()->height)});
+            }
+            s.image->setTexture(background);s.state=state;s.width=logicalWidth;s.paintedValue=value;
             s.text->setPosition({(logicalWidth-s.text->texture()->width+(s.icon.empty()?0.f:36.f))/2,(s.height-s.text->texture()->height)/2});
         }
     }

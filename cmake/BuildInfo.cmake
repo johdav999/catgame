@@ -1,6 +1,16 @@
 # Identify the actual deployable payload, including uncommitted consumer work.
 execute_process(COMMAND git -C "${ENGINE_SOURCE_DIR}" rev-parse HEAD
   OUTPUT_VARIABLE ENGINE_PIN OUTPUT_STRIP_TRAILING_WHITESPACE COMMAND_ERROR_IS_FATAL ANY)
+execute_process(COMMAND git -C "${SOURCE_DIR}" rev-parse HEAD
+  OUTPUT_VARIABLE GAME_REVISION OUTPUT_STRIP_TRAILING_WHITESPACE COMMAND_ERROR_IS_FATAL ANY)
+execute_process(COMMAND git -C "${ENGINE_SOURCE_DIR}" status --porcelain --untracked-files=no
+  OUTPUT_VARIABLE ENGINE_CHANGES OUTPUT_STRIP_TRAILING_WHITESPACE COMMAND_ERROR_IS_FATAL ANY)
+execute_process(COMMAND git -C "${SOURCE_DIR}" status --porcelain --untracked-files=no
+  OUTPUT_VARIABLE GAME_CHANGES OUTPUT_STRIP_TRAILING_WHITESPACE COMMAND_ERROR_IS_FATAL ANY)
+set(SOURCE_DIRTY false)
+if(ENGINE_CHANGES OR GAME_CHANGES)
+  set(SOURCE_DIRTY true)
+endif()
 file(SHA256 "${SITE_DIR}/paws.wasm" WASM_HASH)
 file(GLOB_RECURSE ASSETS RELATIVE "${SITE_DIR}" "${SITE_DIR}/assets/*")
 list(SORT ASSETS)
@@ -18,13 +28,13 @@ foreach(NOTICE IN LISTS NOTICES)
   string(APPEND NOTICE_CONTENT "${NOTICE}:${HASH}\n")
 endforeach()
 string(SHA256 NOTICES_HASH "${NOTICE_CONTENT}")
-set(PAYLOAD "${WASM_HASH}:${CONTENT_HASH}:${ENGINE_PIN}:${CONFIGURATION}:${NOTICES_HASH}")
+set(PAYLOAD "${WASM_HASH}:${CONTENT_HASH}:${ENGINE_PIN}:${CONFIGURATION}:${NOTICES_HASH}:${GAME_REVISION}")
 foreach(FILE index.html host.js saves.js game-platform.js cloud.js paws-audio.js style.css engine-gui.js engine-storage.js engine-audio.js paws.js)
   file(SHA256 "${SITE_DIR}/${FILE}" HASH)
   string(APPEND PAYLOAD ":${HASH}")
 endforeach()
 string(SHA256 BUILD_HASH "${PAYLOAD}")
 string(SUBSTRING "${BUILD_HASH}" 0 16 BUILD_SHORT)
-set(INFO "{\"version\":\"${VERSION}\",\"buildId\":\"paws-${VERSION}-${BUILD_SHORT}\",\"configuration\":\"${CONFIGURATION}\",\"enginePin\":\"${ENGINE_PIN}\",\"wasmSha256\":\"${WASM_HASH}\",\"contentSha256\":\"${CONTENT_HASH}\",\"noticesSha256\":\"${NOTICES_HASH}\",\"gallery\":${GALLERY}}")
+set(INFO "{\"version\":\"${VERSION}\",\"buildId\":\"paws-${VERSION}-${BUILD_SHORT}\",\"configuration\":\"${CONFIGURATION}\",\"enginePin\":\"${ENGINE_PIN}\",\"gameRevision\":\"${GAME_REVISION}\",\"sourceDirty\":${SOURCE_DIRTY},\"wasmSha256\":\"${WASM_HASH}\",\"contentSha256\":\"${CONTENT_HASH}\",\"noticesSha256\":\"${NOTICES_HASH}\",\"gallery\":${GALLERY}}")
 file(WRITE "${SITE_DIR}/build-info.json" "${INFO}\n")
 file(WRITE "${SITE_DIR}/build-info.js" "window.pawsBuild=Object.freeze(${INFO});\n")

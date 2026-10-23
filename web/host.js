@@ -103,6 +103,7 @@ var Module = {
 function invoke(action, ...args) { if(loaded && !runtimeFailed) return Module[action]?.(...args); }
 function blocked() { return !startup.hidden || !!invoke('_paws_blocks_scene'); }
 function cancel() {
+  invoke('_paws_volume_pointer',3,0,0);
   invoke('_paws_object_pointer',3,0,0);
   pointer=null;
   if(loaded) { invoke('_engine_gui_blur');invoke('_paws_pointer',-1,-1,0); }
@@ -111,17 +112,19 @@ function local(event) {const r=canvas.getBoundingClientRect();return [event.clie
 canvas.addEventListener('pointerdown', event => {
   if(pointer || event.button !== 0) return;
   const [x,y]=local(event);invoke('_paws_pointer',x,y,1);
-  const gui=window.EngineGui?.pointer(1,event);
-  const owner=gui||blocked()?'gui':invoke('_paws_object_pointer',0,x,y)?'object':'camera';
+  const volume=invoke('_paws_volume_pointer',1,x,y);
+  const gui=!volume&&window.EngineGui?.pointer(1,event);
+  const owner=volume?'volume':gui||blocked()?'gui':invoke('_paws_object_pointer',0,x,y)?'object':'camera';
   pointer={id:event.pointerId,x:event.clientX,y:event.clientY,owner};
   canvas.setPointerCapture(event.pointerId);
-  if(!gui) canvas.focus();
+  if(!gui&&!volume) canvas.focus();
 });
 canvas.addEventListener('pointermove', event => {
   const [x,y]=local(event);invoke('_paws_pointer',x,y,Number(!!pointer));
   if(!pointer) { window.EngineGui?.pointer(0,event);return; }
   if(pointer.id!==event.pointerId) return;
-  if(pointer.owner==='gui') window.EngineGui?.pointer(0,event);
+  if(pointer.owner==='volume') invoke('_paws_volume_pointer',0,x,y);
+  else if(pointer.owner==='gui') window.EngineGui?.pointer(0,event);
   else if(pointer.owner==='object'&&!blocked()) invoke('_paws_object_pointer',1,x,y);
   else if(!blocked()) invoke('_paws_orbit',event.clientX-pointer.x,event.clientY-pointer.y);
   else {cancel();return;}
@@ -132,6 +135,7 @@ for(const type of ['pointerup','pointercancel','lostpointercapture']) canvas.add
   const owner=pointer.owner;pointer=null;
   invoke('_paws_pointer',...local(event),0);
   if(owner==='gui') window.EngineGui?.pointer(type==='pointerup'?2:3,event);
+  if(owner==='volume') invoke('_paws_volume_pointer',type==='pointerup'?2:3,...local(event));
   if(owner==='object') invoke('_paws_object_pointer',type==='pointerup'?2:3,...local(event));
 });
 canvas.addEventListener('pointerleave',()=>{if(!pointer)invoke('_paws_pointer',-1,-1,0);});
@@ -142,6 +146,8 @@ canvas.addEventListener('wheel',event=>{
 },{passive:false});
 document.addEventListener('keydown',event=>{
   if(document.getElementById('cloud-panel')?.open)return;
+  const volumeKey={ArrowUp:0,ArrowRight:0,ArrowDown:1,ArrowLeft:1,Home:2,End:3,PageUp:4,PageDown:5}[event.key];
+  if(volumeKey!==undefined&&invoke('_paws_volume_key',volumeKey)){event.preventDefault();event.stopImmediatePropagation();return;}
   if(event.key==='Escape'&&loaded&&!event.repeat) {event.preventDefault();event.stopImmediatePropagation();cancel();invoke('_paws_escape');}
   if(document.activeElement===canvas&&!blocked()) {
     const key={ArrowUp:0,ArrowRight:1,ArrowDown:2,ArrowLeft:3,r:4,R:4,' ':5}[event.key];

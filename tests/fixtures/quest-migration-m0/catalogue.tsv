@@ -1,0 +1,30 @@
+id	content	pack	chapter	requesters	prerequisites	solution_steps
+pip_missing_ball	missing-ball-v2		1	1		15
+pip_tidy_toys	tidy-toys-v2		1	1	pip_missing_ball	9
+pip_stuck_gate	stuck-gate-v2		1	1	pip_tidy_toys	11
+button_mouse_bench	button-mouse-bench-v2		2	4	pip_stuck_gate	6
+mabel_sunny_spot	mabel-sunny-spot-v2		2	2	pip_stuck_gate	18
+button_cushion_bed	button-cushion-bed-v1		2	4	pip_stuck_gate	8
+mabel_drinking_route	mabel-drinking-route-v1		2	2	pip_stuck_gate	8
+pepper_garden_bells	pepper-garden-bells-v1		3	8	button_mouse_bench,mabel_sunny_spot,button_cushion_bed,mabel_drinking_route	5
+pip_pepper_playhouse	pip-pepper-playhouse-v2		3	9	button_mouse_bench,mabel_sunny_spot,button_cushion_bed,mabel_drinking_route	13
+garden_picnic	garden-picnic-v1		3	15	pepper_garden_bells,pip_pepper_playhouse	3
+pepper_scent_trail	pepper-scent-trail-v1		3	8	pepper_garden_bells	24
+pip_wobbly_perch	pip-wobbly-perch-v1		3	1	pip_pepper_playhouse	20
+pip_friend_ball	pip-friend-ball-v1		1	1	pip_missing_ball	13
+pip_friend_view	pip-friend-view-v1		1	1	pip_friend_ball	18
+pip_friend_room	pip-friend-room-v1		1	1	pip_friend_view	12
+mabel_friend_sun	mabel-friend-sun-v1		2	2	pip_stuck_gate,pip_friend_room	20
+mabel_friend_water	mabel-friend-water-v1		2	2	mabel_friend_sun	13
+mabel_friend_share	mabel-friend-share-v1		2	3	mabel_friend_water	3
+beach_pip_ball	beach-pip-ball-v2	beach_afternoon	1	1		14
+beach_button_bridge	beach-button-bridge-v2	beach_afternoon	1	4	beach_pip_ball	18
+beach_mabel_shade	beach-mabel-shade-v2	beach_afternoon	1	2	beach_button_bridge	13
+beach_pepper_basket	beach-pepper-basket-v2	beach_afternoon	1	8	beach_mabel_shade	24
+beach_shell_chimes	beach-shell-chimes-v2	beach_afternoon	1	8	beach_pepper_basket	8
+beach_picnic	beach-picnic-v2	beach_afternoon	1	15	beach_shell_chimes	13
+beach_tidepool_crossing	beach-tidepool-crossing-v1	beach_afternoon	1	4	beach_picnic	23
+beach_fresh_water	beach-fresh-water-v1	beach_afternoon	1	2	beach_tidepool_crossing	15
+beach_windbreak	beach-windbreak-v1	beach_afternoon	1	6	beach_fresh_water	19
+beach_shell_encore	beach-shell-encore-v1	beach_afternoon	1	8	beach_windbreak	12
+beach_lantern_balance	beach-lantern-balance-v1	beach_afternoon	1	1	beach_shell_encore	20

@@ -187,3 +187,14 @@ Immutable splines and procedural route sweeps, protected static collision, group
 editor authoring and v27 source-only persistence are documented in
 [spline/route integration](references/splines-routes.md). Keep lane/junction policy
 in games and choose explicit rebuild/query budgets. Verify availability at game pins.
+
+
+## Module SDK release handoff (M7, 2026-10-23)
+
+The published quest-module SDK at c819dbf07ee4f6a0810f8dbd017a441d856f326a adds
+independent generic and custom quest-binding consumers, native/Node-Wasm CTest,
+feature-omission coverage and docs/module-sdk.md. Runtime ownership and module
+API 1.0.0 remain unchanged. Paws M7 pins that revision and supplies clean-source
+web/Windows package validation and a full release matrix. Build consumers from
+checked-in accepted assets; offline authoring must not run during consumer builds.
+Read references/modules.md and references/consumer-hosts.md for the handoff.

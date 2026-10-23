@@ -1,0 +1,42 @@
+name: Pinned quest release
+on:
+  workflow_dispatch:
+  push:
+    branches: [codex/quest-module-release]
+jobs:
+  windows-and-web:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install pinned Windows dependencies
+        shell: pwsh
+        run: |
+          ./external/WebEngine/scripts/setup-windows.ps1
+          if (-not (Get-Command ffmpeg -ErrorAction SilentlyContinue)) { choco install ffmpeg --yes --no-progress }
+      - name: Build and test Windows package from the pin
+        shell: pwsh
+        run: |
+          ./scripts/build-windows.ps1 -Pinned -BuildDirectory build/windows-pinned-release
+          cmake --build build/windows-pinned-release --config Release --parallel 2
+          if ($LASTEXITCODE -ne 0) { throw 'Native regression build failed' }
+          ctest --test-dir build/windows-pinned-release -C Release --output-on-failure --output-junit native-results.xml
+          if ($LASTEXITCODE -ne 0) { throw 'Native regression failed' }
+      - name: Build the browser site with pinned Emscripten
+        shell: pwsh
+        run: |
+          ./scripts/setup.ps1
+          ./scripts/build.ps1 -Pinned -Configuration Release -BuildDirectory build/web-pinned-release
+      - name: Verify and archive matching payloads
+        run: python scripts/package-quest-release.py --site build/web-pinned-release/site --desktop build/windows-pinned-release/package/Release --output build/releases/m7
+      - uses: actions/upload-artifact@v4
+        with:
+          name: paws-quest-m7-pinned-release
+          path: |
+            build/releases/m7/
+            build/windows-pinned-release/native-results.xml
+          if-no-files-found: error

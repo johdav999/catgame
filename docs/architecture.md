@@ -1,4 +1,18 @@
+M7 adds clean pinned release packaging, exact game/engine identities and the
+SDK handoff in [quest-module-m7.md](quest-module-m7.md). Consumer builds verify
+delivered runtime assets without running offline authoring or mutating sources.
+`paws_windows_package` owns repeatable package staging; browser and native hosts
+retain the shared M6 session and version-14 persistence contract.
+
 # Paws architecture
+
+M6 integrates `WebEngine::Quests` through the compiled module system beneath
+`Afternoon` for all 29 quests. Unlocks, completion and once-only receipts use one
+live kernel path; older orchestration remains only for save replay. Puzzle rules,
+economy and presentation remain in Paws. `PAWS_AFTERNOON 14` validates the complete
+ID-keyed kernel section against historical journal replay, reads versions 1–13
+and preserves exact pre-migration backups on both hosts.
+See [full cutover, ownership and verification](quest-module-m6.md).
 
 Puzzle courtyards use metre-scale bounds independently of their interaction
 grid. Button's cushion basket retains 25 cm cells for fitting and dragging;
@@ -12,14 +26,48 @@ loads through Afternoon's existing staged import path. Browser host adapters own
 network/UI policy; account entitlements are transient and never sourced from a
 game save. The engine and dependency pin are unchanged.
 
-The `beach_afternoon` development adventure contains six sequential quests and a
+The `beach_afternoon` development adventure contains eleven sequential quests and a
 saved four-cat picnic ending through the existing Afternoon owner, portable
-rules, retained GUI, scene adapter and browser save coordinator. Version-11 saves
-retain six independent journals and the beach ending; versions 1–10, including
+rules, retained GUI, scene adapter and browser save coordinator. Version-12 saves
+retain eleven independent journals and the original beach ending; versions 1–11, including
 the first beach slice, migrate without resetting progress. `?devBeach=1` supplies
 transient access; local saves never grant ownership. Cove landmarks project the
 beach completion mask. Beach progress does not alter base coins, friendship,
 chapters or garden picnic eligibility. See [the beach contract](beach-adventure.md).
+
+Beach presentation now composes WebEngine heightfield terrain, layered sand/dune
+materials and a subdivided water-shader sea through `beach_environment.cpp`.
+Each quest retains a flat gameplay apron and existing contact coordinates.
+The environment is decorative, scene-owned and absent from progression saves;
+the existing simulation clock drives its water. HUD-aware camera framing keeps
+the coast visible without changing input or rule ownership. See
+[beach environment and verification](beach-environment.md).
+
+The coastal kit adds eight application-owned immutable GLBs through the existing
+asset preparation path. `beach_assets.hpp` exposes the reviewed resource contract;
+`addBeachDressing` composes perimeter instances without interaction, collision or
+progression state. Native tests check their transformed bounds against every
+beach apron. Source masters, provenance and export/runtime evidence are recorded
+in [the coastal asset pass](beach-coastal-assets.md). The two
+[driftwood channel meshes](beach-driftwood-channels.md) use the existing puzzle
+rotation centres and route heights, with beach-only asset selection in the
+presentation adapter. Pepper's [striped shelter and forked branch](beach-trail-models.md)
+replace their plank assemblies; cloth clues remain separate and the new meshes
+participate in the existing triangle collision queries.
+
+Beach wave effects remain game audio policy: `GameAudio::beachWaves` sequences
+four supplied recordings through the existing engine Effects bus, using backend
+completion and a short gap. Browser scene state enables/cancels the sequence;
+audio activation, settings, suspension and generation checks retain their
+existing owners. No scene pointers, new engine APIs or save state are introduced.
+See [beach audio](beach-audio.md).
+
+Beach background music uses a single-track Beachside Puzzle playlist through
+the same `GameAudio` owner. Browser region policy swaps it with the garden
+playlist only when the active scene changes region; beach quest loading retains
+the current music voice. The existing Music bus, one-track PCM budget, source
+completion, generation checks and suspension contracts apply independently of
+wave effects.
 
 The catalogue now includes two optional chapter-three families: six-stage scent
 deduction and four-stage discrete torque balancing. Both use the existing
@@ -163,10 +211,13 @@ boundary. Scene transforms never decide completion. See
 `paws_game` is the portable scene/presentation library, linked to `WebEngine::Core`
 and the rules/content targets. `SceneBindings` map stable object IDs to checked
 actor handles and project committed revisions; they never retain actor pointers.
-`paws` is the Emscripten executable. It links `WebEngine::Browser`, owns the
-browser frame loop, and exposes the small camera/lifecycle host interface.
-The native configuration builds the portable library and its scene test; it does
-not provide a native rendering backend or desktop game.
+`paws_session` exposes the portable `runtime::GameSession` orchestration shared by
+`paws` (Emscripten) and optional `paws_windows` (Windows x64 SDL/Dawn). BrowserHost
+owns the browser Application/Renderer; WindowsHost borrows DesktopHost's sole
+Application and GUI. Both use the same Afternoon, scene builders, retained GUI,
+commands, rewards, journal and version-12 save codec. RuntimeHost supplies asset
+IO, audio backends, rendering, storage and synchronous diagnostics. No quest
+rules or save schema changed during extraction. See [M4 delivery](quest-module-m4.md).
 
 The runtime's `Application` owns the scene and drives variable/fixed updates.
 The scene owns actors, mesh/light components and the camera. The orbit controller
@@ -304,7 +355,7 @@ track at a time. Pending decodes still require the current generation. See the
 
 `paws_audio` composes the pinned `AudioSystem` with Paws' cue catalog, cooldowns,
 variants, Music/Ambience/Effects buses, decode/voice budgets and bounded loop
-policy. `BrowserGame` owns it and translates committed rules and presentation
+policy. `runtime::GameSession` owns it and translates committed rules and presentation
 markers into sound requests. It stops scene voices and invalidates pending audio
 generations before restart, save import or scene replacement. Sound never grants
 rewards or decides a puzzle result. Saved settings remain in `Afternoon`.
@@ -312,7 +363,7 @@ rewards or decides a puzzle result. Saved settings remain in `Afternoon`.
 `web/paws-audio.js` is the host adapter for serial fetch, hash checks, engine
 decoding, Wasm publication and gesture/lifecycle status. The device and playback
 backend remain in `engine_audio_browser` and the staged `engine-audio.js`.
-`BrowserGame` supplies a second engine backend for at most two UI feedback
+`runtime::GameSession` supplies a second engine backend for at most two UI feedback
 voices. User pause suspends the world device while menu clicks/rustles remain
 audible; host suspension stops both. `GameAudio` shares immutable decoded assets,
 master mute and Effects settings and enforces the combined 14-voice limit. UI
@@ -343,31 +394,20 @@ The remaining 49 delivered sound effects, distinct bell pitches and real-game
 verification are recorded in [remaining sound effects](remaining-sound-effects.md).
 
 The default `WEBENGINE_SOURCE_DIR` is `external/WebEngine`, pinned through a Git
-gitlink at `0426d9319de715584a2e34ff9862cd6ba873ecd0` (18 October 2026).
+gitlink at `76d17928a5e51bbaac53874867e08a510e5b9c8f` (22 October 2026).
 This revision includes the sky, terrain, water and split browser renderer APIs
 already consumed by Paws. The local override is developer configuration only.
 Each mode has separate build directories so dependency switching cannot
-accidentally validate the wrong engine. See [pin validation](webengine-pin-validation.md)
+accidentally validate the wrong engine. See [M4 pin validation](quest-module-m4.md)
 for the current build identity and integration evidence.
 
-The published engine currently compiles the browser renderer into its playground,
-and its demo/test copy commands assume a top-level engine project. Paws includes
-the engine via `add_subdirectory(... EXCLUDE_FROM_ALL)` with engine tests disabled
-in a function scope, then builds an independent browser renderer library from the
-engine's implementation files and generated shader headers. No demo publication
-target is built, so its top-level paths are never executed. All game site output
-is contained in the Paws binary directory. Core library definitions and third-party
-dependency pins remain owned by WebEngine.
-
-The packaging bridge handles the current published renderer and the split backend
-files in the adjacent development checkout. It uses an upstream
-`WebEngine::Browser`/`engine_browser` target automatically once available. This
-compatibility code should disappear after an upstream packaging pass provides:
-
-1. A reusable browser-renderer target with transitive port/compiler/link flags.
-2. Demo/test options defaulting to off when WebEngine is a subproject.
-3. Engine-relative paths for all fixtures, shaders, assets and dependencies.
-4. A consumer-safe site/license staging API and optional platform adapters.
+The published engine exports `WebEngine::Browser` with its shader, port and link
+requirements. The consumer bridge now sets dependency options only; its copied
+renderer source list has been removed. Paws stages its own site and native package,
+assets, fonts, runtime DLLs and notices. Native `DesktopFiles` resolves assets
+beside the executable and saves in a separate writable user profile. The Windows
+host serializes writes atomically and excludes a second writer with a profile lock.
+Browser IndexedDB/cloud adapters retain their existing ownership and recovery.
 
 WebEngine's Jolt dependency is fetched at its pinned version/hash during first
 configuration. Browser site staging copies the linked third-party license notices.
@@ -537,3 +577,12 @@ browser policy. Adapter probes run only with profiling enabled.
 
 `scripts/gpu-path-smoke.cjs` verifies full-resolution Automatic and quality
 switching on both backends.
+
+## Quest module migration baseline (M0/M1)
+
+The [M0/M1 handoff](quest-module-m0-m1.md) records a repeatable portable baseline
+for all 29 current quests, supported save versions and once-only rewards, plus
+the adjacent WebEngine's new optional compiled-module foundation. Game runtime
+ownership and the engine pin remain unchanged; no quest-runtime migration or
+Paws desktop application is delivered by these milestones. Use the preserved
+fixtures when implementing the later quest kernel and migration.

@@ -43,6 +43,7 @@ struct PuzzleView {
     std::vector<std::string> symbols,enteredSymbols;
     bool pictureSequence=false,sequenceWatching=false;
     unsigned sequenceReplay=0,sequenceIndex=0;
+    unsigned balanceSetup=0,balanceSetups=0; // One-based active setup; zero for other families.
     std::vector<Cell> route;
     bool completed=false,canUndo=false;
     unsigned beachProgress=0;

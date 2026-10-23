@@ -6,6 +6,8 @@
   let storage, namespace='paws-afternoon', mode=0, notice='', original=null;
   let initialized=false, initializing, loaded=false, loadGeneration=0, fileGeneration=0;
   let pending=null, timer=null, writes=Promise.resolve(), historyIndex=0;
+  let latestSequence=0, lastWriteError=null, retrying=null;
+  let migrationOriginal=null,migrationBackedUp=false;
   const metrics={requested:0,committed:0,failed:0};
   const encoder=new TextEncoder();
   function withBytes(bytes,callback) {
@@ -17,7 +19,17 @@
   const valid=bytes=>withBytes(bytes,(p,n)=>Module._paws_validate_save(p,n));
   const tell=text=>withText(text,p=>Module._paws_notice(p));
   function publishMode() {
-    withText(session,s=>withText(notice,n=>Module._paws_storage_mode(mode,s,n,original?1:0)));
+    const message=[notice,lastWriteError?.help].filter(Boolean).join(' ');
+    withText(session,s=>withText(message,n=>Module._paws_storage_mode(mode,s,n,original?1:0)));
+  }
+  function writeError(error) {
+    const code=error?.code||'io', name=error?.cause?.name||error?.name||'Error';
+    const help=code==='quota'||name==='QuotaExceededError'
+      ? 'Browser storage is full. Free some disk space, then choose Retry save. Export a copy before closing this tab.'
+      : code==='unavailable'
+      ? 'The browser is blocking storage. Allow site storage, then choose Retry save. Export a copy before closing this tab.'
+      : 'The browser could not write the save. Retry save will reconnect to storage. Export a copy before closing this tab.';
+    return {code,name,message:String(error?.message||'Browser storage failed.').slice(0,500),help};
   }
   function backend() {return storage||(storage=new EngineStorage.IndexedDBStorage({namespace,maxBytes:limit}));}
   function isolate(reason) {
@@ -60,6 +72,13 @@
       }
       candidates.sort((a,b)=>b.revision-a.revision);
       const best=candidates[0];
+      if(best&&!new TextDecoder().decode(best.bytes.subarray(0,32)).startsWith('PAWS_AFTERNOON 14')) {
+        // Keep the exact pre-migration bytes outside the rotating history slots.
+        migrationOriginal=best.bytes;if(!original)original=best.bytes;
+      }
+      // Retain access to the migration original after later page reloads and
+      // history rotation. Damage to an optional backup cannot replace current.
+      if(!original)try{original=await backend().get('pre-quest-m6')||await backend().get('pre-quest-m5');}catch{}
       if(damaged) {
         if(mode!==1)isolate(best?'An earlier valid afternoon was recovered. The damaged or newer-format data is preserved.':'The saved data could not be read and has been preserved.');
         else notice+=' Some saved data could not be read and has been preserved.';
@@ -79,21 +98,34 @@
     clearTimeout(timer);timer=null;
     if(!pending)return writes;
     const snapshot=pending;pending=null;
-    const destination=backend();const slot='history-'+(historyIndex++%5);
+    const slot='history-'+(historyIndex++%5);
     writes=writes.then(async()=>{
       try {
+        // Resolve after queued recovery so new writes never borrow a disposed adapter.
+        const destination=backend();
+        if(migrationOriginal&&!migrationBackedUp) {
+          if(!await destination.get('pre-quest-m6'))await destination.put('pre-quest-m6',migrationOriginal);
+          migrationBackedUp=true;
+        }
         // A full history record commits before replacing current. Failed writes
         // retain earlier complete records; no wallet/ledger fields are split.
         await destination.put(slot,snapshot.bytes);
         await destination.put('current',snapshot.bytes);
-        ++metrics.committed;Module._paws_saved(snapshot.sequence,1);
-      } catch {++metrics.failed;Module._paws_saved(snapshot.sequence,0);}
+        ++metrics.committed;
+        if(snapshot.sequence===latestSequence&&lastWriteError){lastWriteError=null;publishMode();}
+        Module._paws_saved(snapshot.sequence,1);
+      } catch(error) {
+        ++metrics.failed;
+        if(snapshot.sequence===latestSequence){lastWriteError=writeError(error);publishMode();}
+        Module._paws_saved(snapshot.sequence,0);
+      }
     });
     return writes;
   }
   window.pawsStoreSave=(text,sequence,immediate=true,revision=0)=>{
     ++loadGeneration;++metrics.requested;
     if(mode!==0)return;
+    latestSequence=sequence;
     pending={bytes:encoder.encode(text),sequence,revision};
     if(immediate)flush();
     else {clearTimeout(timer);timer=setTimeout(flush,500);}
@@ -120,8 +152,15 @@
   window.pawsRetrySave=async()=>{
     if(!loaded){await window.pawsLoadSave();return;}
     if(mode===1){tell('The other tab owns the usual save. Export this temporary afternoon to keep it.');return;}
+    if(retrying)return retrying;
     if(mode===2){isolate('Storage is being retried in an independent save.');publishMode();}
-    Module._paws_retry_save();
+    // Finish queued transactions before reconnecting. A browser may have closed
+    // the cached database after an I/O failure; repeating put cannot reopen it.
+    // Keep the namespace, Web Lock and records, then snapshot the latest game.
+    flush();
+    writes=writes.then(()=>{storage?.dispose();storage=undefined;});
+    retrying=writes.then(()=>Module._paws_retry_save()).finally(()=>{retrying=null;});
+    return retrying;
   };
   function download(bytes,name) {
     const url=URL.createObjectURL(new Blob([bytes],{type:'application/octet-stream'}));
@@ -147,5 +186,5 @@
     },{once:true});
     input.click();
   };
-  window.pawsSaveDiagnostics=()=>({mode,namespace,session,notice,pending:!!pending,...metrics});
+  window.pawsSaveDiagnostics=()=>({mode,namespace,session,notice,lastWriteError,pending:!!pending,...metrics});
 })();

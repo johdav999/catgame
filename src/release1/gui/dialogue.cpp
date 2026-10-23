@@ -1,7 +1,7 @@
 #include "views.hpp"
 namespace paws::release1::gui {
-const std::array<QuestCopy,24>& dialogue() {
-    static const std::array<QuestCopy,24> copy{{
+const std::array<QuestCopy,29>& dialogue() {
+    static const std::array<QuestCopy,29> copy{{
       {"pip_missing_ball","Pip","My ball slipped behind the pots. Could you make a little path back to me?","There it is! Pip nudges his favourite ball toward you."},
       {"pip_tidy_toys","Pip","The toys have wandered out of their basket. Shall we find each one a cosy place?","All tucked away. Pip gives the tidy basket a pleased little sniff."},
       {"pip_stuck_gate","Pip","The gate needs a steady weight on its switch. My toy is waiting on the other side.","The gate is open and the toy is safe. Pip gives you a slow blink."},
@@ -26,6 +26,11 @@ const std::array<QuestCopy,24>& dialogue() {
       ,{"beach_pepper_basket","Pepper","The blanket was in our picnic basket. I followed a lovely smell and lost track of where we left it!","Pepper finds the basket beside a shell. The blanket is still tucked safely inside."}
       ,{"beach_shell_chimes","Pepper","There is a tune on the shelter's picture board. Shall we play it on these marked shells?","The little melody carries across the cove. Everyone knows where to gather."}
       ,{"beach_picnic","All four cats","A bridge, some shade, our basket and a tune. All we need now is a comfortable place for everyone.","Four friends, four places, and the sea beyond. Our seaside picnic is ready."}
+      ,{"beach_tidepool_crossing","Button","I can see tiny shells beside that tidepool. Could we find a dry way around it? The baskets are using each other's parking places.","Button peers into the pool from the dry landing. A whole little world, just below our paws."}
+      ,{"beach_fresh_water","Mabel","Watching the tidepool has made me thirsty. There is fresh water in the barrel, but the baskets block its gutters. Could we use the basin to bring it around the dunes?","Mabel takes a cool sip. The basin did its part, and the spare mat stayed dry."}
+      ,{"beach_windbreak","Mabel and Button","We would like to sort our shells together. Can you arrange the panels around our workshop's corners? Every marked patch needs shade, and overlapping panels waste it.","The whole workshop is shaded. Button and Mabel compare their shells in a comfortable little nook."}
+      ,{"beach_shell_encore","Pepper","Listen to the shells answer each other! Remember the first phrase, then its answer. The second trades leaves for paws. The board will show you as often as you like.","Two answering phrases float across the cove. Pepper gives the last shell a delighted little tap."}
+      ,{"beach_lantern_balance","Pip","I found four seaside lanterns for our landing. They weigh different amounts, and the support keeps moving. Could you steady each setup while I try the perch?","Every lantern is safely balanced. Pip looks over the cove: we made a lovely place together."}
     }};return copy;
 }
 std::string catIntroduction(std::string_view id) {

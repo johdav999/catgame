@@ -26,12 +26,17 @@ const std::array<QuestPolicy,questCount> quests{{
  {"mabel_friend_sun","mabel-friend-sun-v1",2,2,{"pip_stuck_gate","pip_friend_room"}},
  {"mabel_friend_water","mabel-friend-water-v1",2,2,{"mabel_friend_sun"}},
  {"mabel_friend_share","mabel-friend-share-v1",2,3,{"mabel_friend_water"}},
- {beachQuestId,"beach-pip-ball-v1",1,1,{},beachPackId},
- {"beach_button_bridge","beach-button-bridge-v1",1,4,{beachQuestId},beachPackId},
- {"beach_mabel_shade","beach-mabel-shade-v1",1,2,{"beach_button_bridge"},beachPackId},
- {"beach_pepper_basket","beach-pepper-basket-v1",1,8,{"beach_mabel_shade"},beachPackId},
- {"beach_shell_chimes","beach-shell-chimes-v1",1,8,{"beach_pepper_basket"},beachPackId},
- {"beach_picnic","beach-picnic-v1",1,15,{"beach_shell_chimes"},beachPackId}
+ {beachQuestId,"beach-pip-ball-v2",1,1,{},beachPackId},
+ {"beach_button_bridge","beach-button-bridge-v2",1,4,{beachQuestId},beachPackId},
+ {"beach_mabel_shade","beach-mabel-shade-v2",1,2,{"beach_button_bridge"},beachPackId},
+ {"beach_pepper_basket","beach-pepper-basket-v2",1,8,{"beach_mabel_shade"},beachPackId},
+ {"beach_shell_chimes","beach-shell-chimes-v2",1,8,{"beach_pepper_basket"},beachPackId},
+ {"beach_picnic","beach-picnic-v2",1,15,{"beach_shell_chimes"},beachPackId},
+ {"beach_tidepool_crossing","beach-tidepool-crossing-v1",1,4,{"beach_picnic"},beachPackId},
+ {"beach_fresh_water","beach-fresh-water-v1",1,2,{"beach_tidepool_crossing"},beachPackId},
+ {"beach_windbreak","beach-windbreak-v2",1,6,{"beach_fresh_water"},beachPackId},
+ {"beach_shell_encore","beach-shell-encore-v2",1,8,{"beach_windbreak"},beachPackId},
+ {"beach_lantern_balance","beach-lantern-balance-v1",1,1,{"beach_shell_encore"},beachPackId}
 }};
 const std::array<ItemPolicy,8> items{{
  {"garden_cushion","Garden cushion","garden/cushion@1","pip_missing_ball",30,.94f,1.18f,{"rest","quiet"}},
@@ -91,6 +96,33 @@ std::optional<Action> legacyAction(Verb v,std::string_view object,const PawsSess
 void Afternoon::initializeRelease() {
     if(auto e=p::validatePolicies(p::quests);!e.empty())throw std::invalid_argument(e);
     for(std::size_t i=0;i<extra_.size();++i){auto d=release1::rules::quest(p::quests[i+3].id);if(d.content!=p::quests[i+3].content)throw std::invalid_argument("Content policy mismatch");extra_[i]=std::make_unique<release1::rules::Attempt>(std::move(d));}
+    reconcileQuests(true);
+}
+release1::progression::QuestFacts Afternoon::questFacts() const {
+    p::QuestFacts facts;
+    for(std::size_t n=0;n<facts.size();++n) {
+        auto& f=facts[n];f.id=p::quests[n].id;f.earned=rewarded_[n];
+        if(n<3){f.content=sessions_[n].content().contentId;f.attempt=sessions_[n].state().attempt;f.completed=sessions_[n].state().puzzle.completed;}
+        else {const auto view=extra_[n-3]->view();f.content=extra_[n-3]->definition().content;f.attempt=extraIds_[n-3];f.completed=view.completed;
+            if(f.id=="beach_fresh_water")for(const auto& object:view.objects)if(object.role=="water_basin")f.checkpoint=object.active;}
+    }
+    return facts;
+}
+void Afternoon::reconcileQuests(bool replay) {
+    auto candidate=p::QuestAdapter::reconcile(questFacts(),questAdapter_,replay);
+    for(std::size_t n=0;n<p::quests.size();++n)rewarded_[n]=candidate->earned(p::quests[n].id);
+    lastReward_=!replay&&p::quests[activeQuest_].pack.empty()&&
+        std::find(candidate->diagnostics().newReceipts.begin(),candidate->diagnostics().newReceipts.end(),
+            std::string(p::quests[activeQuest_].id)+"/first-completion")!=candidate->diagnostics().newReceipts.end();
+    questAdapter_=std::move(candidate);
+}
+void Afternoon::publishQuestCandidate(Afternoon&& candidate) noexcept {
+    // Existing callers may iterate the borrowed immutable legacy solution while
+    // dispatching moves. Retain its allocations across atomic state publication.
+    for(std::size_t n=0;n<sessions_.size();++n)
+        if(sessions_[n].content_.contentId==candidate.sessions_[n].content_.contentId)
+            std::swap(sessions_[n].content_,candidate.sessions_[n].content_);
+    *this=std::move(candidate);
 }
 // Speculative input checks need a live snapshot, not save validation/replay of
 // every quest. Preserve transient command stamps and independent undo owners.
@@ -99,7 +131,7 @@ Afternoon::Afternoon(const Afternoon& o):settings(o.settings),saveRevision(o.sav
     owned_(o.owned_),placements_(o.placements_),endingSeen_(o.endingSeen_),extraRecords_(o.extraRecords_),extraIds_(o.extraIds_),
     introduced_(o.introduced_),available_(o.available_),activeQuest_(o.activeQuest_),homeQuest_(o.homeQuest_),
     ownerRevision_(o.ownerRevision_),generation_(o.generation_),garden_(o.garden_),picnicSeen_(o.picnicSeen_),suspended_(o.suspended_),
-    beachDevelopmentAccess_(o.beachDevelopmentAccess_),beachEndingSeen_(o.beachEndingSeen_) {
+    beachDevelopmentAccess_(o.beachDevelopmentAccess_),beachEndingSeen_(o.beachEndingSeen_),questAdapter_(o.questAdapter_),replayingSave_(o.replayingSave_) {
     for(std::size_t n=0;n<extra_.size();++n)
         if(o.extra_[n])extra_[n]=std::make_unique<release1::rules::Attempt>(*o.extra_[n]);
 }
@@ -120,6 +152,7 @@ int Afternoon::coins() const {int balance=0;for(std::size_t i=0;i<p::quests.size
 bool Afternoon::unlocked(std::size_t i) const {
     if(i>=p::quests.size())return false;
     if(p::quests[i].pack==p::beachPackId&&!beachDevelopmentAccess_)return false;
+    if(!replayingSave_&&questAdapter_)return questAdapter_->available(p::quests[i].id);
     return std::all_of(p::quests[i].prerequisites.begin(),p::quests[i].prerequisites.end(),[&](auto id){const auto n=p::questIndex(id);return n<p::quests.size()&&rewarded_[n];});
 }
 int Afternoon::chapter() const {return unlocked(7)?3:unlocked(3)?2:1;}
@@ -160,11 +193,17 @@ bool Afternoon::selectQuest(std::size_t i) {
     activeQuest_=i;++generation_;++ownerRevision_;lastReward_=false;return true;
 }
 CommandResult Afternoon::dispatchIntent(const release1::Intent& c) {
+    if(replayingSave_)return dispatchIntentImpl(c);
+    Afternoon candidate(*this);auto result=candidate.dispatchIntentImpl(c);
+    if(result.accepted){candidate.reconcileQuests();publishQuestCandidate(std::move(candidate));}
+    return result;
+}
+CommandResult Afternoon::dispatchIntentImpl(const release1::Intent& c) {
     if(!current(c)||!canAdvance())return {false,"That action belongs to an earlier view."};
     if(c.object.size()>128||c.target.size()>128||int(c.direction)<0||int(c.direction)>3||c.orientation!=0||c.destination.x<-1024||c.destination.x>1024||c.destination.y<-1024||c.destination.y>1024)return {false,"Invalid command fields."};
     if(userPaused||suspended_)return {false,"Resume the afternoon first."};
     if(c.verb==Verb::RecordBeachEnding){
-        if(!inBeach()||activeQuest_!=p::questCount-1||!beachDevelopmentAccess_||!beachComplete()||!puzzleView().completed)return {false,"Finish the beach picnic before watching the ending."};
+        if(!inBeach()||activeQuest_!=p::questIndex("beach_picnic")||!beachDevelopmentAccess_||!beachPicnicComplete()||!puzzleView().completed)return {false,"Finish the beach picnic before watching the ending."};
         beachEndingSeen_=true;++ownerRevision_;lastReward_=false;return {true,"A seaside afternoon to remember."};
     }
     if(c.verb==Verb::SelectQuest) {
@@ -173,7 +212,7 @@ CommandResult Afternoon::dispatchIntent(const release1::Intent& c) {
         // Resume is journaled before selection only after checking all preconditions.
         if(i<3&&sessions_[i].state().inGarden&&records_[i].size()>=100000)return {false,"This request's journal is full."};
         selectQuest(i);
-        if(i<3&&session().state().inGarden){auto s=session().state();auto r=dispatch({s.attempt,s.revision,Action::Resume,{}});if(!r.accepted)throw std::logic_error("Validated resume failed");}
+        if(i<3&&session().state().inGarden){auto s=session().state();auto r=dispatchLegacyImpl({s.attempt,s.revision,Action::Resume,{}});if(!r.accepted)throw std::logic_error("Validated resume failed");}
         garden_=false;ownerRevision_=revision+1;return {true,"Request selected."};
     }
     if(c.verb==Verb::Buy||c.verb==Verb::PlaceFurnishing||c.verb==Verb::RecordPicnic||c.verb==Verb::ReplayPicnic) {
@@ -192,18 +231,19 @@ CommandResult Afternoon::dispatchIntent(const release1::Intent& c) {
     }
     if(garden_)return {false,"Select a request before arranging puzzle pieces."};
     if(inBeach()&&!beachDevelopmentAccess_)return {false,"This preview needs development beach access."};
-    if(activeQuest_<3){auto action=legacyAction(c.verb,c.object,session());if(!action)return {false,"Unsupported puzzle operation."};auto s=session().state();return dispatch({s.attempt,s.revision,*action,c.object,c.direction,c.target});}
+    if(activeQuest_<3){auto action=legacyAction(c.verb,c.object,session());if(!action)return {false,"Unsupported puzzle operation."};auto s=session().state();return dispatchLegacyImpl({s.attempt,s.revision,*action,c.object,c.direction,c.target});}
     const auto i=activeQuest_-3;
     if(extraRecords_[i].size()>=100000)return {false,"This request's journal is full."};
     if(extraRecords_[i].size()==extraRecords_[i].capacity())extraRecords_[i].reserve(std::min<std::size_t>(100000,std::max<std::size_t>(16,extraRecords_[i].capacity()*2)));
     release1::rules::Step step{c.verb,c.object,c.target,c.direction,c.destination};
     if(c.verb==Verb::Restart&&extra_[i]->definition().content=="pip-pepper-playhouse-v1")step.target="pip-pepper-playhouse-v2";
+    if(c.verb==Verb::Restart&&inBeach()&&extra_[i]->definition().content!=p::quests[activeQuest_].content)step.target=p::quests[activeQuest_].content;
     auto command=extra_[i]->command(step);command.orientation=c.orientation;
     auto result=extra_[i]->dispatch(command);if(!result.accepted)return result;
     extraRecords_[i].push_back(std::move(step));
     if(c.verb==Verb::Restart)extraIds_[i]=++epoch_;
     lastReward_=false;
-    if(extra_[i]->view().completed&&!rewarded_[activeQuest_]){rewarded_[activeQuest_]=true;lastReward_=p::quests[activeQuest_].pack.empty();}
+    if(replayingSave_&&extra_[i]->view().completed&&!rewarded_[activeQuest_]){rewarded_[activeQuest_]=true;lastReward_=p::quests[activeQuest_].pack.empty();}
     ++ownerRevision_;return result;
 }
 CommandResult Afternoon::returnToGarden(const release1::Intent& c) {
@@ -253,7 +293,7 @@ release1::ProgressView Afternoon::progressView() const {
     v.beachEndingSeen=beachEndingSeen_;v.beachComplete=beachComplete();
     v.mvpEndingSeen=endingSeen_;v.picnicEndingSeen=picnicSeen_;v.picnicEligible=picnicEligible();
     for(std::size_t i=0;i<4;++i){auto f=friendship(p::catIds[i]);int m=int(std::count_if(p::milestones[i].begin(),p::milestones[i].end(),[&](int n){return f>=n;}));v.cats.push_back({std::string(p::catIds[i]),std::string(p::catNames[i]),f,m,introduced_[i]});}
-    for(std::size_t i=0;i<p::quests.size();++i){const bool completed=i<3?sessions_[i].state().puzzle.completed:extra_[i-3]->view().completed;v.quests.push_back({std::string(p::quests[i].id),release1::rules::quest(p::quests[i].id).title,p::quests[i].chapter,unlocked(i),completed,rewarded_[i]});}
+    for(std::size_t i=0;i<p::quests.size();++i){const bool completed=!replayingSave_&&questAdapter_?questAdapter_->completed(p::quests[i].id):i<3?sessions_[i].state().puzzle.completed:extra_[i-3]->view().completed;v.quests.push_back({std::string(p::quests[i].id),release1::rules::quest(p::quests[i].id).title,p::quests[i].chapter,unlocked(i),completed,rewarded_[i]});}
     for(std::size_t i=0;i<8;++i){auto& item=p::items[i];v.items.push_back({std::string(item.id),std::string(item.name),std::string(item.asset),placements_[i],!available_[i]&&itemUnlocked(i)?"Presentation assets unavailable.":purchaseBlockage(item.id),item.price,itemUnlocked(i),owned_[i],available_[i]});}
     for(auto& spot:p::spots){std::string occupant;for(std::size_t i=0;i<8;++i)if(placements_[i]==spot.id)occupant=p::items[i].id;v.spots.push_back({std::string(spot.id),std::string(spot.roles[0]),occupant,"Choose a furnishing to check compatibility.",false});}
     return v;
@@ -318,6 +358,7 @@ release1::PuzzleView Afternoon::puzzleView() const {
         add(Verb::Undo);add(Verb::Restart);add(Verb::Hint);
     }
     for(std::size_t n=0;n<p::beachQuestIds.size();++n)if(rewarded_[p::baseQuestCount+n])v.beachProgress|=1u<<n;
+    if(!replayingSave_&&questAdapter_)v.completed=questAdapter_->completed(v.quest);
     v.generation=generation_;v.attempt=currentAttempt();v.revision=ownerRevision_;
     for(auto& a:v.actions){a.intent.generation=v.generation;a.intent.attempt=v.attempt;a.intent.revision=v.revision;
         if(userPaused||suspended_||garden_){a.enabled=false;a.reason=garden_?"Select a request first.":"Resume the afternoon first.";}}

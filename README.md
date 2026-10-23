@@ -1,13 +1,17 @@
 # Paws
 
+The [M7 release and SDK handoff](docs/quest-module-m7.md) integrates the shared engine quest
+kernel for all 29 quests on browser and Windows. Version-14 saves retain existing
+puzzle journals and preserve pre-migration originals; versions 1–13 remain readable.
+
 The [Loopia games platform](docs/loopia-platform.md) adds shared PHP/MariaDB
 accounts, manual cloud saves and game-scoped Stripe purchase tracking for Paws
 and future games. Hosting and live payment configuration are separate deployment
 steps; no products or prices are enabled by default.
 
-The six-quest beach adventure is available as a development preview with
+The eleven-quest beach adventure is available as a development preview with
 `?devBeach=1`: Play/Continue → Adventures → Start / Continue beach. It includes
-six greybox quests, story continuation, a saved four-cat picnic ending and
+eleven quests, story continuation, a saved four-cat picnic ending and
 independent progress with garden return; purchases are not enabled. See [the beach milestone](docs/beach-adventure.md) for its
 separate test build, access boundary and verification.
 
@@ -79,7 +83,7 @@ localhost is suitable for development. Paws has not yet been accepted on physica
 mobile devices.
 
 For a new clone, use `git clone --recurse-submodules <game-repository-url>`.
-No game remote has been chosen yet.
+Source is published at https://github.com/johdav999/catgame.
 
 ## Develop alongside WebEngine
 
@@ -91,9 +95,10 @@ a second one:
 ./scripts/build.ps1 -WebEngineSourceDir C:/Users/Johan/source/repos/WebEngine -EmsdkPath C:/Users/Johan/source/repos/WebEngine/.tools/emsdk
 ```
 
-The pinned WebEngine revision is `0426d9319de715584a2e34ff9862cd6ba873ecd0`
-(18 October 2026). It supplies the daytime sky, garden terrain and quest water
-APIs. Build with `-Pinned -Configuration Release` and the installed SDK path
+The pinned WebEngine revision is `c819dbf07ee4f6a0810f8dbd017a441d856f326a`
+(23 October 2026), published on `codex/quest-module-sdk-release`. It adds the
+portable module/quest SDK and shared host integration to the existing sky, terrain
+and water APIs. See [M4 delivery and Windows builds](docs/quest-module-m4.md). Build with `-Pinned -Configuration Release` and the installed SDK path
 above, then serve `build/web-pinned-release/site` explicitly. The sky
 keeps a fixed daytime atmosphere and soft static clouds without changing garden
 lighting or introducing a day/night cycle. Browser verification:

@@ -9,7 +9,7 @@
 
 namespace paws::release1::gui {
 struct QuestCopy { std::string_view quest,speaker,request,completion; };
-const std::array<QuestCopy,24>& dialogue();
+const std::array<QuestCopy,29>& dialogue();
 std::string catIntroduction(std::string_view);
 struct Model {
     PuzzleView puzzle;
@@ -19,7 +19,7 @@ struct Model {
     std::vector<std::string> introductions;
     std::map<std::string,std::shared_ptr<const engine::Texture>> portraits,thumbnails;
     std::map<std::string,std::string> useReasons;
-    std::string finaleReason;
+    std::string finaleReason,workshopSelection;
     bool developmentReferences=false,rewardGranted=false,lookoutQuiet=false,nookQuiet=false;
 };
 // Extends the existing skins, fonts, focus stack, settings and service screens.
@@ -45,6 +45,8 @@ private:
     std::function<void(std::string_view)> placementRequested_;
     std::function<void(std::string_view,std::string_view)> previewRequested_;
     std::string selected_,item_="garden_cushion",spot_;
+    std::string balanceSupportChange_,balancePipBefore_,balancePipAfter_,balanceStorage_;
+    unsigned completedSetup_=0;
     engine::GuiRect board_;
     bool compose();
     Intent command(Verb,std::string object={},std::string target={}) const;

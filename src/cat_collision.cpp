@@ -20,6 +20,9 @@ bool solid(std::string_view name){
         ||name=="scratching_post"||name=="sunny_perch"||name=="hammock"
         ||name.starts_with("playhouse_")||name=="low_picnic_table"||name=="picnic_mat"
         ||name=="platform"||name.starts_with("plank_")||name.starts_with("channel_")
+        ||name=="beach_shelter"||name=="beach_branch"
+        ||name.starts_with("beach_plank_")||name=="beach_support"||name=="beach_rope_post"
+        ||name=="beach_shade_post"||name=="beach_chime_frame"||name.starts_with("beach_mat_")
         ||name.starts_with("gate_")||name=="fence"||name=="edge"||name.ends_with("_enclosure")
         ||name=="bell_support"||name=="sequence_blackboard"||name=="water_support"
         ||name=="rain_barrel"||name=="planting"||name=="herb_pot"||name=="empty_pot"||name=="stone_border";

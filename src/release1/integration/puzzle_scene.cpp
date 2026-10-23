@@ -4,6 +4,8 @@
 #include "release1/cats/cat_assets.hpp"
 #include "engine/mesh_component.hpp"
 #include "water_surface.hpp"
+#include "beach_environment.hpp"
+#include "beach_assets.hpp"
 #include "engine/light_component.hpp"
 #include "engine/interaction_component.hpp"
 #include <algorithm>
@@ -13,6 +15,24 @@ namespace {
 using rules::Family;
 // Original UI artwork is embedded so tags require no additional scene loads.
 #include "weight_tags.inc"
+#include "cat_name_tags.inc"
+std::shared_ptr<const engine::Material> catNameTag(unsigned index){
+ static const auto tags=[] {
+  std::array<std::shared_ptr<const engine::Material>,4> result;
+  const std::span<const unsigned char> images[]={catNameTag0,catNameTag1,catNameTag2,catNameTag3};
+  for(unsigned n=0;n<4;++n){
+   auto m=std::make_shared<engine::Material>();m->shader=engine::MaterialShader::Unlit;
+   m->baseColorTexture=engine::Texture::loadMemory(std::as_bytes(images[n]),"Cat name: "+std::string(progression::catNames[n]));
+   m->doubleSided=true;m->alphaMode=engine::AlphaMode::Mask;m->alphaCutoff=.4f;result[n]=m;
+  }return result;
+ }();return tags.at(index);
+}
+void addCatName(engine::Actor& actor,unsigned index,engine::Vec3 position,float width){
+ auto& label=actor.addComponent<engine::MeshComponent>("Name: "+std::string(progression::catNames[index]),engine::Mesh::plane());
+ label.transform.position=position;label.transform.rotation.x=.88f;label.transform.scale={width,1,width*112.f/384};
+ label.color={1,1,1};label.castsShadow=false;label.receivesShadow=false;
+ label.setMaterial(0,engine::MaterialInstance{catNameTag(index)});
+}
 std::shared_ptr<const engine::Material> weightBadge(int weight) {
  static const auto badges=[] {
   std::array<std::shared_ptr<const engine::Material>,4> result;
@@ -90,6 +110,7 @@ void sample(engine::SkeletalMeshComponent& skin,std::string_view clip,float seco
  const auto duration=skin.mesh->skeleton->clips[index].duration;
  skin.animation().play(index,loop);skin.animation().seek(loop?std::fmod(std::max(0.f,seconds),duration):std::max(0.f,seconds));skin.animation().pause();
 }
+#include "pepper_trail.inc"
 engine::Vec3 headPoint(engine::Actor& a,engine::SkeletalMeshComponent& skin,engine::Vec3 point){
  const auto& skeleton=*skin.mesh->skeleton;auto pose=skin.skinPose();
  for(std::size_t i=1;i<skeleton.bindings.size();++i)if(skeleton.joints[skeleton.bindings[i].joint].name=="head")return engine::transformPoint(a.transform.matrix(),engine::transformPoint(pose->bones[i].transform,point));
@@ -152,6 +173,14 @@ engine::Vec3 world(std::string_view quest,Cell c,std::string_view content) {
  const auto d=rules::quest(quest,content);const float step=d.family==Family::Shapes?.25f:1.f;
  return {(float(c.x)-(d.width-1)*.5f)*step,0,(float(c.y)-(d.height-1)*.5f)*step};
 }
+engine::Vec3 ballPosition(std::string_view quest,Cell c,std::string_view content) {
+ auto p=world(quest,c,content);p.y=.42f;
+ if(quest==progression::beachQuestId){
+  const auto d=rules::quest(quest,content);
+  p.y=c==d.source?0.f:c==d.destination?gardenAnchor("cushion","rest_root").y:gardenAnchor("channel_straight","port_a").y;
+ }
+ return p;
+}
 engine::Vec3 shapePosition(std::string_view quest,std::string_view object,Cell cell,int orientation,std::string_view content) {
  const auto d=rules::quest(quest,content);
  const auto o=std::find_if(d.objects.begin(),d.objects.end(),[&](const auto& o){return o.id==object;});
@@ -170,35 +199,29 @@ PuzzleScene build(const PuzzleView& v,const GardenMeshes& meshes,bool reducedMot
  const float right=halfWidth+(d.family==Family::Switches?0.f:1.5f);
  const bool beach=progression::isBeachQuest(v.quest);
  if(beach){
-  s.name="A Seaside Afternoon - beach greybox";
-  auto block=[&](std::string name,engine::Vec3 p,engine::Vec3 size,engine::Vec3 color){
-   auto& a=s.spawn(name);a.transform.position=p;a.transform.scale=size;
-   auto& m=a.addComponent<engine::MeshComponent>(name,engine::Mesh::cube());
-   m.color={1,1,1};
-   auto material=std::make_shared<engine::Material>();material->name=name;material->baseColor=color;material->roughness=.9f;
-   m.setMaterial(0,engine::MaterialInstance{material});m.castsShadow=false;return a.id();
-  };
-  // Primitive composition only: no new production model or asset dependency.
-  const char* landmarks[]={"Recovered ball","Button's bridge","Mabel's canopy","Recovered picnic basket","Shell-chime shelter","Picnic ready"};
-  for(unsigned n=0;n<6;++n){
-   auto& group=s.spawn(std::string("Cove progress: ")+landmarks[n]);group.transform.position={float(n)*1.25f-3.1f,0,-halfDepth-.7f};
+  s.name="A Seaside Afternoon - beach cove";
+  // Small saved-progress landmarks occupy the strip behind the clear board.
+  const char* landmarks[]={"Recovered ball","Button's bridge","Mabel's canopy","Recovered picnic basket","Shell-chime shelter","Picnic ready","Tidepool crossing","Fresh water","Shell workshop","Answering song","Lantern landing"};
+  for(unsigned n=0;n<out.bindings.beachMilestones.size();++n){
+   auto& group=s.spawn(std::string("Cove progress: ")+landmarks[n]);group.transform.position={float(n%6)*1.25f-3.1f,0,-halfDepth-.7f-float(n/6)*1.3f};
    out.bindings.beachMilestones[n]=group.id();
-   auto part=[&](std::string name,engine::Vec3 p,engine::Vec3 scale,engine::Vec3 tint){auto& m=group.addComponent<engine::MeshComponent>(name,engine::Mesh::cube());m.color={1,1,1};m.transform.position=p;m.transform.scale=scale;auto material=std::make_shared<engine::Material>();material->baseColor=tint;material->roughness=.9f;m.setMaterial(0,engine::MaterialInstance{material});};
+   auto part=[&](std::string name,const char* asset,engine::Vec3 p,engine::Vec3 scale){auto& m=group.addComponent<engine::MeshComponent>(name,meshes.at(asset));m.color={1,1,1};m.transform.position=p;m.transform.scale=scale;};
    if(n==0){auto& m=group.addComponent<engine::MeshComponent>("Recovered beach ball",meshes.at("ball"));m.color={1,1,1};m.transform.position.y=.15f;}
-   if(n==1)for(int b=0;b<3;++b)part("Completed runnel bridge",{0,.10f,float(b)*.2f-.2f},{.9f,.08f,.15f},{.67f,.47f,.28f});
-   if(n==2){part("Supported shade canopy",{0,.8f,0},{1,.08f,.65f},{.9f,.83f,.65f});for(float x:{-.4f,.4f})part("Canopy post",{x,.4f,0},{.06f,.8f,.06f},{.6f,.4f,.24f});}
-   if(n==3){auto& m=group.addComponent<engine::MeshComponent>("Recovered basket",meshes.at("basket"));m.color={1,1,1};m.transform.scale={.4f,.6f,.6f};}
-   if(n==4){part("Chime beam",{0,.8f,0},{1,.06f,.06f},{.6f,.4f,.24f});for(int j=0;j<3;++j){auto& m=group.addComponent<engine::MeshComponent>("Shell symbol",meshes.at(std::array{"sequence_picture_star","sequence_picture_paw","sequence_picture_leaf"}[j]));m.color={1,1,1};m.transform.position={float(j)*.25f-.25f,.55f,0};m.transform.scale={.3f,.3f,.3f};}}
-   if(n==5)part("Picnic blanket",{0,.03f,0},{1,.04f,.7f},{.5f,.65f,.58f});
+   if(n==1)for(int b=0;b<3;++b)part("Completed runnel bridge","beach_plank_short",{0,.04f,float(b)*.2f-.2f},{.9f,1,.30f});
+   if(n==2){part("Supported shade canopy","beach_shade_panel",{0,.58f,0},{.5f,1,1});for(float x:{-.5f,.5f})part("Canopy post","beach_shade_post",{x,0,0},{1,1,1});}
+   if(n==3){auto& m=group.addComponent<engine::MeshComponent>("Recovered basket",meshes.at("beach_basket"));m.color={1,1,1};m.transform.scale={.6f,.6f,.6f};}
+   if(n==4){part("Chime frame","beach_chime_frame",{0,0,0},{.3f,.5f,.5f});for(int j=0;j<3;++j){auto& m=group.addComponent<engine::MeshComponent>("Hanging shell",meshes.at(std::array{"beach_shell_scallop","beach_shell_clam","beach_shell_spiral"}[j]));m.color={1,1,1};m.transform.position={float(j)*.25f-.25f,.60f,0};m.transform.rotation.x=engine::pi/2;m.transform.scale={.7f,.7f,.7f};}}
+   if(n==5)part("Picnic blanket","beach_mat_mabel",{0,0,0},{1,1,1});
+   if(n==6)part("Tidepool bridge","beach_plank_long",{0,.04f,0},{.45f,1,.6f});
+   if(n==7)part("Fresh water bowl","bowl",{0,0,0},{.8f,.8f,.8f});
+   if(n==8)part("Workshop canopy","beach_shade_panel",{0,.15f,0},{.45f,1,1});
+   if(n==9)for(int j=0;j<3;++j)part("Encore shell","beach_shell_scallop",{float(j)*.22f-.22f,0,0},{1,1,1});
+   if(n==10)part("Safely balanced lantern","beach_lantern",{0,0,0},{1,1,1});
   }
-  block("Beach sand greybox",{0,-.15f,0},{100,.28f,100},{.86f,.78f,.61f});
-  block("Decorative sea greybox",{0,-.015f,-29.5f},{100,.03f,50},{.43f,.67f,.69f});
-  if(d.family==Family::Planks)block("Shallow runnel greybox",{-1.5f,.008f,0},{.75f,.016f,5},{.43f,.67f,.69f});
-  block("Quiet shoreline greybox",{0,.006f,-4.4f},{100,.01f,.18f},{.94f,.91f,.79f});
-  for(float x:{-5.5f,5.5f}){
-   block("Low dune greybox",{x,.12f,-2.8f},{2.4f,.28f,1.5f},{.81f,.74f,.57f});
-   block("Dune grass greybox",{x,.32f,-3.1f},{.7f,.35f,.45f},{.52f,.63f,.46f});
-  }
+  auto sand=meshes.find("beach_sand");
+  addBeachEnvironment(s,d.family==Family::Planks,d.width,d.height,
+      sand==meshes.end()?nullptr:sand->second->materials.at(0)->baseColorTexture);
+  addBeachDressing(s,meshes,d.width,d.height,v.quest=="beach_pepper_basket"?4.f:0.f);
  }else {
  for(float x=-halfWidth;x<right-.001f;x+=1)for(float z=-halfDepth;z<halfDepth-.001f;z+=1){
   const float w=std::min(1.f,right-x),h=std::min(1.f,halfDepth-z);
@@ -216,6 +239,7 @@ PuzzleScene build(const PuzzleView& v,const GardenMeshes& meshes,bool reducedMot
   for(int side:{-1,1}){auto& wing=butterfly.addComponent<engine::MeshComponent>("Butterfly wing",meshes.at("sequence_picture_leaf"));wing.transform.position={side*.05f,0,0};wing.transform.scale={.14f,.21f,.14f};wing.transform.rotation.z=side*.65f;wing.castsShadow=false;auto color=std::make_shared<engine::Material>();color->shader=engine::MaterialShader::Unlit;color->baseColor=n%2?engine::Vec3{1,.73f,.30f}:engine::Vec3{.99f,.89f,.61f};wing.setMaterial(0,engine::MaterialInstance{color});}
  }
  const bool cooperation=rules::cooperativePlayhouse(d);
+ if(v.quest=="beach_pepper_basket")out.bindings.pepper.stage=pepperStage(v,d);
  if(cooperation)playhouseCourtyard(s,meshes,d);
  for(auto& o:v.objects){
   std::string asset=o.id.starts_with("planter")?"pot_round":o.role;
@@ -234,9 +258,15 @@ PuzzleScene build(const PuzzleView& v,const GardenMeshes& meshes,bool reducedMot
   if(asset=="balance_beam")asset="plank_2m";
   if(asset=="balance_pip")asset="pip";
   if(asset=="balance_pad")asset="platform";
+  if(v.quest=="beach_lantern_balance"&&o.role=="balance_weight")asset="beach_lantern";
   if(asset=="plank"){auto a=std::find_if(d.objects.begin(),d.objects.end(),[&](auto& x){return x.id==o.id;});asset=a!=d.objects.end()&&a->length==2?"plank_2m":"plank_1m";}
   if(asset=="picnic_bed")asset="cushion";if(asset=="picnic_bowl"||asset=="drinking_bowl")asset="bowl";
+  if(beach&&o.role=="plank")asset=asset=="plank_2m"?"beach_plank_long":"beach_plank_short";
+  if(beach&&o.role=="platform")asset="beach_support";
+  if(d.beachPicnic&&o.role=="picnic_bed")asset="beach_mat_"+o.id.substr(0,o.id.find('_'));
+  if(beach&&o.role.starts_with("bell_"))asset=o.role=="bell_leaf"?"beach_shell_scallop":o.role=="bell_star"?"beach_shell_clam":"beach_shell_spiral";
   if(asset=="gutter"||asset=="channel"){auto a=std::find_if(d.legacy->objects.begin(),d.legacy->objects.end(),[&](auto& x){return x.id==o.id;});asset=a!=d.legacy->objects.end()&&a->kind==Kind::Curve?"channel_curve":"channel_straight";}
+  if(beach&&o.role=="channel")asset="beach_"+asset;
   if(asset=="switch_pip"||asset=="switch_pepper"||asset=="inside_latch"){
    auto& base=prop(s,meshes,o.name+" base","switch_base",world(v.quest,o.cell,v.content));
    if(cooperation)base.transform.scale={2.1f,1,2.1f};
@@ -246,19 +276,17 @@ PuzzleScene build(const PuzzleView& v,const GardenMeshes& meshes,bool reducedMot
   if(asset=="side_gate")asset="gate_leaf";
   if(asset=="cat_pip"||asset=="cat_pepper")asset=asset.substr(4);
   engine::Actor* a=nullptr;
-  if(beach&&o.role=="shade_panel"){
-   a=&s.spawn(o.name);a->transform.scale={2.f,.08f,.6f};
-   auto& m=a->addComponent<engine::MeshComponent>("Shade panel greybox",engine::Mesh::cube());m.color={1,1,1};
-   auto material=std::make_shared<engine::Material>();material->baseColor={.83f,.72f,.51f};m.setMaterial(0,engine::MaterialInstance{material});
+  if(v.quest=="beach_pepper_basket")a=&pepperObject(s,out.bindings,meshes,o,d);
+  else if(beach&&o.role=="shade_panel"){
+   a=&prop(s,meshes,o.name,"beach_shade_panel");
   }
   else if(beach&&o.role=="crate"){
-   // Both existing baskets and crates are open. A closed primitive gives this
-   // greybox an unambiguous grab surface above the obstructed channel.
-   a=&s.spawn(o.name);a->transform.scale={.78f,.7f,.78f};
-   auto& m=a->addComponent<engine::MeshComponent>("Beach basket greybox",engine::Mesh::cube());m.color={1,1,1};
-   auto material=std::make_shared<engine::Material>();material->baseColor={.68f,.44f,.24f};material->roughness=.9f;
-   m.setMaterial(0,engine::MaterialInstance{material});
+   a=&prop(s,meshes,o.name,"beach_basket");
   }
+  // The garden's bowl/bed placard sits at the bed centre. Thin beach mats
+  // expose that legacy interactive mesh, so it steals their drag input.
+  // Beach clues use the per-cell markers below and the four identity symbols.
+  else if(d.beachPicnic&&(o.role=="shade_clue"||o.role=="quiet_clue"||o.role=="adjacency_clue"))a=&s.spawn(o.name);
   else if(o.role=="plank_socket"||o.role=="shade_socket")a=&s.spawn(o.name);
   else if(meshes.contains(asset)) {
    if(o.role.starts_with("cat_")||o.role=="balance_pip"){a=&s.spawn(o.name);auto& skin=a->addComponent<engine::SkeletalMeshComponent>(o.name,meshes.at(asset));presentPip(skin,0,true);}
@@ -267,7 +295,19 @@ PuzzleScene build(const PuzzleView& v,const GardenMeshes& meshes,bool reducedMot
   else throw std::out_of_range("Required puzzle mesh missing: "+asset);
   if(o.role!="cushion_basket"&&(a->getComponent<engine::MeshComponent>()||o.role.starts_with("cat_")))a->addComponent<engine::InteractionComponent>();
   out.bindings.objects.push_back({o.id,a->id(),{}});
+  if(beach&&o.role.starts_with("bell_")){
+   auto* shell=a->getComponent<engine::MeshComponent>();
+   a->getComponent<engine::InteractionComponent>()->proxyBounds=engine::MeshBounds{{-.30f,-.47f,-.25f},{.30f,.10f,.32f},true};
+   shell->transform.rotation.x=engine::pi/2;shell->transform.scale={1.8f,1.8f,1.8f};shell->transform.position.y=-.20f;
+   auto& cord=a->addComponent<engine::MeshComponent>("Shell hanging cord",engine::Mesh::cube());
+   cord.transform.position.y=.075f;cord.transform.scale={.018f,.16f,.018f};cord.color={.51f,.39f,.23f};
+   auto& symbol=a->addComponent<engine::MeshComponent>("Shell identity symbol",meshes.at("sequence_picture_"+o.role.substr(5)));
+   symbol.transform.position={0,-.20f,shell->mesh->localBounds().maximum.y*1.8f+.025f};symbol.transform.scale={.25f,.25f,.25f};symbol.color={1,1,1};symbol.castsShadow=false;
+  }
   if(d.beachPicnic&&o.role=="picnic_bed"){
+   const auto catId=o.id.substr(0,o.id.find('_'));
+   const auto index=std::find(progression::catIds.begin(),progression::catIds.end(),catId)-progression::catIds.begin();
+   addCatName(*a,unsigned(index),{0,.15f,-.40f},.88f);
    const float top=a->getComponent<engine::MeshComponent>()->mesh->localBounds().maximum.y;
    const char* symbol=o.id=="button_mat"?"star":o.id=="mabel_mat"?"leaf":"paw";
    const int count=o.id=="pepper_mat"?2:1;
@@ -285,12 +325,12 @@ PuzzleScene build(const PuzzleView& v,const GardenMeshes& meshes,bool reducedMot
   if(o.role=="balance_pip")out.bindings.requesters.push_back({a->id(),a->getComponent<engine::SkeletalMeshComponent>()->id(),{},0});
   if(o.role=="balance_weight"){
    const int count=std::stoi(o.id.substr(7));a->transform.scale={.9f,.9f,.9f};
-   if(d.sharedLookout){
+   if(d.sharedLookout||v.quest=="beach_lantern_balance"){
     auto& badge=a->addComponent<engine::MeshComponent>("Weight "+std::to_string(count),engine::Mesh::plane());
-    badge.transform.position={0,1.22f,-.08f};badge.transform.scale={.66f,1,.825f};
+    badge.transform.position={0,d.sharedLookout?1.22f:.82f,-.08f};badge.transform.scale={.66f,1,.825f};
     badge.transform.rotation.x=.85f;
     auto& stem=a->addComponent<engine::MeshComponent>("Weight tag stem",engine::Mesh::cube());
-    stem.transform.position={0,.73f,.18f};stem.transform.scale={.045f,.38f,.045f};
+    stem.transform.position={0,d.sharedLookout?.73f:.50f,.18f};stem.transform.scale={.045f,.38f,.045f};
     stem.color={.40f,.25f,.12f};stem.castsShadow=false;
     badge.color={1,1,1};badge.castsShadow=false;badge.setMaterial(0,engine::MaterialInstance{weightBadge(count)});
    }else for(int n=0;n<count;++n){auto& pip=a->addComponent<engine::MeshComponent>("Weight mark",meshes.at("sequence_picture_paw"));pip.transform.position={-.24f+n*.16f,.19f,0};pip.transform.rotation.x=-engine::pi/2;pip.transform.scale={.23f,.23f,.23f};pip.castsShadow=false;auto ink=std::make_shared<engine::Material>();ink->shader=engine::MaterialShader::Unlit;ink->baseColor={.06f,.25f,.20f};pip.setMaterial(0,engine::MaterialInstance{ink});}
@@ -325,7 +365,7 @@ PuzzleScene build(const PuzzleView& v,const GardenMeshes& meshes,bool reducedMot
     auto& drop=a->addComponent<engine::MeshComponent>("Bowl inlet ribbon",meshes.at("water_drop"));drop.transform.rotation.y=engine::pi/2;drop.enabled=v.completed;dressWater(drop,true);
    }
   }
-  if(o.role=="plank_socket"||o.role=="shade_socket") {
+  if((o.role=="plank_socket"||o.role=="shade_socket")&&v.quest!="beach_windbreak") {
    auto socket=std::find_if(d.sockets.begin(),d.sockets.end(),[&](auto& x){return x.id==o.id;});
    if(socket!=d.sockets.end()&&socket->supported){
     // Guides belong to the crossing, not to a loose piece at its first endpoint.
@@ -350,7 +390,7 @@ PuzzleScene build(const PuzzleView& v,const GardenMeshes& meshes,bool reducedMot
  if(d.family==Family::PictureSequence){
   // The imported rack is a single frame. Bell meshes retain independent actors
   // for picking and Pepper's response animation.
-  if(std::any_of(v.objects.begin(),v.objects.end(),[](const auto& o){return o.role.starts_with("bell_");}))prop(s,meshes,"Garden bell frame","bell_support",world(v.quest,{d.width/2,0},v.content));
+  if(std::any_of(v.objects.begin(),v.objects.end(),[](const auto& o){return o.role.starts_with("bell_");}))prop(s,meshes,beach?"Driftwood shell chime frame":"Garden bell frame",beach?"beach_chime_frame":"bell_support",world(v.quest,{d.width/2,0},v.content));
   auto* board=object(s,out.bindings,"sequence_board");
   for(const auto& o:d.objects)if(o.kind==rules::Piece::Bell){
    auto& picture=board->addChild<engine::Actor>("Blackboard picture "+o.symbol);
@@ -389,14 +429,25 @@ PuzzleScene build(const PuzzleView& v,const GardenMeshes& meshes,bool reducedMot
   std::vector<Cell> junctions;
   for(const auto& socket:d.sockets)if(socket.supported)for(auto cell:{socket.cell,socket.end}){
    if(cell==d.source||cell==d.destination||std::find(junctions.begin(),junctions.end(),cell)!=junctions.end())continue;
-   junctions.push_back(cell);auto& landing=prop(s,meshes,"Bridge landing","platform",world(v.quest,cell,v.content));landing.transform.scale={.58f,1,.72f};
+   junctions.push_back(cell);auto& landing=prop(s,meshes,"Bridge landing",beach?"beach_support":"platform",world(v.quest,cell,v.content));if(!beach)landing.transform.scale={.58f,1,.72f};
   }
   auto& cushion=prop(s,meshes,"Sunny resting cushion","cushion",world(v.quest,d.destination,v.content)+engine::Vec3{0,.46f,0});cushion.transform.scale={.65f,.65f,.65f};
   auto& mat=prop(s,meshes,"Mabel's starting place","paw_mat",world(v.quest,d.source,v.content)+engine::Vec3{-.7f,.005f,0});mat.transform.scale={.8f,1,.8f};
  }
  if(d.family==Family::Shade){
-  for(auto c:d.shade)rim(s,world(v.quest,c,v.content),.85f,{.95f,.88f,.65f});
+  for(auto c:d.shade){
+   if(v.quest!="beach_windbreak"){rim(s,world(v.quest,c,v.content),.85f,{.95f,.88f,.65f});continue;}
+   auto& mark=s.spawn("Workshop cell needing shade");mark.transform.position=world(v.quest,c,v.content)+engine::Vec3{0,.018f,0};mark.transform.scale={.88f,.012f,.88f};
+   auto& mesh=mark.addComponent<engine::MeshComponent>("Soft sand fill",engine::Mesh::cube());
+   auto material=std::make_shared<engine::Material>();material->shader=engine::MaterialShader::Unlit;material->baseColor={.78f,.66f,.44f};material->alphaMode=engine::AlphaMode::Blend;material->opacity=.55f;
+   mesh.setMaterial(0,engine::MaterialInstance{material});mesh.color={1,1,1};mesh.castsShadow=false;
+   out.bindings.workshopCells.push_back({c,mark.id()});
+  }
+  std::vector<Cell> supports;
   for(const auto& socket:d.sockets)if(socket.supported)for(auto cell:{socket.cell,socket.end}){
+   if(std::find(supports.begin(),supports.end(),cell)!=supports.end())continue;
+   supports.push_back(cell);
+   if(beach){prop(s,meshes,"Firm canopy support","beach_shade_post",world(v.quest,cell,v.content));continue;}
    auto& post=s.spawn("Firm canopy support");post.transform.position=world(v.quest,cell,v.content)+engine::Vec3{0,.27f,0};post.transform.scale={.05f,.54f,.05f};post.addComponent<engine::MeshComponent>("Canopy post",engine::Mesh::cube()).color={.6f,.4f,.24f};
   }
  }
@@ -408,7 +459,10 @@ PuzzleScene build(const PuzzleView& v,const GardenMeshes& meshes,bool reducedMot
   }
  }
  if(d.sunnyNook){for(auto c:d.shade)rim(s,world(v.quest,c,v.content),.8f,{.9f,.7f,.25f});for(auto c:d.walkable)rim(s,world(v.quest,c,v.content),.55f,{.15f,.4f,.36f});}
- if(d.family==Family::Picnic&&!d.sunnyNook){for(auto c:d.shade)prop(s,meshes,"Shade mark","shade_clue",world(v.quest,c,v.content)+engine::Vec3{-.28f,.008f,-.28f});for(auto c:d.quiet)prop(s,meshes,"Quiet mark","quiet_clue",world(v.quest,c,v.content)+engine::Vec3{.28f,.008f,.28f});}
+ if(d.family==Family::Picnic&&!d.sunnyNook){
+  for(auto c:d.shade){auto& mark=prop(s,meshes,"Shade mark","shade_clue",world(v.quest,c,v.content)+engine::Vec3{-.28f,.008f,-.28f});if(beach)mark.transform.scale={.4f,.4f,.4f};}
+  for(auto c:d.quiet){auto& mark=prop(s,meshes,"Quiet mark","quiet_clue",world(v.quest,c,v.content)+engine::Vec3{.28f,.008f,.28f});if(beach)mark.transform.scale={.4f,.4f,.4f};}
+ }
  if(d.family!=Family::Switches&&d.family!=Family::Balance){
   const auto q=progression::questIndex(v.quest);unsigned count=0;
   for(unsigned i=0;i<4;++i)if(q<paws::release1::progression::quests.size()&&(progression::quests[q].requesters&(1u<<i))&&meshes.contains(std::string(progression::catIds[i]))){
@@ -424,20 +478,32 @@ PuzzleScene build(const PuzzleView& v,const GardenMeshes& meshes,bool reducedMot
    }
    // The continuous courtyard includes every requester's standing space.
    out.bindings.requesters.push_back({cat.id(),skin.id(),{},0});
+   if(d.beachPicnic){
+    auto& name=s.spawn("Picnic cat name: "+std::string(progression::catNames[i]));
+    name.setSavedId("picnic.cat-name."+std::string(progression::catIds[i]));
+    addCatName(name,i,{0,0,0},1.f);
+   }
   }
  }
  auto& sun=s.spawn("Sun").addComponent<engine::LightComponent>("Garden sun",engine::LightType::Directional);sun.direction={-.5f,-1,-.3f};sun.intensity=1.5f;
  sun.color={1,.95f,.87f};sun.shadow.enabled=true;sun.shadow.halfExtent=8;sun.shadow.halfDepth=12;sun.shadow.normalBias=.01f;
+ if(beach){
+  // Keep warm directional light distinct from the sky fill so soft shadows
+  // visibly ground the cats and props on pale sand on both renderers.
+  s.ambient={.20f,.22f,.24f};sun.intensity=2.f;
+  sun.shadow.center={0,0,-1};sun.shadow.halfExtent=12;sun.shadow.halfDepth=18;
+ }
  auto& camera=s.spawn("View").addComponent<engine::CameraComponent>("Puzzle camera");camera.setPerspective(engine::pi*35/180,.05f,80);out.camera=&camera;
  out.bindings.collision.build(s,meshes);project(s,out.bindings,v,reducedMotion);return out;
 }
-void guideMovement(engine::Scene& s,SceneBindings& b,const PuzzleView& v,const std::vector<Intent>& options) {
+void guideMovement(engine::Scene& s,SceneBindings& b,const PuzzleView& v,const std::vector<Intent>& options,std::string_view selected,const std::vector<Intent>& afterRotation) {
  struct Rect {engine::Vec3 p;float w,h;};std::vector<Rect> rectangles;
  const auto d=rules::quest(v.quest,v.content);
  auto add=[&](engine::Vec3 p,float w,float h){
   if(std::none_of(rectangles.begin(),rectangles.end(),[&](const auto& r){return r.p.x==p.x&&r.p.y==p.y&&r.p.z==p.z&&r.w==w&&r.h==h;}))rectangles.push_back({p,w,h});
  };
  for(const auto& option:options){
+  if(v.quest=="beach_windbreak"&&selected.empty())continue;
   if(option.verb==Verb::Slide){
    auto p=world(v.quest,option.destination,v.content);
    // The paw switch has a raised plate: keep its legal crate destination
@@ -468,25 +534,67 @@ void guideMovement(engine::Scene& s,SceneBindings& b,const PuzzleView& v,const s
    }
   }
  }
- while(b.movementGuides.size()<rectangles.size()){
-  auto& actor=s.spawn("Legal movement destination");actor.enabled=false;
+ auto makeGuide=[&](const char* name,bool selection){
+  auto& actor=s.spawn(name);actor.enabled=false;
   for(int edge=0;edge<4;++edge)for(bool border:{true,false}){
    auto& mesh=actor.addComponent<engine::MeshComponent>("Movement outline",engine::Mesh::cube());
    auto material=std::make_shared<engine::Material>();material->shader=engine::MaterialShader::Unlit;
-   material->baseColor=border?engine::Vec3{.157f,.4f,.365f}:engine::Vec3{1,.973f,.914f};
+   material->baseColor=border?engine::Vec3{.157f,.4f,.365f}:selection?engine::Vec3{1,.75f,.32f}:engine::Vec3{1,.973f,.914f};
    mesh.setMaterial(0,engine::MaterialInstance{material});mesh.color={1,1,1};mesh.castsShadow=false;
   }
-  b.movementGuides.push_back(actor.id());
- }
- for(std::size_t n=0;n<b.movementGuides.size();++n)if(auto* actor=s.findActor(b.movementGuides[n])){
-  actor->enabled=n<rectangles.size();if(!actor->enabled)continue;
-  const auto& r=rectangles[n];actor->transform.position=r.p+engine::Vec3{0,.065f,0};
-  unsigned index=0;for(auto& child:actor->children())if(auto* mesh=dynamic_cast<engine::MeshComponent*>(child.get())){
+  return actor.id();
+ };
+ auto placeGuide=[&](engine::Actor& actor,const Rect& r,bool broken=false){
+  actor.enabled=true;actor.transform.position=r.p+engine::Vec3{0,.065f,0};
+  unsigned index=0;for(auto& child:actor.children())if(auto* mesh=dynamic_cast<engine::MeshComponent*>(child.get())){
    const unsigned edge=index/2;const bool border=index++%2==0;const float width=border?.085f:.04f;
    mesh->transform.position={edge<2?0:(edge==2?-r.w:r.w)*.5f,border?0:.009f,edge<2?(edge==0?-r.h:r.h)*.5f:0};
-   mesh->transform.scale=edge<2?engine::Vec3{r.w+width,.008f,width}:engine::Vec3{width,.008f,r.h+width};
+   const float span=broken?.60f:1.f;
+   mesh->transform.scale=edge<2?engine::Vec3{(r.w+width)*span,.008f,width}:engine::Vec3{width,.008f,(r.h+width)*span};
   }
+ };
+ while(b.movementGuides.size()<rectangles.size())b.movementGuides.push_back(makeGuide("Legal movement destination",false));
+ for(std::size_t n=0;n<b.movementGuides.size();++n)if(auto* actor=s.findActor(b.movementGuides[n])){
+  actor->enabled=n<rectangles.size();if(actor->enabled)placeGuide(*actor,rectangles[n]);
  }
+ std::vector<Rect> turns;
+ for(const auto& option:afterRotation){
+  if(v.quest=="beach_windbreak")continue;
+  if(std::any_of(options.begin(),options.end(),[&](const auto& i){return i.object==option.object&&i.target==option.target;}))continue;
+  const auto socket=std::find_if(d.sockets.begin(),d.sockets.end(),[&](const auto& s){return s.id==option.target&&(s.role=="plank_socket"||s.role=="shade_socket");});
+  if(socket==d.sockets.end())continue;
+  const auto from=world(v.quest,socket->cell,v.content),to=world(v.quest,socket->end,v.content);
+  turns.push_back({(from+to)*.5f,std::abs(to.x-from.x)+.60f,std::abs(to.z-from.z)+.60f});
+ }
+ while(b.rotationGuides.size()<turns.size())b.rotationGuides.push_back(makeGuide("Fits after a quarter-turn",true));
+ for(std::size_t n=0;n<b.rotationGuides.size();++n)if(auto* actor=s.findActor(b.rotationGuides[n])){
+  actor->enabled=n<turns.size();if(actor->enabled)placeGuide(*actor,turns[n],true);
+ }
+ const auto basket=std::find_if(v.objects.begin(),v.objects.end(),[&](const auto& o){return o.id==selected&&o.role=="crate";});
+ if(basket!=v.objects.end()){
+  if(!s.findActor(b.selectedBasketGuide))b.selectedBasketGuide=makeGuide("Selected basket",true);
+  placeGuide(*s.findActor(b.selectedBasketGuide),{world(v.quest,basket->cell,v.content),1.12f,1.12f});
+ }else if(auto* actor=s.findActor(b.selectedBasketGuide))actor->enabled=false;
+}
+void previewWorkshop(engine::Scene& s,SceneBindings& b,const PuzzleView& v,std::string_view panel,std::string_view target) {
+ auto* ghost=s.findActor(b.workshopPreview);if(ghost)ghost->enabled=false;
+ if(v.quest!="beach_windbreak"||panel.empty()||target.empty())return;
+ const auto d=rules::quest(v.quest,v.content);
+ const auto socket=std::find_if(d.sockets.begin(),d.sockets.end(),[&](const auto& t){return t.id==target;});
+ const auto binding=std::find_if(b.objects.begin(),b.objects.end(),[&](const auto& o){return o.object==panel;});
+ if(socket==d.sockets.end()||binding==b.objects.end())return;
+ auto* source=s.findActor(binding->actor);if(!source)return;
+ auto* mesh=source->getComponent<engine::MeshComponent>();if(!mesh)return;
+ if(!ghost){
+  ghost=&s.spawn("Workshop placement preview");b.workshopPreview=ghost->id();
+  auto& preview=ghost->addComponent<engine::MeshComponent>("Translucent shade",mesh->mesh);
+  auto material=std::make_shared<engine::Material>();material->baseColor={1,.97f,.88f};material->alphaMode=engine::AlphaMode::Blend;material->opacity=.42f;material->doubleSided=true;
+  for(std::size_t n=0;n<std::max(std::size_t(1),mesh->mesh->materials.size());++n)preview.setMaterial(n,engine::MaterialInstance{material});
+  preview.color={1,1,1};preview.castsShadow=false;
+ }
+ ghost->transform=source->transform;
+ ghost->transform.position=(world(v.quest,socket->cell,v.content)+world(v.quest,socket->end,v.content))*.5f+engine::Vec3{0,.58f,0};
+ ghost->transform.rotation.y=socket->cell.x==socket->end.x?engine::pi/2:0;ghost->enabled=true;
 }
 void guidePlank(engine::Scene& s,const SceneBindings& b,const PuzzleView& v,std::string_view object) {
  const auto d=rules::quest(v.quest,v.content);if(d.family!=Family::Planks)return;
@@ -506,27 +614,36 @@ bool project(engine::Scene& s,SceneBindings& b,const PuzzleView& v,bool reduced)
  if(b.questId!=v.quest||v.attempt<b.attempt||(v.attempt==b.attempt&&v.revision<b.revision))return false;
  for(auto& binding:b.objects)if(!s.findActor(binding.actor))return false;
  const auto d=rules::quest(v.quest,v.content);
- for(unsigned n=0;n<6;++n)if(auto* a=s.findActor(b.beachMilestones[n]))a->enabled=(v.beachProgress&(1u<<n))!=0;
+ for(unsigned n=0;n<b.beachMilestones.size();++n)if(auto* a=s.findActor(b.beachMilestones[n]))a->enabled=(v.beachProgress&(1u<<n))!=0;
  if(d.family==Family::PictureSequence){
   if(b.sequencePlayback.size()==0||v.attempt!=b.attempt||v.sequenceReplay!=b.sequenceReplay||(!v.completed&&b.completed))b.sequencePlayback.start(d.sequence,d.pictureSeconds);
   b.sequenceReplay=v.sequenceReplay;if(v.completed)b.sequencePlayback.finish();
   for(const auto& [symbol,id]:b.sequencePictures)if(auto* picture=s.findActor(id))picture->enabled=b.sequencePlayback.picture()==symbol;
  }
+ if(v.quest=="beach_windbreak"){
+  b.workshopCovered=rules::shadedCells(d,v);
+  for(const auto& [cell,id]:b.workshopCells)if(auto* mark=s.findActor(id)){
+   const bool covered=std::find(b.workshopCovered.begin(),b.workshopCovered.end(),cell)!=b.workshopCovered.end();
+   auto* mesh=mark->getComponent<engine::MeshComponent>();
+   if(reduced||b.attempt==0)mesh->opacity=covered?0.f:1.f;
+   mark->enabled=!covered||mesh->opacity>0;
+  }
+ }
  for(auto& binding:b.objects){auto at=std::find_if(v.objects.begin(),v.objects.end(),[&](auto& o){return o.id==binding.object;});if(at==v.objects.end())return false;
   const auto& o=*at;auto& a=*s.findActor(binding.actor);auto p=world(v.quest,o.cell,v.content);float yaw=-o.orientation*engine::pi/2;
   if(v.quest==progression::beachQuestId&&o.role=="ball"){
-   p=world(v.quest,v.completed?d.destination:d.source,v.content);p.y=.42f;
+   p=ballPosition(v.quest,v.completed?d.destination:d.source,v.content);
   }
-  if(v.quest==progression::beachQuestId&&o.role=="crate")p.y=.35f;
   if(o.role.starts_with("cushion_")){auto obj=std::find_if(d.objects.begin(),d.objects.end(),[&](auto& x){return x.id==o.id;});if(obj!=d.objects.end())p=shapeOrigin(*obj,o.cell,o.orientation,v.quest,v.content);if(!o.socket.empty())p.y=.036f;}
   if((o.role=="plank"||o.role=="shade_panel")&&!o.socket.empty()){auto socket=std::find_if(d.sockets.begin(),d.sockets.end(),[&](auto& x){return x.id==o.socket;});if(socket!=d.sockets.end()){p=(world(v.quest,socket->cell,v.content)+world(v.quest,socket->end,v.content))*.5f;yaw=socket->cell.x==socket->end.x?engine::pi/2:0;}}
   if(o.role=="shade_panel")p.y=.58f;
-  if(d.beachPicnic&&o.role=="picnic_bed")a.transform.scale={.55f,.65f,.55f};
   if(o.role=="plank_socket"||o.role=="shade_socket"){yaw=0;for(auto& child:a.children())child->enabled=!o.active;}
-  if(d.family==Family::Planks&&o.id=="mabel_start")a.transform.scale={.7f,1,.8f};
+  if(d.family==Family::Planks&&o.id=="mabel_start"&&!progression::isBeachQuest(v.quest))a.transform.scale={.7f,1,.8f};
   if(o.role=="sunny_perch")yaw=-engine::pi/2;
   if(o.held)p.y+=.6f;if(o.collected)p.y=-3;
-  if(o.role=="balance_beam"){p.y=.20f;a.transform.scale={3.5f,1,1.3f};a.transform.rotation.z=o.orientation==1?-.035f:o.orientation==2?.035f:0;yaw=0;}
+  // Increasing beam positions run along +X. A positive Z rotation lowers the
+  // left end; a negative rotation lowers the right, matching the rules' pull.
+  if(o.role=="balance_beam"){p.y=.20f;a.transform.scale={3.5f,1,1.3f};a.transform.rotation.z=o.orientation==1?.035f:o.orientation==2?-.035f:0;yaw=0;}
   if(o.role=="balance_support"){a.transform.scale={.30f,.20f,.55f};}
   if(o.role=="lookout_cushion")p.y=o.socket.empty()?0:.32f;
   if(o.role=="lookout_seat")p.y=.33f;
@@ -541,10 +658,16 @@ bool project(engine::Scene& s,SceneBindings& b,const PuzzleView& v,bool reduced)
   if(o.role=="balance_socket"){a.transform.scale={.75f,1,.75f};p.y=.30f;}
   if(o.role=="balance_pip"){if(o.active){p.z-=.65f;p.y=.35f;}else p.y=0;}
   if(o.role=="balance_pad"){p.z-=.65f;p.y=0;a.transform.scale={.8f,.7f,.9f};a.enabled=o.active;}
-  if(o.role=="trail_clue"){if(auto* mesh=a.getComponent<engine::MeshComponent>())mesh->color=o.active?engine::Vec3{.65f,1,.75f}:engine::Vec3{1,1,1};}
+  if(o.role=="trail_clue"&&v.quest!="beach_pepper_basket"){if(auto* mesh=a.getComponent<engine::MeshComponent>())mesh->color=o.active?engine::Vec3{.65f,1,.75f}:engine::Vec3{1,1,1};}
   if(o.role.starts_with("bell_"))p.y=1.25f;
   if(o.role=="sequence_blackboard")p.z=-1.45f;
   if(o.role=="gutter"||o.role=="channel"){auto obj=std::find_if(d.legacy->objects.begin(),d.legacy->objects.end(),[&](auto& x){return x.id==o.id;});yaw=(obj->kind==Kind::Straight?1-o.orientation:3-o.orientation)*engine::pi/2;p.y=.4f;}
+  // The beach kit has floor-contact pivots. Covered channels become available
+  // as baskets slide away, without inheriting the legacy greybox elevation.
+  if(v.quest==progression::beachQuestId&&o.role=="channel"){
+   p.y=0;
+   a.enabled=std::none_of(v.objects.begin(),v.objects.end(),[&](const auto& cover){return cover.role=="crate"&&cover.cell==o.cell;});
+  }
   if(o.role=="playhouse_door"){
    if(rules::cooperativePlayhouse(d)){
     // Right hinge opens toward the clear approach, away from the crate plate.
@@ -593,14 +716,24 @@ bool project(engine::Scene& s,SceneBindings& b,const PuzzleView& v,bool reduced)
   if(!v.completed){e.active=e.finished=false;e.elapsed=0;if(auto* a=s.findActor(e.actor)){a->transform.position=e.home;a->transform.rotation=e.homeRotation;cats::present(*a->getComponent<engine::SkeletalMeshComponent>(),1,reduced);}if(auto* tongue=s.findActor(e.tongue))tongue->enabled=false;}
   else {if(reduced&&!e.route.empty()){e.elapsed=e.leadSeconds+e.walkSeconds+e.clipSeconds+e.carrySeconds;e.active=false;e.finished=true;}endingPose(s,b);}
  }
- for(auto& r:b.requesters)if(!hasEnding)if(auto* skin=dynamic_cast<engine::SkeletalMeshComponent*>(s.findComponent(r.skin))){
+ for(auto& r:b.requesters)if(!hasEnding&&v.quest!="beach_pepper_basket")if(auto* skin=dynamic_cast<engine::SkeletalMeshComponent*>(s.findComponent(r.skin))){
   const bool newlyCompleted=v.completed&&!b.completed;
   if(d.beachPicnic){
    const auto n=std::size_t(&r-b.requesters.data());const char* ids[]={"pip_mat","mabel_mat","button_mat","pepper_mat"};
    if(auto* cat=s.findActor(r.actor)){
     auto mat=std::find_if(v.objects.begin(),v.objects.end(),[&](const auto& o){return o.id==ids[n];});
-    if(v.completed&&mat!=v.objects.end()){cat->transform.position=world(v.quest,mat->cell,v.content)+engine::Vec3{0,.13f,0};cat->transform.rotation.y=engine::pi;}
-    else cat->transform.position={float(n)-1.5f,0,float(d.height)*.5f+.7f};
+    if(v.completed&&mat!=v.objects.end()){
+     const auto* bed=object(s,b,mat->id);const auto* mesh=bed?bed->getComponent<engine::MeshComponent>():nullptr;
+     const float top=mesh?mesh->mesh->localBounds().maximum.y:.018f;
+     cat->transform.position=world(v.quest,mat->cell,v.content)+engine::Vec3{0,top,0};cat->transform.rotation.y=engine::pi;
+    }
+    else {
+     const auto initial=std::find_if(d.objects.begin(),d.objects.end(),[&](const auto& o){return o.id==ids[n];});
+     cat->transform.position=world(v.quest,initial->initial,v.content)+engine::Vec3{0,0,1.25f};
+     cat->transform.rotation.y=0;
+    }
+    if(auto* name=dynamic_cast<engine::Actor*>(s.findSavedNode("picnic.cat-name."+std::string(progression::catIds[n]))))
+     name->transform.position=cat->transform.position+engine::Vec3{0,1.5f,.8f};
    }
    // Completion cards suspend simulation: project the final sitting pose now,
    // rather than freezing a crossfade on the standing request pose.
@@ -624,10 +757,26 @@ bool project(engine::Scene& s,SceneBindings& b,const PuzzleView& v,bool reduced)
   if(!v.completed){r.route.clear();r.elapsed=0;if(d.family==Family::Planks)if(auto* a=s.findActor(r.actor)){a->transform.position=world(v.quest,d.source,v.content)+engine::Vec3{-.7f,0,0};a->transform.rotation.y=engine::pi/2;}}
  }
  guidePlank(s,b,v,{});
+ projectPepper(s,b,v,reduced);
  b.attempt=v.attempt;b.revision=v.revision;b.completed=v.completed;b.reducedMotion=reduced;return true;
 }
+void reactPepper(engine::Scene& s,SceneBindings& b,const PuzzleView& before,const PuzzleView& after,const Intent& i,bool accepted,bool reduced){
+ startPepperReaction(s,b,before,after,i,accepted,reduced);
+}
+void presentPepperEvidence(PuzzleView& v,const SceneBindings& b){
+ if(v.quest!="beach_pepper_basket")return;
+ for(auto& o:v.objects)if(o.role=="trail_clue")
+  o.active=o.active&&!(b.pepper.awaitingClues&(1u<<(o.id.back()-'0')));
+}
 void animate(engine::Scene& s,SceneBindings& b,double delta){
+ for(const auto& [cell,id]:b.workshopCells)if(auto* mark=s.findActor(id)){
+  const bool covered=std::find(b.workshopCovered.begin(),b.workshopCovered.end(),cell)!=b.workshopCovered.end();
+  auto* mesh=mark->getComponent<engine::MeshComponent>();const float target=covered?0.f:1.f;
+  const float step=b.reducedMotion?1.f:float(std::max(0.,delta))*5.f;
+  mesh->opacity+=std::clamp(target-mesh->opacity,-step,step);mark->enabled=mesh->opacity>0;
+ }
  b.collision.synchronize(s);
+ if(b.questId=="beach_pepper_basket"){animatePepper(s,b,delta);return;}
  if(!b.ballRoute.empty()){
   b.ballElapsed+=b.reducedMotion?100.f:float(std::max(0.,delta))*2.f;
   const auto index=std::size_t(b.ballElapsed);if(auto* ball=s.findActor(b.ball)){

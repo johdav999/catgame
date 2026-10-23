@@ -26,7 +26,7 @@ void solve(Attempt& a) {
 void bad(Definition d) {check(!validate(d).empty(),"malformed content accepted");}
 }
 int main() {try {
-    auto all=catalogue();check(all.size()==24,"Base layouts and first beach adventure required");
+    auto all=catalogue();check(all.size()==29,"Base layouts and first beach adventure required");
     for(auto d:all) {
         auto e=validate(d);if(!e.empty())throw std::runtime_error(d.quest+": "+e);
         Attempt a(d),b(d);auto fresh=a.command({Verb::Hint});
@@ -103,12 +103,18 @@ int main() {try {
     check(playback.picture()=="leaf","first picture not immediate");playback.advance(.999);check(playback.index()==0,"picture ended early");
     playback.advance(.001);check(playback.index()==1&&playback.picture()=="star","one-second boundary failed");
     playback.advance(5,true);check(playback.index()==1,"paused clue advanced");playback.advance(4);check(!playback.watching()&&playback.picture().empty(),"answer phase did not blank the board");
+    const auto encore=quest("beach_shell_encore");playback.start(encore.sequence,encore.pictureSeconds);
+    check(playback.size()==8,"Eight-picture encore playback");
+    playback.advance(encore.pictureSeconds*7);check(playback.index()==7,"Eighth picture remains visible");
+    playback.advance(encore.pictureSeconds);check(!playback.watching(),"Encore finishes after all eight pictures");
+    bool tooLong=false;try{playback.start(std::vector<std::string>(13,"leaf"),1);}catch(const std::invalid_argument&){tooLong=true;}
+    check(tooLong,"Playback rejects more than twelve pictures");
     auto reusable=pictureSequence("other_sequence","other-v1","Other pictures",
         {{"response_a","First response","bell_leaf",Piece::Bell,{0,0},0,1,{}, {},"flower"},{"response_b","Second response","bell_star",Piece::Bell,{1,0},0,1,{}, {},"moon"}},
         {"moon","flower","moon"},.5);
     check(validate(reusable).empty(),"reusable sequence still depends on Pepper or three fixed symbols");Attempt other(reusable);solve(other);
     reusable.pictureSeconds=0;bad(reusable);
-    go(bells,{Verb::Restart});solve(bells);auto dd=bells.definition();dd.sequence.push_back("unknown");bad(dd);dd=bells.definition();dd.sequence.resize(9,"leaf");bad(dd);
+    go(bells,{Verb::Restart});solve(bells);auto dd=bells.definition();dd.sequence.push_back("unknown");bad(dd);dd=bells.definition();dd.sequence.resize(13,"leaf");bad(dd);
     Attempt cats(quest("pip_pepper_playhouse","pip-pepper-playhouse-v1"));go(cats,{Verb::AssignCat,"pip","pip_switch"});go(cats,{Verb::AssignCat,"pip","waiting"});
     go(cats,{Verb::AssignCat,"pepper","pepper_switch"});blocked(cats,{Verb::Connect},"together now");
     blocked(cats,{Verb::AssignCat,"pip","pepper_switch"},"own marked");

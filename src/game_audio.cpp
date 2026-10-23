@@ -11,6 +11,7 @@ GameAudio::GameAudio(std::unique_ptr<engine::AudioBackend> backend,std::unique_p
 }
 void GameAudio::settings(const AfternoonSettings& s) {
     muted_=s.muted;system_.setBusMuted(system_.masterBus(),muted_);
+    effectsAudible_=s.effects>0;
     system_.setBusVolume(buses_[0],std::clamp(s.music,0,100)/100.f);
     system_.setBusVolume(buses_[1],std::clamp(s.ambience,0,100)/100.f);
     system_.setBusVolume(buses_[2],std::clamp(s.effects,0,100)/100.f);
@@ -20,7 +21,7 @@ void GameAudio::settings(const AfternoonSettings& s) {
 void GameAudio::activate() {
     enabled_=true;system_.backend().activate();if(uiSystem_&&!uiSystem_->backend().active())uiSystem_->backend().activate();
     // Small cues preload after consent; full-length music loads only on demand.
-    for(std::size_t i=0;i<slots_.size();++i)if(audioClips[i].bus!=0)load(i);
+    for(std::size_t i=0;i<slots_.size();++i)if(audioClips[i].bus!=0&&(waves_||audioClips[i].family!="beach_wave"))load(i);
 }
 void GameAudio::preload(std::string_view family) {
     for(std::size_t i=0;i<audioClips.size();++i)if(audioClips[i].family==family)load(i);
@@ -36,6 +37,7 @@ void GameAudio::sceneChanged() {
     ++generation_;
     std::erase_if(playing_,[&](auto& p){if(!playlist_.empty()&&audioClips[p.clip].bus==0)return false;system_.stop(p.voice);return true;});
     pending_.clear();loops_.clear();exhausted_.clear();last_.clear();
+    waves_=false;waveDelay_=0;nextWave_=audioClips.size();
     // UI voices own no scene references; a pause/revision must not cut off its click.
     // In-flight decodes carry the old scene generation. Background music owns no scene references.
     for(std::size_t i=0;i<slots_.size();++i){slots_[i].pending=false;if(audioClips[i].bus==0&&playlist_.empty())slots_[i].sound.reset();}
@@ -129,6 +131,11 @@ void GameAudio::playlist(std::span<const std::string_view> tracks) {
     clearMusic();playlist_=std::move(candidate);playlistPosition_=0;
     music_.clear();nextMusic_.clear();musicFade_=0;
 }
+void GameAudio::beachWaves(bool on) {
+    if(waves_==on)return;
+    waves_=on;waveDelay_=0;nextWave_=audioClips.size();
+    if(!on)stopFamily("beach_wave");
+}
 void GameAudio::update(double delta) {
     if(!std::isfinite(delta)||delta<0)return;
     if(uiSystem_){
@@ -142,13 +149,37 @@ void GameAudio::update(double delta) {
     if(!enabled_||!system_.backend().active())return;
     // Scene replacement cancels initial decodes. Warm every small cue again
     // so requests/UI/contact effects meet the 400 ms playback window.
-    for(std::size_t i=0;i<slots_.size();++i)if(audioClips[i].bus!=0)load(i);
+    for(std::size_t i=0;i<slots_.size();++i)if(audioClips[i].bus!=0&&(waves_||audioClips[i].family!="beach_wave"))load(i);
     clock_+=delta;
     std::erase_if(playing_,[&](auto& p){p.age+=delta;const auto& s=audioClips[p.clip];
         if((s.family=="pip_purr"&&p.age>=5)||((s.family=="ball_roll"||s.family=="water_flow")&&p.age>=4)) {system_.stop(p.voice);loops_[std::string(s.family)]=false;exhausted_[std::string(s.family)]=true;}
         const bool ended=!system_.isPlaying(p.voice);
         if(ended&&!playlist_.empty()&&p.clip==playlist_[playlistPosition_])playlistPosition_=(playlistPosition_+1)%playlist_.size();
         return ended;});
+    if(waves_&&!muted_&&effectsAudible_&&std::none_of(playing_.begin(),playing_.end(),[](auto& p){return audioClips[p.clip].family=="beach_wave";})) {
+        // Count only audible presentation time. Backend completion prevents
+        // overlap even if decoding, frame cadence or device playback changes.
+        waveDelay_=std::max(0.,waveDelay_-std::min(delta,.25));
+        if(waveDelay_==0) {
+            if(nextWave_<slots_.size()&&slots_[nextWave_].failed)nextWave_=slots_.size();
+            if(nextWave_==slots_.size()) {
+                std::vector<std::size_t> candidates;
+                for(std::size_t i=0;i<audioClips.size();++i)
+                    if(audioClips[i].family=="beach_wave"&&i!=lastWave_&&!slots_[i].failed)candidates.push_back(i);
+                if(!candidates.empty())nextWave_=candidates[std::uniform_int_distribution<std::size_t>(0,candidates.size()-1)(waveRandom_)];
+            }
+            if(nextWave_<slots_.size()) {
+                const auto index=nextWave_;load(index);
+                if(play(index)) {
+                    lastWave_=index;nextWave_=slots_.size();
+                    // Double the old 2.55-second recording + 0.5–0.9-second
+                    // cadence without stretching the recording or foam wash.
+                    waveDelay_=std::uniform_real_distribution<double>(3.55,4.35)(waveRandom_);
+                    if(event)event(audioClips[index].id);
+                }
+            }
+        }
+    }
     if(!playlist_.empty()){
         // Retain/decode only the selected track. Failed tracks are skipped without spinning when all fail.
         for(std::size_t n=0;n<playlist_.size()&&slots_[playlist_[playlistPosition_]].failed;++n)
